@@ -21,6 +21,8 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import Atxy2k.CustomTextField.RestrictedTextField;
+import java.awt.Toolkit;
+import java.awt.Dialog.ModalExclusionType;
 
 public class TelaCadastroPaciente extends JFrame {
 
@@ -29,7 +31,7 @@ public class TelaCadastroPaciente extends JFrame {
 	private JTextField txtComplemento;
 	private JTextField txtBairro;
 	private JTextField txtCidade;
-	private JTextField txtEndereco;
+	private JTextField txtRua;
 	private JComboBox cboUF;
 	private JLabel lblStatus;
 
@@ -53,6 +55,7 @@ public class TelaCadastroPaciente extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaCadastroPaciente() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaCadastroPaciente.class.getResource("/img/VirtualMedic.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 628);
 		contentPane = new JPanel();
@@ -116,14 +119,14 @@ public class TelaCadastroPaciente extends JFrame {
 		btnLimpar.setBounds(77, 376, 89, 23);
 		contentPane.add(btnLimpar);
 
-		JLabel lblNewLabel_2 = new JLabel("Endereço");
+		JLabel lblNewLabel_2 = new JLabel("Rua");
 		lblNewLabel_2.setBounds(85, 196, 46, 14);
 		contentPane.add(lblNewLabel_2);
 
-		txtEndereco = new JTextField();
-		txtEndereco.setColumns(10);
-		txtEndereco.setBounds(172, 190, 176, 20);
-		contentPane.add(txtEndereco);
+		txtRua = new JTextField();
+		txtRua.setColumns(10);
+		txtRua.setBounds(172, 190, 176, 20);
+		contentPane.add(txtRua);
 
 		btnBuscarCEP.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -183,7 +186,7 @@ public class TelaCadastroPaciente extends JFrame {
 					}
 				}
 			}
-			txtEndereco.setText(tipoLogradouro + " " + logradouro);
+			txtRua.setText(tipoLogradouro + " " + logradouro);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

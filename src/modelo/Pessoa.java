@@ -4,7 +4,7 @@ import java.util.Date;
 
 import enums.GeneroEnum;
 
-public abstract class Pessoa {
+public abstract class Pessoa extends Endereco {
 
 	private Long cpf;
 	private String nome;
