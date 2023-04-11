@@ -69,7 +69,7 @@ public class TelaCadastroPaciente extends JFrame {
 		contentPane.add(lblNewLabel);
 
 		txtCEP = new JTextField();
-		txtCEP.setBounds(130, 151, 176, 20);
+		txtCEP.setBounds(130, 151, 86, 20);
 		contentPane.add(txtCEP);
 		txtCEP.setColumns(10);
 
