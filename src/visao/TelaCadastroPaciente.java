@@ -23,6 +23,9 @@ import org.dom4j.io.SAXReader;
 import Atxy2k.CustomTextField.RestrictedTextField;
 import java.awt.Toolkit;
 import java.awt.Dialog.ModalExclusionType;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class TelaCadastroPaciente extends JFrame {
 
@@ -57,76 +60,47 @@ public class TelaCadastroPaciente extends JFrame {
 	public TelaCadastroPaciente() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaCadastroPaciente.class.getResource("/img/VirtualMedic.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 700, 628);
+		setBounds(100, 100, 520, 449);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("CEP:");
-		lblNewLabel.setBounds(85, 154, 46, 14);
-		contentPane.add(lblNewLabel);
 
 		txtCEP = new JTextField();
-		txtCEP.setBounds(130, 151, 86, 20);
-		contentPane.add(txtCEP);
 		txtCEP.setColumns(10);
 
 		JButton btnBuscarCEP = new JButton("Buscar");
-		btnBuscarCEP.setBounds(403, 150, 89, 23);
-		contentPane.add(btnBuscarCEP);
 
 		JLabel lblNewLabel_1_1 = new JLabel("Complemento:");
-		lblNewLabel_1_1.setBounds(85, 221, 106, 14);
-		contentPane.add(lblNewLabel_1_1);
 
 		txtComplemento = new JTextField();
 		txtComplemento.setColumns(10);
-		txtComplemento.setBounds(201, 220, 281, 20);
-		contentPane.add(txtComplemento);
 
 		JLabel lblNewLabel_1_1_1 = new JLabel("Bairro:");
-		lblNewLabel_1_1_1.setBounds(85, 261, 106, 14);
-		contentPane.add(lblNewLabel_1_1_1);
 
 		txtBairro = new JTextField();
 		txtBairro.setColumns(10);
-		txtBairro.setBounds(201, 258, 281, 20);
-		contentPane.add(txtBairro);
 
 		txtCidade = new JTextField();
 		txtCidade.setColumns(10);
-		txtCidade.setBounds(201, 289, 281, 20);
-		contentPane.add(txtCidade);
 
 		JLabel lblNewLabel_1_1_1_1 = new JLabel("Cidade:");
-		lblNewLabel_1_1_1_1.setBounds(85, 292, 106, 14);
-		contentPane.add(lblNewLabel_1_1_1_1);
 
 		JLabel lblNewLabel_1_1_1_1_1 = new JLabel("Estado");
-		lblNewLabel_1_1_1_1_1.setBounds(85, 328, 106, 14);
-		contentPane.add(lblNewLabel_1_1_1_1_1);
 
 		cboUF = new JComboBox();
 		cboUF.setModel(new DefaultComboBoxModel(
 				new String[] { "Selecione", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS",
 						"MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
-		cboUF.setBounds(201, 320, 105, 22);
-		contentPane.add(cboUF);
 
 		JButton btnLimpar = new JButton("Limpar");
-		btnLimpar.setBounds(77, 376, 89, 23);
-		contentPane.add(btnLimpar);
 
 		JLabel lblNewLabel_2 = new JLabel("Rua");
-		lblNewLabel_2.setBounds(85, 196, 46, 14);
-		contentPane.add(lblNewLabel_2);
 
 		txtRua = new JTextField();
 		txtRua.setColumns(10);
-		txtRua.setBounds(172, 190, 176, 20);
-		contentPane.add(txtRua);
 
 		btnBuscarCEP.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -144,8 +118,98 @@ public class TelaCadastroPaciente extends JFrame {
 		RestrictedTextField validar = new RestrictedTextField(txtCEP);
 		
 		lblStatus = new JLabel("");
-		lblStatus.setBounds(325, 154, 20, 20);
-		contentPane.add(lblStatus);
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(80)
+					.addComponent(lblNewLabel_1_1)
+					.addGap(47)
+					.addComponent(txtComplemento)
+					.addGap(212))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(80)
+					.addComponent(lblNewLabel_1_1_1)
+					.addGap(84)
+					.addComponent(txtBairro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(80)
+					.addComponent(lblNewLabel_1_1_1_1)
+					.addGap(79)
+					.addComponent(txtCidade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(80)
+					.addComponent(lblNewLabel_1_1_1_1_1)
+					.addGap(83)
+					.addComponent(cboUF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(72)
+					.addComponent(btnLimpar))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(80)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lblNewLabel)
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(txtCEP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+							.addComponent(lblNewLabel_2)
+							.addGap(97)
+							.addComponent(txtRua, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGap(38)
+					.addComponent(lblStatus, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+					.addGap(58)
+					.addComponent(btnBuscarCEP))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(145)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(4)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblNewLabel)
+								.addComponent(txtCEP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(4)
+							.addComponent(lblStatus, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnBuscarCEP))
+					.addGap(19)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblNewLabel_2))
+						.addComponent(txtRua, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(7)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(1)
+							.addComponent(lblNewLabel_1_1))
+						.addComponent(txtComplemento))
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblNewLabel_1_1_1))
+						.addComponent(txtBairro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(11)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblNewLabel_1_1_1_1))
+						.addComponent(txtCidade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(11)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(8)
+							.addComponent(lblNewLabel_1_1_1_1_1))
+						.addComponent(cboUF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(34)
+					.addComponent(btnLimpar)
+					.addGap(6))
+		);
+		contentPane.setLayout(gl_contentPane);
 		validar.setOnlyNums(true);
 		validar.setLimit(8);
 	}
