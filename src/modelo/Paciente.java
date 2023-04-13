@@ -1,18 +1,12 @@
 package modelo;
 
-public class Paciente {
+public class Paciente  {
 	
-	private Integer id;
 	private Medico medico;
 	private String Endereco;
 	private String Diagnostico;
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
+	
+		
 	public Medico getMedico() {
 		return medico;
 	}

@@ -5,12 +5,8 @@ public class Medico extends Pessoa {
 	private Integer id;
 	private Integer crm;
 	private String especificação;
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	
+	
 	public Integer getCrm() {
 		return crm;
 	}
