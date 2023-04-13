@@ -23,4 +23,8 @@ public class Medico extends Pessoa {
 	public void setEspecificação(String especificação) {
 		this.especificação = especificação;
 	}
+	@Override
+	public String toString() {
+		return "Medico [id=" + id + ", crm=" + crm + ", especificação=" + especificação + "]";
+	}
 }
