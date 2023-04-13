@@ -1,10 +1,6 @@
 package modelo;
 
-<<<<<<< HEAD
 public class Medico extends Pessoa {
-	private 
-=======
-public class Medico {
 	
 	private Integer id;
 	private Integer crm;
@@ -27,5 +23,4 @@ public class Medico {
 	public void setEspecificação(String especificação) {
 		this.especificação = especificação;
 	}
->>>>>>> main
 }
