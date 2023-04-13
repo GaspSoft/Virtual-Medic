@@ -4,7 +4,7 @@ public class Medico extends Pessoa {
 	
 	private Integer id;
 	private Integer crm;
-	private String especificação;
+	private String especificacao;
 	
 	
 	public Integer getCrm() {
@@ -13,14 +13,14 @@ public class Medico extends Pessoa {
 	public void setCrm(Integer crm) {
 		this.crm = crm;
 	}
-	public String getEspecificação() {
-		return especificação;
+	public String getEspecificacao() {
+		return especificacao;
 	}
-	public void setEspecificação(String especificação) {
-		this.especificação = especificação;
+	public void setEspecificacao(String especificacao) {
+		this.especificacao = especificacao;
 	}
 	@Override
 	public String toString() {
-		return "Medico [id=" + id + ", crm=" + crm + ", especificação=" + especificação + "]";
+		return "Medico [id=" + id + ", crm=" + crm + ", especificação=" + especificacao + "]";
 	}
 }
