@@ -7,6 +7,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaCadastroMedico extends JFrame {
 
@@ -16,12 +19,6 @@ public class TelaCadastroMedico extends JFrame {
 	private JTextField textFieldCRM;
 	private JTextField textFieldEspeci;
 	private JTextField textFieldEmail;
-	private JTextField textFieldCEP;
-	private JTextField textFieldEstado;
-	private JTextField textFieldCidade;
-	private JTextField textFieldBairro;
-	private JTextField textFieldRua;
-	private JTextField textFieldComple;
 
 	/**
 	 * Launch the application.
@@ -87,26 +84,6 @@ public class TelaCadastroMedico extends JFrame {
 		lblEmail.setBounds(41, 122, 46, 14);
 		contentPane.add(lblEmail);
 		
-		JLabel lblRua = new JLabel("Rua:");
-		lblRua.setBounds(41, 247, 46, 14);
-		contentPane.add(lblRua);
-		
-		JLabel lblNum = new JLabel("Número:");
-		lblNum.setBounds(41, 272, 46, 14);
-		contentPane.add(lblNum);
-		
-		JLabel lblCEP = new JLabel("CEP:");
-		lblCEP.setBounds(41, 147, 46, 14);
-		contentPane.add(lblCEP);
-		
-		JLabel lblEstado = new JLabel("Estado:");
-		lblEstado.setBounds(41, 172, 46, 14);
-		contentPane.add(lblEstado);
-		
-		JLabel lblCidade = new JLabel("Cidade:");
-		lblCidade.setBounds(41, 197, 46, 14);
-		contentPane.add(lblCidade);
-		
 		textFieldEspeci = new JTextField();
 		textFieldEspeci.setColumns(10);
 		textFieldEspeci.setBounds(119, 94, 188, 20);
@@ -117,48 +94,12 @@ public class TelaCadastroMedico extends JFrame {
 		textFieldEmail.setBounds(119, 122, 188, 20);
 		contentPane.add(textFieldEmail);
 		
-		textFieldCEP = new JTextField();
-		textFieldCEP.setColumns(10);
-		textFieldCEP.setBounds(119, 147, 188, 20);
-		contentPane.add(textFieldCEP);
-		
-		JLabel lblBairro = new JLabel("Bairro:");
-		lblBairro.setBounds(41, 222, 46, 14);
-		contentPane.add(lblBairro);
-		
-		JLabel lblComple = new JLabel("Complemento:");
-		lblComple.setBounds(41, 297, 76, 14);
-		contentPane.add(lblComple);
-		
-		textFieldEstado = new JTextField();
-		textFieldEstado.setColumns(10);
-		textFieldEstado.setBounds(119, 172, 188, 20);
-		contentPane.add(textFieldEstado);
-		
-		textFieldCidade = new JTextField();
-		textFieldCidade.setColumns(10);
-		textFieldCidade.setBounds(119, 197, 188, 20);
-		contentPane.add(textFieldCidade);
-		
-		textFieldBairro = new JTextField();
-		textFieldBairro.setColumns(10);
-		textFieldBairro.setBounds(119, 219, 188, 20);
-		contentPane.add(textFieldBairro);
-		
-		textFieldRua = new JTextField();
-		textFieldRua.setColumns(10);
-		textFieldRua.setBounds(119, 244, 188, 20);
-		contentPane.add(textFieldRua);
-		
-		JTextField textFieldNum = new JTextField();
-		textFieldNum.setColumns(10);
-		textFieldNum.setBounds(119, 269, 188, 20);
-		contentPane.add(textFieldNum);
-		
-		textFieldComple = new JTextField();
-		textFieldComple.setColumns(10);
-		textFieldComple.setBounds(119, 294, 188, 20);
-		contentPane.add(textFieldComple);
+		JButton btnCadastar = new JButton("Cadastrar");
+		btnCadastar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnCadastar.setBounds(152, 178, 89, 23);
+		contentPane.add(btnCadastar);
 	}
-
 }
