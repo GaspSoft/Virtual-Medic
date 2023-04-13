@@ -1,8 +1,10 @@
 package modelo;
 
 public class PlanoSaude {
+	
 	private int id;
 	private String nome;
+	
 	public int getId() {
 		return id;
 	}
