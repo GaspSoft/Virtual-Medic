@@ -94,8 +94,8 @@ public class TelaCadastroPlanoSaude extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(planoSelecionado != null) {
 					listaPlanoSaude.remove(planoSelecionado);
-					atualizarJTable();
-					limparCampos();
+					//atualizarJTable();
+					//limparCampos();
 				}
 			}
 		});

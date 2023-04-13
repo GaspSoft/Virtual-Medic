@@ -25,5 +25,9 @@ public class Paciente  {
 	public void setDiagnostico(String diagnostico) {
 		Diagnostico = diagnostico;
 	}
+	@Override
+	public String toString() {
+		return "Paciente [medico=" + medico + ", Endereco=" + Endereco + ", Diagnostico=" + Diagnostico + "]";
+	}
 	
 }

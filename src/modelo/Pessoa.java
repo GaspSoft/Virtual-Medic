@@ -5,8 +5,6 @@ public abstract class Pessoa extends Endereco {
 	private String nome;
 	private String email;
 	
-	
-	
 	public Long getCpf() {
 		return cpf;
 	}
@@ -25,8 +23,9 @@ public abstract class Pessoa extends Endereco {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
-	
+	@Override
+	public String toString() {
+		return "Pessoa [cpf=" + cpf + ", nome=" + nome + ", email=" + email + "]";
+	}
 }
 

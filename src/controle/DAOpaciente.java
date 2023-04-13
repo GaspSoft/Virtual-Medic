@@ -28,6 +28,8 @@ public class DAOpaciente {
 		return false;
 	}
 	
+	// UPDATE
+	
 	// SELECT ALL
 	public ArrayList<Paciente> listalPaciente() {
 		return listaPaciente;
