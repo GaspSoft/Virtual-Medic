@@ -1,4 +1,4 @@
-package visao;
+package visao.medico;
 
 import java.awt.EventQueue;
 
