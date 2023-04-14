@@ -44,11 +44,6 @@ public class TelaCadastroMedico extends JFrame {
 	private JTable table;
 	private DefaultTableModel modelo;
 	private DAOmedico dao;
-	private JTextField txtCEP;
-	private JTextField txtCidade;
-	private JTextField txtBairro;
-	private JTextField txtRua;
-	private JTextField txtNumero;
 	private JComboBox cboUF;
 
 	/**
@@ -162,66 +157,15 @@ public class TelaCadastroMedico extends JFrame {
 
 		atualizaJTable(modelo, table, tabelaMedico);
 		
-		txtCEP = new JTextField();
-		txtCEP.setBackground(new Color(255, 128, 64));
-		txtCEP.setForeground(new Color(255, 0, 0));
-		txtCEP.setColumns(10);
-		
-		txtCidade = new JTextField();
-		txtCidade.setColumns(10);
-		
-		txtBairro = new JTextField();
-		txtBairro.setColumns(10);
-		
-		JLabel lblCep = new JLabel("CEP:");
-		lblCep.setFont(new Font("Dialog", Font.BOLD, 14));
-		
-		JLabel lblEmail_1_1 = new JLabel("UF");
-		lblEmail_1_1.setFont(new Font("Dialog", Font.BOLD, 14));
-		
-		JLabel lblEmail_1_1_1 = new JLabel("Cidade:");
-		lblEmail_1_1_1.setFont(new Font("Dialog", Font.BOLD, 14));
-		
-		JLabel lblEmail_1_1_2 = new JLabel("Bairro");
-		lblEmail_1_1_2.setFont(new Font("Dialog", Font.BOLD, 14));
-		
-		JComboBox cboUF = new JComboBox();
-		cboUF.setModel(new DefaultComboBoxModel(new String[] {"Estado", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES ", "GO ", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"}));
-		
-		txtRua = new JTextField();
-		txtRua.setColumns(10);
-		
-		JLabel lblEmail_1_1_2_1 = new JLabel("Rua");
-		lblEmail_1_1_2_1.setFont(new Font("Dialog", Font.BOLD, 14));
-		
-		txtNumero = new JTextField();
-		txtNumero.setColumns(10);
-		
-		JLabel lblEmail_1_1_2_1_1 = new JLabel("Numero");
-		lblEmail_1_1_2_1_1.setFont(new Font("Dialog", Font.BOLD, 14));
-		
-		JButton btnBuscarCEP = new JButton("Buscar");
-		btnBuscarCEP.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (txtCEP.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Digite o CEP");
-					txtCEP.requestFocus();
-				} else {
-					// buscar CEP
-					buscarCEP();
-				}
-			}
-		});
-		
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(tabelaMedico, GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
 					.addContainerGap())
-				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(214)
 					.addComponent(btnCadastar, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
 					.addGap(239))
@@ -229,67 +173,22 @@ public class TelaCadastroMedico extends JFrame {
 					.addGap(36)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblEmail_1_1_2_1_1, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED))
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-							.addGroup(gl_contentPane.createSequentialGroup()
-								.addComponent(lblEmail_1_1_2_1, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED))
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(lblEmail_1_1_2, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED))
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-									.addGroup(gl_contentPane.createSequentialGroup()
-										.addComponent(lblEmail_1_1_1, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.RELATED))
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_contentPane.createSequentialGroup()
-											.addComponent(lblEmail_1_1, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(ComponentPlacement.RELATED))
-										.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-											.addGroup(gl_contentPane.createSequentialGroup()
-												.addComponent(lblCep, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
-												.addPreferredGap(ComponentPlacement.RELATED))
-											.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-												.addGroup(gl_contentPane.createSequentialGroup()
-													.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-														.addComponent(lblCPF, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-														.addComponent(lblCRM, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-														.addComponent(lblEspeci)
-														.addComponent(lblEmail, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE))
-													.addGap(19))
-												.addGroup(gl_contentPane.createSequentialGroup()
-													.addComponent(lblNome, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-													.addGap(36)))))))))
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblCPF, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblCRM, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblEspeci)
+								.addComponent(lblEmail, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE))
+							.addGap(19))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(txtNumero, GroupLayout.PREFERRED_SIZE, 195, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap())
-						.addGroup(Alignment.TRAILING, gl_contentPane.createParallelGroup(Alignment.LEADING)
-							.addGroup(gl_contentPane.createSequentialGroup()
-								.addComponent(txtRua, GroupLayout.PREFERRED_SIZE, 195, GroupLayout.PREFERRED_SIZE)
-								.addContainerGap())
-							.addGroup(Alignment.TRAILING, gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-									.addGroup(gl_contentPane.createSequentialGroup()
-										.addComponent(txtBairro, GroupLayout.PREFERRED_SIZE, 195, GroupLayout.PREFERRED_SIZE)
-										.addContainerGap())
-									.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-										.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-											.addComponent(txtNome, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-											.addComponent(txtCRM, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-											.addComponent(txtCPF, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-											.addComponent(txtEspeci, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-											.addComponent(txtEmail, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-											.addComponent(txtCEP, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-											.addComponent(txtCidade, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(btnBuscarCEP)
-										.addGap(92)))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(cboUF, 0, 0, Short.MAX_VALUE)
-									.addGap(278))))))
+							.addComponent(lblNome, GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+							.addGap(36)))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addComponent(txtNome, GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+						.addComponent(txtCRM, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+						.addComponent(txtCPF, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+						.addComponent(txtEspeci, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+						.addComponent(txtEmail, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
+					.addGap(163))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -317,35 +216,8 @@ public class TelaCadastroMedico extends JFrame {
 								.addComponent(lblEspeci))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(lblEmail)))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(txtCEP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnBuscarCEP))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblEmail_1_1, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
-								.addComponent(cboUF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(txtCidade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblEmail_1_1_1, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(txtBairro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblEmail_1_1_2, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(txtRua, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblEmail_1_1_2_1, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(txtNumero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblEmail_1_1_2_1_1, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
-							.addComponent(btnCadastar))
-						.addComponent(lblCep, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 277, Short.MAX_VALUE)
+					.addComponent(btnCadastar)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(tabelaMedico, GroupLayout.PREFERRED_SIZE, 236, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
@@ -364,47 +236,5 @@ public class TelaCadastroMedico extends JFrame {
 		table = new JTable(modelo);
 		tabelaMedico.setViewportView(table);
 		modelo.fireTableDataChanged();
-	}
-	
-	private void buscarCEP() {
-		String logradouro = "";
-		String tipoLogradouro = "";
-		String resultado = null;
-		String cep = txtCEP.getText();
-		try {
-			URL url = new URL("http://cep.republicavirtual.com.br/web_cep.php?cep=" + cep + "&formato=xml");
-			SAXReader xml = new SAXReader();
-			Document documento = xml.read(url);
-			Element root = documento.getRootElement();
-			for (Iterator<Element> it = root.elementIterator(); it.hasNext();) {
-				Element element = it.next();
-				if (element.getQualifiedName().equals("cidade")) {
-					txtCidade.setText(element.getText());
-				}
-				if (element.getQualifiedName().equals("bairro")) {
-					txtBairro.setText(element.getText());
-				}
-				if (element.getQualifiedName().equals("uf")) {
-					cboUF.setSelectedItem(element.getText());
-				}
-				if (element.getQualifiedName().equals("tipo_logradouro")) {
-					tipoLogradouro = element.getText();
-				}
-				if (element.getQualifiedName().equals("logradouro")) {
-					logradouro = element.getText();
-				}
-				if (element.getQualifiedName().equals("resultado")) {
-					resultado = element.getText();
-					if (resultado.equals("1")) {
-						//lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/check.png")));
-					} else {
-						JOptionPane.showMessageDialog(null, "CEP não encontrado");
-					}
-				}
-			}
-			txtRua.setText(tipoLogradouro + " " + logradouro);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
 	}
 }
