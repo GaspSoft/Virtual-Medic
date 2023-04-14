@@ -5,11 +5,16 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
+import controle.DAOmedico;
+import controle.DAOplanoSaude;
+import modelo.Medico;
 import modelo.PlanoSaude;
 
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -19,18 +24,17 @@ import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.JScrollBar;
 
 public class TelaCadastroPlanoSaude extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtId;
-	private JTextField textField;
+	private JTextField txtNome;
 	private PlanoSaude planoSelecionado;
-	
-	private ArrayList<PlanoSaude> listaPlanoSaude = new ArrayList<PlanoSaude>();
-	private JTable table;
 	private JScrollPane scrollPane;
-	
+	private DAOplanoSaude dao;
+	private DefaultTableModel modelo;
+	private JTable table;
 	/**
 	 * Launch the application.
 	 */
@@ -51,9 +55,9 @@ public class TelaCadastroPlanoSaude extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaCadastroPlanoSaude() {
-		setTitle("Tela de Cadastro Plano de Saúde");
+		setTitle("Plano de Saúde");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 768, 356);
+		setBounds(100, 100, 461, 352);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -61,33 +65,54 @@ public class TelaCadastroPlanoSaude extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblId = new JLabel("Id:");
-		lblId.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblId.setBounds(28, 32, 46, 22);
-		contentPane.add(lblId);
-		
-		txtId = new JTextField();
-		txtId.setBounds(84, 35, 154, 20);
-		contentPane.add(txtId);
-		txtId.setColumns(10);
-		
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNome.setBounds(28, 81, 46, 14);
+		lblNome.setBounds(28, 57, 58, 14);
 		contentPane.add(lblNome);
 		
-		textField = new JTextField();
-		textField.setBounds(84, 80, 154, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		txtNome = new JTextField();
+		txtNome.setBounds(85, 56, 219, 20);
+		contentPane.add(txtNome);
+		txtNome.setColumns(10);
+		
+		JScrollPane tabelaPlanoSaude = new JScrollPane();
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				DAOplanoSaude planosaudeDao = new DAOplanoSaude();
+				ArrayList<PlanoSaude> listaPlanoSaude = planosaudeDao.listaPlanoSaude();
+				PlanoSaude ps = new PlanoSaude();
+
+				String nome = txtNome.getText();
+
+				ps.setNome(nome);
+
+				DAOplanoSaude dao = DAOplanoSaude.getInstacia();
+				Boolean inserir = dao.inserir(ps);
+				if (inserir == true) {
+					JOptionPane.showMessageDialog(null, "Sucesso!");
+				} else {
+					JOptionPane.showMessageDialog(null, "Erro!");
+				}
+
+				atualizaJTable(modelo, table, tabelaPlanoSaude);
 			}
 		});
-		btnCadastrar.setBounds(10, 283, 89, 23);
+		
+		btnCadastrar.setBounds(10, 283, 100, 23);
 		contentPane.add(btnCadastrar);
+		
+		modelo = new DefaultTableModel();
+		modelo.addColumn("Nome");
+
+		DAOplanoSaude ps = DAOplanoSaude.getInstacia();
+		ArrayList<PlanoSaude> listaPlanoSaude = ps.listaPlanoSaude();
+		for (PlanoSaude plano : listaPlanoSaude) {
+			modelo.addRow(new Object[] { plano.getNome() });
+		}
+
+		atualizaJTable(modelo, table, tabelaPlanoSaude);
 		
 		JButton btnExcluir = new JButton("Excluir");
 		btnExcluir.addActionListener(new ActionListener() {
@@ -99,14 +124,22 @@ public class TelaCadastroPlanoSaude extends JFrame {
 				}
 			}
 		});
-		btnExcluir.setBounds(120, 283, 89, 23);
+		btnExcluir.setBounds(120, 283, 100, 23);
 		contentPane.add(btnExcluir);
 		
-		scrollPane = new JScrollPane();
-		scrollPane.setBounds(264, 38, 362, 140);
-		contentPane.add(scrollPane);
-		
-		table = new JTable();
-		scrollPane.setViewportView(table);
+		tabelaPlanoSaude.setBounds(32, 136, 363, 126);
+		contentPane.add(tabelaPlanoSaude);
+	}
+	
+	public static void atualizaJTable(DefaultTableModel modelo, JTable table, JScrollPane tabelaPlanoSaude) {
+		DAOplanoSaude ps = DAOplanoSaude.getInstacia();
+		ArrayList<PlanoSaude> listaPlanoSaude = ps.listaPlanoSaude();
+		for (PlanoSaude planos : listaPlanoSaude) {
+			modelo.addRow(new Object[] { planos.getNome() });
+		}
+
+		table = new JTable(modelo);
+		tabelaPlanoSaude.setViewportView(table);
+		modelo.fireTableDataChanged();
 	}
 }
