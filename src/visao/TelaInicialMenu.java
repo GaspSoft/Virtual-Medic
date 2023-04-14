@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class TelaCadastroPaciente extends JFrame {
+public class TelaInicialMenu extends JFrame {
 
 	private JPanel contentPane;
 
@@ -17,7 +17,7 @@ public class TelaCadastroPaciente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaCadastroPaciente frame = new TelaCadastroPaciente();
+					TelaInicialMenu frame = new TelaInicialMenu();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -29,14 +29,13 @@ public class TelaCadastroPaciente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaCadastroPaciente() {
+	public TelaInicialMenu() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 651, 525);
+		setBounds(100, 100, 635, 514);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
 	}
 
 }

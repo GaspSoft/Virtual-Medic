@@ -1,4 +1,4 @@
-package visao;
+package visao.planoSaude;
 
 import java.awt.EventQueue;
 
