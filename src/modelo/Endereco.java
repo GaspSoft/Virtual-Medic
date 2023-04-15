@@ -6,8 +6,8 @@ public abstract class Endereco {
 	private String cidade;
 	private String bairro;
 	private String rua;
-	private String numero;
-	private String complemento;
+	private Integer numero;
+	private Integer complemento;
 	public String getCep() {
 		return cep;
 	}
@@ -38,16 +38,16 @@ public abstract class Endereco {
 	public void setRua(String rua) {
 		this.rua = rua;
 	}
-	public String getNumero() {
+	public Integer getNumero() {
 		return numero;
 	}
-	public void setNumero(String numero) {
+	public void setNumero(Integer numero) {
 		this.numero = numero;
 	}
-	public String getComplemento() {
+	public Integer getComplemento() {
 		return complemento;
 	}
-	public void setComplemento(String complemento) {
+	public void setComplemento(Integer complemento) {
 		this.complemento = complemento;
 	}
 	@Override
