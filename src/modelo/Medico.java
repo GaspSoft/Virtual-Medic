@@ -2,7 +2,6 @@ package modelo;
 
 public class Medico extends Pessoa {
 	
-	private Integer id;
 	private Integer crm;
 	private String especificacao;
 	
@@ -21,6 +20,6 @@ public class Medico extends Pessoa {
 	}
 	@Override
 	public String toString() {
-		return "Medico [id=" + id + ", crm=" + crm + ", especificação=" + especificacao + "]";
+		return "Medico [crm=" + crm + ", especificacao=" + especificacao + "]";
 	}
 }

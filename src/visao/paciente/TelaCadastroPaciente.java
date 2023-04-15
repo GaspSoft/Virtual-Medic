@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
 
 import org.dom4j.Document;
 import org.dom4j.Element;
@@ -18,8 +19,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+
 import java.awt.event.ActionListener;
 import java.net.URL;
+import java.text.ParseException;
 import java.util.Iterator;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
@@ -64,67 +68,67 @@ public class TelaCadastroPaciente extends JFrame {
 		setTitle("Cadastro de paciente");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaCadastroPaciente.class.getResource("/img/favicon-32x32.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 651, 525);
+		setBounds(100, 100, 655, 907);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		
-		JLabel lblCEP = new JLabel("CEP:");
-		lblCEP.setBounds(30, 179, 46, 14);
+		JLabel lblCEP = new JLabel("CEP");
+		lblCEP.setBounds(30, 508, 46, 14);
 		lblCEP.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblCEP.setForeground(new Color(84, 175, 230));
 		lblCEP.setBackground(new Color(255, 255, 255));
 		
 		txtCEP = new MeuTextField();
 		txtCEP.setForeground(new Color(27, 156, 228));
-		txtCEP.setBounds(86, 169, 95, 39);
+		txtCEP.setBounds(30, 533, 475, 39);
         
         MeuBotao btnBuscar = new MeuBotao();
-        btnBuscar.setBounds(215, 175, 95, 33);
+        btnBuscar.setBounds(515, 533, 95, 39);
 		btnBuscar.setForeground(new Color(255, 255, 255));
 		btnBuscar.setBackground(new Color(24, 62, 159));
 		btnBuscar.setText("Buscar");
         
         JLabel lblRua = new JLabel("Rua");
-        lblRua.setBounds(30, 223, 46, 14);
+        lblRua.setBounds(234, 658, 46, 14);
         lblRua.setForeground(new Color(84, 175, 230));
         lblRua.setFont(new Font("Tahoma", Font.BOLD, 11));
         
         MeuTextField txtRua = new MeuTextField();
         txtRua.setForeground(new Color(27, 156, 228));
-        txtRua.setBounds(86, 213, 154, 39);
+        txtRua.setBounds(234, 683, 270, 39);
         
         JLabel lblBairro = new JLabel("Bairro");
-        lblBairro.setBounds(30, 272, 46, 14);
+        lblBairro.setBounds(30, 658, 46, 14);
         lblBairro.setForeground(new Color(84, 175, 230));
         lblBairro.setFont(new Font("Tahoma", Font.BOLD, 11));
         
         MeuTextField txtBairro = new MeuTextField();
         txtBairro.setForeground(new Color(27, 156, 228));
-        txtBairro.setBounds(86, 263, 154, 39);
+        txtBairro.setBounds(30, 683, 194, 39);
         
         JLabel lblCidade = new JLabel("Cidade");
-        lblCidade.setBounds(30, 317, 46, 14);
+        lblCidade.setBounds(30, 583, 46, 14);
         lblCidade.setFont(new Font("Tahoma", Font.BOLD, 11));
         lblCidade.setForeground(new Color(84, 175, 230));
         
         MeuTextField txtCidade = new MeuTextField();
-        txtCidade.setBounds(86, 307, 91, 39);
+        txtCidade.setBounds(30, 608, 302, 39);
         
         MeuComboBox meuComboBox = new MeuComboBox();
         meuComboBox.setForeground(new Color(27, 156, 228));
-        meuComboBox.setBounds(86, 357, 118, 39);
+        meuComboBox.setBounds(347, 608, 157, 40);
 		meuComboBox.setModel(new DefaultComboBoxModel(new String[] {"Estado", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"}));
 		
 		MeuBotao btnLimpa = new MeuBotao();
-		btnLimpa.setBounds(41, 429, 95, 49);
+		btnLimpa.setBounds(234, 808, 95, 49);
 		btnLimpa.setText("Limpar");
 		btnLimpa.setForeground(Color.WHITE);
 		btnLimpa.setBackground(new Color(24, 62, 159));
 		
 		MeuBotao btnCadastrar = new MeuBotao();
-		btnCadastrar.setBounds(294, 429, 186, 49);
+		btnCadastrar.setBounds(30, 808, 190, 49);
 		btnCadastrar.setText("Cadastrar");
 		btnCadastrar.setForeground(Color.WHITE);
 		btnCadastrar.setBackground(new Color(24, 62, 159));
@@ -143,48 +147,48 @@ public class TelaCadastroPaciente extends JFrame {
 		
 		MeuTextField txtNumero = new MeuTextField();
 		txtNumero.setForeground(new Color(27, 156, 228));
-		txtNumero.setBounds(419, 308, 186, 39);
+		txtNumero.setBounds(30, 758, 213, 39);
 		
 		JLabel lblNumero = new JLabel("Número");
-		lblNumero.setBounds(419, 288, 44, 14);
+		lblNumero.setBounds(30, 733, 44, 14);
 		lblNumero.setForeground(new Color(84, 175, 230));
 		lblNumero.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		MeuTextField txtComple = new MeuTextField();
 		txtComple.setForeground(new Color(27, 156, 228));
-		txtComple.setBounds(419, 353, 186, 39);
+		txtComple.setBounds(259, 758, 245, 39);
 		
 		JLabel lblComplemento = new JLabel("Complemento");
-		lblComplemento.setBounds(369, 363, 44, 14);
+		lblComplemento.setBounds(259, 733, 82, 14);
 		lblComplemento.setForeground(new Color(84, 175, 230));
 		lblComplemento.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		MeuTextField txtCPF = new MeuTextField();
 		txtCPF.setForeground(new Color(27, 156, 228));
-		txtCPF.setBounds(365, 169, 154, 39);
+		txtCPF.setBounds(400, 188, 210, 40);
 		
 		JLabel lblCPF = new JLabel("CPF");
-		lblCPF.setBounds(41, 143, 20, 14);
+		lblCPF.setBounds(400, 163, 20, 14);
 		lblCPF.setForeground(new Color(84, 175, 230));
 		lblCPF.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblCPF.setBackground(Color.WHITE);
 		
 		MeuTextField txtNome = new MeuTextField();
 		txtNome.setForeground(new Color(27, 156, 228));
-		txtNome.setBounds(259, 247, 154, 39);
+		txtNome.setBounds(30, 188, 360, 40);
 		
 		JLabel lblNome = new JLabel("Nome");
-		lblNome.setBounds(208, 143, 32, 14);
+		lblNome.setBounds(30, 163, 32, 14);
 		lblNome.setForeground(new Color(84, 175, 230));
 		lblNome.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNome.setBackground(Color.WHITE);
 		
 		MeuTextField txtEmail = new MeuTextField();
 		txtEmail.setForeground(new Color(27, 156, 228));
-		txtEmail.setBounds(451, 247, 154, 39);
+		txtEmail.setBounds(30, 262, 360, 39);
 		
 		JLabel lblEmail = new JLabel("Email");
-		lblEmail.setBounds(545, 163, 44, 14);
+		lblEmail.setBounds(30, 239, 44, 14);
 		lblEmail.setForeground(new Color(84, 175, 230));
 		lblEmail.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblEmail.setBackground(Color.WHITE);
@@ -215,19 +219,83 @@ public class TelaCadastroPaciente extends JFrame {
 		JLabel lblNewLabel = new JLabel("Cadastro");
 		lblNewLabel.setForeground(new Color(27, 156, 228));
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 33));
-		lblNewLabel.setBounds(115, 26, 148, 39);
+		lblNewLabel.setBounds(95, 26, 148, 39);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(TelaCadastroPaciente.class.getResource("/img/imgCadastro 1.png")));
-		lblNewLabel_1.setBounds(30, 11, 75, 75);
+		lblNewLabel_1.setBounds(10, 11, 75, 75);
 		contentPane.add(lblNewLabel_1);
 		
-		MeuComboBox meuComboBox_1 = new MeuComboBox();
-		meuComboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Plano de Saúde"}));
-		meuComboBox_1.setForeground(new Color(27, 156, 228));
-		meuComboBox_1.setBounds(439, 37, 138, 39);
-		contentPane.add(meuComboBox_1);
+		MeuComboBox cboGenero = new MeuComboBox();
+		cboGenero.setModel(new DefaultComboBoxModel(new String[] {"Gênero"}));
+		cboGenero.setForeground(new Color(27, 156, 228));
+		cboGenero.setBounds(400, 262, 210, 40);
+		contentPane.add(cboGenero);
+		
+		JPanel panelIdentificacao = new JPanel();
+		panelIdentificacao.setBackground(new Color(24, 62, 159));
+		panelIdentificacao.setBounds(10, 120, 615, 24);
+		contentPane.add(panelIdentificacao);
+		panelIdentificacao.setLayout(null);
+		
+		JLabel lblNewLabel_2 = new JLabel("Identificação");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_2.setForeground(new Color(255, 255, 255));
+		lblNewLabel_2.setBounds(10, 0, 80, 25);
+		panelIdentificacao.add(lblNewLabel_2);
+		
+		JPanel panelIdentificacao_1 = new JPanel();
+		panelIdentificacao_1.setLayout(null);
+		panelIdentificacao_1.setBackground(new Color(24, 62, 159));
+		panelIdentificacao_1.setBounds(12, 312, 615, 24);
+		contentPane.add(panelIdentificacao_1);
+		
+		JLabel lblNewLabel_2_1 = new JLabel("Convênio");
+		lblNewLabel_2_1.setForeground(Color.WHITE);
+		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_2_1.setBounds(10, 0, 80, 25);
+		panelIdentificacao_1.add(lblNewLabel_2_1);
+		
+		MeuComboBox cboPlanoSaude = new MeuComboBox();
+		cboPlanoSaude.setModel(new DefaultComboBoxModel(new String[] {"Plano de saúde"}));
+		cboPlanoSaude.setForeground(new Color(27, 156, 228));
+		cboPlanoSaude.setBounds(30, 347, 210, 40);
+		contentPane.add(cboPlanoSaude);
+		
+		MeuTextField txtNumeroPlano = new MeuTextField();
+		txtNumeroPlano.setForeground(new Color(27, 156, 228));
+		txtNumeroPlano.setBounds(30, 423, 302, 40);
+		contentPane.add(txtNumeroPlano);
+		
+		JLabel lblNmeroCarteirinha = new JLabel("Número Carteirinha");
+		lblNmeroCarteirinha.setForeground(new Color(84, 175, 230));
+		lblNmeroCarteirinha.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNmeroCarteirinha.setBounds(30, 398, 110, 14);
+		contentPane.add(lblNmeroCarteirinha);
+		
+		JLabel lblValidade = new JLabel("Validade");
+		lblValidade.setForeground(new Color(84, 175, 230));
+		lblValidade.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblValidade.setBounds(347, 398, 54, 14);
+		contentPane.add(lblValidade);
+		
+		MeuTextField txtValidade = new MeuTextField();
+		txtValidade.setForeground(new Color(27, 156, 228));
+		txtValidade.setBounds(342, 423, 268, 40);
+		contentPane.add(txtValidade);
+		
+		JPanel panelIdentificacao_1_1 = new JPanel();
+		panelIdentificacao_1_1.setLayout(null);
+		panelIdentificacao_1_1.setBackground(new Color(24, 62, 159));
+		panelIdentificacao_1_1.setBounds(10, 473, 615, 24);
+		contentPane.add(panelIdentificacao_1_1);
+		
+		JLabel lblNewLabel_2_1_1 = new JLabel("Endereço");
+		lblNewLabel_2_1_1.setForeground(Color.WHITE);
+		lblNewLabel_2_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_2_1_1.setBounds(10, 0, 80, 25);
+		panelIdentificacao_1_1.add(lblNewLabel_2_1_1);
 	}
 	
 	private void buscaCEP() {
