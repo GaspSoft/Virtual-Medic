@@ -37,7 +37,7 @@ public class MeuTextField extends JTextField {
     }
 
     private int round = 10;
-    private Color shadowColor = Color.blue;
+    private Color shadowColor = new Color(24, 62, 159);
     private BufferedImage imageShadow;
     private final Insets shadowSize = new Insets(2, 5, 8, 5);
 
@@ -98,7 +98,7 @@ public class MeuTextField extends JTextField {
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             g2.fill(new RoundRectangle2D.Double(0, 0, width, height, round, round));
             g2.dispose();
-            return new ShadowRenderer(5, 0.3f, shadowColor).createShadow(img);
+            return new ShadowRenderer(5, 1f, shadowColor).createShadow(img);
         } else {
             return null;
         }
