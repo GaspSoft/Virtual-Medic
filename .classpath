@@ -8,5 +8,9 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="src/libs/Atxy2k.jar"/>
 	<classpathentry kind="lib" path="src/libs/dom4j-2.1.4.jar"/>
+	<classpathentry kind="lib" path="src/libs/TimingFramework-0.55.jar"/>
+	<classpathentry kind="lib" path="src/libs/filters-2.0.235.jar"/>
+	<classpathentry kind="lib" path="src/libs/swing-worker-1.1.jar"/>
+	<classpathentry kind="lib" path="src/libs/swingx-1.6.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
