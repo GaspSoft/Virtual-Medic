@@ -36,7 +36,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ImageIcon;
 import net.miginfocom.swing.MigLayout;
 
-public class TelaCadastroPaciente extends JFrame {
+public class TelaEditarPaciente extends JFrame {
 
 	private JPanel contentPane;
 	private MeuTextField txtCEP;
@@ -53,7 +53,7 @@ public class TelaCadastroPaciente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaCadastroPaciente frame = new TelaCadastroPaciente();
+					TelaEditarPaciente frame = new TelaEditarPaciente();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -65,9 +65,9 @@ public class TelaCadastroPaciente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaCadastroPaciente() {
+	public TelaEditarPaciente() {
 		setTitle("Cadastro de paciente");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaCadastroPaciente.class.getResource("/img/favicon-32x32.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaEditarPaciente.class.getResource("/img/favicon-32x32.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 655, 1023);
 		contentPane = new JPanel();
@@ -186,7 +186,7 @@ public class TelaCadastroPaciente extends JFrame {
 		lblNewLabel_2_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		MeuBotao btnCadastrar = new MeuBotao();
-		btnCadastrar.setText("Salvar alterações");
+		btnCadastrar.setText("Cadastrar");
 		btnCadastrar.setForeground(Color.WHITE);
 		btnCadastrar.setBackground(new Color(24, 62, 159));
 		
@@ -201,13 +201,13 @@ public class TelaCadastroPaciente extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(0, 0, 123, 122);
 		panelTitulo.add(lblNewLabel_1);
-		lblNewLabel_1.setIcon(new ImageIcon(TelaCadastroPaciente.class.getResource("/img/imgCadastro 1 (2).png")));
+		lblNewLabel_1.setIcon(new ImageIcon(TelaEditarPaciente.class.getResource("/img/imgCadastro 1 (2).png")));
 		
-		JLabel lblNewLabel = new JLabel("Alterar");
+		JLabel lblNewLabel = new JLabel("Cadastro");
 		lblNewLabel.setBounds(123, 0, 212, 122);
 		panelTitulo.add(lblNewLabel);
 		lblNewLabel.setForeground(new Color(27, 156, 228));
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 48));
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
 		GroupLayout gl_panelIdentificacao_1 = new GroupLayout(panelIdentificacao_1);
 		gl_panelIdentificacao_1.setHorizontalGroup(
 			gl_panelIdentificacao_1.createParallelGroup(Alignment.LEADING)
