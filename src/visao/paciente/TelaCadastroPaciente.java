@@ -127,6 +127,7 @@ public class TelaCadastroPaciente extends JFrame {
 		lblCPF.setBackground(Color.WHITE);
 		
 		MeuTextField txtNome = new MeuTextField();
+
 		txtNome.setForeground(new Color(27, 156, 228));
 		
 		JLabel lblNome = new JLabel("Nome");
@@ -240,15 +241,23 @@ public class TelaCadastroPaciente extends JFrame {
 		btnBuscar.setText("Buscar");
 		btnBuscar.setForeground(Color.WHITE);
 		btnBuscar.setBackground(new Color(24, 62, 159));
+		
+		MeuBotao btnVoltar = new MeuBotao();
+		btnVoltar.setIcon(new ImageIcon(TelaCadastroPaciente.class.getResource("/img/setaAzulEsquerda.png")));
+		btnVoltar.setForeground(Color.WHITE);
+		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnVoltar.setBackground(new Color(24, 62, 159));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(0)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(10)
-							.addComponent(panelTitulo, GroupLayout.PREFERRED_SIZE, 316, GroupLayout.PREFERRED_SIZE))
+							.addComponent(panelTitulo, GroupLayout.PREFERRED_SIZE, 316, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
+							.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(10)
 							.addComponent(panelIdentificacao, GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE))
@@ -273,10 +282,10 @@ public class TelaCadastroPaciente extends JFrame {
 							.addGap(19))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(7)
-							.addComponent(btnCadastrar, GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+							.addComponent(btnCadastrar, GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
 							.addGap(18)
-							.addComponent(btnLimpa, GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-							.addGap(265))
+							.addComponent(btnLimpa, GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+							.addGap(258))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(panelIdentificacao_1_1, GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE))
@@ -361,8 +370,10 @@ public class TelaCadastroPaciente extends JFrame {
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(panelTitulo, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-					.addGap(73)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addComponent(panelTitulo, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
+					.addGap(80)
 					.addComponent(panelIdentificacao, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
@@ -421,8 +432,8 @@ public class TelaCadastroPaciente extends JFrame {
 						.addComponent(txtComple, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnCadastrar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnLimpa, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+						.addComponent(btnCadastrar, GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+						.addComponent(btnLimpa, GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)))
 		);
 		GroupLayout gl_panelIdentificacao_1_1 = new GroupLayout(panelIdentificacao_1_1);
 		gl_panelIdentificacao_1_1.setHorizontalGroup(

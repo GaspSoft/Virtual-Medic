@@ -240,6 +240,19 @@ public class TelaEditarPaciente extends JFrame {
 		btnBuscar.setText("Buscar");
 		btnBuscar.setForeground(Color.WHITE);
 		btnBuscar.setBackground(new Color(24, 62, 159));
+		
+		MeuBotao btnVoltar = new MeuBotao();
+		btnVoltar.setIcon(new ImageIcon(TelaCadastroPaciente.class.getResource("/img/setaAzulEsquerda.png")));
+		btnVoltar.setForeground(Color.WHITE);
+		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnVoltar.setBackground(new Color(24, 62, 159));
+		
+		//MeuBotao btnVoltar = new MeuBotao();
+		//btnVoltar.setIcon(new ImageIcon(TelaCadastroPaciente.class.getResource("/img/setaAzulEsquerda.png")));
+		//btnVoltar.setForeground(Color.WHITE);
+		//btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		//btnVoltar.setBackground(new Color(24, 62, 159));
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -248,7 +261,9 @@ public class TelaEditarPaciente extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(10)
-							.addComponent(panelTitulo, GroupLayout.PREFERRED_SIZE, 316, GroupLayout.PREFERRED_SIZE))
+							.addComponent(panelTitulo, GroupLayout.PREFERRED_SIZE, 316, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
+							.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(10)
 							.addComponent(panelIdentificacao, GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE))
@@ -361,7 +376,9 @@ public class TelaEditarPaciente extends JFrame {
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(panelTitulo, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addComponent(panelTitulo, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
 					.addGap(73)
 					.addComponent(panelIdentificacao, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
@@ -421,8 +438,8 @@ public class TelaEditarPaciente extends JFrame {
 						.addComponent(txtComple, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnCadastrar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnLimpa, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+						.addComponent(btnCadastrar, GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+						.addComponent(btnLimpa, GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)))
 		);
 		GroupLayout gl_panelIdentificacao_1_1 = new GroupLayout(panelIdentificacao_1_1);
 		gl_panelIdentificacao_1_1.setHorizontalGroup(
