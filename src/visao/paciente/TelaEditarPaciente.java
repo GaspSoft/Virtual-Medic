@@ -36,7 +36,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ImageIcon;
 import net.miginfocom.swing.MigLayout;
 
-public class TelaCadastroPaciente extends JFrame {
+public class TelaEditarPaciente extends JFrame {
 
 	private JPanel contentPane;
 	private MeuTextField txtCEP;
@@ -53,7 +53,7 @@ public class TelaCadastroPaciente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaCadastroPaciente frame = new TelaCadastroPaciente();
+					TelaEditarPaciente frame = new TelaEditarPaciente();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -65,9 +65,9 @@ public class TelaCadastroPaciente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaCadastroPaciente() {
+	public TelaEditarPaciente() {
 		setTitle("Cadastro de paciente");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaCadastroPaciente.class.getResource("/img/favicon-32x32.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaEditarPaciente.class.getResource("/img/favicon-32x32.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 655, 1023);
 		contentPane = new JPanel();
@@ -127,7 +127,6 @@ public class TelaCadastroPaciente extends JFrame {
 		lblCPF.setBackground(Color.WHITE);
 		
 		MeuTextField txtNome = new MeuTextField();
-
 		txtNome.setForeground(new Color(27, 156, 228));
 		
 		JLabel lblNome = new JLabel("Nome");
@@ -187,7 +186,7 @@ public class TelaCadastroPaciente extends JFrame {
 		lblNewLabel_2_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		MeuBotao btnCadastrar = new MeuBotao();
-		btnCadastrar.setText("Salvar alterações");
+		btnCadastrar.setText("Cadastrar");
 		btnCadastrar.setForeground(Color.WHITE);
 		btnCadastrar.setBackground(new Color(24, 62, 159));
 		
@@ -202,13 +201,13 @@ public class TelaCadastroPaciente extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(0, 0, 123, 122);
 		panelTitulo.add(lblNewLabel_1);
-		lblNewLabel_1.setIcon(new ImageIcon(TelaCadastroPaciente.class.getResource("/img/imgCadastro 1 (2).png")));
+		lblNewLabel_1.setIcon(new ImageIcon(TelaEditarPaciente.class.getResource("/img/imgCadastro 1 (2).png")));
 		
-		JLabel lblNewLabel = new JLabel("Alterar");
+		JLabel lblNewLabel = new JLabel("Cadastro");
 		lblNewLabel.setBounds(123, 0, 212, 122);
 		panelTitulo.add(lblNewLabel);
 		lblNewLabel.setForeground(new Color(27, 156, 228));
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 48));
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
 		GroupLayout gl_panelIdentificacao_1 = new GroupLayout(panelIdentificacao_1);
 		gl_panelIdentificacao_1.setHorizontalGroup(
 			gl_panelIdentificacao_1.createParallelGroup(Alignment.LEADING)
@@ -247,9 +246,16 @@ public class TelaCadastroPaciente extends JFrame {
 		btnVoltar.setForeground(Color.WHITE);
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnVoltar.setBackground(new Color(24, 62, 159));
+		
+		//MeuBotao btnVoltar = new MeuBotao();
+		//btnVoltar.setIcon(new ImageIcon(TelaCadastroPaciente.class.getResource("/img/setaAzulEsquerda.png")));
+		//btnVoltar.setForeground(Color.WHITE);
+		//btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		//btnVoltar.setBackground(new Color(24, 62, 159));
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(0)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -282,10 +288,10 @@ public class TelaCadastroPaciente extends JFrame {
 							.addGap(19))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(7)
-							.addComponent(btnCadastrar, GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+							.addComponent(btnCadastrar, GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
 							.addGap(18)
-							.addComponent(btnLimpa, GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-							.addGap(258))
+							.addComponent(btnLimpa, GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+							.addGap(265))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(panelIdentificacao_1_1, GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE))
@@ -373,7 +379,7 @@ public class TelaCadastroPaciente extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addComponent(panelTitulo, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
-					.addGap(80)
+					.addGap(73)
 					.addComponent(panelIdentificacao, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
@@ -432,8 +438,8 @@ public class TelaCadastroPaciente extends JFrame {
 						.addComponent(txtComple, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnCadastrar, GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-						.addComponent(btnLimpa, GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)))
+						.addComponent(btnCadastrar, GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+						.addComponent(btnLimpa, GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)))
 		);
 		GroupLayout gl_panelIdentificacao_1_1 = new GroupLayout(panelIdentificacao_1_1);
 		gl_panelIdentificacao_1_1.setHorizontalGroup(
