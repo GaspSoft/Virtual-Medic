@@ -66,7 +66,7 @@ public class TelaEditarPaciente extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaEditarPaciente() {
-		setTitle("Cadastro de paciente");
+		setTitle("Editar paciente");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaEditarPaciente.class.getResource("/img/favicon-32x32.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 655, 1023);
@@ -186,7 +186,7 @@ public class TelaEditarPaciente extends JFrame {
 		lblNewLabel_2_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		MeuBotao btnCadastrar = new MeuBotao();
-		btnCadastrar.setText("Cadastrar");
+		btnCadastrar.setText("Salvar alterações");
 		btnCadastrar.setForeground(Color.WHITE);
 		btnCadastrar.setBackground(new Color(24, 62, 159));
 		
@@ -203,11 +203,11 @@ public class TelaEditarPaciente extends JFrame {
 		panelTitulo.add(lblNewLabel_1);
 		lblNewLabel_1.setIcon(new ImageIcon(TelaEditarPaciente.class.getResource("/img/imgCadastro 1 (2).png")));
 		
-		JLabel lblNewLabel = new JLabel("Cadastro");
-		lblNewLabel.setBounds(123, 0, 212, 122);
+		JLabel lblNewLabel = new JLabel("Alterar");
+		lblNewLabel.setBounds(123, 0, 193, 122);
 		panelTitulo.add(lblNewLabel);
 		lblNewLabel.setForeground(new Color(27, 156, 228));
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 48));
 		GroupLayout gl_panelIdentificacao_1 = new GroupLayout(panelIdentificacao_1);
 		gl_panelIdentificacao_1.setHorizontalGroup(
 			gl_panelIdentificacao_1.createParallelGroup(Alignment.LEADING)
@@ -247,6 +247,10 @@ public class TelaEditarPaciente extends JFrame {
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnVoltar.setBackground(new Color(24, 62, 159));
 		
+		MeuComboBox cboPlanoSaude_1 = new MeuComboBox();
+		cboPlanoSaude_1.setModel(new DefaultComboBoxModel(new String[] {"Médico"}));
+		cboPlanoSaude_1.setForeground(new Color(27, 156, 228));
+		
 		//MeuBotao btnVoltar = new MeuBotao();
 		//btnVoltar.setIcon(new ImageIcon(TelaCadastroPaciente.class.getResource("/img/setaAzulEsquerda.png")));
 		//btnVoltar.setForeground(Color.WHITE);
@@ -270,16 +274,6 @@ public class TelaEditarPaciente extends JFrame {
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(10)
 							.addComponent(panelIdentificacao_1, GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(10)
-							.addComponent(cboPlanoSaude, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-							.addGap(366))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(10)
-							.addComponent(lblValidade, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
-							.addGap(218)
-							.addComponent(lblNmeroCarteirinha, GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-							.addGap(219))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(10)
 							.addComponent(txtValidade, GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
@@ -339,7 +333,23 @@ public class TelaEditarPaciente extends JFrame {
 									.addGap(299))
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addComponent(txtComple, GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
-									.addPreferredGap(ComponentPlacement.RELATED)))))
+									.addPreferredGap(ComponentPlacement.RELATED))))
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+							.addGap(10)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(lblValidade, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+									.addGap(218))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(cboPlanoSaude, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+									.addGap(24)))
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(cboPlanoSaude_1, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+									.addGap(92))
+								.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+									.addComponent(lblNmeroCarteirinha, GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+									.addGap(219)))))
 					.addGap(3))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
@@ -398,7 +408,9 @@ public class TelaEditarPaciente extends JFrame {
 					.addGap(18)
 					.addComponent(panelIdentificacao_1, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addComponent(cboPlanoSaude, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(cboPlanoSaude, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+						.addComponent(cboPlanoSaude_1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblNmeroCarteirinha)
