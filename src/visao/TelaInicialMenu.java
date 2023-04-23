@@ -39,6 +39,7 @@ public class TelaInicialMenu extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaInicialMenu() {
+		setTitle("Menu inicial");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 635, 604);
 		contentPane = new JPanel();

@@ -14,6 +14,7 @@ import layoutPersonalizado.componentes.MeuBotao;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Toolkit;
 
 public class TelaMenuPaciente extends JFrame {
 
@@ -39,6 +40,8 @@ public class TelaMenuPaciente extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaMenuPaciente() {
+		setTitle("Menu paciente");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaMenuPaciente.class.getResource("/img/favicon-32x32.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 635, 780);
 		contentPane = new JPanel();
@@ -114,7 +117,7 @@ public class TelaMenuPaciente extends JFrame {
 					.addGap(53)
 					.addComponent(btnExcluirPaciente, GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
 					.addGap(5))
-				.addGroup(gl_contentPane.createSequentialGroup()
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
 					.addGap(441)
 					.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 163, GroupLayout.PREFERRED_SIZE)
 					.addGap(5))
