@@ -18,6 +18,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Dialog.ModalExclusionType;
 
 public class TelaInicialMenu extends JFrame {
 
@@ -45,6 +46,7 @@ public class TelaInicialMenu extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaInicialMenu() {
+		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		setTitle("Menu inicial");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 635, 604);

@@ -41,9 +41,9 @@ public class TelaExcluirPaciente extends JFrame {
 	 */
 	public TelaExcluirPaciente() {
 		setResizable(false);
-		setTitle("Selecionar paciente para edição");
+		setTitle("Excluir paciente");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaExcluirPaciente.class.getResource("/img/favicon-32x32.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 215);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
