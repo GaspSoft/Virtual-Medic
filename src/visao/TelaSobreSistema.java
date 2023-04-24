@@ -19,6 +19,8 @@ import javax.swing.border.EmptyBorder;
 import layoutPersonalizado.componentes.MeuBotao;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Dialog.ModalExclusionType;
+import java.awt.Rectangle;
 
 public class TelaSobreSistema extends JFrame {
 

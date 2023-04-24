@@ -16,6 +16,8 @@ import java.awt.Desktop;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URI;
+import java.awt.Dialog.ModalExclusionType;
+import java.awt.Toolkit;
 
 public class TelaRedesSociais extends JFrame {
 
@@ -41,9 +43,11 @@ public class TelaRedesSociais extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaRedesSociais() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaRedesSociais.class.getResource("/img/favicon-32x32.png")));
+		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		setResizable(false);
 		setTitle("Redes Socias");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 487, 323);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -122,7 +126,7 @@ public class TelaRedesSociais extends JFrame {
 		
 		MeuBotao mbtSair = new MeuBotao();
 		mbtSair.setIcon(new ImageIcon(TelaRedesSociais.class.getResource("/img/exitBranco.png")));
-		mbtSair.setText("Sair");
+		mbtSair.setText("Voltar");
 		mbtSair.setForeground(Color.WHITE);
 		mbtSair.setFont(new Font("Tahoma", Font.BOLD, 11));
 		mbtSair.setBackground(new Color(24, 62, 159));
