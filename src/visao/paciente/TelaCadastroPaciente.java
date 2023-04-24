@@ -12,7 +12,7 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
-
+import Atxy2k.CustomTextField.RestrictedTextField;
 import layoutPersonalizado.componentes.*;
 
 import javax.swing.JLabel;
@@ -44,6 +44,7 @@ public class TelaCadastroPaciente extends JFrame {
 	private MeuTextField txtBairro;
 	private MeuTextField txtCidade;
 	private MeuTextField txtRua;
+	private MeuComboBox cboUF;
 	//private JComboBox cboUF;
 
 	/**
@@ -100,9 +101,9 @@ public class TelaCadastroPaciente extends JFrame {
         
         MeuTextField txtCidade = new MeuTextField();
         
-        MeuComboBox meuComboBox = new MeuComboBox();
-        meuComboBox.setForeground(new Color(27, 156, 228));
-		meuComboBox.setModel(new DefaultComboBoxModel(new String[] {"Estado", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"}));
+        MeuComboBox cboUF = new MeuComboBox();
+        cboUF.setForeground(new Color(27, 156, 228));
+		cboUF.setModel(new DefaultComboBoxModel(new String[] {"Estado", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"}));
 		
 		MeuTextField txtNumero = new MeuTextField();
 		txtNumero.setForeground(new Color(27, 156, 228));
@@ -243,6 +244,7 @@ public class TelaCadastroPaciente extends JFrame {
 		btnBuscar.setBackground(new Color(24, 62, 159));
 		
 		MeuBotao btnVoltar = new MeuBotao();
+		btnVoltar.setToolTipText("Voltar");
 		btnVoltar.setIcon(new ImageIcon(TelaCadastroPaciente.class.getResource("/img/setaAzulEsquerda.png")));
 		btnVoltar.setForeground(Color.WHITE);
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -289,7 +291,7 @@ public class TelaCadastroPaciente extends JFrame {
 							.addGap(8)
 							.addComponent(btnBuscar, GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
 							.addGap(18)
-							.addComponent(meuComboBox, GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+							.addComponent(cboUF, GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.RELATED))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(21)
@@ -419,7 +421,7 @@ public class TelaCadastroPaciente extends JFrame {
 					.addComponent(lblCEP)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(meuComboBox, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+						.addComponent(cboUF, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
 						.addComponent(txtCEP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
@@ -460,6 +462,16 @@ public class TelaCadastroPaciente extends JFrame {
 		);
 		panelIdentificacao_1_1.setLayout(gl_panelIdentificacao_1_1);
 		contentPane.setLayout(gl_contentPane);
+		
+		
+		// Uso da biblioteca Atxy2k para validação
+		RestrictedTextField validarCEP = new RestrictedTextField(txtCEP);
+		validarCEP.setOnlyNums(true);
+		validarCEP.setLimit(8);
+		
+		RestrictedTextField validarCPF = new RestrictedTextField(txtCPF);
+		validarCPF.setOnlyNums(true);
+		validarCPF.setLimit(11);
 	}
 	
 	private void buscaCEP() {
@@ -481,9 +493,9 @@ public class TelaCadastroPaciente extends JFrame {
 				if (element.getQualifiedName().equals("bairro")) {
 					txtBairro.setText(element.getText());
 				}
-				/*if (element.getQualifiedName().equals("uf")) {
+				if (element.getQualifiedName().equals("uf")) {
 					cboUF.setSelectedItem(element.getText());
-				} */
+				}
 				if (element.getQualifiedName().equals("tipo_logradouro")) {
 					tipoLogradouro = element.getText();
 				}

@@ -11,13 +11,18 @@ import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Color;
 import layoutPersonalizado.componentes.MeuBotao;
+import visao.paciente.TelaMenuPaciente;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaInicialMenu extends JFrame {
 
 	private JPanel contentPane;
+	private TelaInicialMenu menuInicial;
 
 	/**
 	 * Launch the application.
@@ -27,6 +32,7 @@ public class TelaInicialMenu extends JFrame {
 			public void run() {
 				try {
 					TelaInicialMenu frame = new TelaInicialMenu();
+					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -94,6 +100,7 @@ public class TelaInicialMenu extends JFrame {
 		btnSair.setBackground(new Color(24, 62, 159));
 		
 		MeuBotao btnRedesSociais = new MeuBotao();
+		btnRedesSociais.setIcon(new ImageIcon(TelaInicialMenu.class.getResource("/img/redesSociais.png")));
 		btnRedesSociais.setText("Acessar redes sociais");
 		btnRedesSociais.setForeground(Color.WHITE);
 		btnRedesSociais.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -130,28 +137,34 @@ public class TelaInicialMenu extends JFrame {
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
+		
+		MeuBotao btnSobre = new MeuBotao();
+		btnSobre.setIcon(new ImageIcon(TelaInicialMenu.class.getResource("/img/sobre.png")));
+		btnSobre.setText("Sobre");
+		btnSobre.setForeground(Color.WHITE);
+		btnSobre.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnSobre.setBackground(new Color(24, 62, 159));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+					.addGap(5)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(5)
-							.addComponent(panel, GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(5)
 							.addComponent(btnMenuPaciente, GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
 							.addGap(57)
 							.addComponent(btnMenuMedico, GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE))
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addGap(5)
+						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(btnMenuPlanoSaude, GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
 							.addGap(57)
 							.addComponent(btnSair, GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)))
 					.addGap(1))
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(446, Short.MAX_VALUE)
-					.addComponent(btnRedesSociais, GroupLayout.PREFERRED_SIZE, 163, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap()
+					.addComponent(btnSobre, GroupLayout.PREFERRED_SIZE, 163, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 257, Short.MAX_VALUE)
+					.addComponent(btnRedesSociais, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -166,9 +179,41 @@ public class TelaInicialMenu extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
 						.addComponent(btnMenuPlanoSaude, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnSair, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-					.addComponent(btnRedesSociais, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnRedesSociais, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnSobre, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)))
 		);
 		contentPane.setLayout(gl_contentPane);
+		
+		
+		
+		btnMenuPaciente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaMenuPaciente telaMenuPaciente = new TelaMenuPaciente();
+				telaMenuPaciente.setVisible(true);
+			}
+		});
+		
+		btnSobre.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaSobreSistema telaSobreSistema = new TelaSobreSistema();
+				telaSobreSistema.setVisible(true);
+			}
+		});
+		
+		btnRedesSociais.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaRedesSociais telaRedesSociais = new TelaRedesSociais();
+				telaRedesSociais.setVisible(true);
+			}
+		});
+		
+		btnSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				
+			}
+		});
 	}
 }
