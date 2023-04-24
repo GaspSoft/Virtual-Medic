@@ -1,16 +1,27 @@
 package visao;
 
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Desktop;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.URI;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import java.awt.Toolkit;
-import java.awt.Color;
-import java.awt.Font;
+
+import layoutPersonalizado.componentes.MeuBotao;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TelaSobreSistema extends JFrame {
+
 
 	private JPanel contentPane;
 
@@ -34,10 +45,11 @@ public class TelaSobreSistema extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaSobreSistema() {
+		
 		setTitle("Sobre");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaSobreSistema.class.getResource("/img/favicon-32x32.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 354);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 499, 354);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -76,11 +88,45 @@ public class TelaSobreSistema extends JFrame {
 		lblNewLabel_1_1_1.setBounds(10, 225, 181, 34);
 		contentPane.add(lblNewLabel_1_1_1);
 		
-		JLabel lblNewLabel_2_2 = new JLabel("Pedro G., Bárbara N., Vitor S.");
+		JLabel lblNewLabel_2_2 = new JLabel("republicavirtual.com.br");
+		
+		lblNewLabel_2_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblNewLabel_2_2.setForeground(new Color(84, 175, 230));
 		lblNewLabel_2_2.setFont(new Font("Tahoma", Font.BOLD, 24));
 		lblNewLabel_2_2.setBackground(new Color(24, 62, 159));
-		lblNewLabel_2_2.setBounds(10, 270, 348, 26);
+		lblNewLabel_2_2.setBounds(10, 270, 279, 26);
 		contentPane.add(lblNewLabel_2_2);
+		
+		MeuBotao btnVoltar = new MeuBotao();
+		btnVoltar.setIcon(new ImageIcon(TelaSobreSistema.class.getResource("/img/exitBranco.png")));
+		btnVoltar.setText("Voltar");
+		btnVoltar.setForeground(Color.WHITE);
+		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnVoltar.setBackground(new Color(24, 62, 159));
+		btnVoltar.setBounds(349, 272, 124, 39);
+		contentPane.add(btnVoltar);
+		
+		lblNewLabel_2_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				link("https://www.republicavirtual.com.br");
+			}
+		});
+		
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaSobreSistema telaSobreSistema = new TelaSobreSistema();
+			}
+		});
+	}
+	
+	private void link(String site) {
+		Desktop desktop = Desktop.getDesktop();
+		try {
+			URI uri = new URI(site);
+			desktop.browse(uri);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 }
