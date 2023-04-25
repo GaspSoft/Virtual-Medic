@@ -55,6 +55,7 @@ public class TelaCadastroPaciente extends JFrame {
 			public void run() {
 				try {
 					TelaCadastroPaciente frame = new TelaCadastroPaciente();
+					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

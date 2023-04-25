@@ -18,6 +18,8 @@ import java.awt.event.MouseEvent;
 import java.net.URI;
 import java.awt.Dialog.ModalExclusionType;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaRedesSociais extends JFrame {
 
@@ -31,6 +33,7 @@ public class TelaRedesSociais extends JFrame {
 			public void run() {
 				try {
 					TelaRedesSociais frame = new TelaRedesSociais();
+					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,6 +46,7 @@ public class TelaRedesSociais extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaRedesSociais() {
+		setAutoRequestFocus(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaRedesSociais.class.getResource("/img/favicon-32x32.png")));
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		setResizable(false);
@@ -124,14 +128,14 @@ public class TelaRedesSociais extends JFrame {
 		lblInstaBarbara.setBounds(100, 209, 60, 60);
 		contentPane.add(lblInstaBarbara);
 		
-		MeuBotao mbtSair = new MeuBotao();
-		mbtSair.setIcon(new ImageIcon(TelaRedesSociais.class.getResource("/img/exitBranco.png")));
-		mbtSair.setText("Voltar");
-		mbtSair.setForeground(Color.WHITE);
-		mbtSair.setFont(new Font("Tahoma", Font.BOLD, 11));
-		mbtSair.setBackground(new Color(24, 62, 159));
-		mbtSair.setBounds(367, 11, 94, 272);
-		contentPane.add(mbtSair);
+		MeuBotao btnSair = new MeuBotao();
+		btnSair.setIcon(new ImageIcon(TelaRedesSociais.class.getResource("/img/exitBranco.png")));
+		btnSair.setText("Voltar");
+		btnSair.setForeground(Color.WHITE);
+		btnSair.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnSair.setBackground(new Color(24, 62, 159));
+		btnSair.setBounds(367, 11, 94, 272);
+		contentPane.add(btnSair);
 		
 		lblGitGodri.addMouseListener(new MouseAdapter() {
 			@Override
@@ -186,6 +190,12 @@ public class TelaRedesSociais extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				link("https://www.instagram.com/pedro_godri/");
+			}
+		});
+		
+		btnSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
 			}
 		});
 	}

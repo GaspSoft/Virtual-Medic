@@ -28,6 +28,7 @@ public class TelaSelecionarPacienteEdicao extends JFrame {
 			public void run() {
 				try {
 					TelaSelecionarPacienteEdicao frame = new TelaSelecionarPacienteEdicao();
+					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,7 +53,7 @@ public class TelaSelecionarPacienteEdicao extends JFrame {
 		
 		MeuBotao btnExcluirPaciente = new MeuBotao();
 		btnExcluirPaciente.setIcon(new ImageIcon(TelaSelecionarPacienteEdicao.class.getResource("/img/userDelete.png")));
-		btnExcluirPaciente.setText("Excluir um paciente");
+		btnExcluirPaciente.setText("Selecionar paciente");
 		btnExcluirPaciente.setForeground(Color.WHITE);
 		btnExcluirPaciente.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnExcluirPaciente.setBackground(new Color(24, 62, 159));

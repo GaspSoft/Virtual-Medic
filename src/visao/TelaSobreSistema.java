@@ -35,6 +35,7 @@ public class TelaSobreSistema extends JFrame {
 			public void run() {
 				try {
 					TelaSobreSistema frame = new TelaSobreSistema();
+					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,6 +48,8 @@ public class TelaSobreSistema extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaSobreSistema() {
+		setAutoRequestFocus(false);
+		setResizable(false);
 		
 		setTitle("Sobre");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaSobreSistema.class.getResource("/img/favicon-32x32.png")));
@@ -117,7 +120,7 @@ public class TelaSobreSistema extends JFrame {
 		
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaSobreSistema telaSobreSistema = new TelaSobreSistema();
+				dispose();
 			}
 		});
 	}

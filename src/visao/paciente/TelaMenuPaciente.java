@@ -15,6 +15,8 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaMenuPaciente extends JFrame {
 
@@ -28,6 +30,7 @@ public class TelaMenuPaciente extends JFrame {
 			public void run() {
 				try {
 					TelaMenuPaciente frame = new TelaMenuPaciente();
+					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -160,5 +163,32 @@ public class TelaMenuPaciente extends JFrame {
 					.addGap(6))
 		);
 		contentPane.setLayout(gl_contentPane);
+		
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		
+		btnCadastrarPaciente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaCadastroPaciente telaCadastroPaciente = new TelaCadastroPaciente();
+				telaCadastroPaciente.setVisible(true);
+			}
+		});
+		
+		btnExcluirPaciente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaExcluirPaciente telaExcluirPaciente = new TelaExcluirPaciente();
+				telaExcluirPaciente.setVisible(true);
+			}
+		});
+		
+		btnEditarPaciente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaSelecionarPacienteEdicao telaSelecionarPacienteEdicao = new TelaSelecionarPacienteEdicao();
+				telaSelecionarPacienteEdicao.setVisible(true);
+			}
+		});
 	}
 }
