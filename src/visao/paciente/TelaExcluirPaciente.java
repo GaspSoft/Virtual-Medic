@@ -15,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaExcluirPaciente extends JFrame {
 
@@ -28,6 +30,7 @@ public class TelaExcluirPaciente extends JFrame {
 			public void run() {
 				try {
 					TelaExcluirPaciente frame = new TelaExcluirPaciente();
+					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,7 +55,7 @@ public class TelaExcluirPaciente extends JFrame {
 		
 		MeuBotao btnExcluirPaciente = new MeuBotao();
 		btnExcluirPaciente.setIcon(new ImageIcon(TelaExcluirPaciente.class.getResource("/img/userEdit.png")));
-		btnExcluirPaciente.setText("Selecionar paciente");
+		btnExcluirPaciente.setText("Excluir paciente");
 		btnExcluirPaciente.setForeground(Color.WHITE);
 		btnExcluirPaciente.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnExcluirPaciente.setBackground(new Color(24, 62, 159));

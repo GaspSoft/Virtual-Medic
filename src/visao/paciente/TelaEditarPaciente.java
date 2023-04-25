@@ -54,6 +54,7 @@ public class TelaEditarPaciente extends JFrame {
 			public void run() {
 				try {
 					TelaEditarPaciente frame = new TelaEditarPaciente();
+					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

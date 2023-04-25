@@ -19,6 +19,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Dialog.ModalExclusionType;
+import java.awt.Toolkit;
 
 public class TelaInicialMenu extends JFrame {
 
@@ -46,6 +47,8 @@ public class TelaInicialMenu extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaInicialMenu() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaInicialMenu.class.getResource("/img/favicon-32x32.png")));
+		setAutoRequestFocus(false);
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		setTitle("Menu inicial");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -213,8 +216,7 @@ public class TelaInicialMenu extends JFrame {
 		
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				
+				dispose();
 			}
 		});
 	}
