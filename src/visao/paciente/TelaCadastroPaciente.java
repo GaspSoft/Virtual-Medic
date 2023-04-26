@@ -491,6 +491,19 @@ public class TelaCadastroPaciente extends JFrame {
 		RestrictedTextField validarCPF = new RestrictedTextField(txtCPF);
 		validarCPF.setOnlyNums(true);
 		validarCPF.setLimit(11);
+		
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(txtCEP.getText().equals("")) {
+					
+				}
+			}
+		});
+		
+		btnLimpa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 	}
 	
 	private void buscaCEP() {
