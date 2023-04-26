@@ -49,7 +49,6 @@ public class TelaInicialMenu extends JFrame {
 	public TelaInicialMenu() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaInicialMenu.class.getResource("/img/favicon-32x32.png")));
 		setAutoRequestFocus(false);
-		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		setTitle("Menu inicial");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 635, 604);
@@ -196,20 +195,21 @@ public class TelaInicialMenu extends JFrame {
 		btnMenuPaciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaMenuPaciente telaMenuPaciente = new TelaMenuPaciente();
+				dispose();
 				telaMenuPaciente.setVisible(true);
 			}
 		});
 		
 		btnSobre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaSobreSistema telaSobreSistema = new TelaSobreSistema();
+				TelaSobreSystem telaSobreSistema = new TelaSobreSystem();
 				telaSobreSistema.setVisible(true);
 			}
 		});
 		
 		btnRedesSociais.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaRedesSociais telaRedesSociais = new TelaRedesSociais();
+				TelaSocialMidia telaRedesSociais = new TelaSocialMidia();
 				telaRedesSociais.setVisible(true);
 			}
 		});
