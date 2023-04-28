@@ -1,4 +1,4 @@
-package visao.paciente;
+spackage visao.paciente;
 
 import javax.swing.table.DefaultTableModel;
 import layoutPersonalizado.componentes.tables.TableActionCellEditor;
