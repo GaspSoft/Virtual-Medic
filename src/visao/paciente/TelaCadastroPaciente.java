@@ -24,6 +24,7 @@ import javax.swing.JFormattedTextField;
 import java.awt.event.ActionListener;
 import java.net.URL;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
@@ -35,6 +36,9 @@ import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ImageIcon;
 import net.miginfocom.swing.MigLayout;
+
+import controle.*;
+import modelo.*;
 
 public class TelaCadastroPaciente extends JFrame {
 
@@ -163,8 +167,16 @@ public class TelaCadastroPaciente extends JFrame {
 		lblNewLabel_2_1.setForeground(Color.WHITE);
 		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
+		DAOplanoSaude planoDAO = DAOplanoSaude.getInstacia();
+		ArrayList<PlanoSaude> listaPlanoSaude = planoDAO.listaPlanoSaude();
+		
 		MeuComboBox cboPlanoSaude = new MeuComboBox();
-		cboPlanoSaude.setModel(new DefaultComboBoxModel(new String[] {"Plano de saúde"}));
+		cboPlanoSaude.addItem("Plano de Saúde");
+		if(listaPlanoSaude.size() > 0 && listaPlanoSaude != null) {
+			for (PlanoSaude planoSaude : listaPlanoSaude) {
+				cboPlanoSaude.addItem((planoSaude));
+			}
+		}
 		cboPlanoSaude.setForeground(new Color(27, 156, 228));
 		
 		MeuTextField txtNumeroPlano = new MeuTextField();
@@ -251,9 +263,17 @@ public class TelaCadastroPaciente extends JFrame {
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnVoltar.setBackground(new Color(24, 62, 159));
 		
-		MeuComboBox cboPlanoSaude_1 = new MeuComboBox();
-		cboPlanoSaude_1.setModel(new DefaultComboBoxModel(new String[] {"Médico"}));
-		cboPlanoSaude_1.setForeground(new Color(27, 156, 228));
+		DAOmedico medicoDAO = DAOmedico.getInstacia();
+		ArrayList<Medico> listaMedico = medicoDAO.listaMedico();
+		
+		MeuComboBox cboMedico = new MeuComboBox();
+		cboMedico.addItem("Médico");
+		if (listaMedico.size() > 0 && listaMedico != null) {
+			for (Medico medico : listaMedico) {
+				cboMedico.addItem((medico));
+		}
+		}
+		cboMedico.setForeground(new Color(27, 156, 228));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -340,13 +360,11 @@ public class TelaCadastroPaciente extends JFrame {
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addComponent(cboPlanoSaude, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
 									.addGap(24)))
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(cboPlanoSaude_1, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-									.addGap(92))
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addComponent(lblNmeroCarteirinha, GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-									.addGap(219)))))
+									.addGap(219))
+								.addComponent(cboMedico, GroupLayout.PREFERRED_SIZE, 323, GroupLayout.PREFERRED_SIZE))))
 					.addGap(3))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
@@ -407,7 +425,7 @@ public class TelaCadastroPaciente extends JFrame {
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(cboPlanoSaude, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-						.addComponent(cboPlanoSaude_1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+						.addComponent(cboMedico, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblNmeroCarteirinha)
@@ -473,6 +491,19 @@ public class TelaCadastroPaciente extends JFrame {
 		RestrictedTextField validarCPF = new RestrictedTextField(txtCPF);
 		validarCPF.setOnlyNums(true);
 		validarCPF.setLimit(11);
+		
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(txtCEP.getText().equals("")) {
+					
+				}
+			}
+		});
+		
+		btnLimpa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 	}
 	
 	private void buscaCEP() {

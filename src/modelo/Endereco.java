@@ -8,6 +8,7 @@ public abstract class Endereco {
 	private String rua;
 	private Integer numero;
 	private Integer complemento;
+	
 	public String getCep() {
 		return cep;
 	}

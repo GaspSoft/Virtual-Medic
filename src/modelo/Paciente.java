@@ -4,15 +4,15 @@ import java.time.LocalDate;
 
 public class Paciente extends Pessoa {
 	
-	private Medico medico;
+	private String medico;
 	private String Diagnostico;
 	private Long numeroPlano;
 	private LocalDate validade;
 		
-	public Medico getMedico() {
+	public String getMedico() {
 		return medico;
 	}
-	public void setMedico(Medico medico) {
+	public void setMedico(String medico) {
 		this.medico = medico;
 	}
 

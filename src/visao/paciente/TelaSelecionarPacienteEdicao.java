@@ -1,95 +1,70 @@
-package visao.paciente;
+ package visao.paciente;
 
-import java.awt.EventQueue;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 
-import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import layoutPersonalizado.componentes.MeuBotao;
-import java.awt.Color;
+import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Color;
 import layoutPersonalizado.componentes.MeuTextField;
+import layoutPersonalizado.componentes.MeuBotao;
+import java.awt.Dialog.ModalExclusionType;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class TelaSelecionarPacienteEdicao extends JFrame {
+public class TelaSelecionarPacienteEdicao extends JDialog {
 
-	private JPanel contentPane;
+	private final JPanel contentPanel = new JPanel();
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaSelecionarPacienteEdicao frame = new TelaSelecionarPacienteEdicao();
-					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		try {
+			TelaSelecionarPacienteEdicao dialog = new TelaSelecionarPacienteEdicao();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
-	 * Create the frame.
+	 * Create the dialog.
 	 */
 	public TelaSelecionarPacienteEdicao() {
-		setResizable(false);
 		setTitle("Selecionar paciente para edição");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaSelecionarPacienteEdicao.class.getResource("/img/favicon-32x32.png")));
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 215);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
+		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
+		setModal(true);
+		setBounds(100, 100, 450, 197);
+		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Digite o CPF");
+		lblNewLabel.setForeground(new Color(84, 175, 230));
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel.setBounds(39, 11, 66, 14);
+		contentPanel.add(lblNewLabel);
+		
+		MeuTextField txtNome = new MeuTextField();
+		txtNome.setForeground(new Color(27, 156, 228));
+		txtNome.setBounds(39, 43, 349, 40);
+		contentPanel.add(txtNome);
 		
 		MeuBotao btnExcluirPaciente = new MeuBotao();
-		btnExcluirPaciente.setIcon(new ImageIcon(TelaSelecionarPacienteEdicao.class.getResource("/img/userDelete.png")));
+		btnExcluirPaciente.setIcon(new ImageIcon(TelaSelecionarPacienteEdicao.class.getResource("/img/userEdit.png")));
 		btnExcluirPaciente.setText("Selecionar paciente");
 		btnExcluirPaciente.setForeground(Color.WHITE);
 		btnExcluirPaciente.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnExcluirPaciente.setBackground(new Color(24, 62, 159));
-		
-		MeuTextField txtNome = new MeuTextField();
-		txtNome.setForeground(new Color(27, 156, 228));
-		
-		JLabel lblNewLabel = new JLabel("Digite o CPF");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel.setForeground(new Color(84, 175, 230));
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(43)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, 349, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblNewLabel)))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(128)
-							.addComponent(btnExcluirPaciente, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(32, Short.MAX_VALUE))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblNewLabel)
-					.addGap(18)
-					.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(btnExcluirPaciente, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(95))
-		);
-		contentPane.setLayout(gl_contentPane);
+		btnExcluirPaciente.setBounds(124, 101, 169, 55);
+		contentPanel.add(btnExcluirPaciente);
 	}
 }

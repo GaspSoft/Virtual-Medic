@@ -123,7 +123,7 @@ public class TelaCadastroMedico extends JFrame {
 				String especialidade = txtEspeci.getText();
 				String email = txtEmail.getText();
 
-				m.setCpf(Long.valueOf(cpf));
+				m.setCpf(cpf);
 				m.setNome(nome);
 				m.setCrm(Integer.valueOf(crm));
 				m.setEmail(email);

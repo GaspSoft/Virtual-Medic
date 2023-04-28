@@ -11,6 +11,8 @@ import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Color;
 import layoutPersonalizado.componentes.MeuBotao;
+import visao.TelaInicialMenu;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -167,6 +169,9 @@ public class TelaMenuPaciente extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
+				TelaInicialMenu telaMenuIncial = new TelaInicialMenu();
+				telaMenuIncial.setVisible(true);
+				telaMenuIncial.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
 		
@@ -174,6 +179,7 @@ public class TelaMenuPaciente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				TelaCadastroPaciente telaCadastroPaciente = new TelaCadastroPaciente();
 				telaCadastroPaciente.setVisible(true);
+				telaCadastroPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
 		
