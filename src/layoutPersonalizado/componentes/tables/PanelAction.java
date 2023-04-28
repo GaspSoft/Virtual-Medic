@@ -50,11 +50,11 @@ public class PanelAction extends javax.swing.JPanel {
         cmdDelete = new layoutPersonalizado.componentes.tables.ActionButton();
         cmdView = new layoutPersonalizado.componentes.tables.ActionButton();
 
-        cmdEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/raven/cell/edit.png"))); // NOI18N
+        cmdEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/layoutPersonalizado/componentes/tables/edit.png"))); // NOI18N
 
-        cmdDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/raven/cell/delete.png"))); // NOI18N
+        cmdDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/layoutPersonalizado/componentes/tables/delete.png"))); // NOI18N
 
-        cmdView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/raven/cell/view.png"))); // NOI18N
+        cmdView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/layoutPersonalizado/componentes/tables/view.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
