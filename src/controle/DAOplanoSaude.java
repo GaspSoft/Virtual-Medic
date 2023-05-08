@@ -59,5 +59,4 @@ public class DAOplanoSaude {
 	public ArrayList<PlanoSaude> listaPlanoSaude() {
 		return listaPlanoSaude;
 	}
-	
 }
