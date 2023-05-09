@@ -12,6 +12,7 @@ import java.awt.Font;
 import java.awt.Color;
 import layoutPersonalizado.componentes.MeuBotao;
 import visao.paciente.TelaMenuPaciente;
+import visao.planoSaude.TelaMenuPlanoSaude;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -188,7 +189,13 @@ public class TelaInicialMenu extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 		
-		
+		btnMenuPlanoSaude.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaMenuPlanoSaude TelaMenuPlanoSaude = new TelaMenuPlanoSaude();
+				dispose();
+				TelaMenuPlanoSaude.setVisible(true);
+			}
+		});
 		
 		btnMenuPaciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -201,6 +208,7 @@ public class TelaInicialMenu extends JFrame {
 		btnSobre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaSobreSystem telaSobreSistema = new TelaSobreSystem();
+				dispose();
 				telaSobreSistema.setVisible(true);
 			}
 		});
@@ -208,6 +216,7 @@ public class TelaInicialMenu extends JFrame {
 		btnRedesSociais.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaSocialMidia telaRedesSociais = new TelaSocialMidia();
+				dispose();
 				telaRedesSociais.setVisible(true);
 			}
 		});

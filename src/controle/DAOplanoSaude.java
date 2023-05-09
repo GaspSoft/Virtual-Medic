@@ -29,12 +29,12 @@ public class DAOplanoSaude {
 	}
 	
 	// UPDATE
-	public boolean alterar(PlanoSaude planoAlterar, int id) {
+	public Boolean alterar(PlanoSaude pa, int id) {
 
 		for (PlanoSaude planosaude : listaPlanoSaude) {
 
 			if (planosaude.getId() == id) {
-				planosaude.setNome(planoAlterar.getNome());
+				planosaude.setNome(pa.getNome());
 					
 				return true;
 			}
@@ -59,5 +59,4 @@ public class DAOplanoSaude {
 	public ArrayList<PlanoSaude> listaPlanoSaude() {
 		return listaPlanoSaude;
 	}
-	
 }

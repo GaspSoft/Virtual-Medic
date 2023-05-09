@@ -202,6 +202,10 @@ public class TelaCadastroPaciente extends JFrame {
 		lblNewLabel_2_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		MeuBotao btnCadastrar = new MeuBotao();
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnCadastrar.setText("Cadastrar");
 		btnCadastrar.setForeground(Color.WHITE);
 		btnCadastrar.setBackground(new Color(24, 62, 159));
