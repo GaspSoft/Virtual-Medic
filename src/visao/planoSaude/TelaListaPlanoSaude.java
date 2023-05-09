@@ -13,15 +13,21 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
+import controle.DAOmedico;
+import controle.DAOplanoSaude;
 import layoutPersonalizado.componentes.MeuBotao;
 import layoutPersonalizado.componentes.tables.TableActionCellEditor;
 import layoutPersonalizado.componentes.tables.TableActionCellRender;
 import layoutPersonalizado.componentes.tables.TableActionEvent;
 import layoutPersonalizado.componentes.tables.TableCustom;
+import modelo.Medico;
+import modelo.PlanoSaude;
 import visao.paciente.TelaListaPaciente;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class TelaListaPlanoSaude extends javax.swing.JFrame {
@@ -77,6 +83,12 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 		lista.addRow(new Object[]{8, "Assim Saúde", 18, 39});
 		lista.addRow(new Object[]{9, "GreenLine Sistema de Saúde", 18, 39});
 		lista.addRow(new Object[]{10, "Hapvida Saúde", 18, 39});
+		
+		DAOplanoSaude planoDao = new DAOplanoSaude();
+		ArrayList<PlanoSaude> listaPlanoSaude = planoDao.listaPlanoSaude();
+		for (PlanoSaude plano : listaPlanoSaude) {
+			lista.addRow(new Object[] { plano.getNome()});
+		}
 	}
 
 	private void initComponents() {

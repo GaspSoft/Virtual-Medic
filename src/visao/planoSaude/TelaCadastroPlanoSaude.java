@@ -5,15 +5,22 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controle.DAOmedico;
+import controle.DAOplanoSaude;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.util.ArrayList;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import layoutPersonalizado.componentes.MeuBotao;
 import layoutPersonalizado.componentes.MeuTextField;
+import modelo.Medico;
 import modelo.PlanoSaude;
 import visao.TelaInicialMenu;
 
@@ -174,6 +181,26 @@ public class TelaCadastroPlanoSaude extends JFrame {
 				dispose();
 				TelaMenuPlanoSaude TelaMenuPlanoSaude = new TelaMenuPlanoSaude();
 				TelaMenuPlanoSaude.setVisible(true);
+			}
+		});
+		
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DAOplanoSaude planoDao = new DAOplanoSaude();
+				ArrayList<PlanoSaude> listaPlanoSaude = planoDao.listaPlanoSaude();
+				PlanoSaude ps = new PlanoSaude();
+
+				String nome = txtNome.getText();
+
+				ps.setNome(nome);
+
+				DAOplanoSaude dao = DAOplanoSaude.getInstacia();
+				Boolean inserir = dao.inserir(ps);
+				if (inserir == true) {
+					JOptionPane.showMessageDialog(null, "Sucesso!");
+				} else {
+					JOptionPane.showMessageDialog(null, "Erro!");
+				}
 			}
 		});
 	}
