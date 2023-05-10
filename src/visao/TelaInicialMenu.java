@@ -191,9 +191,10 @@ public class TelaInicialMenu extends JFrame {
 		
 		btnMenuPlanoSaude.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaMenuPlanoSaude TelaMenuPlanoSaude = new TelaMenuPlanoSaude();
+				TelaMenuPlanoSaude telaMenuPlanoSaude = new TelaMenuPlanoSaude();
 				dispose();
-				TelaMenuPlanoSaude.setVisible(true);
+				telaMenuPlanoSaude.setVisible(true);
+				telaMenuPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
 		
@@ -202,13 +203,13 @@ public class TelaInicialMenu extends JFrame {
 				TelaMenuPaciente telaMenuPaciente = new TelaMenuPaciente();
 				dispose();
 				telaMenuPaciente.setVisible(true);
+				telaMenuPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
 		
 		btnSobre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaSobreSystem telaSobreSistema = new TelaSobreSystem();
-				dispose();
 				telaSobreSistema.setVisible(true);
 			}
 		});
@@ -216,7 +217,6 @@ public class TelaInicialMenu extends JFrame {
 		btnRedesSociais.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaSocialMidia telaRedesSociais = new TelaSocialMidia();
-				dispose();
 				telaRedesSociais.setVisible(true);
 			}
 		});

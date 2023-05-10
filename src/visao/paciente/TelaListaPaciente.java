@@ -5,20 +5,30 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import controle.DAOpaciente;
+import controle.DAOpaciente;
 import layoutPersonalizado.componentes.tables.TableActionCellEditor;
 import layoutPersonalizado.componentes.tables.TableActionCellRender;
 import layoutPersonalizado.componentes.tables.TableActionEvent;
 import layoutPersonalizado.componentes.tables.TableCustom;
+import modelo.Paciente;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import layoutPersonalizado.componentes.MeuBotao;
 import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class TelaListaPaciente extends javax.swing.JFrame {
@@ -95,6 +105,7 @@ public class TelaListaPaciente extends javax.swing.JFrame {
         model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
         model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
         model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
+        atualizaJTable(model, table);
     }
 
 
@@ -173,12 +184,12 @@ public class TelaListaPaciente extends javax.swing.JFrame {
         );
         panel.setLayout(gl_panel);
         
-        MeuBotao btnSair = new MeuBotao();
-        btnSair.setIcon(new ImageIcon(TelaListaPaciente.class.getResource("/img/exitBranco.png")));
-        btnSair.setText("Voltar");
-        btnSair.setForeground(Color.WHITE);
-        btnSair.setFont(new Font("Tahoma", Font.BOLD, 11));
-        btnSair.setBackground(new Color(24, 62, 159));
+        MeuBotao btnVoltar = new MeuBotao();
+        btnVoltar.setIcon(new ImageIcon(TelaListaPaciente.class.getResource("/img/exitBranco.png")));
+        btnVoltar.setText("Voltar");
+        btnVoltar.setForeground(Color.WHITE);
+        btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
+        btnVoltar.setBackground(new Color(24, 62, 159));
         
         JLabel lblNewLabel_3 = new JLabel("");
         lblNewLabel_3.setIcon(new ImageIcon(TelaListaPaciente.class.getResource("/img/gradienteMaior.png")));
@@ -190,7 +201,7 @@ public class TelaListaPaciente extends javax.swing.JFrame {
         			.addContainerGap()
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
         				.addComponent(tableScrollButton1, GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE)
-        				.addComponent(btnSair, GroupLayout.PREFERRED_SIZE, 273, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 273, GroupLayout.PREFERRED_SIZE)
         				.addGroup(layout.createSequentialGroup()
         					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 603, GroupLayout.PREFERRED_SIZE)
         					.addPreferredGap(ComponentPlacement.RELATED, 1, Short.MAX_VALUE)
@@ -205,7 +216,7 @@ public class TelaListaPaciente extends javax.swing.JFrame {
         				.addComponent(lblNewLabel_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
         			.addGap(13)
-        			.addComponent(btnSair, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+        			.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(tableScrollButton1, GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
         			.addContainerGap())
@@ -214,7 +225,27 @@ public class TelaListaPaciente extends javax.swing.JFrame {
 
         pack();
         setLocationRelativeTo(null);
+        
+        btnVoltar.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		TelaMenuPaciente telaMenuPaciente = new TelaMenuPaciente();
+        		telaMenuPaciente.setVisible(true);
+        		telaMenuPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        		setVisible(false);
+        	}
+        });
     }
+    
+    public static void atualizaJTable(DefaultTableModel modelo, JTable table) {
+    	DAOpaciente p = DAOpaciente.getInstacia();
+		ArrayList<Paciente> listaPacientes = p.listalPaciente();
+		for (Paciente paciente : listaPacientes) {
+			modelo.addRow(new Object[] { paciente.getCpf(), paciente.getNome(), paciente.getEmail() });
+		}
+
+		table = new JTable(modelo);
+		modelo.fireTableDataChanged();
+	}
 
     public static void main(String args[]) {
         
