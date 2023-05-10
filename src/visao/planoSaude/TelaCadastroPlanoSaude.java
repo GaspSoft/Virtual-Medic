@@ -4,18 +4,31 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import controle.DAOmedico;
+import controle.DAOplanoSaude;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.UUID;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import layoutPersonalizado.componentes.MeuBotao;
 import layoutPersonalizado.componentes.MeuTextField;
+import modelo.Medico;
 import modelo.PlanoSaude;
 import visao.TelaInicialMenu;
+import visao.planoSaude.TelaListaPlanoSaude;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ImageIcon;
@@ -176,6 +189,33 @@ public class TelaCadastroPlanoSaude extends JFrame {
 				TelaMenuPlanoSaude.setVisible(true);
 			}
 		});
+		
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PlanoSaude ps = new PlanoSaude();
+
+				String nome = txtNome.getText();
+				
+				ps.setId(gerarID());
+				ps.setNome(nome);
+				
+				DAOplanoSaude dao = DAOplanoSaude.getInstacia();
+				Boolean inserir = dao.inserir(ps);
+				if (inserir == true) {
+					JOptionPane.showMessageDialog(null, "Sucesso!");
+				} else {
+					JOptionPane.showMessageDialog(null, "Erro!");
+				}
+			}
+		});
+		
+	}
+	
+	public static Integer gerarID () { 
+		Random rand = new Random();
+		int num = rand.nextInt(1000) + 10;
+		
+		return num;
 	}
 
 }

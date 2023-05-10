@@ -13,15 +13,23 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
+import controle.DAOmedico;
+import controle.DAOplanoSaude;
 import layoutPersonalizado.componentes.MeuBotao;
 import layoutPersonalizado.componentes.tables.TableActionCellEditor;
 import layoutPersonalizado.componentes.tables.TableActionCellRender;
 import layoutPersonalizado.componentes.tables.TableActionEvent;
 import layoutPersonalizado.componentes.tables.TableCustom;
+import modelo.Medico;
+import modelo.PlanoSaude;
 import visao.paciente.TelaListaPaciente;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Random;
 import java.awt.event.ActionEvent;
 
 public class TelaListaPlanoSaude extends javax.swing.JFrame {
@@ -66,17 +74,74 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 	}
 
 	private void testData(JTable table) {
+		DAOplanoSaude planoDao = new DAOplanoSaude();
+		ArrayList<PlanoSaude> listaPlanoSaude = planoDao.listaPlanoSaude();
+		PlanoSaude ps1 = new PlanoSaude();
+		PlanoSaude ps2 = new PlanoSaude();
+		PlanoSaude ps3 = new PlanoSaude();
+		PlanoSaude ps4 = new PlanoSaude();
+		PlanoSaude ps5 = new PlanoSaude();
+		PlanoSaude ps6 = new PlanoSaude();
+		PlanoSaude ps7 = new PlanoSaude();
+		PlanoSaude ps8 = new PlanoSaude();
+		PlanoSaude ps9 = new PlanoSaude();
+		PlanoSaude ps10 = new PlanoSaude();
+		
+		
+		ps1.setNome("Unimed");
+		ps1.setId(gerarID());
+		listaPlanoSaude.add(ps1);
+		
+		ps2.setNome("Bradesco Saúde");
+		ps2.setId(gerarID());
+		listaPlanoSaude.add(ps2);
+		
+		ps3.setNome("Amil");
+		ps3.setId(gerarID());
+		listaPlanoSaude.add(ps3);
+		
+		ps4.setNome("NotreDame Intermédica");
+		ps4.setId(gerarID());
+		listaPlanoSaude.add(ps4);
+		
+		ps5.setNome("Porto Seguro");
+		ps5.setId(gerarID());
+		listaPlanoSaude.add(ps5);
+		
+		ps6.setNome("Prevent Senior");
+		ps6.setId(gerarID());
+		listaPlanoSaude.add(ps6);
+		
+		ps7.setNome("SulAmérica Saúde");
+		ps7.setId(gerarID());
+		listaPlanoSaude.add(ps7);
+		
+		ps8.setNome("Assim Saúde");
+		ps8.setId(gerarID());
+		listaPlanoSaude.add(ps8);
+		
+		ps9.setNome("GreenLine Sistema de Saúde");
+		ps9.setId(gerarID());
+		listaPlanoSaude.add(ps9);
+		
+		ps10.setNome("Hapvida");
+		ps10.setId(gerarID());
+		listaPlanoSaude.add(ps10);
+	
 		DefaultTableModel lista = (DefaultTableModel) table.getModel();
-		lista.addRow(new Object[]{1, "Unimed", 18, 39});
-		lista.addRow(new Object[]{2, "Bradesco Saúde", 18, 39});
-		lista.addRow(new Object[]{3, "Amil", 18, 39});
-		lista.addRow(new Object[]{4, "NotreDame Intermédica", 18, 39});
-		lista.addRow(new Object[]{5, "Porto Seguro", 18, 39});
-		lista.addRow(new Object[]{6, "SulAmérica Saúde", 18, 39});
-		lista.addRow(new Object[]{7, "Prevent Senior", 18, 39});
-		lista.addRow(new Object[]{8, "Assim Saúde", 18, 39});
-		lista.addRow(new Object[]{9, "GreenLine Sistema de Saúde", 18, 39});
-		lista.addRow(new Object[]{10, "Hapvida Saúde", 18, 39});
+		
+		lista.addRow(new Object[]{gerarID(), "Unimed", 18, 39});
+		lista.addRow(new Object[]{gerarID(), "Bradesco Saúde", 18, 39});
+		lista.addRow(new Object[]{gerarID(), "Amil", 18, 39});
+		lista.addRow(new Object[]{gerarID(), "NotreDame Intermédica", 18, 39});
+		lista.addRow(new Object[]{gerarID(), "Porto Seguro", 18, 39});
+		lista.addRow(new Object[]{gerarID(), "SulAmérica Saúde", 18, 39});
+		lista.addRow(new Object[]{gerarID(), "Prevent Senior", 18, 39});
+		lista.addRow(new Object[]{gerarID(), "Assim Saúde", 18, 39});
+		lista.addRow(new Object[]{gerarID(), "GreenLine Sistema de Saúde", 18, 39});
+		lista.addRow(new Object[]{gerarID(), "Hapvida Saúde", 18, 39});
+		
+		atualizaJTable(lista, table);
 	}
 
 	private void initComponents() {
@@ -179,6 +244,24 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 				TelaMenuPlanoSaude.setVisible(true);
 			}
 		});
+	}
+	
+	public static void atualizaJTable(DefaultTableModel lista, JTable table) {
+		DAOplanoSaude ps = DAOplanoSaude.getInstacia();
+		ArrayList<PlanoSaude> listaPlanoSaude = ps.listaPlanoSaude();
+		for (PlanoSaude plano : listaPlanoSaude) {
+			lista.addRow(new Object[] { plano.getId(), plano.getNome()});
+		}
+
+		table = new JTable(lista);
+		lista.fireTableDataChanged();
+	}
+	
+	public static Integer gerarID () { 
+		Random rand = new Random();
+		int num = rand.nextInt(1000) + 10;
+		
+		return num;
 	}
 
 	public static void main(String args[]) {
