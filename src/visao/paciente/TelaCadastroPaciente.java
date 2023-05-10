@@ -552,6 +552,7 @@ public class TelaCadastroPaciente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				TelaMenuPaciente telaMenuPaciente = new TelaMenuPaciente();
 				telaMenuPaciente.setVisible(true);
+				telaMenuPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				setVisible(false);
 			}
 		});
