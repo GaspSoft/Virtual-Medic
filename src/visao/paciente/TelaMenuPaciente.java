@@ -45,7 +45,7 @@ public class TelaMenuPaciente extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaMenuPaciente() {
-		setTitle("Menu paciente");
+		setTitle("Menu Paciente");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaMenuPaciente.class.getResource("/img/favicon-32x32.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 635, 780);
