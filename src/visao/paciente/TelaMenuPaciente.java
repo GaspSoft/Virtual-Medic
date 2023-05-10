@@ -196,5 +196,13 @@ public class TelaMenuPaciente extends JFrame {
 				telaSelecionarPacienteEdicao.setVisible(true);
 			}
 		});
+		
+		btnListaPaciente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaListaPaciente telaListaPaciente = new TelaListaPaciente();
+				telaListaPaciente.setVisible(true);
+				setVisible(false);
+			}
+		});
 	}
 }
