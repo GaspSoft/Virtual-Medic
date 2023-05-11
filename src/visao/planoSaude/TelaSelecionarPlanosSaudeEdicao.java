@@ -49,7 +49,7 @@ public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
 				JLabel lblDigiteOId = new JLabel("Digite o ID:");
 				lblDigiteOId.setForeground(new Color(84, 175, 230));
 				lblDigiteOId.setFont(new Font("Tahoma", Font.BOLD, 11));
-				lblDigiteOId.setBounds(39, 18, 66, 14);
+				lblDigiteOId.setBounds(50, 21, 66, 14);
 				contentPanel.add(lblDigiteOId);
 			}
 			{
@@ -64,7 +64,7 @@ public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
 				mbtSelecionarPlanoDe.setForeground(Color.WHITE);
 				mbtSelecionarPlanoDe.setFont(new Font("Tahoma", Font.BOLD, 11));
 				mbtSelecionarPlanoDe.setBackground(new Color(24, 62, 159));
-				mbtSelecionarPlanoDe.setBounds(49, 102, 195, 55);
+				mbtSelecionarPlanoDe.setBounds(39, 102, 195, 55);
 				contentPanel.add(mbtSelecionarPlanoDe);
 			}
 			MeuBotao btnVoltar = new MeuBotao();
@@ -73,7 +73,7 @@ public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
 			btnVoltar.setForeground(Color.WHITE);
 			btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
 			btnVoltar.setBackground(new Color(24, 62, 159));
-			btnVoltar.setBounds(292, 113, 121, 34);
+			btnVoltar.setBounds(267, 113, 121, 34);
 			contentPanel.add(btnVoltar);
 			
 			btnVoltar.addActionListener(new ActionListener() {

@@ -52,7 +52,7 @@ public class TelaExcluirPlanoSaude extends JDialog {;
 		contentPanel.setLayout(null);
 		
 		MeuBotao btnExcluirPlanoSaude = new MeuBotao();
-		btnExcluirPlanoSaude.setBounds(73, 94, 167, 55);
+		btnExcluirPlanoSaude.setBounds(42, 94, 167, 55);
 		btnExcluirPlanoSaude.setText("Excluir plano de saúde:");
 		btnExcluirPlanoSaude.setForeground(Color.WHITE);
 		btnExcluirPlanoSaude.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -65,7 +65,7 @@ public class TelaExcluirPlanoSaude extends JDialog {;
 		contentPanel.add(txtNome);
 		
 		JLabel lblNewLabel = new JLabel("Digite o ID:");
-		lblNewLabel.setBounds(42, 18, 66, 14);
+		lblNewLabel.setBounds(52, 18, 66, 14);
 		lblNewLabel.setForeground(new Color(84, 175, 230));
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
 		contentPanel.add(lblNewLabel);
@@ -76,7 +76,7 @@ public class TelaExcluirPlanoSaude extends JDialog {;
 		btnVoltar.setForeground(Color.WHITE);
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnVoltar.setBackground(new Color(24, 62, 159));
-		btnVoltar.setBounds(291, 105, 121, 34);
+		btnVoltar.setBounds(270, 105, 121, 34);
 		contentPanel.add(btnVoltar);
 		
 		btnVoltar.addActionListener(new ActionListener() {
