@@ -1,4 +1,4 @@
- package visao.paciente;
+ package visao.medico;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -47,7 +47,7 @@ public class TelaSelecionarPacienteEdicao extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Digite o CPF:");
+		JLabel lblNewLabel = new JLabel("Digite o CRM:");
 		lblNewLabel.setForeground(new Color(84, 175, 230));
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel.setBounds(51, 18, 84, 14);
@@ -60,7 +60,7 @@ public class TelaSelecionarPacienteEdicao extends JDialog {
 		
 		MeuBotao btnExcluirPaciente = new MeuBotao();
 		btnExcluirPaciente.setIcon(new ImageIcon(TelaSelecionarPacienteEdicao.class.getResource("/img/userEdit.png")));
-		btnExcluirPaciente.setText("Selecionar paciente");
+		btnExcluirPaciente.setText("Selecionar Médico");
 		btnExcluirPaciente.setForeground(Color.WHITE);
 		btnExcluirPaciente.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnExcluirPaciente.setBackground(new Color(24, 62, 159));
