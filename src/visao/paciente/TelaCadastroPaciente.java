@@ -5,7 +5,10 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
 
 import org.dom4j.Document;
@@ -202,10 +205,6 @@ public class TelaCadastroPaciente extends JFrame {
 		lblNewLabel_2_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		MeuBotao btnCadastrar = new MeuBotao();
-		btnCadastrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnCadastrar.setText("Cadastrar");
 		btnCadastrar.setForeground(Color.WHITE);
 		btnCadastrar.setBackground(new Color(24, 62, 159));
@@ -311,7 +310,7 @@ public class TelaCadastroPaciente extends JFrame {
 		lblDiagnstico.setFont(new Font("Tahoma", Font.BOLD, 11));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(10)
 					.addComponent(panelTitulo, GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
@@ -411,22 +410,23 @@ public class TelaCadastroPaciente extends JFrame {
 					.addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(btnLimpa, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE))
-				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(10)
-					.addComponent(cboPlanoSaude, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+					.addComponent(cboPlanoSaude, GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
 					.addGap(10)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(txtValidade, GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
 							.addGap(10))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblValidade, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
-							.addPreferredGap(ComponentPlacement.RELATED)))
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+							.addComponent(lblValidade, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblNmeroCarteirinha, GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+							.addGap(2)
+							.addComponent(lblNmeroCarteirinha, GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
 							.addGap(74))
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(txtNumeroPlano, GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
 							.addGap(3))))
 		);
@@ -513,7 +513,10 @@ public class TelaCadastroPaciente extends JFrame {
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(txtCEP.getText().equals("")) {
-					
+					JOptionPane.showMessageDialog(null, "Informe o CEP");
+					txtCEP.requestFocus();
+				} else {
+					buscaCEP();
 				}
 			}
 		});
@@ -522,7 +525,40 @@ public class TelaCadastroPaciente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+		
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Paciente p = new Paciente();
+				
+				String nome = txtNome.getText();
+				String cpf = txtCPF.getText();
+				String email = txtEmail.getText();
+				
+				p.setCpf(cpf);
+				p.setNome(nome);
+				p.setEmail(email);
+
+				DAOpaciente dao = DAOpaciente.getInstacia();
+				Boolean inserir = dao.inserir(p);
+				if (inserir == true) {
+					JOptionPane.showMessageDialog(null, "Sucesso!");
+				} else {
+					JOptionPane.showMessageDialog(null, "Erro!");
+				}
+			}
+		});
+		
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaMenuPaciente telaMenuPaciente = new TelaMenuPaciente();
+				telaMenuPaciente.setVisible(true);
+				telaMenuPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				setVisible(false);
+			}
+		});
 	}
+	
+	
 	
 	private void buscaCEP() {
 		String logradouro = "";

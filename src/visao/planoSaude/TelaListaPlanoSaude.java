@@ -28,6 +28,8 @@ import modelo.PlanoSaude;
 import visao.paciente.TelaListaPaciente;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Random;
 import java.awt.event.ActionEvent;
 
 public class TelaListaPlanoSaude extends javax.swing.JFrame {
@@ -73,22 +75,8 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 
 	private void testData(JTable table) {
 		DefaultTableModel lista = (DefaultTableModel) table.getModel();
-		lista.addRow(new Object[]{1, "Unimed", 18, 39});
-		lista.addRow(new Object[]{2, "Bradesco Saúde", 18, 39});
-		lista.addRow(new Object[]{3, "Amil", 18, 39});
-		lista.addRow(new Object[]{4, "NotreDame Intermédica", 18, 39});
-		lista.addRow(new Object[]{5, "Porto Seguro", 18, 39});
-		lista.addRow(new Object[]{6, "SulAmérica Saúde", 18, 39});
-		lista.addRow(new Object[]{7, "Prevent Senior", 18, 39});
-		lista.addRow(new Object[]{8, "Assim Saúde", 18, 39});
-		lista.addRow(new Object[]{9, "GreenLine Sistema de Saúde", 18, 39});
-		lista.addRow(new Object[]{10, "Hapvida Saúde", 18, 39});
 		
-		DAOplanoSaude planoDao = new DAOplanoSaude();
-		ArrayList<PlanoSaude> listaPlanoSaude = planoDao.listaPlanoSaude();
-		for (PlanoSaude plano : listaPlanoSaude) {
-			lista.addRow(new Object[] { plano.getNome()});
-		}
+		atualizaJTable(lista, table);
 	}
 
 	private void initComponents() {
@@ -189,8 +177,27 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 				dispose();
 				TelaMenuPlanoSaude TelaMenuPlanoSaude = new TelaMenuPlanoSaude();
 				TelaMenuPlanoSaude.setVisible(true);
+				TelaMenuPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
+	}
+	
+	public static void atualizaJTable(DefaultTableModel lista, JTable table) {
+		DAOplanoSaude ps = DAOplanoSaude.getInstacia();
+		ArrayList<PlanoSaude> listaPlanoSaude = ps.listaPlanoSaude();
+		for (PlanoSaude plano : listaPlanoSaude) {
+			lista.addRow(new Object[] { plano.getId(), plano.getNome()});
+		}
+
+		table = new JTable(lista);
+		lista.fireTableDataChanged();
+	}
+	
+	public static Integer gerarID () { 
+		Random rand = new Random();
+		int num = rand.nextInt(1000) + 10;
+		
+		return num;
 	}
 
 	public static void main(String args[]) {
