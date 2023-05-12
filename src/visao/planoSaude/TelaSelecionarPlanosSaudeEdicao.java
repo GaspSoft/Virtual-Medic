@@ -13,6 +13,8 @@ import javax.swing.border.EmptyBorder;
 import controle.DAOplanoSaude;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Color;
 import layoutPersonalizado.componentes.MeuTextField;
@@ -24,6 +26,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
+	private int planoExibir;
 
 	/**
 	 * Launch the application.
@@ -83,6 +86,9 @@ public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
 			btnVoltar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					dispose();
+					TelaMenuPlanoSaude telaMenuPlanoSaude = new TelaMenuPlanoSaude();
+					telaMenuPlanoSaude.setVisible(true);
+					telaMenuPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				}
 			});
 			
@@ -91,10 +97,10 @@ public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
 				public void actionPerformed(ActionEvent e) {
 					DAOplanoSaude ps = DAOplanoSaude.getInstacia();
 					ArrayList<PlanoSaude> listaPlanoSaude = ps.listaPlanoSaude();
-					int Num = Integer.parseInt(txtNome.getText());
+					Integer Num = Integer.parseInt(txtNome.getText());
 					
-					listaPlanoSaude.buscarEditar(Num);
-					
+					planoExibir = Integer.parseInt(buscarEditar(Num));
+					JOptionPane.showMessageDialog(null, planoExibir);
 					dispose();
 					TelaEditarPlanoSaude telaEditarPlanoSaude = new TelaEditarPlanoSaude();
 					telaEditarPlanoSaude.setVisible(true);
@@ -107,23 +113,25 @@ public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
 		}
 	}
 	
-	public Integer buscarEditar (int Num) {
+	public static String buscarEditar (Integer Num) {
 		
 		DAOplanoSaude ps = DAOplanoSaude.getInstacia();
 		ArrayList<PlanoSaude> listaPlanoSaude = ps.listaPlanoSaude();
 		
-		Integer acharID = null;
-		String acharPlano = "";
+		String acharPlano = null;
 		
 		for (PlanoSaude planosaude : listaPlanoSaude) {
 
 			if (planosaude.getId() == Num) {
-				acharID = planosaude.getId();
 				acharPlano = planosaude.getNome();
 			}
 		}
-		return null;
+		return acharPlano;
 		
+	}
+
+	public void setPlanoExibir(int planoExibir) {
+		this.planoExibir = planoExibir;
 	}
 
 }

@@ -29,6 +29,7 @@ import modelo.Medico;
 import modelo.PlanoSaude;
 import visao.TelaInicialMenu;
 import visao.planoSaude.TelaListaPlanoSaude;
+import visao.planoSaude.TelaSelecionarPlanosSaudeEdicao;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ImageIcon;
@@ -37,7 +38,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
 public class TelaEditarPlanoSaude extends JFrame {
-	private PlanoSaude planoSelecionado;
+	private String planoExibir;
 	private JPanel contentPane;
 	
 	private ArrayList<PlanoSaude> listaPlanoSaude = new ArrayList<PlanoSaude>();
@@ -96,8 +97,8 @@ public class TelaEditarPlanoSaude extends JFrame {
 		lblNome.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNome.setBackground(Color.WHITE);
 		
-		MeuTextField txtNome = new MeuTextField();
-		txtNome.setForeground(new Color(27, 156, 228));
+		MeuTextField txtEdicao = new MeuTextField();
+		txtEdicao.setForeground(new Color(27, 156, 228));
 		
 		JPanel panelIdentificacao = new JPanel();
 		panelIdentificacao.setBackground(new Color(24, 62, 159));
@@ -153,7 +154,7 @@ public class TelaEditarPlanoSaude extends JFrame {
 											.addComponent(lblNome, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
 											.addGap(454))
 										.addGroup(gl_contentPane.createSequentialGroup()
-											.addComponent(txtNome, GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+											.addComponent(txtEdicao, GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
 											.addGap(35))))
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addComponent(panelIdentificacao, GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
@@ -178,7 +179,7 @@ public class TelaEditarPlanoSaude extends JFrame {
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(lblNome, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addComponent(txtEdicao, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 					.addGap(27)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnAlterar, GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
@@ -186,6 +187,8 @@ public class TelaEditarPlanoSaude extends JFrame {
 					.addGap(25))
 		);
 		contentPane.setLayout(gl_contentPane);
+		
+		txtEdicao.setText(planoExibir);
 		
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -200,7 +203,7 @@ public class TelaEditarPlanoSaude extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				PlanoSaude ps = new PlanoSaude();
 
-				String nome = txtNome.getText();
+				String nome = txtEdicao.getText();
 				
 				ps.setNome(nome);
 				
@@ -215,5 +218,4 @@ public class TelaEditarPlanoSaude extends JFrame {
 		});
 		
 	}
-
 }
