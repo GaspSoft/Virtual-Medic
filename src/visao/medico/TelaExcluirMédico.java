@@ -1,4 +1,4 @@
-package visao.paciente;
+package visao.medico;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -16,7 +16,7 @@ import javax.swing.JLabel;
 import java.awt.Dialog.ModalExclusionType;
 import javax.swing.ImageIcon;
 
-public class TelaExcluirPaciente extends JDialog {
+public class TelaExcluirMédico extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
@@ -25,7 +25,7 @@ public class TelaExcluirPaciente extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			TelaExcluirPaciente dialog = new TelaExcluirPaciente();
+			TelaExcluirMédico dialog = new TelaExcluirMédico();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -36,11 +36,11 @@ public class TelaExcluirPaciente extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public TelaExcluirPaciente() {
+	public TelaExcluirMédico() {
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		setModal(true);
 		setTitle("Excluir paciente");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaExcluirPaciente.class.getResource("/img/favicon-32x32.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaExcluirMédico.class.getResource("/img/favicon-32x32.png")));
 		setBounds(100, 100, 450, 197);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -48,8 +48,8 @@ public class TelaExcluirPaciente extends JDialog {
 		contentPanel.setLayout(null);
 		
 		MeuBotao btnExcluirPaciente = new MeuBotao();
-		btnExcluirPaciente.setIcon(new ImageIcon(TelaExcluirPaciente.class.getResource("/img/userDelete.png")));
-		btnExcluirPaciente.setText("Excluir paciente");
+		btnExcluirPaciente.setIcon(new ImageIcon(TelaExcluirMédico.class.getResource("/img/userDelete.png")));
+		btnExcluirPaciente.setText("Excluir médico");
 		btnExcluirPaciente.setForeground(Color.WHITE);
 		btnExcluirPaciente.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnExcluirPaciente.setBackground(new Color(24, 62, 159));
@@ -61,14 +61,14 @@ public class TelaExcluirPaciente extends JDialog {
 		txtNome.setBounds(42, 43, 349, 40);
 		contentPanel.add(txtNome);
 		
-		JLabel lblNewLabel = new JLabel("Digite o CPF:");
+		JLabel lblNewLabel = new JLabel("Digite o CRM:");
 		lblNewLabel.setForeground(new Color(84, 175, 230));
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel.setBounds(55, 18, 98, 14);
 		contentPanel.add(lblNewLabel);
 		
 		MeuBotao btnVoltar = new MeuBotao();
-		btnVoltar.setIcon(new ImageIcon(TelaExcluirPaciente.class.getResource("/img/exitBranco.png")));
+		btnVoltar.setIcon(new ImageIcon(TelaExcluirMédico.class.getResource("/img/exitBranco.png")));
 		btnVoltar.setText("Voltar");
 		btnVoltar.setForeground(Color.WHITE);
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));

@@ -197,6 +197,7 @@ public class TelaMenuPlanoSaude extends JFrame {
 				dispose();
 				TelaCadastroPlanoSaude TelaCadastroPlanoSaude = new TelaCadastroPlanoSaude();
 				TelaCadastroPlanoSaude.setVisible(true);
+				TelaCadastroPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
 		

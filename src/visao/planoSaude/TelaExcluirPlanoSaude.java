@@ -7,15 +7,21 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controle.DAOplanoSaude;
+
 import java.awt.Toolkit;
 import layoutPersonalizado.componentes.MeuBotao;
 import java.awt.Color;
 import java.awt.Font;
 import layoutPersonalizado.componentes.MeuTextField;
+import modelo.PlanoSaude;
+
 import javax.swing.JLabel;
 import java.awt.Dialog.ModalExclusionType;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class TelaExcluirPlanoSaude extends JDialog {;
@@ -52,7 +58,7 @@ public class TelaExcluirPlanoSaude extends JDialog {;
 		contentPanel.setLayout(null);
 		
 		MeuBotao btnExcluirPlanoSaude = new MeuBotao();
-		btnExcluirPlanoSaude.setBounds(73, 94, 167, 55);
+		btnExcluirPlanoSaude.setBounds(42, 94, 167, 55);
 		btnExcluirPlanoSaude.setText("Excluir plano de saúde:");
 		btnExcluirPlanoSaude.setForeground(Color.WHITE);
 		btnExcluirPlanoSaude.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -65,7 +71,7 @@ public class TelaExcluirPlanoSaude extends JDialog {;
 		contentPanel.add(txtNome);
 		
 		JLabel lblNewLabel = new JLabel("Digite o ID:");
-		lblNewLabel.setBounds(42, 18, 66, 14);
+		lblNewLabel.setBounds(52, 18, 66, 14);
 		lblNewLabel.setForeground(new Color(84, 175, 230));
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
 		contentPanel.add(lblNewLabel);
@@ -76,7 +82,7 @@ public class TelaExcluirPlanoSaude extends JDialog {;
 		btnVoltar.setForeground(Color.WHITE);
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnVoltar.setBackground(new Color(24, 62, 159));
-		btnVoltar.setBounds(291, 105, 121, 34);
+		btnVoltar.setBounds(270, 105, 121, 34);
 		contentPanel.add(btnVoltar);
 		
 		btnVoltar.addActionListener(new ActionListener() {
@@ -86,5 +92,24 @@ public class TelaExcluirPlanoSaude extends JDialog {;
 				TelaMenuPlanoSaude.setVisible(true);
 			}
 		});
+		
+		btnExcluirPlanoSaude.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+	}
+	
+	public static void buscarEditar (Integer Num) {
+		
+		DAOplanoSaude ps = DAOplanoSaude.getInstacia();
+		ArrayList<PlanoSaude> listaPlanoSaude = ps.listaPlanoSaude();
+		
+		for (PlanoSaude planosaude : listaPlanoSaude) {
+
+			if (planosaude.getId() == Num) {
+				planosaude.remove(listaPlanoSaude);
+			}
+		}
 	}
 }
