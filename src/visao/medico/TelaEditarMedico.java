@@ -44,7 +44,7 @@ import controle.*;
 import modelo.*;
 import javax.swing.JTextArea;
 
-public class TelaCadastroMedico extends JFrame {
+public class TelaEditarMedico extends JFrame {
 
 	private JPanel contentPane;
 	private MeuTextField txtCEP;
@@ -62,7 +62,7 @@ public class TelaCadastroMedico extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaCadastroMedico frame = new TelaCadastroMedico();
+					TelaEditarMedico frame = new TelaEditarMedico();
 					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -75,9 +75,9 @@ public class TelaCadastroMedico extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaCadastroMedico() {
-		setTitle("Cadastro de médico");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaCadastroMedico.class.getResource("/img/favicon-32x32.png")));
+	public TelaEditarMedico() {
+		setTitle("Editar médico");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaEditarMedico.class.getResource("/img/favicon-32x32.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 680, 1011);
 		contentPane = new JPanel();
@@ -192,8 +192,7 @@ public class TelaCadastroMedico extends JFrame {
 		lblNewLabel_2_1.setForeground(Color.WHITE);
 		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
-		DAOplanoSaude planoDAO = DAOplanoSaude.getInstacia();
-		ArrayList<PlanoSaude> listaPlanoSaude = planoDAO.listaPlanoSaude();
+	
 		
 		JLabel lblNmeroCarteirinha = new JLabel("CRM");
 		lblNmeroCarteirinha.setBounds(428, 421, 136, 14);
@@ -214,7 +213,7 @@ public class TelaCadastroMedico extends JFrame {
 		lblNewLabel_2_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		MeuBotao btnCadastrar = new MeuBotao();
-		btnCadastrar.setBounds(24, 834, 223, 48);
+		btnCadastrar.setBounds(15, 834, 223, 48);
 		btnCadastrar.setText("Cadastrar");
 		btnCadastrar.setForeground(Color.WHITE);
 		btnCadastrar.setBackground(new Color(24, 62, 159));
@@ -232,13 +231,7 @@ public class TelaCadastroMedico extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(0, 0, 123, 122);
 		panelTitulo.add(lblNewLabel_1);
-		lblNewLabel_1.setIcon(new ImageIcon(TelaCadastroMedico.class.getResource("/img/imgCadastro 1 (2).png")));
-		
-		JLabel lblNewLabel = new JLabel("Cadastrar");
-		lblNewLabel.setBounds(123, 0, 212, 122);
-		panelTitulo.add(lblNewLabel);
-		lblNewLabel.setForeground(new Color(27, 156, 228));
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
+		lblNewLabel_1.setIcon(new ImageIcon(TelaEditarMedico.class.getResource("/img/imgCadastro 1 (2).png")));
 		GroupLayout gl_panelIdentificacao_1 = new GroupLayout(panelIdentificacao_1);
 		gl_panelIdentificacao_1.setHorizontalGroup(
 			gl_panelIdentificacao_1.createParallelGroup(Alignment.LEADING)
@@ -277,15 +270,12 @@ public class TelaCadastroMedico extends JFrame {
 		MeuBotao btnVoltar = new MeuBotao();
 		btnVoltar.setBounds(545, 28, 110, 110);
 		btnVoltar.setToolTipText("Voltar");
-		btnVoltar.setIcon(new ImageIcon(TelaCadastroMedico.class.getResource("/img/setaAzulEsquerda.png")));
+		btnVoltar.setIcon(new ImageIcon(TelaEditarMedico.class.getResource("/img/setaAzulEsquerda.png")));
 		btnVoltar.setForeground(Color.WHITE);
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnVoltar.setBackground(new Color(24, 62, 159));
 		
-		DAOmedico medicoDAO = DAOmedico.getInstacia();
-		ArrayList<Medico> listaMedico = medicoDAO.listaMedico();
-		
-		
+	
 		MeuTextField txtNumeroPlano_1 = new MeuTextField();
 		txtNumeroPlano_1.setBounds(15, 446, 380, 40);
 		txtNumeroPlano_1.setForeground(new Color(27, 156, 228));
@@ -318,6 +308,12 @@ public class TelaCadastroMedico extends JFrame {
 		txtCPF_1.setForeground(new Color(27, 156, 228));
 		contentPane.setLayout(null);
 		contentPane.add(panelTitulo);
+		
+		JLabel lblNewLabel = new JLabel("Alterar");
+		lblNewLabel.setForeground(new Color(27, 156, 228));
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 48));
+		lblNewLabel.setBounds(143, 0, 203, 122);
+		panelTitulo.add(lblNewLabel);
 		contentPane.add(btnVoltar);
 		contentPane.add(panelIdentificacao);
 		contentPane.add(lblNome);
@@ -404,7 +400,7 @@ public class TelaCadastroMedico extends JFrame {
 		
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+		
 			}
 		});
 	}

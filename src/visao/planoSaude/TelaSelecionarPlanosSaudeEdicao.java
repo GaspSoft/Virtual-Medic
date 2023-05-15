@@ -26,7 +26,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
-	private int planoExibir;
+	private String planoExibir;
 
 	/**
 	 * Launch the application.
@@ -80,7 +80,7 @@ public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
 			btnVoltar.setForeground(Color.WHITE);
 			btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
 			btnVoltar.setBackground(new Color(24, 62, 159));
-			btnVoltar.setBounds(292, 113, 121, 34);
+			btnVoltar.setBounds(267, 113, 121, 34);
 			contentPanel.add(btnVoltar);
 			
 			btnVoltar.addActionListener(new ActionListener() {
@@ -99,8 +99,8 @@ public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
 					ArrayList<PlanoSaude> listaPlanoSaude = ps.listaPlanoSaude();
 					Integer Num = Integer.parseInt(txtNome.getText());
 					
-					planoExibir = Integer.parseInt(buscarEditar(Num));
-					JOptionPane.showMessageDialog(null, planoExibir);
+					planoExibir = buscarEditar(Num);
+					
 					dispose();
 					TelaEditarPlanoSaude telaEditarPlanoSaude = new TelaEditarPlanoSaude();
 					telaEditarPlanoSaude.setVisible(true);
@@ -121,7 +121,6 @@ public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
 		String acharPlano = null;
 		
 		for (PlanoSaude planosaude : listaPlanoSaude) {
-
 			if (planosaude.getId() == Num) {
 				acharPlano = planosaude.getNome();
 			}
@@ -130,7 +129,7 @@ public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
 		
 	}
 
-	public void setPlanoExibir(int planoExibir) {
+	public void setPlanoExibir(String planoExibir) {
 		this.planoExibir = planoExibir;
 	}
 
