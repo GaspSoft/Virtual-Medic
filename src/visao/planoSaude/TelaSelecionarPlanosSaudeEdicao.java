@@ -26,7 +26,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
-	private int planoExibir;
+	private String planoExibir;
 
 	/**
 	 * Launch the application.
@@ -86,15 +86,9 @@ public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
 			btnVoltar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					dispose();
-<<<<<<< Updated upstream
 					TelaMenuPlanoSaude telaMenuPlanoSaude = new TelaMenuPlanoSaude();
 					telaMenuPlanoSaude.setVisible(true);
 					telaMenuPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
-=======
-					TelaMenuPlanoSaude TelaMenuPlanoSaude = new TelaMenuPlanoSaude();
-					TelaMenuPlanoSaude.setVisible(true);
-					TelaMenuPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
->>>>>>> Stashed changes
 				}
 			});
 			
@@ -105,8 +99,8 @@ public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
 					ArrayList<PlanoSaude> listaPlanoSaude = ps.listaPlanoSaude();
 					Integer Num = Integer.parseInt(txtNome.getText());
 					
-					planoExibir = Integer.parseInt(buscarEditar(Num));
-					JOptionPane.showMessageDialog(null, planoExibir);
+					planoExibir = buscarEditar(Num);
+					
 					dispose();
 					TelaEditarPlanoSaude telaEditarPlanoSaude = new TelaEditarPlanoSaude();
 					telaEditarPlanoSaude.setVisible(true);
@@ -127,7 +121,6 @@ public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
 		String acharPlano = null;
 		
 		for (PlanoSaude planosaude : listaPlanoSaude) {
-
 			if (planosaude.getId() == Num) {
 				acharPlano = planosaude.getNome();
 			}
@@ -136,7 +129,7 @@ public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
 		
 	}
 
-	public void setPlanoExibir(int planoExibir) {
+	public void setPlanoExibir(String planoExibir) {
 		this.planoExibir = planoExibir;
 	}
 
