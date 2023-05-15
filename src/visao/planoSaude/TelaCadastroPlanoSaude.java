@@ -215,6 +215,12 @@ public class TelaCadastroPlanoSaude extends JFrame {
 			}
 		});
 		
+		btnLimpa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtNome.setText(null);
+			}
+		});
+		
 	}
 	
 	public static Integer gerarID () { 

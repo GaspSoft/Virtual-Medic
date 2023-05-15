@@ -86,9 +86,15 @@ public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
 			btnVoltar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					dispose();
+<<<<<<< Updated upstream
 					TelaMenuPlanoSaude telaMenuPlanoSaude = new TelaMenuPlanoSaude();
 					telaMenuPlanoSaude.setVisible(true);
 					telaMenuPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
+=======
+					TelaMenuPlanoSaude TelaMenuPlanoSaude = new TelaMenuPlanoSaude();
+					TelaMenuPlanoSaude.setVisible(true);
+					TelaMenuPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
+>>>>>>> Stashed changes
 				}
 			});
 			
