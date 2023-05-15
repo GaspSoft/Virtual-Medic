@@ -1,5 +1,5 @@
 <p align="center">
-  <img ![Estudo De Caso - Java] src="https://user-images.githubusercontent.com/86849487/199125703-dd54fe0c-7169-466d-b38a-0555d8f9a44f.png">
+  <img ![Estudo De Caso - Java] src="https://github.com/GaspSoft/Virtual-Medic/assets/86849487/4efa5659-61fe-485f-8085-41d8656954c4">
 </p>
 
 <h1 align="center"> Estudo de Caso </h1>
@@ -10,16 +10,19 @@
 <p align="center"> :construction: <b>Projeto em construção</b> :construction: </p>
 
 # :hammer: Funcionalidades do projeto
-`Funcionalidade 1` : Cadastrar Veículos</br>
-`Funcionalidade 2` : Listar Veículos</br>
-`Funcionalidade 3` : Alterar Veículos</br>
-`Funcionalidade 4` : Excluir Veículos</br> 
-`Funcionalidade 5` : Cadastrar Usuários</br>
+
+| `Cadastrar` | `Alterar` | `Excluir` | `Listar`
+| --- | --- | --- | --- | 
+| Médico | Médico | Médico | Médico |
+| Paciente | Paciente | Paciente | Paciente |
+| Plano de Saúde | Plano de Saúde | Plano de Saúde | Plano de Saúde |
 
 # 🏗️ Tecnologias utilizadas
 `Tecnologia 1` : Java 8</br>
 `Tecnologia 2` : Java SE JDK 8</br>
-`Tecnologia 3` : IDE eclipse workspace</br>
+`Tecnologia 3` : Java Swing</br>
+`Tecnologia 4` : IDE eclipse workspace</br>
+`Tecnologia 5` : Window Builder</br>
 
 # 📝 Proposta Geral
 <p align="justify">O sistema tem como objetivo a venda de automóveis, busca auxiliar e promover de forma mais simples os usuários. Para isso o mesmo contará com diversas funcionalidades, como o usuário realizar o seu cadastro e caso queira vender seu automóvel pode cadastrar o mesmo com as informações necessárias, possibilitando ainda alterar algo se necessário. Já o comprador poderá buscar os carros, motos, caminhões ou ônibus, por fim o mesmo poderá comprar o carro do vendedor. Assim se finaliza a proposta geral, que tem como objetivo principal garantir ao usuário uma visão ampla sobre os automóveis e assim realizar a compra do mesmo</p>
