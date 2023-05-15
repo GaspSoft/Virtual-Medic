@@ -6,18 +6,27 @@ import java.awt.FlowLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controle.DAOplanoSaude;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Color;
 import layoutPersonalizado.componentes.MeuTextField;
+import modelo.PlanoSaude;
 import layoutPersonalizado.componentes.MeuBotao;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
+	private int planoExibir;
 
 	/**
 	 * Launch the application.
@@ -45,28 +54,26 @@ public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
 			contentPanel.setLayout(null);
 			contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 			getContentPane().add(contentPanel, BorderLayout.CENTER);
-			{
-				JLabel lblDigiteOId = new JLabel("Digite o ID:");
-				lblDigiteOId.setForeground(new Color(84, 175, 230));
-				lblDigiteOId.setFont(new Font("Tahoma", Font.BOLD, 11));
-				lblDigiteOId.setBounds(50, 21, 66, 14);
-				contentPanel.add(lblDigiteOId);
-			}
-			{
-				MeuTextField txtNome = new MeuTextField();
-				txtNome.setForeground(new Color(27, 156, 228));
-				txtNome.setBounds(39, 43, 349, 40);
-				contentPanel.add(txtNome);
-			}
-			{
-				MeuBotao mbtSelecionarPlanoDe = new MeuBotao();
-				mbtSelecionarPlanoDe.setText("Selecionar plano de saúde");
-				mbtSelecionarPlanoDe.setForeground(Color.WHITE);
-				mbtSelecionarPlanoDe.setFont(new Font("Tahoma", Font.BOLD, 11));
-				mbtSelecionarPlanoDe.setBackground(new Color(24, 62, 159));
-				mbtSelecionarPlanoDe.setBounds(39, 102, 195, 55);
-				contentPanel.add(mbtSelecionarPlanoDe);
-			}
+			
+			JLabel lblDigiteOId = new JLabel("Digite o ID:");
+			lblDigiteOId.setForeground(new Color(84, 175, 230));
+			lblDigiteOId.setFont(new Font("Tahoma", Font.BOLD, 11));
+			lblDigiteOId.setBounds(39, 18, 66, 14);
+			contentPanel.add(lblDigiteOId);
+			
+			MeuTextField txtNome = new MeuTextField();
+			txtNome.setForeground(new Color(27, 156, 228));
+			txtNome.setBounds(39, 43, 349, 40);
+			contentPanel.add(txtNome);
+				
+			MeuBotao btSelecionarPlanoDeSaude = new MeuBotao();
+			btSelecionarPlanoDeSaude.setText("Selecionar plano de saúde");
+			btSelecionarPlanoDeSaude.setForeground(Color.WHITE);
+			btSelecionarPlanoDeSaude.setFont(new Font("Tahoma", Font.BOLD, 11));
+			btSelecionarPlanoDeSaude.setBackground(new Color(24, 62, 159));
+			btSelecionarPlanoDeSaude.setBounds(49, 102, 195, 55);
+			contentPanel.add(btSelecionarPlanoDeSaude);
+				
 			MeuBotao btnVoltar = new MeuBotao();
 			btnVoltar.setIcon(new ImageIcon(TelaExcluirPlanoSaude.class.getResource("/img/exitBranco.png")));
 			btnVoltar.setText("Voltar");
@@ -79,12 +86,52 @@ public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
 			btnVoltar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					dispose();
-					TelaMenuPlanoSaude TelaMenuPlanoSaude = new TelaMenuPlanoSaude();
-					TelaMenuPlanoSaude.setVisible(true);
+					TelaMenuPlanoSaude telaMenuPlanoSaude = new TelaMenuPlanoSaude();
+					telaMenuPlanoSaude.setVisible(true);
+					telaMenuPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				}
+			});
+			
+			btSelecionarPlanoDeSaude.addActionListener(new ActionListener() {
+				
+				public void actionPerformed(ActionEvent e) {
+					DAOplanoSaude ps = DAOplanoSaude.getInstacia();
+					ArrayList<PlanoSaude> listaPlanoSaude = ps.listaPlanoSaude();
+					Integer Num = Integer.parseInt(txtNome.getText());
+					
+					planoExibir = Integer.parseInt(buscarEditar(Num));
+					JOptionPane.showMessageDialog(null, planoExibir);
+					dispose();
+					TelaEditarPlanoSaude telaEditarPlanoSaude = new TelaEditarPlanoSaude();
+					telaEditarPlanoSaude.setVisible(true);
+					telaEditarPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				}
 			});
 
+			
+			
 		}
+	}
+	
+	public static String buscarEditar (Integer Num) {
+		
+		DAOplanoSaude ps = DAOplanoSaude.getInstacia();
+		ArrayList<PlanoSaude> listaPlanoSaude = ps.listaPlanoSaude();
+		
+		String acharPlano = null;
+		
+		for (PlanoSaude planosaude : listaPlanoSaude) {
+
+			if (planosaude.getId() == Num) {
+				acharPlano = planosaude.getNome();
+			}
+		}
+		return acharPlano;
+		
+	}
+
+	public void setPlanoExibir(int planoExibir) {
+		this.planoExibir = planoExibir;
 	}
 
 }

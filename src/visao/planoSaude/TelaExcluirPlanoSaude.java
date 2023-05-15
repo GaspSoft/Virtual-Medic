@@ -7,15 +7,21 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controle.DAOplanoSaude;
+
 import java.awt.Toolkit;
 import layoutPersonalizado.componentes.MeuBotao;
 import java.awt.Color;
 import java.awt.Font;
 import layoutPersonalizado.componentes.MeuTextField;
+import modelo.PlanoSaude;
+
 import javax.swing.JLabel;
 import java.awt.Dialog.ModalExclusionType;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class TelaExcluirPlanoSaude extends JDialog {;
@@ -86,5 +92,24 @@ public class TelaExcluirPlanoSaude extends JDialog {;
 				TelaMenuPlanoSaude.setVisible(true);
 			}
 		});
+		
+		btnExcluirPlanoSaude.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+	}
+	
+	public static void buscarEditar (Integer Num) {
+		
+		DAOplanoSaude ps = DAOplanoSaude.getInstacia();
+		ArrayList<PlanoSaude> listaPlanoSaude = ps.listaPlanoSaude();
+		
+		for (PlanoSaude planosaude : listaPlanoSaude) {
+
+			if (planosaude.getId() == Num) {
+				planosaude.remove(listaPlanoSaude);
+			}
+		}
 	}
 }
