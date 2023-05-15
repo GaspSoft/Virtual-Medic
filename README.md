@@ -18,7 +18,7 @@
 | Plano de Saúde | Plano de Saúde | Plano de Saúde | Plano de Saúde |
 
 # 🏗️ Tecnologias utilizadas
-`Tecnologia 1` : Java 8</br>
+`Tecnologia 1` : Java 17</br>
 `Tecnologia 2` : Java SE JDK 8</br>
 `Tecnologia 3` : Java Swing</br>
 `Tecnologia 4` : IDE eclipse workspace</br>
