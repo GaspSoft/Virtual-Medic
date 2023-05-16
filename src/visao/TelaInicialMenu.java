@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Color;
 import layoutPersonalizado.componentes.MeuBotao;
+import visao.medico.TelaMenuMedico;
 import visao.paciente.TelaMenuPaciente;
 import visao.planoSaude.TelaMenuPlanoSaude;
 
@@ -85,6 +86,7 @@ public class TelaInicialMenu extends JFrame {
 		btnMenuPaciente.setBackground(new Color(24, 62, 159));
 		
 		MeuBotao btnMenuMedico = new MeuBotao();
+		
 		btnMenuMedico.setIcon(new ImageIcon(TelaInicialMenu.class.getResource("/img/medico.png")));
 		btnMenuMedico.setText("Acessar menu médico");
 		btnMenuMedico.setForeground(Color.WHITE);
@@ -223,6 +225,15 @@ public class TelaInicialMenu extends JFrame {
 		
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		
+		btnMenuMedico.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaMenuMedico telaMenuMedico = new TelaMenuMedico();
+				telaMenuMedico.setVisible(true);
+				telaMenuMedico.setExtendedState(MAXIMIZED_BOTH);
 				dispose();
 			}
 		});
