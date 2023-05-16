@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -25,7 +26,9 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class TelaExcluirPlanoSaude extends JDialog {;
-
+	
+    public ArrayList<PlanoSaude> listaPlanoSaude = new ArrayList<PlanoSaude>();
+	private Integer buscarExcluir;
 	private final JPanel contentPanel = new JPanel();
 
 	/**
@@ -90,25 +93,32 @@ public class TelaExcluirPlanoSaude extends JDialog {;
 				dispose();
 				TelaMenuPlanoSaude TelaMenuPlanoSaude = new TelaMenuPlanoSaude();
 				TelaMenuPlanoSaude.setVisible(true);
+				TelaMenuPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
 		
 		btnExcluirPlanoSaude.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				Integer Num = Integer.parseInt(txtNome.getText());
+
+				buscarExcluir(Num);
+				dispose();
+				TelaMenuPlanoSaude TelaMenuPlanoSaude = new TelaMenuPlanoSaude();
+				TelaMenuPlanoSaude.setVisible(true);
+				TelaMenuPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
 	}
 	
-	public static void buscarEditar (Integer Num) {
-		
+	public void buscarExcluir (Integer Num) {
 		DAOplanoSaude ps = DAOplanoSaude.getInstacia();
-		ArrayList<PlanoSaude> listaPlanoSaude = ps.listaPlanoSaude();
+		
+		Integer acharID = null;
 		
 		for (PlanoSaude planosaude : listaPlanoSaude) {
-
 			if (planosaude.getId() == Num) {
-				//planosaude.remove(listaPlanoSaude);
+				acharID = planosaude.getId();
+				planosaude.remove(listaPlanoSaude);
 			}
 		}
 	}

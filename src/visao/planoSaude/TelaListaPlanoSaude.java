@@ -52,6 +52,11 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 				if (jTables.isEditing()) {
 					jTables.getCellEditor().stopCellEditing();
 				}
+				DAOplanoSaude ps = DAOplanoSaude.getInstacia();
+				ArrayList<PlanoSaude> listaPlanoSaude = ps.listaPlanoSaude();
+
+				ps.remove(listaPlanoSaude);
+				
 				DefaultTableModel model = (DefaultTableModel) jTables.getModel();
 				model.removeRow(row);
 			}
