@@ -59,4 +59,9 @@ public class DAOplanoSaude {
 	public ArrayList<PlanoSaude> listaPlanoSaude() {
 		return listaPlanoSaude;
 	}
+
+	public void remove(ArrayList<PlanoSaude> listaPlanoSaude2) {
+		// TODO Auto-generated method stub
+		
+	}
 }

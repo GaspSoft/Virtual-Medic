@@ -1,6 +1,7 @@
 package modelo;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class PlanoSaude {
 	
@@ -21,6 +22,10 @@ public class PlanoSaude {
 	}
 	@Override
 	public String toString() {
-		return "PlanoSaude [id=" + id + ", nome=" + nome + "]";
+		return nome;
+	}
+	public void remove(ArrayList<PlanoSaude> listaPlanoSaude) {
+		// TODO Auto-generated method stub
+		
 	}
 }

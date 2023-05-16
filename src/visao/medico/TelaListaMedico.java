@@ -228,7 +228,10 @@ public class TelaListaMedico extends javax.swing.JFrame {
         
         btnVoltar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        	
+        		TelaMenuMedico telaMenuMedico = new TelaMenuMedico();
+        		telaMenuMedico.setVisible(true);
+        		telaMenuMedico.setExtendedState(MAXIMIZED_BOTH);
+        		dispose();
         	}
         });
     }
