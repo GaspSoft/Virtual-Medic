@@ -15,6 +15,8 @@ import layoutPersonalizado.componentes.MeuTextField;
 import javax.swing.JLabel;
 import java.awt.Dialog.ModalExclusionType;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaExcluirMédico extends JDialog {
 
@@ -75,5 +77,11 @@ public class TelaExcluirMédico extends JDialog {
 		btnVoltar.setBackground(new Color(24, 62, 159));
 		btnVoltar.setBounds(270, 104, 121, 34);
 		contentPanel.add(btnVoltar);
+		
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 	}
 }

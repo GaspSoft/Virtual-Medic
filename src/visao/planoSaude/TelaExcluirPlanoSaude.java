@@ -108,7 +108,7 @@ public class TelaExcluirPlanoSaude extends JDialog {;
 		for (PlanoSaude planosaude : listaPlanoSaude) {
 
 			if (planosaude.getId() == Num) {
-				planosaude.remove(listaPlanoSaude);
+				//planosaude.remove(listaPlanoSaude);
 			}
 		}
 	}
