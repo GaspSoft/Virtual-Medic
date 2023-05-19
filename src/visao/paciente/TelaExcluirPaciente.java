@@ -83,13 +83,18 @@ public class TelaExcluirPaciente extends JDialog {
 		contentPanel.add(btnVoltar);
 		
 		
-
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		
 		btnExcluirPaciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DAOpaciente pacienteDAO = DAOpaciente.getInstacia();
 				Long cpf = Long.parseLong(txtCPF.getText());
 				pacienteDAO.deletar(null, cpf);
+				dispose();
 			}
 		});
 	}
