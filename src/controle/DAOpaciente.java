@@ -29,7 +29,7 @@ public class DAOpaciente {
 	}
 
 	// UPDATE
-	public Boolean alterar(Paciente p, String cpf) {
+	public Boolean alterar(Paciente p, Long cpf) {
 
 		for (Paciente paciente : listaPaciente) {
 			if (paciente.getCpf().equals(cpf)) {
@@ -52,7 +52,7 @@ public class DAOpaciente {
 
 				// Classe paciente
 				paciente.setMedico(p.getMedico());
-				paciente.setDiagnostico(cpf);
+				paciente.setDiagnostico(p.getDiagnostico());
 				paciente.setNumeroPlano(p.getNumeroPlano());
 				paciente.setValidade(p.getValidade());
 
