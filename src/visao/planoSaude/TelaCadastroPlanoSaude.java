@@ -208,7 +208,8 @@ public class TelaCadastroPlanoSaude extends JFrame {
 				DAOplanoSaude dao = DAOplanoSaude.getInstacia();
 				Boolean inserir = dao.inserir(ps);
 				if (inserir == true) {
-					JOptionPane.showMessageDialog(null, "Sucesso!");
+					TelaSucessoPlanoSaude telaSucessoPlanoSaude = new TelaSucessoPlanoSaude();
+					telaSucessoPlanoSaude.setVisible(true);
 				} else {
 					JOptionPane.showMessageDialog(null, "Erro!");
 				}

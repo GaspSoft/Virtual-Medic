@@ -26,7 +26,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
-	private String planoExibir;
+	private String nomePlanoSaude;
 
 	/**
 	 * Launch the application.
@@ -61,10 +61,10 @@ public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
 			lblDigiteOId.setBounds(39, 18, 66, 14);
 			contentPanel.add(lblDigiteOId);
 			
-			MeuTextField txtNome = new MeuTextField();
-			txtNome.setForeground(new Color(27, 156, 228));
-			txtNome.setBounds(39, 43, 349, 40);
-			contentPanel.add(txtNome);
+			MeuTextField txtID = new MeuTextField();
+			txtID.setForeground(new Color(27, 156, 228));
+			txtID.setBounds(39, 43, 349, 40);
+			contentPanel.add(txtID);
 				
 			MeuBotao btSelecionarPlanoDeSaude = new MeuBotao();
 			btSelecionarPlanoDeSaude.setText("Selecionar plano de saúde");
@@ -96,41 +96,17 @@ public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
 				
 				public void actionPerformed(ActionEvent e) {
 					DAOplanoSaude ps = DAOplanoSaude.getInstacia();
-					ArrayList<PlanoSaude> listaPlanoSaude = ps.listaPlanoSaude();
-					Integer Num = Integer.parseInt(txtNome.getText());
-					
-					planoExibir = buscarEditar(Num);
+					Integer Num = Integer.parseInt(txtID.getText());
+				
+					nomePlanoSaude = ps.alterar(null, Num).toString();
 					
 					dispose();
 					TelaEditarPlanoSaude telaEditarPlanoSaude = new TelaEditarPlanoSaude();
 					telaEditarPlanoSaude.setVisible(true);
 					telaEditarPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				}
-			});
-
-			
-			
+			});			
 		}
-	}
-	
-	public static String buscarEditar (Integer Num) {
-		
-		DAOplanoSaude ps = DAOplanoSaude.getInstacia();
-		ArrayList<PlanoSaude> listaPlanoSaude = ps.listaPlanoSaude();
-		
-		String acharPlano = null;
-		
-		for (PlanoSaude planosaude : listaPlanoSaude) {
-			if (planosaude.getId() == Num) {
-				acharPlano = planosaude.getNome();
-			}
-		}
-		return acharPlano;
-		
-	}
-
-	public void setPlanoExibir(String planoExibir) {
-		this.planoExibir = planoExibir;
 	}
 
 }
