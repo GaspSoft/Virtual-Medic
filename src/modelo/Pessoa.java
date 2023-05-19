@@ -3,16 +3,16 @@ package modelo;
 import java.time.LocalDate;
 
 public abstract class Pessoa extends Endereco {
-	private String cpf;
+	private Long cpf;
 	private String nome;
 	private String email;
 	private String genero;
 	private LocalDate idade;
 	
-	public String getCpf() {
+	public Long getCpf() {
 		return cpf;
 	}
-	public void setCpf(String cpf) {
+	public void setCpf(Long cpf) {
 		this.cpf = cpf;
 	}
 	public String getNome() {

@@ -77,34 +77,6 @@ public class TelaListaPaciente extends javax.swing.JFrame {
 
     private void testData(JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
         atualizaJTable(model, table);
     }
 
