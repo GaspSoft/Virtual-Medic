@@ -39,7 +39,7 @@ import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ImageIcon;
 import net.miginfocom.swing.MigLayout;
-
+import visao.TelaMensagem;
 import controle.*;
 import modelo.*;
 import javax.swing.JTextArea;
@@ -52,6 +52,7 @@ public class TelaCadastroPaciente extends JFrame {
 	private MeuTextField txtBairro;
 	private MeuTextField txtCidade;
 	private MeuTextField txtRua;
+	private MeuTextField txtNumero;
 	private MeuComboBox cboUF;
 	//private JComboBox cboUF;
 
@@ -94,35 +95,35 @@ public class TelaCadastroPaciente extends JFrame {
         lblRua.setForeground(new Color(84, 175, 230));
         lblRua.setFont(new Font("Tahoma", Font.BOLD, 11));
         
-        MeuTextField txtRua = new MeuTextField();
+        txtRua = new MeuTextField();
         txtRua.setForeground(new Color(27, 156, 228));
         
         JLabel lblBairro = new JLabel("Bairro");
         lblBairro.setForeground(new Color(84, 175, 230));
         lblBairro.setFont(new Font("Tahoma", Font.BOLD, 11));
         
-        MeuTextField txtBairro = new MeuTextField();
+        txtBairro = new MeuTextField();
         txtBairro.setForeground(new Color(27, 156, 228));
         
         JLabel lblCidade = new JLabel("Cidade");
         lblCidade.setFont(new Font("Tahoma", Font.BOLD, 11));
         lblCidade.setForeground(new Color(84, 175, 230));
         
-        MeuTextField txtCidade = new MeuTextField();
+        txtCidade = new MeuTextField();
         
-        MeuComboBox cboUF = new MeuComboBox();
+        cboUF = new MeuComboBox();
         cboUF.setForeground(new Color(27, 156, 228));
 		cboUF.setModel(new DefaultComboBoxModel(new String[] {"Estado", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"}));
 		
-		MeuTextField txtNumero = new MeuTextField();
+		txtNumero = new MeuTextField();
 		txtNumero.setForeground(new Color(27, 156, 228));
 		
 		JLabel lblNumero = new JLabel("Número");
 		lblNumero.setForeground(new Color(84, 175, 230));
 		lblNumero.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
-		MeuTextField txtComple = new MeuTextField();
-		txtComple.setForeground(new Color(27, 156, 228));
+		txtComplemento = new MeuTextField();
+		txtComplemento.setForeground(new Color(27, 156, 228));
 		
 		JLabel lblComplemento = new JLabel("Complemento");
 		lblComplemento.setForeground(new Color(84, 175, 230));
@@ -154,7 +155,7 @@ public class TelaCadastroPaciente extends JFrame {
 		lblEmail.setBackground(Color.WHITE);
 		
 		MeuComboBox cboGenero = new MeuComboBox();
-		cboGenero.setModel(new DefaultComboBoxModel(new String[] {"Gênero"}));
+		cboGenero.setModel(new DefaultComboBoxModel(new String[] {"Gênero", "Cisgênero", "Transgênero", "Não binário"}));
 		cboGenero.setForeground(new Color(27, 156, 228));
 		
 		JPanel panelIdentificacao = new JPanel();
@@ -279,8 +280,8 @@ public class TelaCadastroPaciente extends JFrame {
 		}
 		cboMedico.setForeground(new Color(27, 156, 228));
 		
-		MeuTextField txtNumeroPlano_1 = new MeuTextField();
-		txtNumeroPlano_1.setForeground(new Color(27, 156, 228));
+		MeuTextField txtDiagnostico = new MeuTextField();
+		txtDiagnostico.setForeground(new Color(27, 156, 228));
 		GroupLayout gl_panelIdentificacao_1_1 = new GroupLayout(panelIdentificacao_1_1);
 		gl_panelIdentificacao_1_1.setHorizontalGroup(
 			gl_panelIdentificacao_1_1.createParallelGroup(Alignment.LEADING)
@@ -308,6 +309,14 @@ public class TelaCadastroPaciente extends JFrame {
 		JLabel lblDiagnstico = new JLabel("Diagnóstico");
 		lblDiagnstico.setForeground(new Color(84, 175, 230));
 		lblDiagnstico.setFont(new Font("Tahoma", Font.BOLD, 11));
+		
+		MeuTextField txtIdade = new MeuTextField();
+		txtIdade.setForeground(new Color(27, 156, 228));
+		
+		JLabel lblIdade = new JLabel("Idade");
+		lblIdade.setForeground(new Color(84, 175, 230));
+		lblIdade.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblIdade.setBackground(Color.WHITE);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -334,16 +343,6 @@ public class TelaCadastroPaciente extends JFrame {
 					.addComponent(txtCPF, GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
 					.addGap(3))
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(21)
-					.addComponent(lblEmail, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(578))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(10)
-					.addComponent(txtEmail, GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
-					.addGap(29)
-					.addComponent(cboGenero, GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
-					.addGap(3))
-				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(10)
 					.addComponent(panelIdentificacao_1, GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
 					.addGap(3))
@@ -355,7 +354,7 @@ public class TelaCadastroPaciente extends JFrame {
 					.addGap(10)
 					.addComponent(cboMedico, GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
 					.addGap(32)
-					.addComponent(txtNumeroPlano_1, GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+					.addComponent(txtDiagnostico, GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
 					.addGap(3))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(10)
@@ -403,7 +402,7 @@ public class TelaCadastroPaciente extends JFrame {
 					.addGap(9)
 					.addComponent(txtNumero, GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
 					.addGap(18)
-					.addComponent(txtComple, GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+					.addComponent(txtComplemento, GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
 					.addGap(3))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(7)
@@ -412,23 +411,42 @@ public class TelaCadastroPaciente extends JFrame {
 					.addComponent(btnLimpa, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(10)
-					.addComponent(cboPlanoSaude, GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+					.addComponent(cboPlanoSaude, GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
 					.addGap(10)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(txtValidade, GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+							.addComponent(txtValidade, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
 							.addGap(10))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(lblValidade, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+							.addPreferredGap(ComponentPlacement.RELATED, 6, Short.MAX_VALUE)))
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(2)
-							.addComponent(lblNmeroCarteirinha, GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+							.addComponent(lblNmeroCarteirinha, GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
 							.addGap(74))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(txtNumeroPlano, GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+							.addComponent(txtNumeroPlano, GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
 							.addGap(3))))
+				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(txtEmail, GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+							.addGap(18))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(21)
+							.addComponent(lblEmail, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGap(274)))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(txtIdade, GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+							.addGap(18)
+							.addComponent(cboGenero, GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+							.addContainerGap())
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lblIdade, GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+							.addGap(270))))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -450,11 +468,15 @@ public class TelaCadastroPaciente extends JFrame {
 						.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 						.addComponent(txtCPF, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
-					.addComponent(lblEmail)
-					.addGap(6)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(cboGenero, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lblEmail)
+						.addComponent(lblIdade))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+							.addComponent(txtIdade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(cboGenero, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addComponent(panelIdentificacao_1, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
 					.addGap(11)
@@ -471,7 +493,7 @@ public class TelaCadastroPaciente extends JFrame {
 					.addGap(2)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(cboMedico, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtNumeroPlano_1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtDiagnostico, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
 					.addGap(11)
 					.addComponent(panelIdentificacao_1_1, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
@@ -500,7 +522,7 @@ public class TelaCadastroPaciente extends JFrame {
 					.addGap(4)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(txtNumero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtComple, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtComplemento, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(6)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
@@ -513,7 +535,8 @@ public class TelaCadastroPaciente extends JFrame {
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(txtCEP.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Informe o CEP");
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o CEP!");
+					telaSucesso.setVisible(true);
 					txtCEP.requestFocus();
 				} else {
 					buscaCEP();
@@ -530,20 +553,117 @@ public class TelaCadastroPaciente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Paciente p = new Paciente();
 				
-				String nome = txtNome.getText();
+				if(txtCPF.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o CPF!");
+					telaSucesso.setVisible(true);
+					txtCPF.requestFocus();
+				} else if(txtNome.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Nome!");
+					telaSucesso.setVisible(true);
+					txtNome.requestFocus();
+				} else if(txtEmail.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Email!");
+					telaSucesso.setVisible(true);
+					txtEmail.requestFocus();
+				} else if(txtIdade.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe a Idade!");
+					telaSucesso.setVisible(true);
+					txtIdade.requestFocus();
+				} else if(cboGenero.getSelectedItem().toString().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Gênero!");
+					telaSucesso.setVisible(true);
+					cboGenero.requestFocus();
+				} else if(cboMedico.getSelectedItem().toString().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Médico!");
+					telaSucesso.setVisible(true);
+					cboMedico.requestFocus();
+				} else if(txtDiagnostico.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Diagnóstico!");
+					telaSucesso.setVisible(true);
+					txtDiagnostico.requestFocus();
+				} else if(cboPlanoSaude.getSelectedItem().toString().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Médico!");
+					telaSucesso.setVisible(true);
+					cboPlanoSaude.requestFocus();
+				} else if(txtNumeroPlano.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Número do Plano!");
+					telaSucesso.setVisible(true);
+					txtNumeroPlano.requestFocus();
+				} else if(txtValidade.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe a Validade!");
+					telaSucesso.setVisible(true);
+					txtValidade.requestFocus();
+					String validade = txtValidade.getText();
+				} else if(txtCEP.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o CEP!");
+					telaSucesso.setVisible(true);
+					txtCEP.requestFocus();
+				} else if(cboUF.getSelectedItem().toString().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o UF!");
+					telaSucesso.setVisible(true);
+					cboUF.requestFocus();
+				} else if(txtCidade.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe a Cidade!");
+					telaSucesso.setVisible(true);
+					txtCidade.requestFocus();
+				} else if(txtBairro.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Bairro!");
+					telaSucesso.setVisible(true);
+					txtBairro.requestFocus();
+				} else if(txtRua.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe a Rua!");
+					telaSucesso.setVisible(true);
+					txtRua.requestFocus();
+				} else if(txtNumero.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Número da residência!");
+					telaSucesso.setVisible(true);
+					txtNumero.requestFocus();
+				}
+				
 				Long cpf = Long.parseLong(txtCPF.getText());
+				String nome = txtNome.getText();
 				String email = txtEmail.getText();
+				Integer idade = Integer.valueOf(txtIdade.getText());
+				String genero = cboGenero.getSelectedItem().toString();
+				String medico = cboMedico.getSelectedItem().toString();
+				String diagnostico = txtDiagnostico.getText();
+				String planoSaude = cboPlanoSaude.getSelectedItem().toString();
+				Long numeroPlano = Long.parseLong(txtNumeroPlano.getText());
+				String validade = txtValidade.getText();
+				String cep = txtCEP.getText();
+				String uf = cboUF.getSelectedItem().toString();
+				String cidade = txtCidade.getText();
+				String bairro = txtBairro.getText();
+				String rua = txtRua.getText();
+				Integer numero = Integer.valueOf(txtNumero.getText());
+				Integer complemento = Integer.valueOf(txtComplemento.getText());
 				
 				p.setCpf(cpf);
 				p.setNome(nome);
 				p.setEmail(email);
+				p.setIdade(idade);
+				p.setGenero(genero);
+				p.setMedico(medico);
+				p.setDiagnostico(diagnostico);
+				p.setPlanoSaude(planoSaude);
+				p.setNumeroPlano(numeroPlano);
+				p.setValidade(validade);
+				p.setCep(cep);
+				p.setUf(uf);
+				p.setCidade(cidade);
+				p.setBairro(bairro);
+				p.setRua(rua);
+				p.setNumero(numero);
+				p.setComplemento(complemento);
 
 				DAOpaciente dao = DAOpaciente.getInstacia();
 				Boolean inserir = dao.inserir(p);
-				if (inserir == true) {
-					JOptionPane.showMessageDialog(null, "Sucesso!");
+				if (inserir) {
+					TelaMensagem telaSucesso = new TelaMensagem(nome + ", cadastrado com sucesso!");
+					telaSucesso.setVisible(true);
 				} else {
-					JOptionPane.showMessageDialog(null, "Erro!");
+					TelaMensagem telaSucesso = new TelaMensagem("Não foi possível cadastrar o paciente!");
+					telaSucesso.setVisible(true);
 				}
 			}
 		});
@@ -586,14 +706,6 @@ public class TelaCadastroPaciente extends JFrame {
 				if (element.getQualifiedName().equals("logradouro")) {
 					logradouro = element.getText();
 				}
-				/*if (element.getQualifiedName().equals("resultado")) {
-					resultado = element.getText();
-					if (resultado.equals("1")) {
-						lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/check.png")));
-					} else {
-						JOptionPane.showMessageDialog(null, "CEP não encontrado");
-					}
-				} */
 			}
 			txtRua.setText(tipoLogradouro + " " + logradouro);
 		} catch (Exception e) {

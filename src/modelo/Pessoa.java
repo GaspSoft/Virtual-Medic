@@ -7,7 +7,7 @@ public abstract class Pessoa extends Endereco {
 	private String nome;
 	private String email;
 	private String genero;
-	private LocalDate idade;
+	private Integer idade;
 	
 	public Long getCpf() {
 		return cpf;
@@ -33,16 +33,15 @@ public abstract class Pessoa extends Endereco {
 	public void setGenero(String genero) {
 		this.genero = genero;
 	}
-	public LocalDate getIdade() {
+	public Integer getIdade() {
 		return idade;
 	}
-	public void setIdade(LocalDate idade) {
+	public void setIdade(Integer idade) {
 		this.idade = idade;
 	}
 	@Override
 	public String toString() {
-		return "Pessoa [cpf=" + cpf + ", nome=" + nome + ", email=" + email + ", genero=" + genero + ", idade=" + idade
-				+ "]";
+		return nome;
 	}
 }
 
