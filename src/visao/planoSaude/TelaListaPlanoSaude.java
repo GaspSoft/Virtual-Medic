@@ -49,9 +49,16 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 
 			@Override
 			public void onDelete(int row) {
+				DAOplanoSaude ps = DAOplanoSaude.getInstacia();
+				Object valorRow = jTables.getValueAt(jTables.getSelectedRow(), 0);
+				Integer rowID = Integer.valueOf((Integer) valorRow);
+				
 				if (jTables.isEditing()) {
 					jTables.getCellEditor().stopCellEditing();
 				}
+		
+				ps.deletar(null, rowID);
+				
 				DefaultTableModel model = (DefaultTableModel) jTables.getModel();
 				model.removeRow(row);
 			}

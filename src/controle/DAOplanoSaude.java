@@ -30,12 +30,12 @@ public class DAOplanoSaude {
 	
 	// UPDATE
 	public Boolean alterar(PlanoSaude pa, int id) {
-
-		for (PlanoSaude planosaude : listaPlanoSaude) {
-
-			if (planosaude.getId() == id) {
-				planosaude.setNome(pa.getNome());
-					
+		String nomePlano;
+		
+		for (PlanoSaude planoSaude : listaPlanoSaude) {
+			if (planoSaude.getId() == id) {
+				planoSaude.setNome(pa.getNome());
+				nomePlano = planoSaude.getNome();
 				return true;
 			}
 		}
