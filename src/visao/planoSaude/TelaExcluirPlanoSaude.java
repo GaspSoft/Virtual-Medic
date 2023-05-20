@@ -19,6 +19,8 @@ import layoutPersonalizado.componentes.MeuTextField;
 import modelo.PlanoSaude;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Dialog.ModalExclusionType;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
@@ -68,10 +70,10 @@ public class TelaExcluirPlanoSaude extends JDialog {;
 		btnExcluirPlanoSaude.setBackground(new Color(24, 62, 159));
 		contentPanel.add(btnExcluirPlanoSaude);
 		
-		MeuTextField txtNome = new MeuTextField();
-		txtNome.setBounds(42, 43, 349, 40);
-		txtNome.setForeground(new Color(27, 156, 228));
-		contentPanel.add(txtNome);
+		MeuTextField txtID = new MeuTextField();
+		txtID.setBounds(42, 43, 349, 40);
+		txtID.setForeground(new Color(27, 156, 228));
+		contentPanel.add(txtID);
 		
 		JLabel lblNewLabel = new JLabel("Digite o ID:");
 		lblNewLabel.setBounds(52, 18, 66, 14);
@@ -99,27 +101,15 @@ public class TelaExcluirPlanoSaude extends JDialog {;
 		
 		btnExcluirPlanoSaude.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Integer Num = Integer.parseInt(txtNome.getText());
+				DAOplanoSaude ps = DAOplanoSaude.getInstacia();
+				Integer Num = Integer.parseInt(txtID.getText());
 
-				buscarExcluir(Num);
+				ps.deletar(null, Num);
 				dispose();
 				TelaMenuPlanoSaude TelaMenuPlanoSaude = new TelaMenuPlanoSaude();
 				TelaMenuPlanoSaude.setVisible(true);
 				TelaMenuPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
-	}
-	
-	public void buscarExcluir (Integer Num) {
-		DAOplanoSaude ps = DAOplanoSaude.getInstacia();
-		
-		Integer acharID = null;
-		
-		for (PlanoSaude planosaude : listaPlanoSaude) {
-			if (planosaude.getId() == Num) {
-				acharID = planosaude.getId();
-				planosaude.remove(listaPlanoSaude);
-			}
-		}
 	}
 }

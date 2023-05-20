@@ -3,16 +3,16 @@ package modelo;
 import java.time.LocalDate;
 
 public abstract class Pessoa extends Endereco {
-	private String cpf;
+	private Long cpf;
 	private String nome;
 	private String email;
 	private String genero;
-	private LocalDate idade;
+	private Integer idade;
 	
-	public String getCpf() {
+	public Long getCpf() {
 		return cpf;
 	}
-	public void setCpf(String cpf) {
+	public void setCpf(Long cpf) {
 		this.cpf = cpf;
 	}
 	public String getNome() {
@@ -33,16 +33,15 @@ public abstract class Pessoa extends Endereco {
 	public void setGenero(String genero) {
 		this.genero = genero;
 	}
-	public LocalDate getIdade() {
+	public Integer getIdade() {
 		return idade;
 	}
-	public void setIdade(LocalDate idade) {
+	public void setIdade(Integer idade) {
 		this.idade = idade;
 	}
 	@Override
 	public String toString() {
-		return "Pessoa [cpf=" + cpf + ", nome=" + nome + ", email=" + email + ", genero=" + genero + ", idade=" + idade
-				+ "]";
+		return nome;
 	}
 }
 

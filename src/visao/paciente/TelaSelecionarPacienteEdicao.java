@@ -1,4 +1,4 @@
- package visao.paciente;
+package visao.paciente;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -15,6 +15,8 @@ import layoutPersonalizado.componentes.MeuBotao;
 import java.awt.Dialog.ModalExclusionType;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaSelecionarPacienteEdicao extends JDialog {
 
@@ -75,5 +77,11 @@ public class TelaSelecionarPacienteEdicao extends JDialog {
 		btnVoltar.setBackground(new Color(24, 62, 159));
 		btnVoltar.setBounds(267, 105, 121, 34);
 		contentPanel.add(btnVoltar);
+		
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 	}
 }

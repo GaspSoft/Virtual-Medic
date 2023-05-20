@@ -467,6 +467,12 @@ public class TelaEditarPaciente extends JFrame {
 		);
 		panelIdentificacao_1_1.setLayout(gl_panelIdentificacao_1_1);
 		contentPane.setLayout(gl_contentPane);
+		
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 	}
 	
 	private void buscaCEP() {

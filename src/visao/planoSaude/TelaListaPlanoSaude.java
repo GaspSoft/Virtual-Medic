@@ -49,13 +49,15 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 
 			@Override
 			public void onDelete(int row) {
+				DAOplanoSaude ps = DAOplanoSaude.getInstacia();
+				Object valorRow = jTables.getValueAt(jTables.getSelectedRow(), 0);
+				Integer rowID = Integer.valueOf((Integer) valorRow);
+				
 				if (jTables.isEditing()) {
 					jTables.getCellEditor().stopCellEditing();
 				}
-				DAOplanoSaude ps = DAOplanoSaude.getInstacia();
-				ArrayList<PlanoSaude> listaPlanoSaude = ps.listaPlanoSaude();
-
-				ps.remove(listaPlanoSaude);
+		
+				ps.deletar(null, rowID);
 				
 				DefaultTableModel model = (DefaultTableModel) jTables.getModel();
 				model.removeRow(row);

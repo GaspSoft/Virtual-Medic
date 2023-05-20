@@ -38,9 +38,8 @@ import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
 public class TelaEditarPlanoSaude extends JFrame {
-	private String planoExibir;
 	private JPanel contentPane;
-	
+	private String nomePlanoSaude;
 	private ArrayList<PlanoSaude> listaPlanoSaude = new ArrayList<PlanoSaude>();
 	
 	/**
@@ -99,6 +98,7 @@ public class TelaEditarPlanoSaude extends JFrame {
 		
 		MeuTextField txtEdicao = new MeuTextField();
 		txtEdicao.setForeground(new Color(27, 156, 228));
+		txtEdicao.setText(nomePlanoSaude);
 		
 		JPanel panelIdentificacao = new JPanel();
 		panelIdentificacao.setBackground(new Color(24, 62, 159));
@@ -188,8 +188,6 @@ public class TelaEditarPlanoSaude extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 		
-		txtEdicao.setText(planoExibir);
-		
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -202,10 +200,8 @@ public class TelaEditarPlanoSaude extends JFrame {
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PlanoSaude ps = new PlanoSaude();
-
-				String nome = txtEdicao.getText();
 				
-				ps.setNome(nome);
+				txtEdicao.setText(nomePlanoSaude);
 				
 				DAOplanoSaude dao = DAOplanoSaude.getInstacia();
 				Boolean inserir = dao.inserir(ps);
