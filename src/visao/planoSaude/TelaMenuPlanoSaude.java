@@ -181,6 +181,7 @@ public class TelaMenuPlanoSaude extends JFrame {
 				dispose();
 				TelaSelecionarPlanosSaudeEdicao TelaSelecionarPlanosSaudeEdicao = new TelaSelecionarPlanosSaudeEdicao();
 				TelaSelecionarPlanosSaudeEdicao.setVisible(true);
+				TelaSelecionarPlanosSaudeEdicao.setLocationRelativeTo(null);
 			}
 		});
 		
@@ -189,6 +190,7 @@ public class TelaMenuPlanoSaude extends JFrame {
 				dispose();
 				TelaExcluirPlanoSaude TelaExcluirPlanoSaude = new TelaExcluirPlanoSaude();
 				TelaExcluirPlanoSaude.setVisible(true);
+				TelaExcluirPlanoSaude.setLocationRelativeTo(null);
 			}
 		});
 		

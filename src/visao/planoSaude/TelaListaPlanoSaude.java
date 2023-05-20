@@ -36,6 +36,7 @@ import java.awt.event.ActionEvent;
 public class TelaListaPlanoSaude extends javax.swing.JFrame {
 	
 	private boolean deletar;
+	
 	public TelaListaPlanoSaude() {
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaListaPaciente.class.getResource("/img/favicon-32x32.png")));
@@ -58,11 +59,8 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 				if (jTables.isEditing()) {
 					jTables.getCellEditor().stopCellEditing();
 				}
-<<<<<<< Updated upstream
 		
 				ps.deletar(null, rowID);
-=======
->>>>>>> Stashed changes
 				
 				try {
 					DefaultTableModel model = (DefaultTableModel) jTables.getModel();
