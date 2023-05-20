@@ -381,7 +381,7 @@ public class TelaEditarMedico extends JFrame {
 				Paciente p = new Paciente();
 				
 				String nome = txtNome.getText();
-				String cpf = txtCPF.getText();
+				Long cpf = Long.parseLong(txtCPF.getText());
 				String email = txtEmail.getText();
 				
 				p.setCpf(cpf);

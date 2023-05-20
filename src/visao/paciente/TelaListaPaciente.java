@@ -47,9 +47,16 @@ public class TelaListaPaciente extends javax.swing.JFrame {
 
             @Override
             public void onDelete(int row) {
+            	
+            	DAOpaciente pacienteDAO = DAOpaciente.getInstacia();
+            	Object valorRow = jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+            	Long rowCPF = Long.valueOf((Long)valorRow);
+            	
                 if (jTable1.isEditing()) {
                 	jTable1.getCellEditor().stopCellEditing();
                 }
+                
+                pacienteDAO.deletar(null, rowCPF);
                 DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
                 model.removeRow(row);
             }
@@ -77,34 +84,6 @@ public class TelaListaPaciente extends javax.swing.JFrame {
 
     private void testData(JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
         atualizaJTable(model, table);
     }
 
