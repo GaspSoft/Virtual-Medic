@@ -5,14 +5,17 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
 
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
-
+import Atxy2k.CustomTextField.RestrictedTextField;
 import layoutPersonalizado.componentes.*;
 
 import javax.swing.JLabel;
@@ -24,6 +27,7 @@ import javax.swing.JFormattedTextField;
 import java.awt.event.ActionListener;
 import java.net.URL;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
@@ -35,6 +39,10 @@ import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ImageIcon;
 import net.miginfocom.swing.MigLayout;
+import visao.TelaMensagem;
+import controle.*;
+import modelo.*;
+import javax.swing.JTextArea;
 
 public class TelaEditarPaciente extends JFrame {
 
@@ -44,6 +52,8 @@ public class TelaEditarPaciente extends JFrame {
 	private MeuTextField txtBairro;
 	private MeuTextField txtCidade;
 	private MeuTextField txtRua;
+	private MeuTextField txtNumero;
+	private MeuComboBox cboUF;
 	//private JComboBox cboUF;
 
 	/**
@@ -53,7 +63,7 @@ public class TelaEditarPaciente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaEditarPaciente frame = new TelaEditarPaciente();
+					TelaEditarPaciente frame = new TelaEditarPaciente(null);
 					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -66,8 +76,8 @@ public class TelaEditarPaciente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaEditarPaciente() {
-		setTitle("Editar paciente");
+	public TelaEditarPaciente(Paciente paciente) {
+		setTitle("Cadastro de paciente");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaEditarPaciente.class.getResource("/img/favicon-32x32.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 655, 1023);
@@ -85,41 +95,47 @@ public class TelaEditarPaciente extends JFrame {
         lblRua.setForeground(new Color(84, 175, 230));
         lblRua.setFont(new Font("Tahoma", Font.BOLD, 11));
         
-        MeuTextField txtRua = new MeuTextField();
+        txtRua = new MeuTextField();
+        txtRua.setText(paciente.getRua());
         txtRua.setForeground(new Color(27, 156, 228));
         
         JLabel lblBairro = new JLabel("Bairro");
         lblBairro.setForeground(new Color(84, 175, 230));
         lblBairro.setFont(new Font("Tahoma", Font.BOLD, 11));
         
-        MeuTextField txtBairro = new MeuTextField();
+        txtBairro = new MeuTextField();
+        txtBairro.setText(paciente.getBairro());
         txtBairro.setForeground(new Color(27, 156, 228));
         
         JLabel lblCidade = new JLabel("Cidade");
         lblCidade.setFont(new Font("Tahoma", Font.BOLD, 11));
         lblCidade.setForeground(new Color(84, 175, 230));
         
-        MeuTextField txtCidade = new MeuTextField();
+        txtCidade = new MeuTextField();
+        txtCidade.setText(paciente.getCidade());
         
-        MeuComboBox meuComboBox = new MeuComboBox();
-        meuComboBox.setForeground(new Color(27, 156, 228));
-		meuComboBox.setModel(new DefaultComboBoxModel(new String[] {"Estado", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"}));
+        cboUF = new MeuComboBox();
+        cboUF.setForeground(new Color(27, 156, 228));
+		cboUF.setModel(new DefaultComboBoxModel(new String[] {"Estado", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"}));
 		
-		MeuTextField txtNumero = new MeuTextField();
+		txtNumero = new MeuTextField();
+		txtNumero.setText(paciente.getNumero().toString());
 		txtNumero.setForeground(new Color(27, 156, 228));
 		
 		JLabel lblNumero = new JLabel("Número");
 		lblNumero.setForeground(new Color(84, 175, 230));
 		lblNumero.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
-		MeuTextField txtComple = new MeuTextField();
-		txtComple.setForeground(new Color(27, 156, 228));
+		txtComplemento = new MeuTextField();
+		txtComplemento.setText(paciente.getComplemento().toString());
+		txtComplemento.setForeground(new Color(27, 156, 228));
 		
 		JLabel lblComplemento = new JLabel("Complemento");
 		lblComplemento.setForeground(new Color(84, 175, 230));
 		lblComplemento.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		MeuTextField txtCPF = new MeuTextField();
+		txtCPF.setText(paciente.getCpf().toString());
 		txtCPF.setForeground(new Color(27, 156, 228));
 		
 		JLabel lblCPF = new JLabel("CPF");
@@ -128,6 +144,7 @@ public class TelaEditarPaciente extends JFrame {
 		lblCPF.setBackground(Color.WHITE);
 		
 		MeuTextField txtNome = new MeuTextField();
+		txtNome.setText(paciente.getNome());
 		txtNome.setForeground(new Color(27, 156, 228));
 		
 		JLabel lblNome = new JLabel("Nome");
@@ -136,6 +153,7 @@ public class TelaEditarPaciente extends JFrame {
 		lblNome.setBackground(Color.WHITE);
 		
 		MeuTextField txtEmail = new MeuTextField();
+		txtEmail.setText(paciente.getEmail());
 		txtEmail.setForeground(new Color(27, 156, 228));
 		
 		JLabel lblEmail = new JLabel("Email");
@@ -144,7 +162,7 @@ public class TelaEditarPaciente extends JFrame {
 		lblEmail.setBackground(Color.WHITE);
 		
 		MeuComboBox cboGenero = new MeuComboBox();
-		cboGenero.setModel(new DefaultComboBoxModel(new String[] {"Gênero"}));
+		cboGenero.setModel(new DefaultComboBoxModel(new String[] {"Gênero", "Cisgênero", "Transgênero", "Não binário"}));
 		cboGenero.setForeground(new Color(27, 156, 228));
 		
 		JPanel panelIdentificacao = new JPanel();
@@ -161,11 +179,20 @@ public class TelaEditarPaciente extends JFrame {
 		lblNewLabel_2_1.setForeground(Color.WHITE);
 		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
+		DAOplanoSaude planoDAO = DAOplanoSaude.getInstacia();
+		ArrayList<PlanoSaude> listaPlanoSaude = planoDAO.listaPlanoSaude();
+		
 		MeuComboBox cboPlanoSaude = new MeuComboBox();
-		cboPlanoSaude.setModel(new DefaultComboBoxModel(new String[] {"Plano de saúde"}));
+		cboPlanoSaude.addItem("Plano de Saúde");
+		if(listaPlanoSaude.size() > 0 && listaPlanoSaude != null) {
+			for (PlanoSaude planoSaude : listaPlanoSaude) {
+				cboPlanoSaude.addItem((planoSaude));
+			}
+		}
 		cboPlanoSaude.setForeground(new Color(27, 156, 228));
 		
 		MeuTextField txtNumeroPlano = new MeuTextField();
+		txtNumeroPlano.setText(paciente.getNumeroPlano().toString());
 		txtNumeroPlano.setForeground(new Color(27, 156, 228));
 		
 		JLabel lblNmeroCarteirinha = new JLabel("Número Carteirinha");
@@ -177,6 +204,7 @@ public class TelaEditarPaciente extends JFrame {
 		lblValidade.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		MeuTextField txtValidade = new MeuTextField();
+		txtValidade.setText(paciente.getValidade());
 		txtValidade.setForeground(new Color(27, 156, 228));
 		
 		JPanel panelIdentificacao_1_1 = new JPanel();
@@ -187,7 +215,7 @@ public class TelaEditarPaciente extends JFrame {
 		lblNewLabel_2_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		MeuBotao btnCadastrar = new MeuBotao();
-		btnCadastrar.setText("Salvar alterações");
+		btnCadastrar.setText("Editar");
 		btnCadastrar.setForeground(Color.WHITE);
 		btnCadastrar.setBackground(new Color(24, 62, 159));
 		
@@ -204,11 +232,11 @@ public class TelaEditarPaciente extends JFrame {
 		panelTitulo.add(lblNewLabel_1);
 		lblNewLabel_1.setIcon(new ImageIcon(TelaEditarPaciente.class.getResource("/img/imgCadastro 1 (2).png")));
 		
-		JLabel lblNewLabel = new JLabel("Alterar");
-		lblNewLabel.setBounds(123, 0, 193, 122);
+		JLabel lblNewLabel = new JLabel("Cadastrar");
+		lblNewLabel.setBounds(123, 0, 212, 122);
 		panelTitulo.add(lblNewLabel);
 		lblNewLabel.setForeground(new Color(27, 156, 228));
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 48));
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
 		GroupLayout gl_panelIdentificacao_1 = new GroupLayout(panelIdentificacao_1);
 		gl_panelIdentificacao_1.setHorizontalGroup(
 			gl_panelIdentificacao_1.createParallelGroup(Alignment.LEADING)
@@ -235,6 +263,7 @@ public class TelaEditarPaciente extends JFrame {
 		panelIdentificacao.setLayout(gl_panelIdentificacao);
 		
 		txtCEP = new MeuTextField();
+		txtCEP.setText(paciente.getCep());
 		
 		MeuBotao btnBuscar = new MeuBotao();
 		btnBuscar.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -243,237 +272,360 @@ public class TelaEditarPaciente extends JFrame {
 		btnBuscar.setBackground(new Color(24, 62, 159));
 		
 		MeuBotao btnVoltar = new MeuBotao();
-		btnVoltar.setIcon(new ImageIcon(TelaCadastroPaciente.class.getResource("/img/setaAzulEsquerda.png")));
+		btnVoltar.setToolTipText("Voltar");
+		btnVoltar.setIcon(new ImageIcon(TelaEditarPaciente.class.getResource("/img/setaAzulEsquerda.png")));
 		btnVoltar.setForeground(Color.WHITE);
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnVoltar.setBackground(new Color(24, 62, 159));
 		
-		MeuComboBox cboPlanoSaude_1 = new MeuComboBox();
-		cboPlanoSaude_1.setModel(new DefaultComboBoxModel(new String[] {"Médico"}));
-		cboPlanoSaude_1.setForeground(new Color(27, 156, 228));
+		DAOmedico medicoDAO = DAOmedico.getInstacia();
+		ArrayList<Medico> listaMedico = medicoDAO.listaMedico();
 		
-		//MeuBotao btnVoltar = new MeuBotao();
-		//btnVoltar.setIcon(new ImageIcon(TelaCadastroPaciente.class.getResource("/img/setaAzulEsquerda.png")));
-		//btnVoltar.setForeground(Color.WHITE);
-		//btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		//btnVoltar.setBackground(new Color(24, 62, 159));
+		MeuComboBox cboMedico = new MeuComboBox();
+		cboMedico.addItem("Médico");
+		if (listaMedico.size() > 0 && listaMedico != null) {
+			for (Medico medico : listaMedico) {
+				cboMedico.addItem((medico));
+		}
+		}
+		cboMedico.setForeground(new Color(27, 156, 228));
 		
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(0)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(10)
-							.addComponent(panelTitulo, GroupLayout.PREFERRED_SIZE, 316, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
-							.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(10)
-							.addComponent(panelIdentificacao, GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(10)
-							.addComponent(panelIdentificacao_1, GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(10)
-							.addComponent(txtValidade, GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-							.addGap(29)
-							.addComponent(txtNumeroPlano, GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
-							.addGap(19))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(7)
-							.addComponent(btnCadastrar, GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-							.addGap(18)
-							.addComponent(btnLimpa, GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-							.addGap(265))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(panelIdentificacao_1_1, GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtCEP, GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
-							.addGap(8)
-							.addComponent(btnBuscar, GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-							.addGap(18)
-							.addComponent(meuComboBox, GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-							.addPreferredGap(ComponentPlacement.RELATED))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(21)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(cboGenero, GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
-									.addPreferredGap(ComponentPlacement.RELATED))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_contentPane.createSequentialGroup()
-											.addComponent(txtNome, GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
-											.addGap(18))
-										.addGroup(gl_contentPane.createSequentialGroup()
-											.addComponent(lblNome, GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-											.addGap(334))
-										.addGroup(gl_contentPane.createSequentialGroup()
-											.addComponent(lblEmail, GroupLayout.PREFERRED_SIZE, 245, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(ComponentPlacement.RELATED)))
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_contentPane.createSequentialGroup()
-											.addComponent(txtCPF, GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
-											.addPreferredGap(ComponentPlacement.RELATED))
-										.addGroup(gl_contentPane.createSequentialGroup()
-											.addComponent(lblCPF, GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-											.addGap(218))))))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(9)
-							.addComponent(txtNumero, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(lblComplemento, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addGap(299))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(txtComple, GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
-									.addPreferredGap(ComponentPlacement.RELATED))))
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addGap(10)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(lblValidade, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
-									.addGap(218))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(cboPlanoSaude, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-									.addGap(24)))
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(cboPlanoSaude_1, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-									.addGap(92))
-								.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-									.addComponent(lblNmeroCarteirinha, GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-									.addGap(219)))))
-					.addGap(3))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblCidade, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGap(245))
-						.addComponent(txtCidade, GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE))
-					.addGap(21)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblBairro, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGap(271))
-						.addComponent(txtBairro, GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
-					.addContainerGap())
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblRua, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(597))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(txtRua, GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblNumero, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(575))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblCEP, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(599))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addComponent(panelTitulo, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
-					.addGap(73)
-					.addComponent(panelIdentificacao, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNome)
-						.addComponent(lblCPF))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtCPF, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addComponent(lblEmail)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(cboGenero, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addComponent(panelIdentificacao_1, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(cboPlanoSaude, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-						.addComponent(cboPlanoSaude_1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNmeroCarteirinha)
-						.addComponent(lblValidade))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(txtValidade, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtNumeroPlano, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addComponent(panelIdentificacao_1_1, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(lblCEP)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(meuComboBox, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtCEP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblBairro)
-						.addComponent(lblCidade))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtCidade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtBairro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addComponent(lblRua)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(txtRua, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNumero)
-						.addComponent(lblComplemento))
-					.addGap(4)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtNumero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtComple, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnCadastrar, GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
-						.addComponent(btnLimpa, GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)))
-		);
+		MeuTextField txtDiagnostico = new MeuTextField();
+		txtDiagnostico.setText("e");
+		txtDiagnostico.setForeground(new Color(27, 156, 228));
 		GroupLayout gl_panelIdentificacao_1_1 = new GroupLayout(panelIdentificacao_1_1);
 		gl_panelIdentificacao_1_1.setHorizontalGroup(
 			gl_panelIdentificacao_1_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelIdentificacao_1_1.createSequentialGroup()
-					.addGap(10)
-					.addComponent(lblNewLabel_2_1_1, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap()
+					.addComponent(lblNewLabel_2_1_1, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(519, Short.MAX_VALUE))
 		);
 		gl_panelIdentificacao_1_1.setVerticalGroup(
 			gl_panelIdentificacao_1_1.createParallelGroup(Alignment.LEADING)
-				.addComponent(lblNewLabel_2_1_1, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+				.addGroup(gl_panelIdentificacao_1_1.createSequentialGroup()
+					.addComponent(lblNewLabel_2_1_1, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panelIdentificacao_1_1.setLayout(gl_panelIdentificacao_1_1);
+		
+		
+		// Uso da biblioteca Atxy2k para validação
+		RestrictedTextField validarCEP = new RestrictedTextField(txtCEP);
+		validarCEP.setOnlyNums(true);
+		validarCEP.setLimit(8);
+		
+		RestrictedTextField validarCPF = new RestrictedTextField(txtCPF);
+		
+		JLabel lblDiagnstico = new JLabel("Diagnóstico");
+		lblDiagnstico.setForeground(new Color(84, 175, 230));
+		lblDiagnstico.setFont(new Font("Tahoma", Font.BOLD, 11));
+		
+		MeuTextField txtIdade = new MeuTextField();
+		txtIdade.setText(paciente.getIdade().toString());
+		txtIdade.setForeground(new Color(27, 156, 228));
+		
+		JLabel lblIdade = new JLabel("Idade");
+		lblIdade.setForeground(new Color(84, 175, 230));
+		lblIdade.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblIdade.setBackground(Color.WHITE);
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(10)
+					.addComponent(panelTitulo, GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+					.addGap(184)
+					.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+					.addGap(3))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(10)
+					.addComponent(panelIdentificacao, GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
+					.addGap(3))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(20)
+					.addComponent(lblNome, GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+					.addGap(349)
+					.addComponent(lblCPF, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(207))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(10)
+					.addComponent(txtNome, GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+					.addGap(29)
+					.addComponent(txtCPF, GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+					.addGap(3))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(10)
+					.addComponent(panelIdentificacao_1, GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
+					.addGap(3))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(276)
+					.addComponent(lblDiagnstico, GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+					.addGap(281))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(10)
+					.addComponent(cboMedico, GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+					.addGap(32)
+					.addComponent(txtDiagnostico, GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+					.addGap(3))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(10)
+					.addComponent(panelIdentificacao_1_1, GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
+					.addGap(3))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(20)
+					.addComponent(lblCEP, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(589))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(10)
+					.addComponent(txtCEP, GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+					.addGap(16)
+					.addComponent(btnBuscar, GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+					.addGap(10)
+					.addComponent(cboUF, GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+					.addGap(3))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(15)
+					.addComponent(lblCidade, GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+					.addGap(272)
+					.addComponent(lblBairro, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(270))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(10)
+					.addComponent(txtCidade, GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+					.addGap(21)
+					.addComponent(txtBairro, GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+					.addGap(3))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(20)
+					.addComponent(lblRua, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(587))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(10)
+					.addComponent(txtRua, GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
+					.addGap(3))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(20)
+					.addComponent(lblNumero, GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+					.addGap(189)
+					.addComponent(lblComplemento, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(297))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(9)
+					.addComponent(txtNumero, GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+					.addGap(18)
+					.addComponent(txtComplemento, GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+					.addGap(3))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(7)
+					.addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnLimpa, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(10)
+					.addComponent(cboPlanoSaude, GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+					.addGap(10)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(txtValidade, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+							.addGap(10))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lblValidade, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 6, Short.MAX_VALUE)))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(2)
+							.addComponent(lblNmeroCarteirinha, GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+							.addGap(74))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(txtNumeroPlano, GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+							.addGap(3))))
+				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(txtEmail, GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+							.addGap(18))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(21)
+							.addComponent(lblEmail, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGap(274)))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(txtIdade, GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+							.addGap(18)
+							.addComponent(cboGenero, GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+							.addContainerGap())
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lblIdade, GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+							.addGap(270))))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(11)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(panelTitulo, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(12)
+							.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)))
+					.addGap(80)
+					.addComponent(panelIdentificacao, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblNome)
+						.addComponent(lblCPF))
+					.addGap(6)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtCPF, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblEmail)
+						.addComponent(lblIdade))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+							.addComponent(txtIdade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(cboGenero, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addComponent(panelIdentificacao_1, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNmeroCarteirinha)
+						.addComponent(lblValidade))
+					.addGap(11)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(cboPlanoSaude, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtValidade, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtNumeroPlano, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+					.addGap(11)
+					.addComponent(lblDiagnstico)
+					.addGap(2)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(cboMedico, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtDiagnostico, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+					.addGap(11)
+					.addComponent(panelIdentificacao_1_1, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(lblCEP)
+					.addGap(6)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(txtCEP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(cboUF, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblCidade)
+						.addComponent(lblBairro))
+					.addGap(13)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(txtCidade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtBairro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(6)
+					.addComponent(lblRua)
+					.addGap(11)
+					.addComponent(txtRua, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblNumero)
+						.addComponent(lblComplemento))
+					.addGap(4)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(txtNumero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtComplemento, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(6)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnLimpa, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)))
+		);
 		contentPane.setLayout(gl_contentPane);
+		validarCPF.setOnlyNums(true);
+		validarCPF.setLimit(11);
+		
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(txtCEP.getText().equals("")) {
+					TelaMensagem telaMensagem = new TelaMensagem("Informe o CEP!");
+					telaMensagem.setVisible(true);
+					txtCEP.requestFocus();
+				} else {
+					buscaCEP();
+				}
+			}
+		});
+		
+		btnLimpa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Long cpf = Long.parseLong(txtCPF.getText());
+				String nome = txtNome.getText();
+				String email = txtEmail.getText();
+				Integer idade = Integer.valueOf(txtIdade.getText());
+				String genero = cboGenero.getSelectedItem().toString();
+				String medico = cboMedico.getSelectedItem().toString();
+				String diagnostico = txtDiagnostico.getText();
+				String planoSaude = cboPlanoSaude.getSelectedItem().toString();
+				Long numeroPlano = Long.parseLong(txtNumeroPlano.getText());
+				String validade = txtValidade.getText();
+				String cep = txtCEP.getText();
+				String uf = cboUF.getSelectedItem().toString();
+				String cidade = txtCidade.getText();
+				String bairro = txtBairro.getText();
+				String rua = txtRua.getText();
+				Integer numero = Integer.valueOf(txtNumero.getText());
+				Integer complemento = Integer.valueOf(txtComplemento.getText());
+
+		        // Crie uma instância do paciente com os dados atualizados
+		        Paciente paciente = new Paciente();
+		        paciente.setCpf(cpf);
+		        paciente.setNome(nome);
+		        paciente.setEmail(email);
+		        paciente.setIdade(idade);
+		        paciente.setGenero(genero);
+		        paciente.setCep(cep);
+		        paciente.setUf(uf);
+		        paciente.setCidade(cidade);
+		        paciente.setBairro(bairro);
+		        paciente.setRua(rua);
+		        paciente.setNumero(numero);
+		        paciente.setComplemento(complemento);
+		        paciente.setMedico(medico);
+		        paciente.setDiagnostico(diagnostico);
+		        paciente.setNumeroPlano(numeroPlano);
+		        paciente.setValidade(validade);
+
+		        // Chame o método alterar do DAOpaciente para atualizar os dados
+		        boolean sucesso = DAOpaciente.getInstacia().alterar(paciente);
+
+		        if (sucesso) {
+		            TelaMensagem telaSucesso = new TelaMensagem("Dados atualizados com sucesso.!");
+					telaSucesso.setVisible(true);
+		            //limparFormulario();
+		        } else {
+		            // Realize as ações de erro, como exibir uma mensagem de erro
+		            TelaMensagem telaSucesso = new TelaMensagem("Falha ao atualizar os dados do paciente!");
+					telaSucesso.setVisible(true);
+		        }
+			}
+		});
 		
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
+				TelaMenuPaciente telaMenuPaciente = new TelaMenuPaciente();
+				telaMenuPaciente.setVisible(true);
+				telaMenuPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
 	}
+	
+	
 	
 	private void buscaCEP() {
 		String logradouro = "";
@@ -494,23 +646,15 @@ public class TelaEditarPaciente extends JFrame {
 				if (element.getQualifiedName().equals("bairro")) {
 					txtBairro.setText(element.getText());
 				}
-				/*if (element.getQualifiedName().equals("uf")) {
+				if (element.getQualifiedName().equals("uf")) {
 					cboUF.setSelectedItem(element.getText());
-				} */
+				}
 				if (element.getQualifiedName().equals("tipo_logradouro")) {
 					tipoLogradouro = element.getText();
 				}
 				if (element.getQualifiedName().equals("logradouro")) {
 					logradouro = element.getText();
 				}
-				/*if (element.getQualifiedName().equals("resultado")) {
-					resultado = element.getText();
-					if (resultado.equals("1")) {
-						lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/check.png")));
-					} else {
-						JOptionPane.showMessageDialog(null, "CEP não encontrado");
-					}
-				} */
 			}
 			txtRua.setText(tipoLogradouro + " " + logradouro);
 		} catch (Exception e) {
