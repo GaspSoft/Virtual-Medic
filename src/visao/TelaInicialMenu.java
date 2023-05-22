@@ -213,6 +213,7 @@ public class TelaInicialMenu extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				TelaSobreSystem telaSobreSistema = new TelaSobreSystem();
 				telaSobreSistema.setVisible(true);
+				telaSobreSistema.setLocationRelativeTo(null);
 			}
 		});
 		
@@ -220,6 +221,7 @@ public class TelaInicialMenu extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				TelaSocialMidia telaRedesSociais = new TelaSocialMidia();
 				telaRedesSociais.setVisible(true);
+				telaRedesSociais.setLocationRelativeTo(null);
 			}
 		});
 		

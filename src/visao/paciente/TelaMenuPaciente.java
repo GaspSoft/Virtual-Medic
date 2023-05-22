@@ -180,6 +180,7 @@ public class TelaMenuPaciente extends JFrame {
 				TelaCadastroPaciente telaCadastroPaciente = new TelaCadastroPaciente();
 				telaCadastroPaciente.setVisible(true);
 				telaCadastroPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				dispose();
 			}
 		});
 		
@@ -187,6 +188,7 @@ public class TelaMenuPaciente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				TelaExcluirPaciente telaExcluirPaciente = new TelaExcluirPaciente();
 				telaExcluirPaciente.setVisible(true);
+				telaExcluirPaciente.setLocationRelativeTo(null);
 			}
 		});
 		
@@ -194,6 +196,7 @@ public class TelaMenuPaciente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				TelaSelecionarPacienteEdicao telaSelecionarPacienteEdicao = new TelaSelecionarPacienteEdicao();
 				telaSelecionarPacienteEdicao.setVisible(true);
+				telaSelecionarPacienteEdicao.setLocationRelativeTo(null);
 			}
 		});
 		
@@ -202,7 +205,7 @@ public class TelaMenuPaciente extends JFrame {
 				TelaListaPaciente telaListaPaciente = new TelaListaPaciente();
 				telaListaPaciente.setVisible(true);
 				telaListaPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
-				setVisible(false);
+				dispose();
 			}
 		});
 	}
