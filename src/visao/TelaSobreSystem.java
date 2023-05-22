@@ -35,7 +35,6 @@ public class TelaSobreSystem extends JDialog {
 			TelaSobreSystem dialog = new TelaSobreSystem();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
-			dialog.setLocationRelativeTo(null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -45,7 +44,6 @@ public class TelaSobreSystem extends JDialog {
 	 * Create the dialog.
 	 */
 	public TelaSobreSystem() {
-		setLocationRelativeTo(null);
 		setAutoRequestFocus(false);
 		setTitle("Sobre o sistema");
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);

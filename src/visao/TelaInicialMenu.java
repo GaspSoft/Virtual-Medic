@@ -212,16 +212,16 @@ public class TelaInicialMenu extends JFrame {
 		btnSobre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaSobreSystem telaSobreSistema = new TelaSobreSystem();
-				telaSobreSistema.setVisible(true);
-				telaSobreSistema.setLocationRelativeTo(null);
+		        telaSobreSistema.setLocationRelativeTo(null);
+		        telaSobreSistema.setVisible(true);
 			}
 		});
 		
 		btnRedesSociais.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaSocialMidia telaRedesSociais = new TelaSocialMidia();
-				telaRedesSociais.setVisible(true);
 				telaRedesSociais.setLocationRelativeTo(null);
+				telaRedesSociais.setVisible(true);
 			}
 		});
 		

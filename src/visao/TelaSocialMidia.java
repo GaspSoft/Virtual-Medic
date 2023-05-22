@@ -33,7 +33,6 @@ public class TelaSocialMidia extends JDialog {
 			TelaSocialMidia dialog = new TelaSocialMidia();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
-			dialog.setLocationRelativeTo(null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -43,7 +42,6 @@ public class TelaSocialMidia extends JDialog {
 	 * Create the dialog.
 	 */
 	public TelaSocialMidia() {
-		setLocationRelativeTo(null);
 		setAutoRequestFocus(false);
 		setResizable(false);
 		setTitle("Redes sociais");

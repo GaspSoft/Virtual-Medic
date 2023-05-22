@@ -187,16 +187,16 @@ public class TelaMenuPaciente extends JFrame {
 		btnExcluirPaciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaExcluirPaciente telaExcluirPaciente = new TelaExcluirPaciente();
-				telaExcluirPaciente.setVisible(true);
 				telaExcluirPaciente.setLocationRelativeTo(null);
+				telaExcluirPaciente.setVisible(true);
 			}
 		});
 		
 		btnEditarPaciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaSelecionarPacienteEdicao telaSelecionarPacienteEdicao = new TelaSelecionarPacienteEdicao();
-				telaSelecionarPacienteEdicao.setVisible(true);
 				telaSelecionarPacienteEdicao.setLocationRelativeTo(null);
+				telaSelecionarPacienteEdicao.setVisible(true);
 			}
 		});
 		
