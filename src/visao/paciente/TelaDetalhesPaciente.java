@@ -44,7 +44,7 @@ import controle.*;
 import modelo.*;
 import javax.swing.JTextArea;
 
-public class TelaEditarPaciente extends JFrame {
+public class TelaDetalhesPaciente extends JFrame {
 
 	private JPanel contentPane;
 	private MeuTextField txtCEP;
@@ -63,7 +63,7 @@ public class TelaEditarPaciente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaEditarPaciente frame = new TelaEditarPaciente(null);
+					TelaDetalhesPaciente frame = new TelaDetalhesPaciente(null);
 					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -76,11 +76,11 @@ public class TelaEditarPaciente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaEditarPaciente(Paciente paciente) {
+	public TelaDetalhesPaciente(Paciente paciente) {
 		setTitle("Cadastro de paciente");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaEditarPaciente.class.getResource("/img/favicon-32x32.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaDetalhesPaciente.class.getResource("/img/favicon-32x32.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 655, 1023);
+		setBounds(100, 100, 655, 970);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -96,6 +96,7 @@ public class TelaEditarPaciente extends JFrame {
         lblRua.setFont(new Font("Tahoma", Font.BOLD, 11));
         
         txtRua = new MeuTextField();
+        txtRua.setEditable(false);
         txtRua.setText(paciente.getRua());
         txtRua.setForeground(new Color(27, 156, 228));
         
@@ -104,6 +105,7 @@ public class TelaEditarPaciente extends JFrame {
         lblBairro.setFont(new Font("Tahoma", Font.BOLD, 11));
         
         txtBairro = new MeuTextField();
+        txtBairro.setEditable(false);
         txtBairro.setText(paciente.getBairro());
         txtBairro.setForeground(new Color(27, 156, 228));
         
@@ -112,13 +114,16 @@ public class TelaEditarPaciente extends JFrame {
         lblCidade.setForeground(new Color(84, 175, 230));
         
         txtCidade = new MeuTextField();
+        txtCidade.setEditable(false);
         txtCidade.setText(paciente.getCidade());
         
         cboUF = new MeuComboBox();
+        cboUF.setEditable(false);
         cboUF.setForeground(new Color(27, 156, 228));
 		cboUF.setModel(new DefaultComboBoxModel(new String[] {"Estado", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"}));
 		
 		txtNumero = new MeuTextField();
+		txtNumero.setEditable(false);
 		txtNumero.setText(paciente.getNumero().toString());
 		txtNumero.setForeground(new Color(27, 156, 228));
 		
@@ -127,6 +132,7 @@ public class TelaEditarPaciente extends JFrame {
 		lblNumero.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		txtComplemento = new MeuTextField();
+		txtComplemento.setEditable(false);
 		txtComplemento.setText(paciente.getComplemento().toString());
 		txtComplemento.setForeground(new Color(27, 156, 228));
 		
@@ -135,6 +141,7 @@ public class TelaEditarPaciente extends JFrame {
 		lblComplemento.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		MeuTextField txtCPF = new MeuTextField();
+		txtCPF.setEditable(false);
 		txtCPF.setText(paciente.getCpf().toString());
 		txtCPF.setForeground(new Color(27, 156, 228));
 		
@@ -144,6 +151,7 @@ public class TelaEditarPaciente extends JFrame {
 		lblCPF.setBackground(Color.WHITE);
 		
 		MeuTextField txtNome = new MeuTextField();
+		txtNome.setEditable(false);
 		txtNome.setText(paciente.getNome());
 		txtNome.setForeground(new Color(27, 156, 228));
 		
@@ -153,6 +161,7 @@ public class TelaEditarPaciente extends JFrame {
 		lblNome.setBackground(Color.WHITE);
 		
 		MeuTextField txtEmail = new MeuTextField();
+		txtEmail.setEditable(false);
 		txtEmail.setText(paciente.getEmail());
 		txtEmail.setForeground(new Color(27, 156, 228));
 		
@@ -162,6 +171,7 @@ public class TelaEditarPaciente extends JFrame {
 		lblEmail.setBackground(Color.WHITE);
 		
 		MeuComboBox cboGenero = new MeuComboBox();
+		cboGenero.setEditable(false);
 		cboGenero.setModel(new DefaultComboBoxModel(new String[] {"Gênero", "Cisgênero", "Transgênero", "Não binário"}));
 		cboGenero.setForeground(new Color(27, 156, 228));
 		
@@ -183,6 +193,7 @@ public class TelaEditarPaciente extends JFrame {
 		ArrayList<PlanoSaude> listaPlanoSaude = planoDAO.listaPlanoSaude();
 		
 		MeuComboBox cboPlanoSaude = new MeuComboBox();
+		cboPlanoSaude.setEditable(false);
 		cboPlanoSaude.addItem("Plano de Saúde");
 		if(listaPlanoSaude.size() > 0 && listaPlanoSaude != null) {
 			for (PlanoSaude planoSaude : listaPlanoSaude) {
@@ -192,6 +203,7 @@ public class TelaEditarPaciente extends JFrame {
 		cboPlanoSaude.setForeground(new Color(27, 156, 228));
 		
 		MeuTextField txtNumeroPlano = new MeuTextField();
+		txtNumeroPlano.setEditable(false);
 		txtNumeroPlano.setText(paciente.getNumeroPlano().toString());
 		txtNumeroPlano.setForeground(new Color(27, 156, 228));
 		
@@ -204,6 +216,7 @@ public class TelaEditarPaciente extends JFrame {
 		lblValidade.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		MeuTextField txtValidade = new MeuTextField();
+		txtValidade.setEditable(false);
 		txtValidade.setText(paciente.getValidade());
 		txtValidade.setForeground(new Color(27, 156, 228));
 		
@@ -214,23 +227,13 @@ public class TelaEditarPaciente extends JFrame {
 		lblNewLabel_2_1_1.setForeground(Color.WHITE);
 		lblNewLabel_2_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
-		MeuBotao btnCadastrar = new MeuBotao();
-		btnCadastrar.setText("Editar");
-		btnCadastrar.setForeground(Color.WHITE);
-		btnCadastrar.setBackground(new Color(24, 62, 159));
-		
-		MeuBotao btnLimpa = new MeuBotao();
-		btnLimpa.setText("Limpar");
-		btnLimpa.setForeground(Color.WHITE);
-		btnLimpa.setBackground(new Color(24, 62, 159));
-		
 		JPanel panelTitulo = new JPanel();
 		panelTitulo.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(0, 0, 123, 122);
 		panelTitulo.add(lblNewLabel_1);
-		lblNewLabel_1.setIcon(new ImageIcon(TelaEditarPaciente.class.getResource("/img/imgCadastro 1 (2).png")));
+		lblNewLabel_1.setIcon(new ImageIcon(TelaDetalhesPaciente.class.getResource("/img/imgCadastro 1 (2).png")));
 		
 		JLabel lblNewLabel = new JLabel("Cadastrar");
 		lblNewLabel.setBounds(123, 0, 212, 122);
@@ -263,17 +266,12 @@ public class TelaEditarPaciente extends JFrame {
 		panelIdentificacao.setLayout(gl_panelIdentificacao);
 		
 		txtCEP = new MeuTextField();
+		txtCEP.setEditable(false);
 		txtCEP.setText(paciente.getCep());
-		
-		MeuBotao btnBuscar = new MeuBotao();
-		btnBuscar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnBuscar.setText("Buscar");
-		btnBuscar.setForeground(Color.WHITE);
-		btnBuscar.setBackground(new Color(24, 62, 159));
 		
 		MeuBotao btnVoltar = new MeuBotao();
 		btnVoltar.setToolTipText("Voltar");
-		btnVoltar.setIcon(new ImageIcon(TelaEditarPaciente.class.getResource("/img/setaAzulEsquerda.png")));
+		btnVoltar.setIcon(new ImageIcon(TelaDetalhesPaciente.class.getResource("/img/setaAzulEsquerda.png")));
 		btnVoltar.setForeground(Color.WHITE);
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnVoltar.setBackground(new Color(24, 62, 159));
@@ -282,6 +280,7 @@ public class TelaEditarPaciente extends JFrame {
 		ArrayList<Medico> listaMedico = medicoDAO.listaMedico();
 		
 		MeuComboBox cboMedico = new MeuComboBox();
+		cboMedico.setEditable(false);
 		cboMedico.addItem("Médico");
 		if (listaMedico.size() > 0 && listaMedico != null) {
 			for (Medico medico : listaMedico) {
@@ -291,6 +290,7 @@ public class TelaEditarPaciente extends JFrame {
 		cboMedico.setForeground(new Color(27, 156, 228));
 		
 		MeuTextField txtDiagnostico = new MeuTextField();
+		txtDiagnostico.setEditable(false);
 		txtDiagnostico.setText("e");
 		txtDiagnostico.setForeground(new Color(27, 156, 228));
 		GroupLayout gl_panelIdentificacao_1_1 = new GroupLayout(panelIdentificacao_1_1);
@@ -322,6 +322,7 @@ public class TelaEditarPaciente extends JFrame {
 		lblDiagnstico.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		MeuTextField txtIdade = new MeuTextField();
+		txtIdade.setEditable(false);
 		txtIdade.setText(paciente.getIdade().toString());
 		txtIdade.setForeground(new Color(27, 156, 228));
 		
@@ -331,7 +332,7 @@ public class TelaEditarPaciente extends JFrame {
 		lblIdade.setBackground(Color.WHITE);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(10)
 					.addComponent(panelTitulo, GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
@@ -379,10 +380,8 @@ public class TelaEditarPaciente extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(10)
 					.addComponent(txtCEP, GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
-					.addGap(16)
-					.addComponent(btnBuscar, GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-					.addGap(10)
-					.addComponent(cboUF, GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+					.addGap(18)
+					.addComponent(cboUF, GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
 					.addGap(3))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(15)
@@ -417,11 +416,6 @@ public class TelaEditarPaciente extends JFrame {
 					.addComponent(txtComplemento, GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
 					.addGap(3))
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(7)
-					.addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(btnLimpa, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(10)
 					.addComponent(cboPlanoSaude, GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
 					.addGap(10)
@@ -440,7 +434,7 @@ public class TelaEditarPaciente extends JFrame {
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(txtNumeroPlano, GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
 							.addGap(3))))
-				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addContainerGap()
@@ -513,7 +507,6 @@ public class TelaEditarPaciente extends JFrame {
 					.addGap(6)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(txtCEP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(cboUF, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -535,85 +528,11 @@ public class TelaEditarPaciente extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(txtNumero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(txtComplemento, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(6)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnLimpa, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)))
+					.addGap(54))
 		);
 		contentPane.setLayout(gl_contentPane);
 		validarCPF.setOnlyNums(true);
 		validarCPF.setLimit(11);
-		
-		btnBuscar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(txtCEP.getText().equals("")) {
-					TelaMensagem telaMensagem = new TelaMensagem("Informe o CEP!");
-					telaMensagem.setVisible(true);
-					txtCEP.requestFocus();
-				} else {
-					buscaCEP();
-				}
-			}
-		});
-		
-		btnLimpa.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		
-		btnCadastrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Long cpf = Long.parseLong(txtCPF.getText());
-				String nome = txtNome.getText();
-				String email = txtEmail.getText();
-				Integer idade = Integer.valueOf(txtIdade.getText());
-				String genero = cboGenero.getSelectedItem().toString();
-				String medico = cboMedico.getSelectedItem().toString();
-				String diagnostico = txtDiagnostico.getText();
-				String planoSaude = cboPlanoSaude.getSelectedItem().toString();
-				Long numeroPlano = Long.parseLong(txtNumeroPlano.getText());
-				String validade = txtValidade.getText();
-				String cep = txtCEP.getText();
-				String uf = cboUF.getSelectedItem().toString();
-				String cidade = txtCidade.getText();
-				String bairro = txtBairro.getText();
-				String rua = txtRua.getText();
-				Integer numero = Integer.valueOf(txtNumero.getText());
-				Integer complemento = Integer.valueOf(txtComplemento.getText());
-
-		        // Crie uma instância do paciente com os dados atualizados
-		        Paciente paciente = new Paciente();
-		        paciente.setCpf(cpf);
-		        paciente.setNome(nome);
-		        paciente.setEmail(email);
-		        paciente.setIdade(idade);
-		        paciente.setGenero(genero);
-		        paciente.setCep(cep);
-		        paciente.setUf(uf);
-		        paciente.setCidade(cidade);
-		        paciente.setBairro(bairro);
-		        paciente.setRua(rua);
-		        paciente.setNumero(numero);
-		        paciente.setComplemento(complemento);
-		        paciente.setMedico(medico);
-		        paciente.setDiagnostico(diagnostico);
-		        paciente.setNumeroPlano(numeroPlano);
-		        paciente.setValidade(validade);
-
-		        // Chame o método alterar do DAOpaciente para atualizar os dados
-		        boolean sucesso = DAOpaciente.getInstacia().alterar(paciente);
-
-		        if (sucesso) {
-		            TelaMensagem telaSucesso = new TelaMensagem("Dados atualizados com sucesso.!");
-					telaSucesso.setVisible(true);
-		            //limparFormulario();
-		        } else {
-		            // Realize as ações de erro, como exibir uma mensagem de erro
-		            TelaMensagem telaSucesso = new TelaMensagem("Falha ao atualizar os dados do paciente!");
-					telaSucesso.setVisible(true);
-		        }
-			}
-		});
 		
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
