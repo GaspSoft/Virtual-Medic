@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controle.DAOmedico;
+import controle.DAOpaciente;
 import controle.DAOplanoSaude;
 
 import javax.swing.GroupLayout;
@@ -26,8 +27,10 @@ import java.awt.Color;
 import layoutPersonalizado.componentes.MeuBotao;
 import layoutPersonalizado.componentes.MeuTextField;
 import modelo.Medico;
+import modelo.Paciente;
 import modelo.PlanoSaude;
 import visao.TelaInicialMenu;
+import visao.TelaMensagem;
 import visao.planoSaude.TelaListaPlanoSaude;
 import visao.planoSaude.TelaSelecionarPlanosSaudeEdicao;
 
@@ -39,7 +42,6 @@ import java.awt.Toolkit;
 
 public class TelaEditarPlanoSaude extends JFrame {
 	private JPanel contentPane;
-	private String nomePlanoSaude;
 	private ArrayList<PlanoSaude> listaPlanoSaude = new ArrayList<PlanoSaude>();
 	
 	/**
@@ -60,8 +62,9 @@ public class TelaEditarPlanoSaude extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param planoEncontrado 
 	 */
-	public TelaEditarPlanoSaude() {
+	public TelaEditarPlanoSaude(PlanoSaude planoEncontrado) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaCadastroPlanoSaude.class.getResource("/img/favicon-32x32.png")));
 		setTitle("Cadastro do Plano de Saúde");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -98,7 +101,7 @@ public class TelaEditarPlanoSaude extends JFrame {
 		
 		MeuTextField txtEdicao = new MeuTextField();
 		txtEdicao.setForeground(new Color(27, 156, 228));
-		txtEdicao.setText(nomePlanoSaude);
+		txtEdicao.setText(planoEncontrado.getNome());
 		
 		JPanel panelIdentificacao = new JPanel();
 		panelIdentificacao.setBackground(new Color(24, 62, 159));
@@ -199,17 +202,22 @@ public class TelaEditarPlanoSaude extends JFrame {
 		
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PlanoSaude ps = new PlanoSaude();
-				
-				txtEdicao.setText(nomePlanoSaude);
-				
-				DAOplanoSaude dao = DAOplanoSaude.getInstacia();
-				Boolean inserir = dao.inserir(ps);
-				if (inserir == true) {
-					JOptionPane.showMessageDialog(null, "Sucesso!");
-				} else {
-					JOptionPane.showMessageDialog(null, "Erro!");
-				}
+				String nome = txtEdicao.getText();
+		        PlanoSaude planoSaude = new PlanoSaude();
+		        
+		        planoSaude.setNome(nome);
+
+		        boolean sucesso = DAOplanoSaude.getInstacia().alterar(planoSaude);
+
+		        if (sucesso) {
+		            TelaMensagem telaSucesso = new TelaMensagem("Dados atualizados com sucesso.!");
+					telaSucesso.setVisible(true);
+		            //limparFormulario();
+		        } else {
+		            // Realize as ações de erro, como exibir uma mensagem de erro
+		            TelaMensagem telaSucesso = new TelaMensagem("Falha ao atualizar os dados do paciente!");
+					telaSucesso.setVisible(true);
+		        }
 			}
 		});
 		
