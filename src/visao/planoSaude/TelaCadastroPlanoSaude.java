@@ -28,6 +28,7 @@ import layoutPersonalizado.componentes.MeuTextField;
 import modelo.Medico;
 import modelo.PlanoSaude;
 import visao.TelaInicialMenu;
+import visao.TelaMensagem;
 import visao.planoSaude.TelaListaPlanoSaude;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -183,21 +184,31 @@ public class TelaCadastroPlanoSaude extends JFrame {
 
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PlanoSaude ps = new PlanoSaude();
+					PlanoSaude ps = new PlanoSaude();
+				
+					if(txtNome.getText().isEmpty()) {
+						TelaMensagem telaSucesso = new TelaMensagem("Informe o Nome!");
+						telaSucesso.setVisible(true);
+						telaSucesso.setLocationRelativeTo(null);
+						txtNome.requestFocus();
+					} else {
+				
+					String nome = txtNome.getText();
 
-				String nome = txtNome.getText();
+					ps.setId(gerarID());
+					ps.setNome(nome);
 
-				ps.setId(gerarID());
-				ps.setNome(nome);
-
-				DAOplanoSaude dao = DAOplanoSaude.getInstacia();
-				Boolean inserir = dao.inserir(ps);
-				if (inserir == true) {
-					TelaSucessoPlanoSaude telaSucessoPlanoSaude = new TelaSucessoPlanoSaude("Sucesso!", frame);
-					telaSucessoPlanoSaude.setVisible(true);
-					telaSucessoPlanoSaude.setLocationRelativeTo(null);
-				} else {
-					JOptionPane.showMessageDialog(null, "Erro!");
+					DAOplanoSaude dao = DAOplanoSaude.getInstacia();
+					Boolean inserir = dao.inserir(ps);
+					if (inserir) {
+						TelaMensagem telaSucesso = new TelaMensagem(nome + " foi cadastrado com Sucesso!");
+						telaSucesso.setVisible(true);
+						telaSucesso.setLocationRelativeTo(null);
+					} else {
+						TelaMensagem telaSucesso = new TelaMensagem("Não foi possível cadastrar o Plano de Saúde!");
+						telaSucesso.setVisible(true);
+						telaSucesso.setLocationRelativeTo(null);
+					}
 				}
 			}
 		});

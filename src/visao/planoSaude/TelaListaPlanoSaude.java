@@ -12,6 +12,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
@@ -33,7 +34,9 @@ import java.util.Random;
 import java.awt.event.ActionEvent;
 
 public class TelaListaPlanoSaude extends javax.swing.JFrame {
-
+	
+	private boolean deletar;
+	
 	public TelaListaPlanoSaude() {
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaListaPaciente.class.getResource("/img/favicon-32x32.png")));
@@ -59,8 +62,14 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 		
 				ps.deletar(null, rowID);
 				
-				DefaultTableModel model = (DefaultTableModel) jTables.getModel();
-				model.removeRow(row);
+				try {
+					DefaultTableModel model = (DefaultTableModel) jTables.getModel();
+					int SelectRow = jTables.getSelectedRow();
+					model.removeRow(row);
+				}
+				catch (Exception ex){
+					JOptionPane.showMessageDialog(null, ex);;
+				}
 			}
 
 			@Override
