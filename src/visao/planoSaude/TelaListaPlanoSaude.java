@@ -12,11 +12,13 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
 import controle.DAOmedico;
+import controle.DAOpaciente;
 import controle.DAOplanoSaude;
 import layoutPersonalizado.componentes.MeuBotao;
 import layoutPersonalizado.componentes.tables.TableActionCellEditor;
@@ -24,7 +26,11 @@ import layoutPersonalizado.componentes.tables.TableActionCellRender;
 import layoutPersonalizado.componentes.tables.TableActionEvent;
 import layoutPersonalizado.componentes.tables.TableCustom;
 import modelo.Medico;
+import modelo.Paciente;
 import modelo.PlanoSaude;
+import visao.TelaMensagem;
+import visao.paciente.TelaDetalhesPaciente;
+import visao.paciente.TelaEditarPaciente;
 import visao.paciente.TelaListaPaciente;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -33,7 +39,9 @@ import java.util.Random;
 import java.awt.event.ActionEvent;
 
 public class TelaListaPlanoSaude extends javax.swing.JFrame {
-
+	
+	private boolean deletar;
+	
 	public TelaListaPlanoSaude() {
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaListaPaciente.class.getResource("/img/favicon-32x32.png")));
@@ -44,22 +52,59 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 		TableActionEvent event = new TableActionEvent() {
 			@Override
 			public void onEdit(int row) {
-				System.out.println("Edit row : " + row);
+				DAOplanoSaude planoDAO = new DAOplanoSaude();
+            	Object valorRow = jTables.getValueAt(jTables.getSelectedRow(), 0);
+            	Integer ID = Integer.valueOf((Integer)valorRow);
+				PlanoSaude planoEncontrado = planoDAO.buscarID(ID);
+				if (planoEncontrado != null) {
+					TelaEditarPlanoSaude telaEditarPlanoSaude = new TelaEditarPlanoSaude(planoEncontrado);
+					telaEditarPlanoSaude.setVisible(true);
+					telaEditarPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					
+					dispose();
+		        } else {
+		            TelaMensagem telaMensagem = new TelaMensagem("ID não encontrado!");
+		        }
 			}
 
 			@Override
 			public void onDelete(int row) {
+				DAOplanoSaude ps = DAOplanoSaude.getInstacia();
+				Object valorRow = jTables.getValueAt(jTables.getSelectedRow(), 0);
+				Integer rowID = Integer.valueOf((Integer) valorRow);
+				
 				if (jTables.isEditing()) {
 					jTables.getCellEditor().stopCellEditing();
 				}
-				DefaultTableModel model = (DefaultTableModel) jTables.getModel();
-				model.removeRow(row);
+		
+				ps.deletar(null, rowID);
+				
+				try {
+					DefaultTableModel model = (DefaultTableModel) jTables.getModel();
+					int SelectRow = jTables.getSelectedRow();
+					model.removeRow(row);
+				}
+				catch (Exception ex){
+					JOptionPane.showMessageDialog(null, ex);;
+				}
 			}
 
 			@Override
 			public void onView(int row) {
-				System.out.println("View row : " + row);
-			}
+				DAOplanoSaude planoDAO = new DAOplanoSaude();
+            	Object valorRow = jTables.getValueAt(jTables.getSelectedRow(), 0);
+            	Integer ID = Integer.valueOf((Integer)valorRow);
+				PlanoSaude planoEncontrado = planoDAO.buscarID(ID);
+				if (planoEncontrado != null) {
+					TelaDetalhesPlanoSaude telaDetalhesPlanoSaude = new TelaDetalhesPlanoSaude(planoEncontrado);
+					telaDetalhesPlanoSaude.setVisible(true);
+					telaDetalhesPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					
+					dispose();
+		        } else {
+		            TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!");
+		        }
+            }
 		};
 		jTables.getColumnModel().getColumn(2).setCellRenderer(new TableActionCellRender());
 		jTables.getColumnModel().getColumn(2).setCellEditor(new TableActionCellEditor(event));
@@ -74,72 +119,7 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 	}
 
 	private void testData(JTable table) {
-		DAOplanoSaude planoDao = new DAOplanoSaude();
-		ArrayList<PlanoSaude> listaPlanoSaude = planoDao.listaPlanoSaude();
-		PlanoSaude ps1 = new PlanoSaude();
-		PlanoSaude ps2 = new PlanoSaude();
-		PlanoSaude ps3 = new PlanoSaude();
-		PlanoSaude ps4 = new PlanoSaude();
-		PlanoSaude ps5 = new PlanoSaude();
-		PlanoSaude ps6 = new PlanoSaude();
-		PlanoSaude ps7 = new PlanoSaude();
-		PlanoSaude ps8 = new PlanoSaude();
-		PlanoSaude ps9 = new PlanoSaude();
-		PlanoSaude ps10 = new PlanoSaude();
-		
-		
-		ps1.setNome("Unimed");
-		ps1.setId(gerarID());
-		listaPlanoSaude.add(ps1);
-		
-		ps2.setNome("Bradesco Saúde");
-		ps2.setId(gerarID());
-		listaPlanoSaude.add(ps2);
-		
-		ps3.setNome("Amil");
-		ps3.setId(gerarID());
-		listaPlanoSaude.add(ps3);
-		
-		ps4.setNome("NotreDame Intermédica");
-		ps4.setId(gerarID());
-		listaPlanoSaude.add(ps4);
-		
-		ps5.setNome("Porto Seguro");
-		ps5.setId(gerarID());
-		listaPlanoSaude.add(ps5);
-		
-		ps6.setNome("Prevent Senior");
-		ps6.setId(gerarID());
-		listaPlanoSaude.add(ps6);
-		
-		ps7.setNome("SulAmérica Saúde");
-		ps7.setId(gerarID());
-		listaPlanoSaude.add(ps7);
-		
-		ps8.setNome("Assim Saúde");
-		ps8.setId(gerarID());
-		listaPlanoSaude.add(ps8);
-		
-		ps9.setNome("GreenLine Sistema de Saúde");
-		ps9.setId(gerarID());
-		listaPlanoSaude.add(ps9);
-		
-		ps10.setNome("Hapvida");
-		ps10.setId(gerarID());
-		listaPlanoSaude.add(ps10);
-	
 		DefaultTableModel lista = (DefaultTableModel) table.getModel();
-		
-		lista.addRow(new Object[]{gerarID(), "Unimed", 18, 39});
-		lista.addRow(new Object[]{gerarID(), "Bradesco Saúde", 18, 39});
-		lista.addRow(new Object[]{gerarID(), "Amil", 18, 39});
-		lista.addRow(new Object[]{gerarID(), "NotreDame Intermédica", 18, 39});
-		lista.addRow(new Object[]{gerarID(), "Porto Seguro", 18, 39});
-		lista.addRow(new Object[]{gerarID(), "SulAmérica Saúde", 18, 39});
-		lista.addRow(new Object[]{gerarID(), "Prevent Senior", 18, 39});
-		lista.addRow(new Object[]{gerarID(), "Assim Saúde", 18, 39});
-		lista.addRow(new Object[]{gerarID(), "GreenLine Sistema de Saúde", 18, 39});
-		lista.addRow(new Object[]{gerarID(), "Hapvida Saúde", 18, 39});
 		
 		atualizaJTable(lista, table);
 	}
@@ -242,6 +222,7 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 				dispose();
 				TelaMenuPlanoSaude TelaMenuPlanoSaude = new TelaMenuPlanoSaude();
 				TelaMenuPlanoSaude.setVisible(true);
+				TelaMenuPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
 	}

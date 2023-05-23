@@ -13,6 +13,7 @@ import layoutPersonalizado.componentes.tables.TableActionCellRender;
 import layoutPersonalizado.componentes.tables.TableActionEvent;
 import layoutPersonalizado.componentes.tables.TableCustom;
 import modelo.Paciente;
+import visao.TelaMensagem;
 
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
@@ -42,21 +43,54 @@ public class TelaListaPaciente extends javax.swing.JFrame {
         TableActionEvent event = new TableActionEvent() {
             @Override
             public void onEdit(int row) {
-                System.out.println("Edit row : " + row);
+            	DAOpaciente pacienteDAO = new DAOpaciente();
+            	Object valorRow = jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+            	Long cpf = Long.valueOf((Long)valorRow);
+				Paciente pacienteEncontrada = pacienteDAO.buscarPorCPF(cpf);
+				if (pacienteEncontrada != null) {
+					TelaEditarPaciente telaEditarPaciente = new TelaEditarPaciente(pacienteEncontrada);
+					telaEditarPaciente.setVisible(true);
+					telaEditarPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					
+					dispose();
+		        } else {
+		            TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!");
+		            telaMensagem.setLocationRelativeTo(null);
+		            telaMensagem.setVisible(true);
+		        }
             }
 
             @Override
             public void onDelete(int row) {
+            	
+            	DAOpaciente pacienteDAO = DAOpaciente.getInstacia();
+            	Object valorRow = jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+            	Long rowCPF = Long.valueOf((Long)valorRow);
+            	
                 if (jTable1.isEditing()) {
                 	jTable1.getCellEditor().stopCellEditing();
                 }
+                
+                pacienteDAO.deletar(null, rowCPF);
                 DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
                 model.removeRow(row);
             }
 
             @Override
             public void onView(int row) {
-                System.out.println("View row : " + row);
+            	DAOpaciente pacienteDAO = new DAOpaciente();
+            	Object valorRow = jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+            	Long cpf = Long.valueOf((Long)valorRow);
+				Paciente pacienteEncontrada = pacienteDAO.buscarPorCPF(cpf);
+				if (pacienteEncontrada != null) {
+					TelaDetalhesPaciente telaDetalhesPaciente = new TelaDetalhesPaciente(pacienteEncontrada);
+					telaDetalhesPaciente.setVisible(true);
+					telaDetalhesPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					
+					dispose();
+		        } else {
+		            TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!");
+		        }
             }
         };
         jTable1.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
@@ -77,34 +111,6 @@ public class TelaListaPaciente extends javax.swing.JFrame {
 
     private void testData(JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
-        model.addRow(new Object[]{1, "Chai", "Beverages", 18, 39});
         atualizaJTable(model, table);
     }
 

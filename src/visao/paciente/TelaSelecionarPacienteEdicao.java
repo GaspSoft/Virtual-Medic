@@ -1,20 +1,28 @@
- package visao.paciente;
+package visao.paciente;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controle.DAOpaciente;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
 import layoutPersonalizado.componentes.MeuTextField;
+import modelo.Paciente;
+import visao.TelaMensagem;
 import layoutPersonalizado.componentes.MeuBotao;
 import java.awt.Dialog.ModalExclusionType;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaSelecionarPacienteEdicao extends JDialog {
 
@@ -53,10 +61,10 @@ public class TelaSelecionarPacienteEdicao extends JDialog {
 		lblNewLabel.setBounds(51, 18, 84, 14);
 		contentPanel.add(lblNewLabel);
 		
-		MeuTextField txtNome = new MeuTextField();
-		txtNome.setForeground(new Color(27, 156, 228));
-		txtNome.setBounds(39, 43, 349, 40);
-		contentPanel.add(txtNome);
+		MeuTextField txtCPF = new MeuTextField();
+		txtCPF.setForeground(new Color(27, 156, 228));
+		txtCPF.setBounds(39, 43, 349, 40);
+		contentPanel.add(txtCPF);
 		
 		MeuBotao btnExcluirPaciente = new MeuBotao();
 		btnExcluirPaciente.setIcon(new ImageIcon(TelaSelecionarPacienteEdicao.class.getResource("/img/userEdit.png")));
@@ -75,5 +83,30 @@ public class TelaSelecionarPacienteEdicao extends JDialog {
 		btnVoltar.setBackground(new Color(24, 62, 159));
 		btnVoltar.setBounds(267, 105, 121, 34);
 		contentPanel.add(btnVoltar);
+		
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		
+		btnExcluirPaciente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DAOpaciente pacienteDAO = new DAOpaciente();
+				Long cpf = Long.parseLong(txtCPF.getText());
+				Paciente pacienteEncontrada = pacienteDAO.buscarPorCPF(cpf);
+				if (pacienteEncontrada != null) {
+					TelaEditarPaciente telaEditarPaciente = new TelaEditarPaciente(pacienteEncontrada);
+					telaEditarPaciente.setVisible(true);
+					telaEditarPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					
+					dispose();
+		        } else {
+		            TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!");
+		            telaMensagem.setLocationRelativeTo(null);
+		            telaMensagem.setVisible(true);
+		        }
+			}
+		});
 	}
 }

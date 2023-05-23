@@ -37,9 +37,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
-public class TelaCadastroPlanoSaude extends JFrame {
+public class TelaDetalhesPlanoSaude extends JFrame {
 	private PlanoSaude planoSelecionado;
-	private static TelaCadastroPlanoSaude frame;
+	private static TelaDetalhesPlanoSaude frame;
 	private JPanel contentPane;
 
 	private ArrayList<PlanoSaude> listaPlanoSaude = new ArrayList<PlanoSaude>();
@@ -51,7 +51,7 @@ public class TelaCadastroPlanoSaude extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frame = new TelaCadastroPlanoSaude();
+					frame = new TelaDetalhesPlanoSaude(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -63,9 +63,9 @@ public class TelaCadastroPlanoSaude extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaCadastroPlanoSaude() {
+	public TelaDetalhesPlanoSaude(PlanoSaude planoSaude) {
 		setIconImage(Toolkit.getDefaultToolkit()
-				.getImage(TelaCadastroPlanoSaude.class.getResource("/img/favicon-32x32.png")));
+				.getImage(TelaDetalhesPlanoSaude.class.getResource("/img/favicon-32x32.png")));
 		setTitle("Cadastro do Plano de Saúde");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 652, 416);
@@ -76,7 +76,7 @@ public class TelaCadastroPlanoSaude extends JFrame {
 		panelTitulo.setLayout(null);
 
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(TelaCadastroPlanoSaude.class.getResource("/img/imgCadastro 1.png")));
+		lblNewLabel_1.setIcon(new ImageIcon(TelaDetalhesPlanoSaude.class.getResource("/img/imgCadastro 1.png")));
 		lblNewLabel_1.setBounds(0, 0, 123, 122);
 		panelTitulo.add(lblNewLabel_1);
 
@@ -87,7 +87,7 @@ public class TelaCadastroPlanoSaude extends JFrame {
 		panelTitulo.add(lblNewLabel);
 
 		MeuBotao btnVoltar = new MeuBotao();
-		btnVoltar.setIcon(new ImageIcon(TelaCadastroPlanoSaude.class.getResource("/img/setaAzulEsquerda.png")));
+		btnVoltar.setIcon(new ImageIcon(TelaDetalhesPlanoSaude.class.getResource("/img/setaAzulEsquerda.png")));
 		btnVoltar.setToolTipText("Voltar");
 		btnVoltar.setForeground(Color.WHITE);
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));

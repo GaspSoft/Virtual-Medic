@@ -20,6 +20,6 @@ public class Medico extends Pessoa {
 	}
 	@Override
 	public String toString() {
-		return "Medico [crm=" + crm + ", especificacao=" + especificacao + "]";
+		return getNome();
 	}
 }

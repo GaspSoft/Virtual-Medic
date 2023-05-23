@@ -20,7 +20,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class TelaMenuPaciente extends JFrame {
+public class TelaMenuMedico extends JFrame {
 
 	private JPanel contentPane;
 
@@ -31,7 +31,7 @@ public class TelaMenuPaciente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaMenuPaciente frame = new TelaMenuPaciente();
+					TelaMenuMedico frame = new TelaMenuMedico();
 					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -44,9 +44,9 @@ public class TelaMenuPaciente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaMenuPaciente() {
+	public TelaMenuMedico() {
 		setTitle("Menu médico");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaMenuPaciente.class.getResource("/img/favicon-32x32.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaMenuMedico.class.getResource("/img/favicon-32x32.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 635, 780);
 		contentPane = new JPanel();
@@ -55,35 +55,35 @@ public class TelaMenuPaciente extends JFrame {
 		setContentPane(contentPane);
 		
 		MeuBotao btnListaPaciente = new MeuBotao();
-		btnListaPaciente.setIcon(new ImageIcon(TelaMenuPaciente.class.getResource("/img/userList.png")));
+		btnListaPaciente.setIcon(new ImageIcon(TelaMenuMedico.class.getResource("/img/userList.png")));
 		btnListaPaciente.setText("Acessar lista de médicos");
 		btnListaPaciente.setForeground(Color.WHITE);
 		btnListaPaciente.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnListaPaciente.setBackground(new Color(24, 62, 159));
 		
 		MeuBotao btnCadastrarPaciente = new MeuBotao();
-		btnCadastrarPaciente.setIcon(new ImageIcon(TelaMenuPaciente.class.getResource("/img/userCad.png")));
+		btnCadastrarPaciente.setIcon(new ImageIcon(TelaMenuMedico.class.getResource("/img/userCad.png")));
 		btnCadastrarPaciente.setText("Cadastrar novo médico");
 		btnCadastrarPaciente.setForeground(Color.WHITE);
 		btnCadastrarPaciente.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnCadastrarPaciente.setBackground(new Color(24, 62, 159));
 		
 		MeuBotao btnEditarPaciente = new MeuBotao();
-		btnEditarPaciente.setIcon(new ImageIcon(TelaMenuPaciente.class.getResource("/img/userEdit.png")));
+		btnEditarPaciente.setIcon(new ImageIcon(TelaMenuMedico.class.getResource("/img/userEdit.png")));
 		btnEditarPaciente.setText("Editar um médico");
 		btnEditarPaciente.setForeground(Color.WHITE);
 		btnEditarPaciente.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnEditarPaciente.setBackground(new Color(24, 62, 159));
 		
 		MeuBotao btnExcluirPaciente = new MeuBotao();
-		btnExcluirPaciente.setIcon(new ImageIcon(TelaMenuPaciente.class.getResource("/img/userDelete.png")));
+		btnExcluirPaciente.setIcon(new ImageIcon(TelaMenuMedico.class.getResource("/img/userDelete.png")));
 		btnExcluirPaciente.setText("Excluir um médico");
 		btnExcluirPaciente.setForeground(Color.WHITE);
 		btnExcluirPaciente.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnExcluirPaciente.setBackground(new Color(24, 62, 159));
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(TelaMenuPaciente.class.getResource("/img/VirtualMedic200.png")));
+		lblNewLabel.setIcon(new ImageIcon(TelaMenuMedico.class.getResource("/img/VirtualMedic200.png")));
 		
 		JLabel lblNewLabel_1 = new JLabel("VIRTUAL");
 		lblNewLabel_1.setForeground(new Color(24, 62, 159));
@@ -99,14 +99,14 @@ public class TelaMenuPaciente extends JFrame {
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		
 		MeuBotao btnVoltar = new MeuBotao();
-		btnVoltar.setIcon(new ImageIcon(TelaMenuPaciente.class.getResource("/img/exitBranco.png")));
+		btnVoltar.setIcon(new ImageIcon(TelaMenuMedico.class.getResource("/img/exitBranco.png")));
 		btnVoltar.setText("Voltar");
 		btnVoltar.setForeground(Color.WHITE);
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnVoltar.setBackground(new Color(24, 62, 159));
 		
 		JLabel lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setIcon(new ImageIcon(TelaMenuPaciente.class.getResource("/img/gradiente.png")));
+		lblNewLabel_3.setIcon(new ImageIcon(TelaMenuMedico.class.getResource("/img/gradiente.png")));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -177,13 +177,17 @@ public class TelaMenuPaciente extends JFrame {
 		
 		btnCadastrarPaciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				TelaCadastroMedico telaCadastroMedico = new TelaCadastroMedico();
+				telaCadastroMedico.setVisible(true);
+				telaCadastroMedico.setExtendedState(MAXIMIZED_BOTH);
+				dispose();
 			}
 		});
 		
 		btnExcluirPaciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
+				TelaExcluirMédico telaExcluirMédico = new TelaExcluirMédico();
+				telaExcluirMédico.setVisible(true);
 			}
 		});
 		
@@ -196,8 +200,10 @@ public class TelaMenuPaciente extends JFrame {
 		
 		btnListaPaciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
-				
+				TelaListaMedico telaListaMedico = new TelaListaMedico();
+				telaListaMedico.setVisible(true);
+				telaListaMedico.setExtendedState(MAXIMIZED_BOTH);
+				dispose();
 			}
 		});
 	}
