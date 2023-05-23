@@ -39,7 +39,7 @@ import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ImageIcon;
 import net.miginfocom.swing.MigLayout;
-
+import visao.TelaMensagem;
 import controle.*;
 import modelo.*;
 import javax.swing.JTextArea;
@@ -504,36 +504,105 @@ public class TelaCadastroMedico extends JFrame {
 				txtRua.setText("");
 				txtNumero.setText("");
 				txtComplemento.setText("");
-				/*
-				medico.setCep(m.getCep());
-				medico.setUf(m.getUf());
-				medico.setCidade(m.getCidade());
-				medico.setBairro(m.getBairro());
-				medico.setRua(m.getRua());
-				medico.setNumero(m.getNumero());
-				medico.setComplemento(m.getComplemento());
-				; */
 			}
 		});
 		
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Paciente p = new Paciente();
+				Medico m = new Medico();
 				
-				String nome = txtNome.getText();
+				if(txtCPF.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o CPF!");
+					telaSucesso.setVisible(true);
+					txtCPF.requestFocus();
+				} else if(txtNome.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Nome!");
+					telaSucesso.setVisible(true);
+					txtNome.requestFocus();
+				} else if(txtEmail.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Email!");
+					telaSucesso.setVisible(true);
+					txtEmail.requestFocus();
+				} else if(txtIdade.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe a Idade!");
+					telaSucesso.setVisible(true);
+					txtIdade.requestFocus();
+				} else if(cboGenero.getSelectedItem().toString().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Gênero!");
+					telaSucesso.setVisible(true);
+					cboGenero.requestFocus();
+				} else if(txtCRM.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o CRM!");
+					telaSucesso.setVisible(true);
+					cboGenero.requestFocus();
+				} else if(txtEspecialidade.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe a Especialidade!");
+					telaSucesso.setVisible(true);
+					cboGenero.requestFocus();
+				} else if(txtCEP.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o CEP!");
+					telaSucesso.setVisible(true);
+					txtCEP.requestFocus();
+				} else if(cboUF.getSelectedItem().toString().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o UF!");
+					telaSucesso.setVisible(true);
+					cboUF.requestFocus();
+				} else if(txtCidade.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe a Cidade!");
+					telaSucesso.setVisible(true);
+					txtCidade.requestFocus();
+				} else if(txtBairro.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Bairro!");
+					telaSucesso.setVisible(true);
+					txtBairro.requestFocus();
+				} else if(txtRua.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe a Rua!");
+					telaSucesso.setVisible(true);
+					txtRua.requestFocus();
+				} else if(txtNumero.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Número da residência!");
+					telaSucesso.setVisible(true);
+					txtNumero.requestFocus();
+				}
+				
 				Long cpf = Long.parseLong(txtCPF.getText());
-				String email = txtIdade.getText();
+				String nome = txtNome.getText();
+				String email = txtEmail.getText();
+				Integer idade = Integer.valueOf(txtIdade.getText());
+				String genero = cboGenero.getSelectedItem().toString();
+				Long crm = Long.parseLong(txtCRM.getText());
+				String especialidade = txtEspecialidade.getText();
+				String cep = txtCEP.getText();
+				String uf = cboUF.getSelectedItem().toString();
+				String cidade = txtCidade.getText();
+				String bairro = txtBairro.getText();
+				String rua = txtRua.getText();
+				Integer numero = Integer.valueOf(txtNumero.getText());
+				Integer complemento = Integer.valueOf(txtComplemento.getText());
 				
-				p.setCpf(cpf);
-				p.setNome(nome);
-				p.setEmail(email);
-
-				DAOpaciente dao = DAOpaciente.getInstacia();
-				Boolean inserir = dao.inserir(p);
-				if (inserir == true) {
-					JOptionPane.showMessageDialog(null, "Sucesso!");
+				m.setCpf(cpf);
+				m.setNome(nome);
+				m.setEmail(email);
+				m.setIdade(idade);
+				m.setGenero(genero);
+				m.setCrm(crm);
+				m.setEspecificacao(especialidade);
+				m.setCep(cep);
+				m.setUf(uf);
+				m.setCidade(cidade);
+				m.setBairro(bairro);
+				m.setRua(rua);
+				m.setNumero(numero);
+				m.setComplemento(complemento);
+				
+				DAOmedico daoMedico = DAOmedico.getInstacia();
+				Boolean inserir = daoMedico.inserir(m);
+				if (inserir) {
+					TelaMensagem telaSucesso = new TelaMensagem(nome + ", cadastrado com sucesso!");
+					telaSucesso.setVisible(true);
 				} else {
-					JOptionPane.showMessageDialog(null, "Erro!");
+					TelaMensagem telaSucesso = new TelaMensagem("Não foi possível cadastrar o médico!");
+					telaSucesso.setVisible(true);
 				}
 			}
 		});
