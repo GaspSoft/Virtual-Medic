@@ -55,6 +55,8 @@ public class TelaListaPaciente extends javax.swing.JFrame {
 					dispose();
 		        } else {
 		            TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!");
+		            telaMensagem.setLocationRelativeTo(null);
+		            telaMensagem.setVisible(true);
 		        }
             }
 

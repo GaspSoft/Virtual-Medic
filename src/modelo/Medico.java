@@ -2,14 +2,14 @@ package modelo;
 
 public class Medico extends Pessoa {
 	
-	private Integer crm;
+	private Long crm;
 	private String especificacao;
 	
 	
-	public Integer getCrm() {
+	public Long getCrm() {
 		return crm;
 	}
-	public void setCrm(Integer crm) {
+	public void setCrm(Long crm) {
 		this.crm = crm;
 	}
 	public String getEspecificacao() {
@@ -20,6 +20,6 @@ public class Medico extends Pessoa {
 	}
 	@Override
 	public String toString() {
-		return "Medico [crm=" + crm + ", especificacao=" + especificacao + "]";
+		return getNome();
 	}
 }

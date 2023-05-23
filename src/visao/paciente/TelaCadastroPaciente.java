@@ -278,6 +278,12 @@ public class TelaCadastroPaciente extends JFrame {
 				cboMedico.addItem((medico));
 		}
 		}
+		
+		if(listaPlanoSaude.size() > 0 && listaPlanoSaude != null) {
+			for (PlanoSaude planoSaude : listaPlanoSaude) {
+				cboPlanoSaude.addItem((planoSaude));
+			}
+		}
 		cboMedico.setForeground(new Color(27, 156, 228));
 		
 		MeuTextField txtDiagnostico = new MeuTextField();
@@ -546,6 +552,19 @@ public class TelaCadastroPaciente extends JFrame {
 		
 		btnLimpa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				txtCPF.setText("");
+				txtNome.setText("");
+				txtEmail.setText("");
+				txtIdade.setText("");
+				txtDiagnostico.setText("");
+				txtNumeroPlano.setText("");
+				txtValidade.setText("");
+				txtCEP.setText("");
+				txtCidade.setText("");
+				txtBairro.setText("");
+				txtRua.setText("");
+				txtNumero.setText("");
+				txtComplemento.setText("");
 			}
 		});
 		
@@ -656,8 +675,8 @@ public class TelaCadastroPaciente extends JFrame {
 				p.setNumero(numero);
 				p.setComplemento(complemento);
 
-				DAOpaciente dao = DAOpaciente.getInstacia();
-				Boolean inserir = dao.inserir(p);
+				DAOpaciente daoPaciente = DAOpaciente.getInstacia();
+				Boolean inserir = daoPaciente.inserir(p);
 				if (inserir) {
 					TelaMensagem telaSucesso = new TelaMensagem(nome + ", cadastrado com sucesso!");
 					telaSucesso.setVisible(true);
