@@ -675,8 +675,8 @@ public class TelaCadastroPaciente extends JFrame {
 				p.setNumero(numero);
 				p.setComplemento(complemento);
 
-				DAOpaciente dao = DAOpaciente.getInstacia();
-				Boolean inserir = dao.inserir(p);
+				DAOpaciente daoPaciente = DAOpaciente.getInstacia();
+				Boolean inserir = daoPaciente.inserir(p);
 				if (inserir) {
 					TelaMensagem telaSucesso = new TelaMensagem(nome + ", cadastrado com sucesso!");
 					telaSucesso.setVisible(true);
