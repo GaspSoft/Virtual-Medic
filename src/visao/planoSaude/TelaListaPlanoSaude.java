@@ -18,6 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
 import controle.DAOmedico;
+import controle.DAOpaciente;
 import controle.DAOplanoSaude;
 import layoutPersonalizado.componentes.MeuBotao;
 import layoutPersonalizado.componentes.tables.TableActionCellEditor;
@@ -25,7 +26,11 @@ import layoutPersonalizado.componentes.tables.TableActionCellRender;
 import layoutPersonalizado.componentes.tables.TableActionEvent;
 import layoutPersonalizado.componentes.tables.TableCustom;
 import modelo.Medico;
+import modelo.Paciente;
 import modelo.PlanoSaude;
+import visao.TelaMensagem;
+import visao.paciente.TelaDetalhesPaciente;
+import visao.paciente.TelaEditarPaciente;
 import visao.paciente.TelaListaPaciente;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -47,7 +52,19 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 		TableActionEvent event = new TableActionEvent() {
 			@Override
 			public void onEdit(int row) {
-				System.out.println("Edit row : " + row);
+				DAOplanoSaude planoDAO = new DAOplanoSaude();
+            	Object valorRow = jTables.getValueAt(jTables.getSelectedRow(), 0);
+            	Integer ID = Integer.valueOf((Integer)valorRow);
+				PlanoSaude planoEncontrado = planoDAO.buscarID(ID);
+				if (planoEncontrado != null) {
+					TelaEditarPlanoSaude telaEditarPlanoSaude = new TelaEditarPlanoSaude(planoEncontrado);
+					telaEditarPlanoSaude.setVisible(true);
+					telaEditarPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					
+					dispose();
+		        } else {
+		            TelaMensagem telaMensagem = new TelaMensagem("ID não encontrado!");
+		        }
 			}
 
 			@Override
@@ -74,8 +91,20 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 
 			@Override
 			public void onView(int row) {
-				System.out.println("View row : " + row);
-			}
+				DAOplanoSaude planoDAO = new DAOplanoSaude();
+            	Object valorRow = jTables.getValueAt(jTables.getSelectedRow(), 0);
+            	Integer ID = Integer.valueOf((Integer)valorRow);
+				PlanoSaude planoEncontrado = planoDAO.buscarID(ID);
+				if (planoEncontrado != null) {
+					TelaDetalhesPlanoSaude telaDetalhesPlanoSaude = new TelaDetalhesPlanoSaude(planoEncontrado);
+					telaDetalhesPlanoSaude.setVisible(true);
+					telaDetalhesPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					
+					dispose();
+		        } else {
+		            TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!");
+		        }
+            }
 		};
 		jTables.getColumnModel().getColumn(2).setCellRenderer(new TableActionCellRender());
 		jTables.getColumnModel().getColumn(2).setCellEditor(new TableActionCellEditor(event));
