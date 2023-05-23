@@ -44,7 +44,7 @@ public class TelaExcluirMédico extends JDialog {
 	public TelaExcluirMédico() {
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		setModal(true);
-		setTitle("Excluir paciente");
+		setTitle("Excluir Médico");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaExcluirMédico.class.getResource("/img/favicon-32x32.png")));
 		setBounds(100, 100, 450, 197);
 		getContentPane().setLayout(new BorderLayout());
