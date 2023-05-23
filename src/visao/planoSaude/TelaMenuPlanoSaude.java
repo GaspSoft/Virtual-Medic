@@ -170,36 +170,34 @@ public class TelaMenuPlanoSaude extends JFrame {
 		btnListaPlanoSaude.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaListaPlanoSaude TelaListaPlanoSaude = new TelaListaPlanoSaude();
-				TelaListaPlanoSaude.setVisible(true);
-				TelaListaPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				TelaListaPlanoSaude telaListaPlanoSaude = new TelaListaPlanoSaude();
+				telaListaPlanoSaude.setVisible(true);
+				telaListaPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
 		
 		btnEditarPlanoSaude.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				TelaSelecionarPlanosSaudeEdicao TelaSelecionarPlanosSaudeEdicao = new TelaSelecionarPlanosSaudeEdicao();
-				TelaSelecionarPlanosSaudeEdicao.setVisible(true);
-				TelaSelecionarPlanosSaudeEdicao.setLocationRelativeTo(null);
+				TelaSelecionarPlanosSaudeEdicao telaSelecionarPlanosSaudeEdicao = new TelaSelecionarPlanosSaudeEdicao();
+				telaSelecionarPlanosSaudeEdicao.setLocationRelativeTo(null);
+				telaSelecionarPlanosSaudeEdicao.setVisible(true);
 			}
 		});
 		
 		btnExcluirPlanoSaude.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				TelaExcluirPlanoSaude TelaExcluirPlanoSaude = new TelaExcluirPlanoSaude();
-				TelaExcluirPlanoSaude.setVisible(true);
-				TelaExcluirPlanoSaude.setLocationRelativeTo(null);
+				TelaExcluirPlanoSaude telaExcluirPlanoSaude = new TelaExcluirPlanoSaude();
+				telaExcluirPlanoSaude.setLocationRelativeTo(null);
+				telaExcluirPlanoSaude.setVisible(true);
 			}
 		});
 		
 		btnCadastrarPlanoSaude.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaCadastroPlanoSaude TelaCadastroPlanoSaude = new TelaCadastroPlanoSaude();
-				TelaCadastroPlanoSaude.setVisible(true);
-				TelaCadastroPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				TelaCadastroPlanoSaude telaCadastroPlanoSaude = new TelaCadastroPlanoSaude();
+				telaCadastroPlanoSaude.setVisible(true);
+				telaCadastroPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
 		

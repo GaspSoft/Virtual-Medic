@@ -25,6 +25,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.SwingConstants;
 
 public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
 
@@ -83,12 +84,15 @@ public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
 			btnVoltar.setBounds(267, 113, 121, 34);
 			contentPanel.add(btnVoltar);
 			
+			JLabel lblNewLabel_3 = new JLabel("*");
+			lblNewLabel_3.setHorizontalAlignment(SwingConstants.LEFT);
+			lblNewLabel_3.setForeground(Color.RED);
+			lblNewLabel_3.setBounds(104, 18, 6, 14);
+			contentPanel.add(lblNewLabel_3);
+			
 			btnVoltar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					dispose();
-					TelaMenuPlanoSaude telaMenuPlanoSaude = new TelaMenuPlanoSaude();
-					telaMenuPlanoSaude.setVisible(true);
-					telaMenuPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				}
 			});
 			

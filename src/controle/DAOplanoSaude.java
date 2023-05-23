@@ -21,9 +21,9 @@ public class DAOplanoSaude {
 	}
 	
 	// INSERT
-	public boolean inserir(PlanoSaude ps) {
-		if (ps != null) {
-			listaPlanoSaude.add(ps);
+	public boolean inserir(PlanoSaude planoSaude) {
+		if (planoSaude != null) {
+			listaPlanoSaude.add(planoSaude);
 			return true;
 		}
 		return false;
