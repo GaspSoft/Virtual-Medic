@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.Color;
 import layoutPersonalizado.componentes.MeuTextField;
+import modelo.Paciente;
 import modelo.PlanoSaude;
 import layoutPersonalizado.componentes.MeuBotao;
 import java.awt.Toolkit;
@@ -26,7 +27,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
-	private String nomePlanoSaude;
 
 	/**
 	 * Launch the application.
@@ -95,13 +95,12 @@ public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
 			btSelecionarPlanoDeSaude.addActionListener(new ActionListener() {
 				
 				public void actionPerformed(ActionEvent e) {
-					DAOplanoSaude ps = DAOplanoSaude.getInstacia();
-					Integer Num = Integer.parseInt(txtID.getText());
-				
-					nomePlanoSaude = ps.alterar(null, Num).toString();
+					DAOplanoSaude planoDAO = DAOplanoSaude.getInstacia();
+					Integer ID = Integer.parseInt(txtID.getText());
+					PlanoSaude planoEncontrado = planoDAO.buscarID(ID);
 					
 					dispose();
-					TelaEditarPlanoSaude telaEditarPlanoSaude = new TelaEditarPlanoSaude();
+					TelaEditarPlanoSaude telaEditarPlanoSaude = new TelaEditarPlanoSaude(planoEncontrado);
 					telaEditarPlanoSaude.setVisible(true);
 					telaEditarPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				}
