@@ -193,7 +193,7 @@ public class TelaMenuMedico extends JFrame {
 		
 		btnEditarPaciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaSelecionarPacienteEdicao telaSelecionarPacienteEdicao = new TelaSelecionarPacienteEdicao();
+				TelaSelecionarMedicoEdicao telaSelecionarPacienteEdicao = new TelaSelecionarMedicoEdicao();
 				telaSelecionarPacienteEdicao.setVisible(true);
 			}
 		});
