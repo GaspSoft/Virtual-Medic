@@ -7,6 +7,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controle.DAOmedico;
+
 import java.awt.Toolkit;
 import layoutPersonalizado.componentes.MeuBotao;
 import java.awt.Color;
@@ -49,19 +52,19 @@ public class TelaExcluirMédico extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		MeuBotao btnExcluirPaciente = new MeuBotao();
-		btnExcluirPaciente.setIcon(new ImageIcon(TelaExcluirMédico.class.getResource("/img/userDelete.png")));
-		btnExcluirPaciente.setText("Excluir médico");
-		btnExcluirPaciente.setForeground(Color.WHITE);
-		btnExcluirPaciente.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnExcluirPaciente.setBackground(new Color(24, 62, 159));
-		btnExcluirPaciente.setBounds(42, 93, 147, 55);
-		contentPanel.add(btnExcluirPaciente);
+		MeuBotao btnExcluirMedico = new MeuBotao();
+		btnExcluirMedico.setIcon(new ImageIcon(TelaExcluirMédico.class.getResource("/img/userDelete.png")));
+		btnExcluirMedico.setText("Excluir médico");
+		btnExcluirMedico.setForeground(Color.WHITE);
+		btnExcluirMedico.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnExcluirMedico.setBackground(new Color(24, 62, 159));
+		btnExcluirMedico.setBounds(42, 93, 147, 55);
+		contentPanel.add(btnExcluirMedico);
 		
-		MeuTextField txtNome = new MeuTextField();
-		txtNome.setForeground(new Color(27, 156, 228));
-		txtNome.setBounds(42, 43, 349, 40);
-		contentPanel.add(txtNome);
+		MeuTextField txtCRM = new MeuTextField();
+		txtCRM.setForeground(new Color(27, 156, 228));
+		txtCRM.setBounds(42, 43, 349, 40);
+		contentPanel.add(txtCRM);
 		
 		JLabel lblNewLabel = new JLabel("Digite o CRM:");
 		lblNewLabel.setForeground(new Color(84, 175, 230));
@@ -80,6 +83,15 @@ public class TelaExcluirMédico extends JDialog {
 		
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		
+		btnExcluirMedico.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DAOmedico medicoDAO = DAOmedico.getInstacia();
+				Long crm = Long.parseLong(txtCRM.getText());
+				medicoDAO.deletar(null, crm);
 				dispose();
 			}
 		});
