@@ -121,8 +121,8 @@ public class TelaCadastroMedico extends JFrame {
 		lblNumero.setForeground(new Color(84, 175, 230));
 		lblNumero.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
-		MeuTextField txtComple = new MeuTextField();
-		txtComple.setForeground(new Color(27, 156, 228));
+		txtComplemento = new MeuTextField();
+		txtComplemento.setForeground(new Color(27, 156, 228));
 		
 		JLabel lblComplemento = new JLabel("Complemento");
 		lblComplemento.setForeground(new Color(84, 175, 230));
@@ -145,8 +145,8 @@ public class TelaCadastroMedico extends JFrame {
 		lblNome.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNome.setBackground(Color.WHITE);
 		
-		MeuTextField txtEmail = new MeuTextField();
-		txtEmail.setForeground(new Color(27, 156, 228));
+		MeuTextField txtIdade = new MeuTextField();
+		txtIdade.setForeground(new Color(27, 156, 228));
 		
 		JLabel lblEmail = new JLabel("Email");
 		lblEmail.setForeground(new Color(84, 175, 230));
@@ -154,7 +154,7 @@ public class TelaCadastroMedico extends JFrame {
 		lblEmail.setBackground(Color.WHITE);
 		
 		MeuComboBox cboGenero = new MeuComboBox();
-		cboGenero.setModel(new DefaultComboBoxModel(new String[] {"Gênero"}));
+		cboGenero.setModel(new DefaultComboBoxModel(new String[] {"Gênero", "Cisgênero", "Transgênero", "Não binário"}));
 		cboGenero.setForeground(new Color(27, 156, 228));
 		
 		JPanel panelIdentificacao = new JPanel();
@@ -250,14 +250,10 @@ public class TelaCadastroMedico extends JFrame {
 		btnVoltar.setIcon(new ImageIcon(TelaCadastroMedico.class.getResource("/img/setaAzulEsquerda.png")));
 		btnVoltar.setForeground(Color.WHITE);
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnVoltar.setBackground(new Color(24, 62, 159));
+		btnVoltar.setBackground(new Color(24, 62, 159));		
 		
-		DAOmedico medicoDAO = DAOmedico.getInstacia();
-		ArrayList<Medico> listaMedico = medicoDAO.listaMedico();
-		
-		
-		MeuTextField txtNumeroPlano_1 = new MeuTextField();
-		txtNumeroPlano_1.setForeground(new Color(27, 156, 228));
+		MeuTextField txtEspecialidade = new MeuTextField();
+		txtEspecialidade.setForeground(new Color(27, 156, 228));
 		GroupLayout gl_panelIdentificacao_1_1 = new GroupLayout(panelIdentificacao_1_1);
 		gl_panelIdentificacao_1_1.setHorizontalGroup(
 			gl_panelIdentificacao_1_1.createParallelGroup(Alignment.LEADING)
@@ -282,11 +278,11 @@ public class TelaCadastroMedico extends JFrame {
 		
 		RestrictedTextField validarCPF = new RestrictedTextField(txtCPF);
 		
-		MeuTextField txtCPF_1 = new MeuTextField();
-		txtCPF_1.setForeground(new Color(27, 156, 228));
+		MeuTextField txtCRM = new MeuTextField();
+		txtCRM.setForeground(new Color(27, 156, 228));
 		
-		MeuTextField txtEmail_1 = new MeuTextField();
-		txtEmail_1.setForeground(new Color(27, 156, 228));
+		MeuTextField txtEmail = new MeuTextField();
+		txtEmail.setForeground(new Color(27, 156, 228));
 		
 		JLabel lblIdade = new JLabel("Idade");
 		lblIdade.setForeground(new Color(84, 175, 230));
@@ -324,7 +320,7 @@ public class TelaCadastroMedico extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(8)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(txtEmail, GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
+						.addComponent(txtIdade, GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(10)
 							.addComponent(lblEmail, GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
@@ -334,7 +330,7 @@ public class TelaCadastroMedico extends JFrame {
 					.addGap(14))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(7)
-					.addComponent(txtEmail_1, GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
+					.addComponent(txtEmail, GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
 					.addGap(14))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(10)
@@ -348,9 +344,9 @@ public class TelaCadastroMedico extends JFrame {
 					.addGap(95))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(10)
-					.addComponent(txtNumeroPlano_1, GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+					.addComponent(txtEspecialidade, GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
 					.addGap(22)
-					.addComponent(txtCPF_1, GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+					.addComponent(txtCRM, GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
 					.addGap(4))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(10)
@@ -398,7 +394,7 @@ public class TelaCadastroMedico extends JFrame {
 					.addGap(9)
 					.addComponent(txtNumero, GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
 					.addGap(18)
-					.addComponent(txtComple, GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
+					.addComponent(txtComplemento, GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
 					.addGap(4))
 				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
 					.addGap(293)
@@ -430,11 +426,11 @@ public class TelaCadastroMedico extends JFrame {
 					.addGap(11)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(txtIdade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addComponent(lblEmail))
 						.addComponent(cboGenero, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
 					.addGap(9)
-					.addComponent(txtEmail_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(11)
 					.addComponent(panelIdentificacao_1, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
 					.addGap(11)
@@ -443,8 +439,8 @@ public class TelaCadastroMedico extends JFrame {
 						.addComponent(lblNmeroCarteirinha))
 					.addGap(11)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(txtNumeroPlano_1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtCPF_1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtEspecialidade, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtCRM, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
 					.addGap(11)
 					.addComponent(panelIdentificacao_1_1, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
 					.addGap(14)
@@ -473,7 +469,7 @@ public class TelaCadastroMedico extends JFrame {
 					.addGap(11)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(txtNumero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtComple, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtComplemento, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnLimpa, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
@@ -496,7 +492,27 @@ public class TelaCadastroMedico extends JFrame {
 		
 		btnLimpa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				txtNome.setText("");
+				txtCPF.setText("");
+				txtEmail.setText("");
+				txtIdade.setText("");
+				txtCRM.setText("");
+				txtEspecialidade.setText("");
+				txtCEP.setText("");
+				txtCidade.setText("");
+				txtBairro.setText("");
+				txtRua.setText("");
+				txtNumero.setText("");
+				txtComplemento.setText("");
+				/*
+				medico.setCep(m.getCep());
+				medico.setUf(m.getUf());
+				medico.setCidade(m.getCidade());
+				medico.setBairro(m.getBairro());
+				medico.setRua(m.getRua());
+				medico.setNumero(m.getNumero());
+				medico.setComplemento(m.getComplemento());
+				; */
 			}
 		});
 		
@@ -506,7 +522,7 @@ public class TelaCadastroMedico extends JFrame {
 				
 				String nome = txtNome.getText();
 				Long cpf = Long.parseLong(txtCPF.getText());
-				String email = txtEmail.getText();
+				String email = txtIdade.getText();
 				
 				p.setCpf(cpf);
 				p.setNome(nome);
