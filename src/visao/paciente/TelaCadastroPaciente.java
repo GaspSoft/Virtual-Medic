@@ -278,6 +278,12 @@ public class TelaCadastroPaciente extends JFrame {
 				cboMedico.addItem((medico));
 		}
 		}
+		
+		if(listaPlanoSaude.size() > 0 && listaPlanoSaude != null) {
+			for (PlanoSaude planoSaude : listaPlanoSaude) {
+				cboPlanoSaude.addItem((planoSaude));
+			}
+		}
 		cboMedico.setForeground(new Color(27, 156, 228));
 		
 		MeuTextField txtDiagnostico = new MeuTextField();
