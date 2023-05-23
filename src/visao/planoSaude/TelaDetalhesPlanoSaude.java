@@ -38,7 +38,6 @@ import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
 public class TelaDetalhesPlanoSaude extends JFrame {
-	private PlanoSaude planoSelecionado;
 	private static TelaDetalhesPlanoSaude frame;
 	private JPanel contentPane;
 
@@ -63,12 +62,12 @@ public class TelaDetalhesPlanoSaude extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaDetalhesPlanoSaude(PlanoSaude planoSaude) {
+	public TelaDetalhesPlanoSaude(PlanoSaude planoEncontrado) {
 		setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(TelaDetalhesPlanoSaude.class.getResource("/img/favicon-32x32.png")));
-		setTitle("Cadastro do Plano de Saúde");
+		setTitle("Detalhes do Plano de Saúde");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 652, 416);
+		setBounds(100, 100, 652, 320);
 		contentPane = new JPanel();
 		getContentPane().add(contentPane, BorderLayout.CENTER);
 
@@ -80,7 +79,7 @@ public class TelaDetalhesPlanoSaude extends JFrame {
 		lblNewLabel_1.setBounds(0, 0, 123, 122);
 		panelTitulo.add(lblNewLabel_1);
 
-		JLabel lblNewLabel = new JLabel("Cadastrar");
+		JLabel lblNewLabel = new JLabel("Detalhes");
 		lblNewLabel.setForeground(new Color(27, 156, 228));
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
 		lblNewLabel.setBounds(123, 0, 212, 122);
@@ -99,12 +98,14 @@ public class TelaDetalhesPlanoSaude extends JFrame {
 		lblNome.setBackground(Color.WHITE);
 
 		MeuTextField txtNome = new MeuTextField();
+		txtNome.setEditable(false);
 		txtNome.setForeground(new Color(27, 156, 228));
+		txtNome.setText(planoEncontrado.getNome());
 
 		JPanel panelIdentificacao = new JPanel();
 		panelIdentificacao.setBackground(new Color(24, 62, 159));
 
-		JLabel lblNewLabel_2 = new JLabel("Cadastramento do Plano de Saúde");
+		JLabel lblNewLabel_2 = new JLabel("Detalhes do Plano de Saúde");
 		lblNewLabel_2.setForeground(Color.WHITE);
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		GroupLayout gl_panelIdentificacao = new GroupLayout(panelIdentificacao);
@@ -115,107 +116,59 @@ public class TelaDetalhesPlanoSaude extends JFrame {
 				.addGroup(gl_panelIdentificacao.createSequentialGroup()
 						.addComponent(lblNewLabel_2, GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE).addGap(0)));
 		panelIdentificacao.setLayout(gl_panelIdentificacao);
-
-		MeuBotao btnCadastrar = new MeuBotao();
-		btnCadastrar.setText("Cadastrar");
-		btnCadastrar.setForeground(Color.WHITE);
-		btnCadastrar.setBackground(new Color(24, 62, 159));
-
-		MeuBotao btnLimpa = new MeuBotao();
-		btnLimpa.setText("Limpar");
-		btnLimpa.setForeground(Color.WHITE);
-		btnLimpa.setBackground(new Color(24, 62, 159));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane
-				.createSequentialGroup().addGap(0)
-				.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(10).addComponent(panelTitulo,
-								GroupLayout.PREFERRED_SIZE, 322, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(21)
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(0)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(10)
+							.addComponent(panelTitulo, GroupLayout.PREFERRED_SIZE, 322, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(21)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED, 481, Short.MAX_VALUE)
+									.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+									.addGap(21))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(10)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 										.addGroup(gl_contentPane.createSequentialGroup()
-												.addPreferredGap(ComponentPlacement.RELATED, 481, Short.MAX_VALUE)
-												.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 110,
-														GroupLayout.PREFERRED_SIZE)
-												.addGap(21))
-										.addGroup(gl_contentPane.createSequentialGroup().addGap(10)
-												.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-														.addGroup(gl_contentPane.createSequentialGroup()
-																.addComponent(lblNome, GroupLayout.DEFAULT_SIZE, 148,
-																		Short.MAX_VALUE)
-																.addGap(454))
-														.addGroup(gl_contentPane.createSequentialGroup()
-																.addComponent(txtNome, GroupLayout.DEFAULT_SIZE, 588,
-																		Short.MAX_VALUE)
-																.addGap(35))))
+											.addComponent(lblNome, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+											.addGap(454))
 										.addGroup(gl_contentPane.createSequentialGroup()
-												.addComponent(panelIdentificacao, GroupLayout.DEFAULT_SIZE, 591,
-														Short.MAX_VALUE)
-												.addGap(21)))))
-				.addGap(3))
-				.addGroup(gl_contentPane.createSequentialGroup().addGap(14)
-						.addComponent(btnCadastrar, GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE).addGap(18)
-						.addComponent(btnLimpa, GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE).addGap(228)));
-		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup().addContainerGap()
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addComponent(panelTitulo, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
-						.addGap(40)
-						.addComponent(panelIdentificacao, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addComponent(lblNome, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE).addGap(27)
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btnCadastrar, GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
-								.addComponent(btnLimpa, GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE))
-						.addGap(25)));
+											.addComponent(txtNome, GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
+											.addGap(35))))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(panelIdentificacao, GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
+									.addGap(21)))))
+					.addGap(3))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addComponent(panelTitulo, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
+					.addGap(40)
+					.addComponent(panelIdentificacao, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(lblNome, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(109, Short.MAX_VALUE))
+		);
 		contentPane.setLayout(gl_contentPane);
 
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaMenuPlanoSaude TelaMenuPlanoSaude = new TelaMenuPlanoSaude();
-				TelaMenuPlanoSaude.setVisible(true);
-				TelaMenuPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
-			}
-		});
-
-		btnCadastrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-					PlanoSaude ps = new PlanoSaude();
-				
-					if(txtNome.getText().isEmpty()) {
-						TelaMensagem telaSucesso = new TelaMensagem("Informe o Nome!");
-						telaSucesso.setVisible(true);
-						telaSucesso.setLocationRelativeTo(null);
-						txtNome.requestFocus();
-					} else {
-				
-					String nome = txtNome.getText();
-
-					ps.setId(gerarID());
-					ps.setNome(nome);
-
-					DAOplanoSaude dao = DAOplanoSaude.getInstacia();
-					Boolean inserir = dao.inserir(ps);
-					if (inserir) {
-						TelaMensagem telaSucesso = new TelaMensagem(nome + " foi cadastrado com Sucesso!");
-						telaSucesso.setVisible(true);
-						telaSucesso.setLocationRelativeTo(null);
-					} else {
-						TelaMensagem telaSucesso = new TelaMensagem("Não foi possível cadastrar o Plano de Saúde!");
-						telaSucesso.setVisible(true);
-						telaSucesso.setLocationRelativeTo(null);
-					}
-				}
-			}
-		});
-
-		btnLimpa.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				txtNome.setText(null);
+				TelaListaPlanoSaude telaListaPlanoSaude = new TelaListaPlanoSaude();
+				telaListaPlanoSaude.setVisible(true);
+				telaListaPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
 
