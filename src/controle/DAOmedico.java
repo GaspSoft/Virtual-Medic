@@ -75,7 +75,7 @@ public class DAOmedico {
 	}
 	
 	// SELECT BY ID
-		public Medico buscarPorCPF(Long crm) {
+		public Medico buscarPorCRM(Long crm) {
 			for (Medico medico : listaMedico) {
 				if (medico.getCrm().equals(crm)) {
 					return medico;

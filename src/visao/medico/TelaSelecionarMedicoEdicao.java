@@ -8,10 +8,16 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controle.DAOmedico;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
 import layoutPersonalizado.componentes.MeuTextField;
+import modelo.Medico;
+import visao.TelaMensagem;
+import visao.paciente.TelaEditarPaciente;
 import layoutPersonalizado.componentes.MeuBotao;
 import java.awt.Dialog.ModalExclusionType;
 import java.awt.Toolkit;
@@ -19,7 +25,7 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class TelaSelecionarPacienteEdicao extends JDialog {
+public class TelaSelecionarMedicoEdicao extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
@@ -28,7 +34,7 @@ public class TelaSelecionarPacienteEdicao extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			TelaSelecionarPacienteEdicao dialog = new TelaSelecionarPacienteEdicao();
+			TelaSelecionarMedicoEdicao dialog = new TelaSelecionarMedicoEdicao();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -39,9 +45,9 @@ public class TelaSelecionarPacienteEdicao extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public TelaSelecionarPacienteEdicao() {
+	public TelaSelecionarMedicoEdicao() {
 		setTitle("Selecionar paciente para edição");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaSelecionarPacienteEdicao.class.getResource("/img/favicon-32x32.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaSelecionarMedicoEdicao.class.getResource("/img/favicon-32x32.png")));
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		setModal(true);
 		setBounds(100, 100, 450, 197);
@@ -56,22 +62,23 @@ public class TelaSelecionarPacienteEdicao extends JDialog {
 		lblNewLabel.setBounds(51, 18, 84, 14);
 		contentPanel.add(lblNewLabel);
 		
-		MeuTextField txtNome = new MeuTextField();
-		txtNome.setForeground(new Color(27, 156, 228));
-		txtNome.setBounds(39, 43, 349, 40);
-		contentPanel.add(txtNome);
+		MeuTextField txtCRM = new MeuTextField();
+		txtCRM.setForeground(new Color(27, 156, 228));
+		txtCRM.setBounds(39, 43, 349, 40);
+		contentPanel.add(txtCRM);
 		
-		MeuBotao btnExcluirPaciente = new MeuBotao();
-		btnExcluirPaciente.setIcon(new ImageIcon(TelaSelecionarPacienteEdicao.class.getResource("/img/userEdit.png")));
-		btnExcluirPaciente.setText("Selecionar Médico");
-		btnExcluirPaciente.setForeground(Color.WHITE);
-		btnExcluirPaciente.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnExcluirPaciente.setBackground(new Color(24, 62, 159));
-		btnExcluirPaciente.setBounds(39, 94, 169, 55);
-		contentPanel.add(btnExcluirPaciente);
+		MeuBotao btnSelecionarMedico = new MeuBotao();
+		
+		btnSelecionarMedico.setIcon(new ImageIcon(TelaSelecionarMedicoEdicao.class.getResource("/img/userEdit.png")));
+		btnSelecionarMedico.setText("Selecionar Médico");
+		btnSelecionarMedico.setForeground(Color.WHITE);
+		btnSelecionarMedico.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnSelecionarMedico.setBackground(new Color(24, 62, 159));
+		btnSelecionarMedico.setBounds(39, 94, 169, 55);
+		contentPanel.add(btnSelecionarMedico);
 		
 		MeuBotao btnVoltar = new MeuBotao();
-		btnVoltar.setIcon(new ImageIcon(TelaSelecionarPacienteEdicao.class.getResource("/img/exitBranco.png")));
+		btnVoltar.setIcon(new ImageIcon(TelaSelecionarMedicoEdicao.class.getResource("/img/exitBranco.png")));
 		btnVoltar.setText("Voltar");
 		btnVoltar.setForeground(Color.WHITE);
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -82,6 +89,25 @@ public class TelaSelecionarPacienteEdicao extends JDialog {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
+			}
+		});
+		
+		btnSelecionarMedico.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DAOmedico medicoDAO = new DAOmedico();
+				Long crm = Long.parseLong(txtCRM.getText());
+				Medico medicoEncontrado = medicoDAO.buscarPorCRM(crm);
+				if (medicoEncontrado != null) {
+					TelaEditarMedico telaEditarMedico = new TelaEditarMedico(medicoEncontrado);
+					telaEditarMedico.setVisible(true);
+					telaEditarMedico.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					
+					dispose();
+		        } else {
+		            TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!");
+		            telaMensagem.setLocationRelativeTo(null);
+		            telaMensagem.setVisible(true);
+		        }
 			}
 		});
 	}
