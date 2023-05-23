@@ -558,6 +558,19 @@ public class TelaEditarPaciente extends JFrame {
 		
 		btnLimpa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				txtCPF.setText("");
+				txtNome.setText("");
+				txtEmail.setText("");
+				txtIdade.setText("");
+				txtDiagnostico.setText("");
+				txtNumeroPlano.setText("");
+				txtValidade.setText("");
+				txtCEP.setText("");
+				txtCidade.setText("");
+				txtBairro.setText("");
+				txtRua.setText("");
+				txtNumero.setText("");
+				txtComplemento.setText("");
 			}
 		});
 		
