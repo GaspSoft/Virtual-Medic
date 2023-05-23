@@ -66,14 +66,14 @@ public class TelaSelecionarPacienteEdicao extends JDialog {
 		txtCPF.setBounds(39, 43, 349, 40);
 		contentPanel.add(txtCPF);
 		
-		MeuBotao btnExcluirPaciente = new MeuBotao();
-		btnExcluirPaciente.setIcon(new ImageIcon(TelaSelecionarPacienteEdicao.class.getResource("/img/userEdit.png")));
-		btnExcluirPaciente.setText("Selecionar paciente");
-		btnExcluirPaciente.setForeground(Color.WHITE);
-		btnExcluirPaciente.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnExcluirPaciente.setBackground(new Color(24, 62, 159));
-		btnExcluirPaciente.setBounds(39, 94, 169, 55);
-		contentPanel.add(btnExcluirPaciente);
+		MeuBotao btnSelecionarPaciente = new MeuBotao();
+		btnSelecionarPaciente.setIcon(new ImageIcon(TelaSelecionarPacienteEdicao.class.getResource("/img/userEdit.png")));
+		btnSelecionarPaciente.setText("Selecionar paciente");
+		btnSelecionarPaciente.setForeground(Color.WHITE);
+		btnSelecionarPaciente.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnSelecionarPaciente.setBackground(new Color(24, 62, 159));
+		btnSelecionarPaciente.setBounds(39, 94, 169, 55);
+		contentPanel.add(btnSelecionarPaciente);
 		
 		MeuBotao btnVoltar = new MeuBotao();
 		btnVoltar.setIcon(new ImageIcon(TelaSelecionarPacienteEdicao.class.getResource("/img/exitBranco.png")));
@@ -90,7 +90,7 @@ public class TelaSelecionarPacienteEdicao extends JDialog {
 			}
 		});
 		
-		btnExcluirPaciente.addActionListener(new ActionListener() {
+		btnSelecionarPaciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DAOpaciente pacienteDAO = new DAOpaciente();
 				Long cpf = Long.parseLong(txtCPF.getText());
