@@ -18,6 +18,7 @@ import modelo.Medico;
 import modelo.Paciente;
 import modelo.PlanoSaude;
 import visao.TelaMensagem;
+import visao.paciente.TelaEditarPaciente;
 import visao.planoSaude.TelaDetalhesPlanoSaude;
 
 import javax.swing.GroupLayout.Alignment;
@@ -49,7 +50,21 @@ public class TelaListaMedico extends javax.swing.JFrame {
         TableActionEvent event = new TableActionEvent() {
             @Override
             public void onEdit(int row) {
-                System.out.println("Edit row : " + row);
+            	DAOmedico medicoDAO = new DAOmedico();
+            	Object valorRow = jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+            	Long crm = Long.valueOf((Long)valorRow);
+				Medico medicoEncontrada = medicoDAO.buscarPorCRM(crm);
+				if (medicoEncontrada != null) {
+					TelaEditarMedico telaEditarPaciente = new TelaEditarMedico(medicoEncontrada);
+					telaEditarPaciente.setVisible(true);
+					telaEditarPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					
+					dispose();
+		        } else {
+		            TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!");
+		            telaMensagem.setLocationRelativeTo(null);
+		            telaMensagem.setVisible(true);
+		        }
             }
 
             @Override
