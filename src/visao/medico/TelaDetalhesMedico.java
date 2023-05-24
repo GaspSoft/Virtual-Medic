@@ -63,7 +63,7 @@ public class TelaDetalhesMedico extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaDetalhesMedico frame = new TelaDetalhesMedico();
+					TelaDetalhesMedico frame = new TelaDetalhesMedico(null);
 					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -76,7 +76,7 @@ public class TelaDetalhesMedico extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaDetalhesMedico() {
+	public TelaDetalhesMedico(Medico medico) {
 		setTitle("Detalhes do Médico");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaDetalhesMedico.class.getResource("/img/favicon-32x32.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -96,6 +96,7 @@ public class TelaDetalhesMedico extends JFrame {
         lblRua.setFont(new Font("Tahoma", Font.BOLD, 11));
         
         MeuTextField txtRua = new MeuTextField();
+        txtRua.setText(medico.getRua());
         txtRua.setForeground(new Color(27, 156, 228));
         
         JLabel lblBairro = new JLabel("Bairro:");
@@ -103,6 +104,7 @@ public class TelaDetalhesMedico extends JFrame {
         lblBairro.setFont(new Font("Tahoma", Font.BOLD, 11));
         
         MeuTextField txtBairro = new MeuTextField();
+        txtBairro.setText(medico.getBairro());
         txtBairro.setForeground(new Color(27, 156, 228));
         
         JLabel lblCidade = new JLabel("Cidade:");
@@ -110,12 +112,14 @@ public class TelaDetalhesMedico extends JFrame {
         lblCidade.setForeground(new Color(84, 175, 230));
         
         MeuTextField txtCidade = new MeuTextField();
+        txtCidade.setText(medico.getCidade());
         
         MeuComboBox cboUF = new MeuComboBox();
         cboUF.setForeground(new Color(27, 156, 228));
 		cboUF.setModel(new DefaultComboBoxModel(new String[] {"Estado", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"}));
 		
 		MeuTextField txtNumero = new MeuTextField();
+		txtNumero.setText(medico.getNumero().toString());
 		txtNumero.setForeground(new Color(27, 156, 228));
 		
 		JLabel lblNumero = new JLabel("Número:");
@@ -123,6 +127,7 @@ public class TelaDetalhesMedico extends JFrame {
 		lblNumero.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		txtComplemento = new MeuTextField();
+		txtComplemento.setText(medico.getComplemento().toString());
 		txtComplemento.setForeground(new Color(27, 156, 228));
 		
 		JLabel lblComplemento = new JLabel("Complemento:");
@@ -130,6 +135,7 @@ public class TelaDetalhesMedico extends JFrame {
 		lblComplemento.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		MeuTextField txtCPF = new MeuTextField();
+		txtCPF.setText(medico.getCep());
 		txtCPF.setForeground(new Color(27, 156, 228));
 		
 		JLabel lblCPF = new JLabel("CPF:");
@@ -138,6 +144,7 @@ public class TelaDetalhesMedico extends JFrame {
 		lblCPF.setBackground(Color.WHITE);
 		
 		MeuTextField txtNome = new MeuTextField();
+		txtNome.setText(medico.getNome());
 
 		txtNome.setForeground(new Color(27, 156, 228));
 		
@@ -147,6 +154,7 @@ public class TelaDetalhesMedico extends JFrame {
 		lblNome.setBackground(Color.WHITE);
 		
 		MeuTextField txtIdade = new MeuTextField();
+		txtIdade.setText(medico.getIdade().toString());
 		txtIdade.setForeground(new Color(27, 156, 228));
 		
 		JLabel lblEmail = new JLabel("Email:");
@@ -229,6 +237,7 @@ public class TelaDetalhesMedico extends JFrame {
 		panelIdentificacao.setLayout(gl_panelIdentificacao);
 		
 		txtCEP = new MeuTextField();
+		txtCEP.setText(medico.getCep());
 		
 		MeuBotao btnBuscar = new MeuBotao();
 		btnBuscar.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -244,6 +253,7 @@ public class TelaDetalhesMedico extends JFrame {
 		btnVoltar.setBackground(new Color(24, 62, 159));		
 		
 		MeuTextField txtEspecialidade = new MeuTextField();
+		txtEspecialidade.setText("e");
 		txtEspecialidade.setForeground(new Color(27, 156, 228));
 		GroupLayout gl_panelIdentificacao_1_1 = new GroupLayout(panelIdentificacao_1_1);
 		gl_panelIdentificacao_1_1.setHorizontalGroup(
@@ -270,9 +280,11 @@ public class TelaDetalhesMedico extends JFrame {
 		RestrictedTextField validarCPF = new RestrictedTextField(txtCPF);
 		
 		MeuTextField txtCRM = new MeuTextField();
+		txtCRM.setText(medico.getCrm().toString());
 		txtCRM.setForeground(new Color(27, 156, 228));
 		
 		MeuTextField txtEmail = new MeuTextField();
+		txtEmail.setText(medico.getEmail());
 		txtEmail.setForeground(new Color(27, 156, 228));
 		
 		JLabel lblIdade = new JLabel("Idade:");

@@ -81,9 +81,9 @@ public class TelaListaMedico extends javax.swing.JFrame {
             	Long CRM = Long.parseUnsignedLong((String) valorRow);
 				Medico medicoEncontrado = medicoDAO.buscarPorCRM(CRM);
 				if (medicoEncontrado != null) {
-					TelaDetalhesPlanoSaude telaDetalhesPlanoSaude = new TelaDetalhesMedico(medicoEncontrado);
-					telaDetalhesPlanoSaude.setVisible(true);
-					telaDetalhesPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					TelaDetalhesMedico telaDetalhesMedico = new TelaDetalhesMedico(medicoEncontrado);
+					telaDetalhesMedico.setVisible(true);
+					telaDetalhesMedico.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					
 					dispose();
 		        } else {
@@ -241,10 +241,10 @@ public class TelaListaMedico extends javax.swing.JFrame {
     }
     
     public static void atualizaJTable(DefaultTableModel modelo, JTable table) {
-    	DAOpaciente p = DAOpaciente.getInstacia();
-		ArrayList<Paciente> listaPacientes = p.listalPaciente();
-		for (Paciente paciente : listaPacientes) {
-			modelo.addRow(new Object[] { paciente.getCpf(), paciente.getNome(), paciente.getEmail() });
+    	DAOmedico m = DAOmedico.getInstacia();
+		ArrayList<Medico> listaMedicos = m.listaMedico();
+		for (Medico medico : listaMedicos) {
+			modelo.addRow(new Object[] { medico.getCrm(), medico.getNome(), medico.getEmail() });
 		}
 
 		table = new JTable(modelo);

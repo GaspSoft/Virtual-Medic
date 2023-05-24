@@ -79,7 +79,7 @@ public class TelaCadastroMedico extends JFrame {
 		setTitle("Cadastro de Médico");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaCadastroMedico.class.getResource("/img/favicon-32x32.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 680, 1011);
+		setBounds(100, 100, 680, 933);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -439,7 +439,7 @@ public class TelaCadastroMedico extends JFrame {
 					.addGap(18)
 					.addComponent(txtComplemento, GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
 					.addGap(4))
-				.addGroup(gl_contentPane.createSequentialGroup()
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
 					.addGap(293)
 					.addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
