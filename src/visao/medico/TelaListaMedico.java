@@ -18,6 +18,7 @@ import modelo.Medico;
 import modelo.Paciente;
 import modelo.PlanoSaude;
 import visao.TelaMensagem;
+import visao.paciente.TelaEditarPaciente;
 import visao.planoSaude.TelaDetalhesPlanoSaude;
 
 import javax.swing.GroupLayout.Alignment;
@@ -37,223 +38,210 @@ import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-
 public class TelaListaMedico extends javax.swing.JFrame {
 
-    public TelaListaMedico() {
-    	setIconImage(Toolkit.getDefaultToolkit().getImage(TelaListaMedico.class.getResource("/img/favicon-32x32.png")));
-    	setTitle("Lista de Médicos");
-        initComponents();
-        getContentPane().setBackground(new Color(240, 240, 240));
-        TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
-        TableActionEvent event = new TableActionEvent() {
-            @Override
-            public void onEdit(int row) {
-                System.out.println("Edit row : " + row);
-            }
+	public TelaListaMedico() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaListaMedico.class.getResource("/img/favicon-32x32.png")));
+		setTitle("Lista de Médicos");
+		initComponents();
+		getContentPane().setBackground(new Color(240, 240, 240));
+		TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
+		TableActionEvent event = new TableActionEvent() {
+			@Override
+			public void onEdit(int row) {
+				DAOmedico medicoDAO = new DAOmedico();
+				Object valorRow = jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+				Long crm = Long.valueOf((Long) valorRow);
+				Medico medicoEncontrada = medicoDAO.buscarPorCRM(crm);
+				if (medicoEncontrada != null) {
+					TelaEditarMedico telaEditarMedico = new TelaEditarMedico(medicoEncontrada);
+					telaEditarMedico.setVisible(true);
+					telaEditarMedico.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-            @Override
-            public void onDelete(int row) {
-            	DAOmedico m = DAOmedico.getInstacia();
+					dispose();
+				} else {
+					TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!");
+					telaMensagem.setLocationRelativeTo(null);
+					telaMensagem.setVisible(true);
+				}
+			}
+
+			@Override
+			public void onDelete(int row) {
+				DAOmedico m = DAOmedico.getInstacia();
 				Object valorRow = jTable1.getValueAt(jTable1.getSelectedRow(), 0);
 				Long rowID = Long.valueOf((Long) valorRow);
-				
+
 				if (jTable1.isEditing()) {
 					jTable1.getCellEditor().stopCellEditing();
 				}
-		
+
 				m.deletar(null, rowID);
-				
+
 				try {
 					DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 					int SelectRow = jTable1.getSelectedRow();
 					model.removeRow(row);
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, ex);
+					;
 				}
-				catch (Exception ex){
-					JOptionPane.showMessageDialog(null, ex);;
-				}
-            }
+			}
 
-            @Override
-            public void onView(int row) {
-            	DAOmedico medicoDAO = new DAOmedico();
-            	Object valorRow = jTable1.getValueAt(jTable1.getSelectedRow(), 0);
-            	Long CRM = Long.parseUnsignedLong((String) valorRow);
-				Medico medicoEncontrado = medicoDAO.buscarPorCRM(CRM);
-				if (medicoEncontrado != null) {
-					TelaDetalhesPlanoSaude telaDetalhesPlanoSaude = new TelaDetalhesMedico(medicoEncontrado);
-					telaDetalhesPlanoSaude.setVisible(true);
-					telaDetalhesPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
-					
+			@Override
+			public void onView(int row) {
+				DAOmedico medicoDAO = new DAOmedico();
+				Object valorRow = jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+				Long crm = Long.valueOf((Long) valorRow);
+				Medico medicoEncontrada = medicoDAO.buscarPorCRM(crm);
+				if (medicoEncontrada != null) {
+					TelaDetalhesMedico telaDetalhesMedico = new TelaDetalhesMedico(medicoEncontrada);
+					telaDetalhesMedico.setVisible(true);
+					telaDetalhesMedico.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
 					dispose();
-		        } else {
-		            TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!");
-		        }
-            }
-        };
-        jTable1.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
-        jTable1.getColumnModel().getColumn(3).setCellEditor(new TableActionCellEditor(event));
-        testData(jTable1);
-        GroupLayout gl_tableScrollButton1 = new GroupLayout(tableScrollButton1);
-        gl_tableScrollButton1.setHorizontalGroup(
-        	gl_tableScrollButton1.createParallelGroup(Alignment.LEADING)
-        		.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE)
-        );
-        gl_tableScrollButton1.setVerticalGroup(
-        	gl_tableScrollButton1.createParallelGroup(Alignment.LEADING)
-        		.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
-        );
-        tableScrollButton1.setLayout(gl_tableScrollButton1);
-        
-    }
+				} else {
+					TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!");
+					telaMensagem.setLocationRelativeTo(null);
+					telaMensagem.setVisible(true);
+				}
 
-    private void testData(JTable table) {
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        atualizaJTable(model, table);
-    }
+			}
+		};
+		jTable1.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
+		jTable1.getColumnModel().getColumn(3).setCellEditor(new TableActionCellEditor(event));
+		testData(jTable1);
+		GroupLayout gl_tableScrollButton1 = new GroupLayout(tableScrollButton1);
+		gl_tableScrollButton1.setHorizontalGroup(gl_tableScrollButton1.createParallelGroup(Alignment.LEADING)
+				.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE));
+		gl_tableScrollButton1.setVerticalGroup(gl_tableScrollButton1.createParallelGroup(Alignment.LEADING)
+				.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE));
+		tableScrollButton1.setLayout(gl_tableScrollButton1);
 
+	}
 
-    private void initComponents() {
+	private void testData(JTable table) {
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		atualizaJTable(model, table);
+	}
 
-        tableScrollButton1 = new layoutPersonalizado.componentes.tables.TableScrollButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+	private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		tableScrollButton1 = new layoutPersonalizado.componentes.tables.TableScrollButton();
+		jScrollPane1 = new javax.swing.JScrollPane();
+		jTable1 = new javax.swing.JTable();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-            },
-            new String [] {
-                "CRM", "Nome", "Email", "Ações"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, true
-            };
+		jTable1.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(250);
-        }
-        
-        JPanel panel = new JPanel();
-        
-        JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon(TelaListaMedico.class.getResource("/img/VirtualMedic200.png")));
-        
-        JLabel lblNewLabel_1 = new JLabel("VIRTUAL");
-        lblNewLabel_1.setForeground(new Color(24, 62, 159));
-        lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 60));
-        
-        JLabel lblNewLabel_1_1 = new JLabel("MEDIC");
-        lblNewLabel_1_1.setForeground(new Color(27, 156, 228));
-        lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 45));
-        
-        JLabel lblNewLabel_2 = new JLabel("Bem vindo ao prontuário eletrônico");
-        lblNewLabel_2.setForeground(new Color(84, 175, 230));
-        lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 24));
-        lblNewLabel_2.setBackground(new Color(24, 62, 159));
-        GroupLayout gl_panel = new GroupLayout(panel);
-        gl_panel.setHorizontalGroup(
-        	gl_panel.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(gl_panel.createSequentialGroup()
-        			.addGap(2)
-        			.addComponent(lblNewLabel)
-        			.addGap(18)
-        			.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-        				.addComponent(lblNewLabel_1)
-        				.addComponent(lblNewLabel_1_1)
-        				.addComponent(lblNewLabel_2))
-        			.addContainerGap())
-        );
-        gl_panel.setVerticalGroup(
-        	gl_panel.createParallelGroup(Alignment.LEADING)
-        		.addGroup(gl_panel.createSequentialGroup()
-        			.addGap(9)
-        			.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
-        			.addGap(18)
-        			.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-        			.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap())
-        		.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-        );
-        panel.setLayout(gl_panel);
-        
-        MeuBotao btnVoltar = new MeuBotao();
-        btnVoltar.setIcon(new ImageIcon(TelaListaMedico.class.getResource("/img/exitBranco.png")));
-        btnVoltar.setText("Voltar");
-        btnVoltar.setForeground(Color.WHITE);
-        btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
-        btnVoltar.setBackground(new Color(24, 62, 159));
-        
-        JLabel lblNewLabel_3 = new JLabel("");
-        lblNewLabel_3.setIcon(new ImageIcon(TelaListaMedico.class.getResource("/img/gradienteMaior.png")));
+		}, new String[] { "CRM", "Nome", "Email", "Ações" }) {
+			boolean[] canEdit = new boolean[] { false, false, false, true };
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        layout.setHorizontalGroup(
-        	layout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(layout.createSequentialGroup()
-        			.addContainerGap()
-        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(tableScrollButton1, GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE)
-        				.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 273, GroupLayout.PREFERRED_SIZE)
-        				.addGroup(layout.createSequentialGroup()
-        					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 603, GroupLayout.PREFERRED_SIZE)
-        					.addPreferredGap(ComponentPlacement.RELATED, 1, Short.MAX_VALUE)
-        					.addComponent(lblNewLabel_3, GroupLayout.PREFERRED_SIZE, 447, GroupLayout.PREFERRED_SIZE)))
-        			.addContainerGap())
-        );
-        layout.setVerticalGroup(
-        	layout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(layout.createSequentialGroup()
-        			.addContainerGap()
-        			.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
-        				.addComponent(lblNewLabel_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
-        			.addGap(13)
-        			.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(tableScrollButton1, GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
-        			.addContainerGap())
-        );
-        getContentPane().setLayout(layout);
+			public boolean isCellEditable(int rowIndex, int columnIndex) {
+				return canEdit[columnIndex];
+			}
+		});
 
-        pack();
-        setLocationRelativeTo(null);
-        
-        btnVoltar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		TelaMenuMedico telaMenuMedico = new TelaMenuMedico();
-        		telaMenuMedico.setVisible(true);
-        		telaMenuMedico.setExtendedState(MAXIMIZED_BOTH);
-        		dispose();
-        	}
-        });
-    }
-    
-    public static void atualizaJTable(DefaultTableModel modelo, JTable table) {
-    	DAOpaciente p = DAOpaciente.getInstacia();
-		ArrayList<Paciente> listaPacientes = p.listalPaciente();
-		for (Paciente paciente : listaPacientes) {
-			modelo.addRow(new Object[] { paciente.getCpf(), paciente.getNome(), paciente.getEmail() });
+		jScrollPane1.setViewportView(jTable1);
+		if (jTable1.getColumnModel().getColumnCount() > 0) {
+			jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
+			jTable1.getColumnModel().getColumn(1).setPreferredWidth(250);
+		}
+
+		JPanel panel = new JPanel();
+
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(TelaListaMedico.class.getResource("/img/VirtualMedic200.png")));
+
+		JLabel lblNewLabel_1 = new JLabel("VIRTUAL");
+		lblNewLabel_1.setForeground(new Color(24, 62, 159));
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 60));
+
+		JLabel lblNewLabel_1_1 = new JLabel("MEDIC");
+		lblNewLabel_1_1.setForeground(new Color(27, 156, 228));
+		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 45));
+
+		JLabel lblNewLabel_2 = new JLabel("Bem vindo ao prontuário eletrônico");
+		lblNewLabel_2.setForeground(new Color(84, 175, 230));
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblNewLabel_2.setBackground(new Color(24, 62, 159));
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+				gl_panel.createParallelGroup(Alignment.TRAILING).addGroup(gl_panel.createSequentialGroup().addGap(2)
+						.addComponent(lblNewLabel).addGap(18).addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblNewLabel_1).addComponent(lblNewLabel_1_1).addComponent(lblNewLabel_2))
+						.addContainerGap()));
+		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup().addGap(9)
+						.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
+						.addGap(18)
+						.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+						.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap())
+				.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE));
+		panel.setLayout(gl_panel);
+
+		MeuBotao btnVoltar = new MeuBotao();
+		btnVoltar.setIcon(new ImageIcon(TelaListaMedico.class.getResource("/img/exitBranco.png")));
+		btnVoltar.setText("Voltar");
+		btnVoltar.setForeground(Color.WHITE);
+		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnVoltar.setBackground(new Color(24, 62, 159));
+
+		JLabel lblNewLabel_3 = new JLabel("");
+		lblNewLabel_3.setIcon(new ImageIcon(TelaListaMedico.class.getResource("/img/gradienteMaior.png")));
+
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+		layout.setHorizontalGroup(layout.createParallelGroup(Alignment.LEADING).addGroup(layout.createSequentialGroup()
+				.addContainerGap()
+				.addGroup(layout.createParallelGroup(Alignment.LEADING)
+						.addComponent(tableScrollButton1, GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE)
+						.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 273, GroupLayout.PREFERRED_SIZE)
+						.addGroup(layout.createSequentialGroup()
+								.addComponent(panel, GroupLayout.PREFERRED_SIZE, 603, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED, 1, Short.MAX_VALUE).addComponent(
+										lblNewLabel_3, GroupLayout.PREFERRED_SIZE, 447, GroupLayout.PREFERRED_SIZE)))
+				.addContainerGap()));
+		layout.setVerticalGroup(layout.createParallelGroup(Alignment.LEADING).addGroup(layout.createSequentialGroup()
+				.addContainerGap()
+				.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(lblNewLabel_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+								Short.MAX_VALUE)
+						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+				.addGap(13).addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+				.addPreferredGap(ComponentPlacement.RELATED)
+				.addComponent(tableScrollButton1, GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE).addContainerGap()));
+		getContentPane().setLayout(layout);
+
+		pack();
+		setLocationRelativeTo(null);
+
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaMenuMedico telaMenuMedico = new TelaMenuMedico();
+				telaMenuMedico.setVisible(true);
+				telaMenuMedico.setExtendedState(MAXIMIZED_BOTH);
+				dispose();
+			}
+		});
+	}
+
+	public static void atualizaJTable(DefaultTableModel modelo, JTable table) {
+		DAOmedico m = DAOmedico.getInstacia();
+		ArrayList<Medico> listaMedicos = m.listaMedico();
+		for (Medico medico : listaMedicos) {
+			modelo.addRow(new Object[] { medico.getCrm(), medico.getNome(), medico.getEmail() });
 		}
 
 		table = new JTable(modelo);
 		modelo.fireTableDataChanged();
 	}
 
-    public static void main(String args[]) {
-        
-    	EventQueue.invokeLater(new Runnable() {
+	public static void main(String args[]) {
+
+		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					TelaListaMedico frame = new TelaListaMedico();
@@ -264,10 +252,10 @@ public class TelaListaMedico extends javax.swing.JFrame {
 				}
 			}
 		});
-    	
 
-    }
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private layoutPersonalizado.componentes.tables.TableScrollButton tableScrollButton1;
+	}
+
+	private javax.swing.JScrollPane jScrollPane1;
+	private javax.swing.JTable jTable1;
+	private layoutPersonalizado.componentes.tables.TableScrollButton tableScrollButton1;
 }
