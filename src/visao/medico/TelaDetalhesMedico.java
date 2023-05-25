@@ -43,8 +43,9 @@ import visao.TelaMensagem;
 import controle.*;
 import modelo.*;
 import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
 
-public class TelaCadastroMedico extends JFrame {
+public class TelaDetalhesMedico extends JFrame {
 
 	private JPanel contentPane;
 	private MeuTextField txtCEP;
@@ -62,7 +63,7 @@ public class TelaCadastroMedico extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaCadastroMedico frame = new TelaCadastroMedico();
+					TelaDetalhesMedico frame = new TelaDetalhesMedico(null);
 					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -75,11 +76,11 @@ public class TelaCadastroMedico extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaCadastroMedico() {
-		setTitle("Cadastro de Médico");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaCadastroMedico.class.getResource("/img/favicon-32x32.png")));
+	public TelaDetalhesMedico(Medico medico) {
+		setTitle("Detalhes do Médico");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaDetalhesMedico.class.getResource("/img/favicon-32x32.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 680, 933);
+		setBounds(100, 100, 680, 1011);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -95,6 +96,8 @@ public class TelaCadastroMedico extends JFrame {
         lblRua.setFont(new Font("Tahoma", Font.BOLD, 11));
         
         MeuTextField txtRua = new MeuTextField();
+        txtRua.setEditable(false);
+        txtRua.setText(medico.getRua());
         txtRua.setForeground(new Color(27, 156, 228));
         
         JLabel lblBairro = new JLabel("Bairro:");
@@ -102,6 +105,8 @@ public class TelaCadastroMedico extends JFrame {
         lblBairro.setFont(new Font("Tahoma", Font.BOLD, 11));
         
         MeuTextField txtBairro = new MeuTextField();
+        txtBairro.setEditable(false);
+        txtBairro.setText(medico.getBairro());
         txtBairro.setForeground(new Color(27, 156, 228));
         
         JLabel lblCidade = new JLabel("Cidade:");
@@ -109,12 +114,17 @@ public class TelaCadastroMedico extends JFrame {
         lblCidade.setForeground(new Color(84, 175, 230));
         
         MeuTextField txtCidade = new MeuTextField();
+        txtCidade.setEditable(false);
+        txtCidade.setText(medico.getCidade());
         
         MeuComboBox cboUF = new MeuComboBox();
+        cboUF.setEditable(false);
         cboUF.setForeground(new Color(27, 156, 228));
 		cboUF.setModel(new DefaultComboBoxModel(new String[] {"Estado", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"}));
 		
 		MeuTextField txtNumero = new MeuTextField();
+		txtNumero.setEditable(false);
+		txtNumero.setText(medico.getNumero().toString());
 		txtNumero.setForeground(new Color(27, 156, 228));
 		
 		JLabel lblNumero = new JLabel("Número:");
@@ -122,6 +132,8 @@ public class TelaCadastroMedico extends JFrame {
 		lblNumero.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		txtComplemento = new MeuTextField();
+		txtComplemento.setEditable(false);
+		txtComplemento.setText(medico.getComplemento().toString());
 		txtComplemento.setForeground(new Color(27, 156, 228));
 		
 		JLabel lblComplemento = new JLabel("Complemento:");
@@ -129,6 +141,8 @@ public class TelaCadastroMedico extends JFrame {
 		lblComplemento.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		MeuTextField txtCPF = new MeuTextField();
+		txtCPF.setEditable(false);
+		txtCPF.setText(medico.getCep());
 		txtCPF.setForeground(new Color(27, 156, 228));
 		
 		JLabel lblCPF = new JLabel("CPF:");
@@ -137,6 +151,8 @@ public class TelaCadastroMedico extends JFrame {
 		lblCPF.setBackground(Color.WHITE);
 		
 		MeuTextField txtNome = new MeuTextField();
+		txtNome.setEditable(false);
+		txtNome.setText(medico.getNome());
 
 		txtNome.setForeground(new Color(27, 156, 228));
 		
@@ -146,6 +162,8 @@ public class TelaCadastroMedico extends JFrame {
 		lblNome.setBackground(Color.WHITE);
 		
 		MeuTextField txtIdade = new MeuTextField();
+		txtIdade.setEditable(false);
+		txtIdade.setText(medico.getIdade().toString());
 		txtIdade.setForeground(new Color(27, 156, 228));
 		
 		JLabel lblEmail = new JLabel("Email:");
@@ -154,6 +172,7 @@ public class TelaCadastroMedico extends JFrame {
 		lblEmail.setBackground(Color.WHITE);
 		
 		MeuComboBox cboGenero = new MeuComboBox();
+		cboGenero.setEditable(false);
 		cboGenero.setModel(new DefaultComboBoxModel(new String[] {"Gênero", "Cisgênero", "Transgênero", "Não binário"}));
 		cboGenero.setForeground(new Color(27, 156, 228));
 		
@@ -189,25 +208,15 @@ public class TelaCadastroMedico extends JFrame {
 		lblNewLabel_2_1_1.setForeground(Color.WHITE);
 		lblNewLabel_2_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
-		MeuBotao btnCadastrar = new MeuBotao();
-		btnCadastrar.setText("Cadastrar");
-		btnCadastrar.setForeground(Color.WHITE);
-		btnCadastrar.setBackground(new Color(24, 62, 159));
-		
-		MeuBotao btnLimpa = new MeuBotao();
-		btnLimpa.setText("Limpar");
-		btnLimpa.setForeground(Color.WHITE);
-		btnLimpa.setBackground(new Color(24, 62, 159));
-		
 		JPanel panelTitulo = new JPanel();
 		panelTitulo.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(0, 0, 123, 122);
 		panelTitulo.add(lblNewLabel_1);
-		lblNewLabel_1.setIcon(new ImageIcon(TelaCadastroMedico.class.getResource("/img/imgCadastro 1 (2).png")));
+		lblNewLabel_1.setIcon(new ImageIcon(TelaDetalhesMedico.class.getResource("/img/imgCadastro 1 (2).png")));
 		
-		JLabel lblNewLabel = new JLabel("Cadastrar");
+		JLabel lblNewLabel = new JLabel("Detalhes");
 		lblNewLabel.setBounds(123, 0, 212, 122);
 		panelTitulo.add(lblNewLabel);
 		lblNewLabel.setForeground(new Color(27, 156, 228));
@@ -238,6 +247,8 @@ public class TelaCadastroMedico extends JFrame {
 		panelIdentificacao.setLayout(gl_panelIdentificacao);
 		
 		txtCEP = new MeuTextField();
+		txtCEP.setEditable(false);
+		txtCEP.setText(medico.getCep());
 		
 		MeuBotao btnBuscar = new MeuBotao();
 		btnBuscar.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -247,12 +258,14 @@ public class TelaCadastroMedico extends JFrame {
 		
 		MeuBotao btnVoltar = new MeuBotao();
 		btnVoltar.setToolTipText("Voltar");
-		btnVoltar.setIcon(new ImageIcon(TelaCadastroMedico.class.getResource("/img/setaAzulEsquerda.png")));
+		btnVoltar.setIcon(new ImageIcon(TelaDetalhesMedico.class.getResource("/img/setaAzulEsquerda.png")));
 		btnVoltar.setForeground(Color.WHITE);
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnVoltar.setBackground(new Color(24, 62, 159));		
 		
 		MeuTextField txtEspecialidade = new MeuTextField();
+		txtEspecialidade.setEditable(false);
+		txtEspecialidade.setText("e");
 		txtEspecialidade.setForeground(new Color(27, 156, 228));
 		GroupLayout gl_panelIdentificacao_1_1 = new GroupLayout(panelIdentificacao_1_1);
 		gl_panelIdentificacao_1_1.setHorizontalGroup(
@@ -279,9 +292,13 @@ public class TelaCadastroMedico extends JFrame {
 		RestrictedTextField validarCPF = new RestrictedTextField(txtCPF);
 		
 		MeuTextField txtCRM = new MeuTextField();
+		txtCRM.setEditable(false);
+		txtCRM.setText(medico.getCrm().toString());
 		txtCRM.setForeground(new Color(27, 156, 228));
 		
 		MeuTextField txtEmail = new MeuTextField();
+		txtEmail.setEditable(false);
+		txtEmail.setText(medico.getEmail());
 		txtEmail.setForeground(new Color(27, 156, 228));
 		
 		JLabel lblIdade = new JLabel("Idade:");
@@ -296,9 +313,11 @@ public class TelaCadastroMedico extends JFrame {
 		lblNewLabel_3_1.setForeground(Color.RED);
 		
 		JLabel lblNewLabel_3_2 = new JLabel("*");
+		lblNewLabel_3_2.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_3_2.setForeground(Color.RED);
 		
 		JLabel lblNewLabel_3_3 = new JLabel("*");
+		lblNewLabel_3_3.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_3_3.setForeground(Color.RED);
 		
 		JLabel lblNewLabel_3_4 = new JLabel("*");
@@ -355,7 +374,7 @@ public class TelaCadastroMedico extends JFrame {
 					.addComponent(lblIdade, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblNewLabel_3_2, GroupLayout.PREFERRED_SIZE, 6, GroupLayout.PREFERRED_SIZE)
-					.addGap(597))
+					.addContainerGap())
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(8)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -439,12 +458,6 @@ public class TelaCadastroMedico extends JFrame {
 					.addGap(18)
 					.addComponent(txtComplemento, GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
 					.addGap(4))
-				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-					.addGap(293)
-					.addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(btnLimpa, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(19)
 					.addComponent(lblRua)
@@ -547,10 +560,7 @@ public class TelaCadastroMedico extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(txtNumero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(txtComplemento, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnLimpa, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)))
+					.addGap(66))
 		);
 		contentPane.setLayout(gl_contentPane);
 		validarCPF.setOnlyNums(true);
@@ -564,123 +574,6 @@ public class TelaCadastroMedico extends JFrame {
 					txtCEP.requestFocus();
 				} else {
 					buscaCEP();
-				}
-			}
-		});
-		
-		btnLimpa.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				txtNome.setText("");
-				txtCPF.setText("");
-				txtEmail.setText("");
-				txtIdade.setText("");
-				txtCRM.setText("");
-				txtEspecialidade.setText("");
-				txtCEP.setText("");
-				txtCidade.setText("");
-				txtBairro.setText("");
-				txtRua.setText("");
-				txtNumero.setText("");
-				txtComplemento.setText("");
-			}
-		});
-		
-		btnCadastrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Medico m = new Medico();
-				
-				if(txtCPF.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o CPF!");
-					telaSucesso.setVisible(true);
-					txtCPF.requestFocus();
-				} else if(txtNome.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o Nome!");
-					telaSucesso.setVisible(true);
-					txtNome.requestFocus();
-				} else if(txtEmail.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o Email!");
-					telaSucesso.setVisible(true);
-					txtEmail.requestFocus();
-				} else if(txtIdade.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe a Idade!");
-					telaSucesso.setVisible(true);
-					txtIdade.requestFocus();
-				} else if(cboGenero.getSelectedItem().toString().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o Gênero!");
-					telaSucesso.setVisible(true);
-					cboGenero.requestFocus();
-				} else if(txtCRM.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o CRM!");
-					telaSucesso.setVisible(true);
-					cboGenero.requestFocus();
-				} else if(txtEspecialidade.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe a Especialidade!");
-					telaSucesso.setVisible(true);
-					cboGenero.requestFocus();
-				} else if(txtCEP.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o CEP!");
-					telaSucesso.setVisible(true);
-					txtCEP.requestFocus();
-				} else if(cboUF.getSelectedItem().toString().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o UF!");
-					telaSucesso.setVisible(true);
-					cboUF.requestFocus();
-				} else if(txtCidade.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe a Cidade!");
-					telaSucesso.setVisible(true);
-					txtCidade.requestFocus();
-				} else if(txtBairro.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o Bairro!");
-					telaSucesso.setVisible(true);
-					txtBairro.requestFocus();
-				} else if(txtRua.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe a Rua!");
-					telaSucesso.setVisible(true);
-					txtRua.requestFocus();
-				} else if(txtNumero.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o Número da residência!");
-					telaSucesso.setVisible(true);
-					txtNumero.requestFocus();
-				}
-				
-				Long cpf = Long.parseLong(txtCPF.getText());
-				String nome = txtNome.getText();
-				String email = txtEmail.getText();
-				Integer idade = Integer.valueOf(txtIdade.getText());
-				String genero = cboGenero.getSelectedItem().toString();
-				Long crm = Long.parseLong(txtCRM.getText());
-				String especialidade = txtEspecialidade.getText();
-				String cep = txtCEP.getText();
-				String uf = cboUF.getSelectedItem().toString();
-				String cidade = txtCidade.getText();
-				String bairro = txtBairro.getText();
-				String rua = txtRua.getText();
-				Integer numero = Integer.valueOf(txtNumero.getText());
-				Integer complemento = Integer.valueOf(txtComplemento.getText());
-				
-				m.setCpf(cpf);
-				m.setNome(nome);
-				m.setEmail(email);
-				m.setIdade(idade);
-				m.setGenero(genero);
-				m.setCrm(crm);
-				m.setEspecificacao(especialidade);
-				m.setCep(cep);
-				m.setUf(uf);
-				m.setCidade(cidade);
-				m.setBairro(bairro);
-				m.setRua(rua);
-				m.setNumero(numero);
-				m.setComplemento(complemento);
-				
-				DAOmedico daoMedico = DAOmedico.getInstacia();
-				Boolean inserir = daoMedico.inserir(m);
-				if (inserir) {
-					TelaMensagem telaSucesso = new TelaMensagem(nome + " cadastrado com sucesso!");
-					telaSucesso.setVisible(true);
-				} else {
-					TelaMensagem telaSucesso = new TelaMensagem("Não foi possível cadastrar o médico!");
-					telaSucesso.setVisible(true);
 				}
 			}
 		});

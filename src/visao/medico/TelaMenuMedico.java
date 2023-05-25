@@ -45,7 +45,7 @@ public class TelaMenuMedico extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaMenuMedico() {
-		setTitle("Menu médico");
+		setTitle("Menu Médico");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaMenuMedico.class.getResource("/img/favicon-32x32.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 635, 780);
@@ -187,14 +187,16 @@ public class TelaMenuMedico extends JFrame {
 		btnExcluirPaciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaExcluirMédico telaExcluirMédico = new TelaExcluirMédico();
+				telaExcluirMédico.setLocationRelativeTo(null);
 				telaExcluirMédico.setVisible(true);
 			}
 		});
 		
 		btnEditarPaciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaSelecionarMedicoEdicao telaSelecionarPacienteEdicao = new TelaSelecionarMedicoEdicao();
-				telaSelecionarPacienteEdicao.setVisible(true);
+				TelaSelecionarMedicoEdicao telaSelecionarMedicoEdicao = new TelaSelecionarMedicoEdicao();
+				telaSelecionarMedicoEdicao.setLocationRelativeTo(null);
+				telaSelecionarMedicoEdicao.setVisible(true);
 			}
 		});
 		

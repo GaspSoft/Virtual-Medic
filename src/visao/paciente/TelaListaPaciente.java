@@ -36,7 +36,7 @@ public class TelaListaPaciente extends javax.swing.JFrame {
 
     public TelaListaPaciente() {
     	setIconImage(Toolkit.getDefaultToolkit().getImage(TelaListaPaciente.class.getResource("/img/favicon-32x32.png")));
-    	setTitle("Lista de Pacientes");
+    	setTitle("Lista de Médicos");
         initComponents();
         getContentPane().setBackground(new Color(240, 240, 240));
         TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);

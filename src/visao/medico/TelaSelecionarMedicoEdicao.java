@@ -46,7 +46,7 @@ public class TelaSelecionarMedicoEdicao extends JDialog {
 	 * Create the dialog.
 	 */
 	public TelaSelecionarMedicoEdicao() {
-		setTitle("Selecionar paciente para edição");
+		setTitle("Selecionar Médico para Edição");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaSelecionarMedicoEdicao.class.getResource("/img/favicon-32x32.png")));
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		setModal(true);

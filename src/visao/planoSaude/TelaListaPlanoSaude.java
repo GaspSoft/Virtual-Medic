@@ -120,7 +120,6 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 
 	private void testData(JTable table) {
 		DefaultTableModel lista = (DefaultTableModel) table.getModel();
-		
 		atualizaJTable(lista, table);
 	}
 

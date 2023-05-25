@@ -61,7 +61,7 @@ public class DAOmedico {
 	// DELETE
 	public Boolean deletar(Medico m, Long crm) {
 		for (Medico medico : listaMedico) {
-			if (medico.getCpf().equals(crm)) {
+			if (medico.getCrm().equals(crm)) {
 				listaMedico.remove(medico);
 				return true;
 			}
