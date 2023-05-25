@@ -132,18 +132,9 @@ public class TelaCadastroPaciente extends JFrame {
 		lblComplemento.setForeground(new Color(84, 175, 230));
 		lblComplemento.setFont(new Font("Tahoma", Font.BOLD, 11));
 
-		MaskFormatter mascaraTel = null;
-		try {
+		
 
-			mascaraTel = new MaskFormatter("(##) ###-###-###");
-
-		} catch (ParseException e) {
-
-			e.printStackTrace();
-
-		}
-
-		MeuJFormatedTextField txtCPF = new MeuJFormatedTextField(mascaraTel);
+		MeuTextField txtCPF = new MeuTextField();
 
 		txtCPF.setForeground(new Color(27, 156, 228));
 
