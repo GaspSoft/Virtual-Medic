@@ -98,10 +98,10 @@ public class TelaExcluirPaciente extends JDialog {
 				
 				Boolean inserir = pacienteDAO.deletar(null, cpf);
 				if (inserir) {
-					TelaMensagem telaSucesso = new TelaMensagem("Paciente excluído com sucesso!");
+					TelaMensagem telaSucesso = new TelaMensagem("Paciente excluído com sucesso!", "");
 					telaSucesso.setVisible(true);
 				} else {
-					TelaMensagem telaSucesso = new TelaMensagem("Não foi possível excluir o paciente!");
+					TelaMensagem telaSucesso = new TelaMensagem("Não foi possível excluir o paciente!", "Erro ao excluir paciente");
 					telaSucesso.setVisible(true);
 				}
 				dispose();

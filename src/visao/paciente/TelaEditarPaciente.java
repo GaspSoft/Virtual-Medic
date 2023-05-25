@@ -547,7 +547,7 @@ public class TelaEditarPaciente extends JFrame {
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(txtCEP.getText().equals("")) {
-					TelaMensagem telaMensagem = new TelaMensagem("Informe o CEP!");
+					TelaMensagem telaMensagem = new TelaMensagem("Informe o CEP!", "Informe o CEP");
 					telaMensagem.setVisible(true);
 					txtCEP.requestFocus();
 				} else {
@@ -617,12 +617,12 @@ public class TelaEditarPaciente extends JFrame {
 		        boolean sucesso = DAOpaciente.getInstacia().alterar(paciente);
 
 		        if (sucesso) {
-		            TelaMensagem telaSucesso = new TelaMensagem("Dados atualizados com sucesso.!");
+		            TelaMensagem telaSucesso = new TelaMensagem("Dados atualizados com sucesso.!", "Paciente");
 					telaSucesso.setVisible(true);
 		            //limparFormulario();
 		        } else {
 		            // Realize as ações de erro, como exibir uma mensagem de erro
-		            TelaMensagem telaSucesso = new TelaMensagem("Falha ao atualizar os dados do paciente!");
+		            TelaMensagem telaSucesso = new TelaMensagem("Falha ao atualizar os dados do paciente!", "Erro ao atualizar o paciente");
 					telaSucesso.setVisible(true);
 		        }
 			}
