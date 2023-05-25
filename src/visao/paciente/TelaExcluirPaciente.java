@@ -15,6 +15,8 @@ import layoutPersonalizado.componentes.MeuBotao;
 import java.awt.Color;
 import java.awt.Font;
 import layoutPersonalizado.componentes.MeuTextField;
+import visao.TelaMensagem;
+
 import javax.swing.JLabel;
 import java.awt.Dialog.ModalExclusionType;
 import javax.swing.ImageIcon;
@@ -93,7 +95,15 @@ public class TelaExcluirPaciente extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				DAOpaciente pacienteDAO = DAOpaciente.getInstacia();
 				Long cpf = Long.parseLong(txtCPF.getText());
-				pacienteDAO.deletar(null, cpf);
+				
+				Boolean inserir = pacienteDAO.deletar(null, cpf);
+				if (inserir) {
+					TelaMensagem telaSucesso = new TelaMensagem("Paciente excluído com sucesso!");
+					telaSucesso.setVisible(true);
+				} else {
+					TelaMensagem telaSucesso = new TelaMensagem("Não foi possível excluir o paciente!");
+					telaSucesso.setVisible(true);
+				}
 				dispose();
 			}
 		});

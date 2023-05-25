@@ -641,6 +641,8 @@ public class TelaCadastroPaciente extends JFrame {
 
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				TelaMenuPaciente telaMenuPaciente = new TelaMenuPaciente();
+				telaMenuPaciente.setVisible(true);
 				dispose();
 			}
 		});
