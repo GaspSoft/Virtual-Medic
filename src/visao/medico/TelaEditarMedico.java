@@ -53,6 +53,12 @@ public class TelaEditarMedico extends JFrame {
 	private MeuTextField txtCidade;
 	private MeuTextField txtRua;
 	private MeuComboBox cboUF;
+	private Color corPadrao = new Color(24, 62, 159);
+	private Color corPadraoBackground = new Color(255,255,255);
+	private Color corSucesso = new Color(0,139,139);
+	private Color corSucessoBackground = new Color(64,224,208);
+	private Color corErro = new Color(178,34,34);
+	private Color corErroBackground = new Color(250,128,114);
 	//private JComboBox cboUF;
 
 	/**
@@ -494,7 +500,8 @@ public class TelaEditarMedico extends JFrame {
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(txtCEP.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Informe o CEP");
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o CEP!", "Informe o CEP", corPadrao, corPadraoBackground);
+					telaSucesso.setVisible(true);
 					txtCEP.requestFocus();
 				} else {
 					buscaCEP();
@@ -524,55 +531,55 @@ public class TelaEditarMedico extends JFrame {
 				Medico m = new Medico();
 				
 				if(txtCPF.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o CPF!", "Informe o CPF", new Color(24, 62, 159));
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o CPF!", "Informe o CPF", corPadrao, corPadraoBackground);
 					telaSucesso.setVisible(true);
 					txtCPF.requestFocus();
 				} else if(txtNome.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o Nome!", "Informe o Nome", new Color(24, 62, 159));
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Nome!", "Informe o Nome", corPadrao, corPadraoBackground);
 					telaSucesso.setVisible(true);
 					txtNome.requestFocus();
 				} else if(txtEmail.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o Email!", "Informe o Email", new Color(24, 62, 159));
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Email!", "Informe o Email", corPadrao, corPadraoBackground);
 					telaSucesso.setVisible(true);
 					txtEmail.requestFocus();
 				} else if(txtIdade.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe a Idade!", "Informe a Idade", new Color(24, 62, 159));
+					TelaMensagem telaSucesso = new TelaMensagem("Informe a Idade!", "Informe a Idade", corPadrao, corPadraoBackground);
 					telaSucesso.setVisible(true);
 					txtIdade.requestFocus();
 				} else if(cboGenero.getSelectedItem().toString().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o Gênero!", "Informe o Gênero", new Color(24, 62, 159));
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Gênero!", "Informe o Gênero", corPadrao, corPadraoBackground);
 					telaSucesso.setVisible(true);
 					cboGenero.requestFocus();
 				} else if(txtCRM.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o CRM!", "Informe o CRM", new Color(24, 62, 159));
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o CRM!", "Informe o CRM", corPadrao, corPadraoBackground);
 					telaSucesso.setVisible(true);
 					cboGenero.requestFocus();
 				} else if(txtEspecialidade.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe a Especialidade!", "Informe a Especialidade", new Color(24, 62, 159));
+					TelaMensagem telaSucesso = new TelaMensagem("Informe a Especialidade!", "Informe a Especialidade", corPadrao, corPadraoBackground);
 					telaSucesso.setVisible(true);
 					cboGenero.requestFocus();
 				} else if(txtCEP.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o CEP!", "Informe o CEP", new Color(24, 62, 159));
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o CEP!", "Informe o CEP", corPadrao, corPadraoBackground);
 					telaSucesso.setVisible(true);
 					txtCEP.requestFocus();
 				} else if(cboUF.getSelectedItem().toString().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o UF!", "Informe o UF", new Color(24, 62, 159));
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o UF!", "Informe o UF", corPadrao, corPadraoBackground);
 					telaSucesso.setVisible(true);
 					cboUF.requestFocus();
 				} else if(txtCidade.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe a Cidade!", "Informe a Cidade", new Color(24, 62, 159));
+					TelaMensagem telaSucesso = new TelaMensagem("Informe a Cidade!", "Informe a Cidade", corPadrao, corPadraoBackground);
 					telaSucesso.setVisible(true);
 					txtCidade.requestFocus();
 				} else if(txtBairro.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o Bairro!", "Informe o Bairro", new Color(24, 62, 159));
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Bairro!", "Informe o Bairro", corPadrao, corPadraoBackground);
 					telaSucesso.setVisible(true);
 					txtBairro.requestFocus();
 				} else if(txtRua.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe a Rua!", "Informe a Rua", new Color(24, 62, 159));
+					TelaMensagem telaSucesso = new TelaMensagem("Informe a Rua!", "Informe a Rua", corPadrao, corPadraoBackground);
 					telaSucesso.setVisible(true);
 					txtRua.requestFocus();
 				} else if(txtNumero.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o Número da residência!", "Informe o Número da residência", new Color(24, 62, 159));
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Número da residência!", "Informe o Número da residência", corPadrao, corPadraoBackground);
 					telaSucesso.setVisible(true);
 					txtNumero.requestFocus();
 				}
@@ -610,10 +617,10 @@ public class TelaEditarMedico extends JFrame {
 				DAOmedico daoMedico = DAOmedico.getInstacia();
 				Boolean inserir = daoMedico.inserir(m);
 				if (inserir) {
-					TelaMensagem telaSucesso = new TelaMensagem(nome + ", editado com sucesso!", "Médico atualizado com sucesso", new Color(0,139,139));
+					TelaMensagem telaSucesso = new TelaMensagem(nome + ", editado com sucesso!", "Médico atualizado com sucesso", corSucesso, corSucessoBackground);
 					telaSucesso.setVisible(true);
 				} else {
-					TelaMensagem telaSucesso = new TelaMensagem("Não foi possível cadastrar o médico!", "Erro ao modificar médico", new Color(139,0,0));
+					TelaMensagem telaSucesso = new TelaMensagem("Não foi possível cadastrar o médico!", "Erro ao modificar médico", corErro, corErroBackground);
 					telaSucesso.setVisible(true);
 				}
 			}

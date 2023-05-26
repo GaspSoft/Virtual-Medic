@@ -40,6 +40,9 @@ import java.awt.event.ActionEvent;
 
 public class TelaListaMedico extends javax.swing.JFrame {
 
+	private Color corPadrao = new Color(24, 62, 159);
+	private Color corPadraoBackground = new Color(255,255,255);
+	
 	public TelaListaMedico() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaListaMedico.class.getResource("/img/favicon-32x32.png")));
 		setTitle("Lista de Médicos");
@@ -60,7 +63,7 @@ public class TelaListaMedico extends javax.swing.JFrame {
 
 					dispose();
 				} else {
-					TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!", "CRM não encontrado", new Color(24, 62, 159));
+					TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!", "CRM não encontrado", corPadrao, corPadraoBackground);
 					telaMensagem.setLocationRelativeTo(null);
 					telaMensagem.setVisible(true);
 				}
@@ -101,7 +104,7 @@ public class TelaListaMedico extends javax.swing.JFrame {
 
 					dispose();
 				} else {
-					TelaMensagem telaMensagem = new TelaMensagem("CRM não encontrado!", "CRM não encontrado", new Color(24, 62, 159));
+					TelaMensagem telaMensagem = new TelaMensagem("CRM não encontrado!", "CRM não encontrado", corPadrao, corPadraoBackground);
 					telaMensagem.setLocationRelativeTo(null);
 					telaMensagem.setVisible(true);
 				}
