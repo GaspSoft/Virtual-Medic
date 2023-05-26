@@ -54,6 +54,8 @@ public class TelaDetalhesMedico extends JFrame {
 	private MeuTextField txtCidade;
 	private MeuTextField txtRua;
 	private MeuComboBox cboUF;
+	private Color corPadrao = new Color(24, 62, 159);
+	private Color corPadraoBackground = new Color(255,255,255);
 	//private JComboBox cboUF;
 
 	/**
@@ -569,7 +571,7 @@ public class TelaDetalhesMedico extends JFrame {
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(txtCEP.getText().equals("")) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o CEP!", "");
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o CEP!", "Informe o CEP", corPadrao, corPadraoBackground);
 					telaSucesso.setVisible(true);
 					txtCEP.requestFocus();
 				} else {

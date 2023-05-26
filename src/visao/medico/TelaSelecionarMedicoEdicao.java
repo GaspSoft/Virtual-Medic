@@ -28,7 +28,8 @@ import java.awt.event.ActionEvent;
 public class TelaSelecionarMedicoEdicao extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-
+	private Color corPadrao = new Color(24, 62, 159);
+	private Color corPadraoBackground = new Color(255,255,255);
 	/**
 	 * Launch the application.
 	 */
@@ -104,7 +105,7 @@ public class TelaSelecionarMedicoEdicao extends JDialog {
 					
 					dispose();
 		        } else {
-		            TelaMensagem telaMensagem = new TelaMensagem("CRM não encontrado!", "CRM não encontrado");
+		            TelaMensagem telaMensagem = new TelaMensagem("CRM não encontrado!", "CRM não encontrado", corPadrao, corPadraoBackground);
 		            telaMensagem.setLocationRelativeTo(null);
 		            telaMensagem.setVisible(true);
 		        }

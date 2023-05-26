@@ -26,6 +26,10 @@ import java.awt.event.ActionEvent;
 public class TelaExcluirPaciente extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	private Color corSucesso = new Color(0,139,139);
+	private Color corSucessoBackground = new Color(64,224,208);
+	private Color corErro = new Color(178,34,34);
+	private Color corErroBackground = new Color(250,128,114);
 
 	/**
 	 * Launch the application.
@@ -98,10 +102,10 @@ public class TelaExcluirPaciente extends JDialog {
 				
 				Boolean excluir = pacienteDAO.deletar(null, cpf);
 				if (excluir) {
-					TelaMensagem telaSucesso = new TelaMensagem("Paciente excluído com sucesso!", "Paciente excluído");
+					TelaMensagem telaSucesso = new TelaMensagem("Paciente excluído com sucesso!", "Paciente excluído", corSucesso, corSucessoBackground);
 					telaSucesso.setVisible(true);
 				} else {
-					TelaMensagem telaSucesso = new TelaMensagem("Não foi possível excluir o paciente!", "Erro ao excluir paciente");
+					TelaMensagem telaSucesso = new TelaMensagem("Não foi possível excluir o paciente!", "Erro ao excluir paciente", corErro, corErroBackground);
 					telaSucesso.setVisible(true);
 				}
 				dispose();
