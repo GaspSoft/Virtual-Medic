@@ -34,6 +34,9 @@ import java.awt.event.ActionEvent;
 
 public class TelaListaPaciente extends javax.swing.JFrame {
 
+	private Color corPadrao = new Color(24, 62, 159);
+	private Color corPadraoBackground = new Color(255,255,255);
+	
     public TelaListaPaciente() {
     	setIconImage(Toolkit.getDefaultToolkit().getImage(TelaListaPaciente.class.getResource("/img/favicon-32x32.png")));
     	setTitle("Lista de Médicos");
@@ -54,7 +57,7 @@ public class TelaListaPaciente extends javax.swing.JFrame {
 					
 					dispose();
 		        } else {
-		            TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!", "CPF não encontrado", new Color(24, 62, 159));
+		            TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!", "CPF não encontrado", corPadrao, corPadraoBackground);
 		            telaMensagem.setLocationRelativeTo(null);
 		            telaMensagem.setVisible(true);
 		        }
@@ -89,7 +92,7 @@ public class TelaListaPaciente extends javax.swing.JFrame {
 					
 					dispose();
 		        } else {
-		            TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!", "CPF não encontrado", new Color(24, 62, 159));
+		            TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!", "CPF não encontrado", corPadrao, corPadraoBackground);
 		        }
             }
         };

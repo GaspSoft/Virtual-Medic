@@ -27,6 +27,8 @@ import java.awt.event.ActionEvent;
 public class TelaSelecionarPacienteEdicao extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	private Color corPadrao = new Color(24, 62, 159);
+	private Color corPadraoBackground = new Color(255,255,255);
 
 	/**
 	 * Launch the application.
@@ -102,7 +104,7 @@ public class TelaSelecionarPacienteEdicao extends JDialog {
 					
 					dispose();
 		        } else {
-		            TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!", "CPF não encontrado", new Color(24, 62, 159));
+		            TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!", "CPF não encontrado", corPadrao, corPadraoBackground);
 		            telaMensagem.setLocationRelativeTo(null);
 		            telaMensagem.setVisible(true);
 		        }
