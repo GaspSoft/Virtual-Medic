@@ -30,7 +30,7 @@ public class TelaMensagem extends JDialog {
 	 * Create the dialog.
 	 * @param msg 
 	 */
-	public TelaMensagem(String msg, String titulo) {
+	public TelaMensagem(String msg, String titulo, Color corBtn) {
 		setTitle(titulo);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaMensagem.class.getResource("/img/favicon-32x32.png")));
 		setBounds(100, 100, 450, 221);
@@ -43,7 +43,7 @@ public class TelaMensagem extends JDialog {
 		MeuBotao btnContinuar = new MeuBotao();
 		btnContinuar.setText("Continuar");
 		btnContinuar.setForeground(Color.WHITE);
-		btnContinuar.setBackground(new Color(24, 62, 159));
+		btnContinuar.setBackground(corBtn);
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
