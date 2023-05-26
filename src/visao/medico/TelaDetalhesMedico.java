@@ -569,7 +569,7 @@ public class TelaDetalhesMedico extends JFrame {
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(txtCEP.getText().equals("")) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o CEP!");
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o CEP!", "");
 					telaSucesso.setVisible(true);
 					txtCEP.requestFocus();
 				} else {

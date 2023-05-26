@@ -102,7 +102,7 @@ public class TelaSelecionarPacienteEdicao extends JDialog {
 					
 					dispose();
 		        } else {
-		            TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!");
+		            TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!", "CPF não encontrado");
 		            telaMensagem.setLocationRelativeTo(null);
 		            telaMensagem.setVisible(true);
 		        }

@@ -60,7 +60,7 @@ public class TelaListaMedico extends javax.swing.JFrame {
 
 					dispose();
 				} else {
-					TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!");
+					TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!", "CRM não encontrado");
 					telaMensagem.setLocationRelativeTo(null);
 					telaMensagem.setVisible(true);
 				}
@@ -101,7 +101,7 @@ public class TelaListaMedico extends javax.swing.JFrame {
 
 					dispose();
 				} else {
-					TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!");
+					TelaMensagem telaMensagem = new TelaMensagem("CRM não encontrado!", "CRM não encontrado");
 					telaMensagem.setLocationRelativeTo(null);
 					telaMensagem.setVisible(true);
 				}

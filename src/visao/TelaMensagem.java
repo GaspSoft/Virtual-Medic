@@ -30,8 +30,8 @@ public class TelaMensagem extends JDialog {
 	 * Create the dialog.
 	 * @param msg 
 	 */
-	public TelaMensagem(String msg) {
-		setTitle("Tela de Sucesso");
+	public TelaMensagem(String msg, String titulo) {
+		setTitle(titulo);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaMensagem.class.getResource("/img/favicon-32x32.png")));
 		setBounds(100, 100, 450, 221);
 		

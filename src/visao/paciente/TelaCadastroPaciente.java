@@ -493,7 +493,7 @@ public class TelaCadastroPaciente extends JFrame {
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (txtCEP.getText().equals("")) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o CEP!");
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o CEP!", "Informe o CEP");
 					telaSucesso.setVisible(true);
 					txtCEP.requestFocus();
 				} else {
@@ -524,69 +524,69 @@ public class TelaCadastroPaciente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Paciente p = new Paciente();
 
-				if (txtCPF.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o CPF!");
+				if(txtCPF.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o CPF!", "Informe o CPF");
 					telaSucesso.setVisible(true);
 					txtCPF.requestFocus();
-				} else if (txtNome.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o Nome!");
+				} else if(txtNome.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Nome!", "Informe o Nome");
 					telaSucesso.setVisible(true);
 					txtNome.requestFocus();
-				} else if (txtEmail.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o Email!");
+				} else if(txtEmail.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Email!", "Informe o Email");
 					telaSucesso.setVisible(true);
 					txtEmail.requestFocus();
-				} else if (txtIdade.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe a Idade!");
+				} else if(txtIdade.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe a Idade!", "Informe a Idade");
 					telaSucesso.setVisible(true);
 					txtIdade.requestFocus();
-				} else if (cboGenero.getSelectedItem().toString().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o Gênero!");
+				} else if(cboGenero.getSelectedItem().toString().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Gênero!", "Informe o Gênero");
 					telaSucesso.setVisible(true);
 					cboGenero.requestFocus();
 				} else if (cboMedico.getSelectedItem().toString().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o Médico!");
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Médico!", "Informe o Médico");
 					telaSucesso.setVisible(true);
 					cboMedico.requestFocus();
 				} else if (txtDiagnostico.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o Diagnóstico!");
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Diagnóstico!", "Informe o Diagnóstico");
 					telaSucesso.setVisible(true);
 					txtDiagnostico.requestFocus();
 				} else if (cboPlanoSaude.getSelectedItem().toString().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o Médico!");
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Médico!", "Informe o Médico");
 					telaSucesso.setVisible(true);
 					cboPlanoSaude.requestFocus();
 				} else if (txtNumeroPlano.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o Número do Plano!");
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Número do Plano!", "Informe o Número do Plano");
 					telaSucesso.setVisible(true);
 					txtNumeroPlano.requestFocus();
 				} else if (txtValidade.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe a Validade!");
+					TelaMensagem telaSucesso = new TelaMensagem("Informe a Validade!", "Informe a Validade");
 					telaSucesso.setVisible(true);
 					txtValidade.requestFocus();
 					String validade = txtValidade.getText();
-				} else if (txtCEP.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o CEP!");
+				} else if(txtCEP.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o CEP!", "Informe o CEP");
 					telaSucesso.setVisible(true);
 					txtCEP.requestFocus();
-				} else if (cboUF.getSelectedItem().toString().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o UF!");
+				} else if(cboUF.getSelectedItem().toString().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o UF!", "Informe o UF");
 					telaSucesso.setVisible(true);
 					cboUF.requestFocus();
-				} else if (txtCidade.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe a Cidade!");
+				} else if(txtCidade.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe a Cidade!", "Informe a Cidade");
 					telaSucesso.setVisible(true);
 					txtCidade.requestFocus();
-				} else if (txtBairro.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o Bairro!");
+				} else if(txtBairro.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Bairro!", "Informe o Bairro");
 					telaSucesso.setVisible(true);
 					txtBairro.requestFocus();
-				} else if (txtRua.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe a Rua!");
+				} else if(txtRua.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe a Rua!", "Informe a Rua");
 					telaSucesso.setVisible(true);
 					txtRua.requestFocus();
-				} else if (txtNumero.getText().isEmpty()) {
-					TelaMensagem telaSucesso = new TelaMensagem("Informe o Número da residência!");
+				} else if(txtNumero.getText().isEmpty()) {
+					TelaMensagem telaSucesso = new TelaMensagem("Informe o Número da residência!", "Informe o Número da residência");
 					telaSucesso.setVisible(true);
 					txtNumero.requestFocus();
 				}
@@ -630,10 +630,10 @@ public class TelaCadastroPaciente extends JFrame {
 				DAOpaciente daoPaciente = DAOpaciente.getInstacia();
 				Boolean inserir = daoPaciente.inserir(p);
 				if (inserir) {
-					TelaMensagem telaSucesso = new TelaMensagem(nome + ", cadastrado com sucesso!");
+					TelaMensagem telaSucesso = new TelaMensagem(nome + ", cadastrado com sucesso!", "Cadastro paciente concluído");
 					telaSucesso.setVisible(true);
 				} else {
-					TelaMensagem telaSucesso = new TelaMensagem("Não foi possível cadastrar o paciente!");
+					TelaMensagem telaSucesso = new TelaMensagem("Não foi possível cadastrar o paciente!", "Erro no cadastro do paciente");
 					telaSucesso.setVisible(true);
 				}
 			}
