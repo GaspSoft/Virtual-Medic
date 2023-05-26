@@ -104,7 +104,7 @@ public class TelaSelecionarMedicoEdicao extends JDialog {
 					
 					dispose();
 		        } else {
-		            TelaMensagem telaMensagem = new TelaMensagem("CRM não encontrado!", "CRM não encontrado");
+		            TelaMensagem telaMensagem = new TelaMensagem("CRM não encontrado!", "CRM não encontrado", new Color(24, 62, 159));
 		            telaMensagem.setLocationRelativeTo(null);
 		            telaMensagem.setVisible(true);
 		        }
