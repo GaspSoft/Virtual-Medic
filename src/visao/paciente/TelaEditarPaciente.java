@@ -617,7 +617,7 @@ public class TelaEditarPaciente extends JFrame {
 		        boolean sucesso = DAOpaciente.getInstacia().alterar(paciente);
 
 		        if (sucesso) {
-		            TelaMensagem telaSucesso = new TelaMensagem("Dados atualizados com sucesso.!", "Paciente");
+		            TelaMensagem telaSucesso = new TelaMensagem("Dados atualizados com sucesso.!", "Paciente atualizado com sucesso");
 					telaSucesso.setVisible(true);
 		            //limparFormulario();
 		        } else {

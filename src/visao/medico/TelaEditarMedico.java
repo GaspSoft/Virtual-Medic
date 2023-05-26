@@ -610,7 +610,7 @@ public class TelaEditarMedico extends JFrame {
 				DAOmedico daoMedico = DAOmedico.getInstacia();
 				Boolean inserir = daoMedico.inserir(m);
 				if (inserir) {
-					TelaMensagem telaSucesso = new TelaMensagem(nome + ", editado com sucesso!", "Edição concluída");
+					TelaMensagem telaSucesso = new TelaMensagem(nome + ", editado com sucesso!", "Médico atualizado com sucesso");
 					telaSucesso.setVisible(true);
 				} else {
 					TelaMensagem telaSucesso = new TelaMensagem("Não foi possível cadastrar o médico!", "Erro ao modificar médico");
