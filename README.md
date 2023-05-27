@@ -1,5 +1,5 @@
 <p align="center">
-  <img ![Estudo De Caso - Java] src="https://github.com/GaspSoft/Virtual-Medic/assets/86849487/4efa5659-61fe-485f-8085-41d8656954c4">
+  <img ![Estudo De Caso - Java] src="https://github.com/GaspSoft/Virtual-Medic/assets/86849487/56dd41c5-489e-4fe4-8273-27fda192fb13">
 </p>
 
 <h1 align="center"> Estudo de Caso </h1>
@@ -25,7 +25,17 @@
 `Tecnologia 5` : Window Builder</br>
 
 # 📝 Proposta Geral
-<p align="justify">O sistema tem como objetivo a venda de automóveis, busca auxiliar e promover de forma mais simples os usuários. Para isso o mesmo contará com diversas funcionalidades, como o usuário realizar o seu cadastro e caso queira vender seu automóvel pode cadastrar o mesmo com as informações necessárias, possibilitando ainda alterar algo se necessário. Já o comprador poderá buscar os carros, motos, caminhões ou ônibus, por fim o mesmo poderá comprar o carro do vendedor. Assim se finaliza a proposta geral, que tem como objetivo principal garantir ao usuário uma visão ampla sobre os automóveis e assim realizar a compra do mesmo</p>
+<p align="justify">Nosso objetivo é desenvolver um sistema desktop abrangente de prontuário eletrônico que permita a gestão eficiente de informações médicas, incluindo os dados de médicos, pacientes e planos de saúde. O sistema será projetado para atender às necessidades de clínicas e consultórios médicos, simplificando o gerenciamento de registros e melhorando a qualidade do atendimento ao paciente.</p>
+
+1. **Gerenciamento de médicos:**
+    - Cadastro de médicos com informações pessoais, especialização e dados de contato.
+    - Capacidade de atualizar, visualizar e excluir registros de médicos.
+2. **Gerenciamento de pacientes:**
+    - Cadastro de pacientes com informações pessoais, histórico médico, alergias e dados de contato.
+    - Possibilidade de atualizar, visualizar e excluir registros de pacientes.
+3. **Gerenciamento de planos de saúde:**
+    - Cadastro de planos de saúde com informações como nome, cobertura, detalhes de contato e requisitos específicos.
+    - Capacidade de atualizar, visualizar e excluir registros de planos de saúde.
 
 # 📃 Descrição do Sistema
 <p align="justify">Tendo em vista que a forma utilizada atualmente é arcaica, nosso sistema visa facilitar a vida dos usuário nas compras e troca de carros. Tem como objetivo tornar mais prática a venda de automóveis, contando com as opções de criar um usuário realizando o seu cadastro Caso o usuário seja um vendedor, poderá cadastrar um carro, moto, ônibus ou caminhão. Se necessário o vendedor pode descadastrar um veículo também. Mas se o usuário for um comprador, ele poderá comprar os veículos anunciados pelos vendedores, e também poderá anunciar seus veículos.</p>
@@ -61,3 +71,13 @@
 # ⌨️ Autores
 | [<img src="https://avatars.githubusercontent.com/u/86849487?v=4" width=115><br><sub>Pedro Henrique Godri</sub>](https://github.com/pedrogodri) | [<img src="https://avatars.githubusercontent.com/u/111302374?v=4" width=115><br><sub>Vitor Hugo Schiphorst</sub>](https://github.com/VitorSchiphorst) |  [<img src="https://avatars.githubusercontent.com/u/114950761?v=4" width=115><br><sub>Bárbara do Nascimento</sub>](https://github.com/BahNasc) |
 | :---: | :---: | :---:
+
+
+
+
+
+
+
+
+
+
