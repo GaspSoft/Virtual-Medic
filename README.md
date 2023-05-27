@@ -51,21 +51,9 @@ O sistema permite cadastrar os planos de saúde com os quais a clínica ou consu
 <p align="center">
 
 ![image](https://github.com/pedrogodri/estudo-de-caso/assets/86849487/c3508f85-533a-4a58-8454-51deb4e2b297)
+  </p>
   
-# 📈 Diagrama de Casos de Uso
-<p align="center">
-  
-![DiagramaCasosUso drawio](https://github.com/GaspSoft/Virtual-Medic/assets/86849487/7fda6001-e3fe-4dad-801c-410a589cbb1f)
-
-  
-# 📈 Diagrama de Fluxos
-<p align="center">
-
-![DiagramaFluxo drawio](https://github.com/GaspSoft/Virtual-Medic/assets/86849487/1585ea69-7e5d-4f5f-965e-68acb924e9c5)
-
-
-</p>
-<ul>
+  <ul>
   <li><b>Veiculo</b>: Possui uma associação a classe VeiculoDAO. Tem atributos privados, sendo eles: marca, modelo, tipo, cor, placa, tipoAutomovel e tipoCombustivel que são do tipo String, possui também anoFabricacao, qtdPeneu, totalDonos e informacaoAutomovel que são do tipo Integer e informacaoAutomovel que é um Float. Possui três métodos publicos sem retorno, dentre eles veiculoEspecificação com características específicas e veiculoUtilizado e estadoVeiculo;
   <li><b>VeiculoDAO</b>: Possui uma associação a classe Veiculo. Tem um atributo privado que é um ArrayList de veículos. Tem cinco métodos públicos e sem retorno são eles: listar, cadastrar, alterar, excluir e comprar;
   <li><b>Carro</b>: Herda da classe Veiculo. Possui três atributos privados do tipo Integer, dentre eles: numeroPortas, numeroBancos e cavalosMotor. Ainda possui dois atributos privados booleanos sendo eles airBag e arCondicionado;
@@ -74,6 +62,22 @@ O sistema permite cadastrar os planos de saúde com os quais a clínica ou consu
   <li><b>Onibus</b>: Herda da classe Pesados e possui um atributo privado do tipo Integer o bancosPassageiros;
   <li><b>Caminhão</b>: Herda da classe Pesados, possui dois atributos privados uma String o tipoCaminhao e um Integer o pesoCarga;
 </ul>
+  
+  
+# 📈 Diagrama de Casos de Uso
+<p align="center">
+  
+![DiagramaCasosUso drawio](https://github.com/GaspSoft/Virtual-Medic/assets/86849487/7fda6001-e3fe-4dad-801c-410a589cbb1f)
+</p>
+  
+# 📈 Diagrama de Fluxos
+<p align="center">
+
+![DiagramaFluxo drawio](https://github.com/GaspSoft/Virtual-Medic/assets/86849487/1585ea69-7e5d-4f5f-965e-68acb924e9c5)
+
+
+</p>
+
 
 # ⌨️ Autores
 | [<img src="https://avatars.githubusercontent.com/u/86849487?v=4" width=115><br><sub>Pedro Henrique Godri</sub>](https://github.com/pedrogodri) | [<img src="https://avatars.githubusercontent.com/u/111302374?v=4" width=115><br><sub>Vitor Hugo Schiphorst</sub>](https://github.com/VitorSchiphorst) |  [<img src="https://avatars.githubusercontent.com/u/114950761?v=4" width=115><br><sub>Bárbara do Nascimento</sub>](https://github.com/BahNasc) |
