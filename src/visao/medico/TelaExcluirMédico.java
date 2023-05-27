@@ -100,9 +100,11 @@ public class TelaExcluirMédico extends JDialog {
 				Boolean excluir = medicoDAO.deletar(null, crm);
 				if (excluir) {
 					TelaMensagem telaSucesso = new TelaMensagem("Médico excluído com sucesso!", "Médico exluído", corSucesso, corSucessoBackground);
+					telaSucesso.setLocationRelativeTo(null);
 					telaSucesso.setVisible(true);
 				} else {
 					TelaMensagem telaSucesso = new TelaMensagem("Não foi possível excluir o médico!", "Erro ao excluir paciente", corErro, corErroBackground);
+					telaSucesso.setLocationRelativeTo(null);
 					telaSucesso.setVisible(true);
 				}
 				dispose();
