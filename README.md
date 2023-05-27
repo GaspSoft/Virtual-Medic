@@ -25,7 +25,7 @@
 `Tecnologia 5` : Window Builder</br>
 
 # 📝 Proposta Geral
-<p align="justify">Nosso objetivo é desenvolver um sistema desktop abrangente de prontuário eletrônico que permita a gestão eficiente de informações médicas, incluindo os dados de médicos, pacientes e planos de saúde. O sistema será projetado para atender às necessidades de clínicas e consultórios médicos, simplificando o gerenciamento de registros e melhorando a qualidade do atendimento ao paciente.</p>
+<p align="justify">Nosso objetivo é desenvolver um sistema desktop abrangente de prontuário eletrônico que permita a gestão eficiente de informações médicas, incluindo os dados de médicos, pacientes e planos de saúde. O sistema será projetado para atender às necessidades de clínicas e consultórios médicos, simplificando o gerenciamento de registros e melhorando a qualidade do atendimento ao paciente:</p>
 
 1. **Gerenciamento de médicos:**
     - Cadastro de médicos com informações pessoais, especialização e dados de contato.
@@ -38,7 +38,14 @@
     - Capacidade de atualizar, visualizar e excluir registros de planos de saúde.
 
 # 📃 Descrição do Sistema
-<p align="justify">Tendo em vista que a forma utilizada atualmente é arcaica, nosso sistema visa facilitar a vida dos usuário nas compras e troca de carros. Tem como objetivo tornar mais prática a venda de automóveis, contando com as opções de criar um usuário realizando o seu cadastro Caso o usuário seja um vendedor, poderá cadastrar um carro, moto, ônibus ou caminhão. Se necessário o vendedor pode descadastrar um veículo também. Mas se o usuário for um comprador, ele poderá comprar os veículos anunciados pelos vendedores, e também poderá anunciar seus veículos.</p>
+<p align="justify">O sistema de prontuário eletrônico desktop é uma aplicação desenvolvida para simplificar e otimizar o gerenciamento de informações médicas em clínicas e consultórios. O sistema possui um conjunto de funcionalidades que permitem a realização das operações de criação, leitura, atualização e exclusão (CRUD) de médicos, pacientes e planos de saúde. A seguir, descrevemos cada uma dessas entidades e as principais características do sistema:</p>
+
+1. **Médicos:**
+O sistema permite o cadastro de médicos, que inclui informações pessoais como nome, especialização, endereço, número de telefone e e-mail. Os registros dos médicos podem ser atualizados, visualizados e excluídos conforme necessário. A funcionalidade de detalhar o médico permite encontrar médicos com base em critérios como nome, especialização ou número de identificação.
+2. **Pacientes:**
+O sistema oferece a possibilidade de cadastrar pacientes, armazenando informações como nome, data de nascimento, gênero, endereço, número de telefone e histórico médico. É possível incluir detalhes sobre alergias, medicações atuais e quaisquer outras informações relevantes para o atendimento médico adequado. Os registros dos pacientes podem ser atualizados, visualizados e excluídos quando necessário. A funcionalidade de detalhar o paciente permite encontrar pacientes com base em critérios como nome, número de identificação ou condições médicas específicas.
+3. **Planos de Saúde:**
+O sistema permite cadastrar os planos de saúde com os quais a clínica ou consultório trabalha. É possível registrar informações como nome do plano, detalhes de cobertura, requisitos específicos e informações de contato. Os registros dos planos de saúde podem ser atualizados, visualizados e excluídos conforme necessário. A funcionalidade de detalhar o plano de saúde permite encontrar planos de saúde com base em critérios como nome ou tipo de cobertura.
 
 # 📈 Diagrama de Classes
 <p align="center">
