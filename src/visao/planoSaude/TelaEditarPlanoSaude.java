@@ -41,8 +41,15 @@ import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
 public class TelaEditarPlanoSaude extends JFrame {
+	
 	private JPanel contentPane;
 	private ArrayList<PlanoSaude> listaPlanoSaude = new ArrayList<PlanoSaude>();
+	private Color corPadrao = new Color(24, 62, 159);
+	private Color corPadraoBackground = new Color(255,255,255);
+	private Color corSucesso = new Color(0,139,139);
+	private Color corSucessoBackground = new Color(64,224,208);
+	private Color corErro = new Color(178,34,34);
+	private Color corErroBackground = new Color(250,128,114);
 	
 	/**
 	 * Launch the application.
@@ -210,12 +217,12 @@ public class TelaEditarPlanoSaude extends JFrame {
 		        boolean sucesso = DAOplanoSaude.getInstacia().alterar(planoSaude);
 
 		        if (sucesso) {
-		            TelaMensagem telaSucesso = new TelaMensagem("Dados atualizados com sucesso.!");
+		            TelaMensagem telaSucesso = new TelaMensagem("Dados atualizados com sucesso!", "Dados Atualizados", corSucesso, corSucessoBackground);
 					telaSucesso.setVisible(true);
 		            //limparFormulario();
 		        } else {
 		            // Realize as ações de erro, como exibir uma mensagem de erro
-		            TelaMensagem telaSucesso = new TelaMensagem("Falha ao atualizar os dados do paciente!");
+		            TelaMensagem telaSucesso = new TelaMensagem("Falha ao atualizar os dados do paciente!", "Falha ao Atualizar", corErro, corErroBackground);
 					telaSucesso.setVisible(true);
 		        }
 			}

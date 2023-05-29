@@ -40,7 +40,12 @@ import java.awt.event.ActionEvent;
 
 public class TelaListaPlanoSaude extends javax.swing.JFrame {
 	
-	private boolean deletar;
+	private Color corPadrao = new Color(24, 62, 159);
+	private Color corPadraoBackground = new Color(255,255,255);
+	private Color corSucesso = new Color(0,139,139);
+	private Color corSucessoBackground = new Color(64,224,208);
+	private Color corErro = new Color(178,34,34);
+	private Color corErroBackground = new Color(250,128,114);
 	
 	public TelaListaPlanoSaude() {
 		setIconImage(
@@ -63,7 +68,7 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 					
 					dispose();
 		        } else {
-		            TelaMensagem telaMensagem = new TelaMensagem("ID não encontrado!");
+		            TelaMensagem telaMensagem = new TelaMensagem("ID não encontrado!", "ID não encontrado", corPadrao, corPadraoBackground);
 		        }
 			}
 
@@ -102,7 +107,7 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 					
 					dispose();
 		        } else {
-		            TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!");
+		            TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!", "CPF não encontrado", corPadrao, corPadraoBackground);
 		        }
             }
 		};

@@ -38,11 +38,18 @@ import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
 public class TelaCadastroPlanoSaude extends JFrame {
+	
 	private PlanoSaude planoSelecionado;
 	private static TelaCadastroPlanoSaude frame;
 	private JPanel contentPane;
+	private Color corPadrao = new Color(24, 62, 159);
+	private Color corPadraoBackground = new Color(255,255,255);
+	private Color corSucesso = new Color(0,139,139);
+	private Color corSucessoBackground = new Color(64,224,208);
+	private Color corErro = new Color(178,34,34);
+	private Color corErroBackground = new Color(250,128,114);
 
-	private ArrayList<PlanoSaude> listaPlanoSaude = new ArrayList<PlanoSaude>();
+	ArrayList<PlanoSaude> listaPlanoSaude = new ArrayList<PlanoSaude>();
 
 	/**
 	 * Launch the application.
@@ -187,7 +194,7 @@ public class TelaCadastroPlanoSaude extends JFrame {
 					PlanoSaude ps = new PlanoSaude();
 				
 					if(txtNome.getText().isEmpty()) {
-						TelaMensagem telaSucesso = new TelaMensagem("Informe o Nome!");
+						TelaMensagem telaSucesso = new TelaMensagem("Informe o Nome!", "Informe o Nome", corPadrao, corPadraoBackground);
 						telaSucesso.setVisible(true);
 						telaSucesso.setLocationRelativeTo(null);
 						txtNome.requestFocus();
@@ -201,11 +208,11 @@ public class TelaCadastroPlanoSaude extends JFrame {
 					DAOplanoSaude dao = DAOplanoSaude.getInstacia();
 					Boolean inserir = dao.inserir(ps);
 					if (inserir) {
-						TelaMensagem telaSucesso = new TelaMensagem(nome + " foi cadastrado com Sucesso!");
+						TelaMensagem telaSucesso = new TelaMensagem(nome + " foi cadastrado com Sucesso!", "Cadastro realizado", corSucesso, corSucessoBackground);
 						telaSucesso.setVisible(true);
 						telaSucesso.setLocationRelativeTo(null);
 					} else {
-						TelaMensagem telaSucesso = new TelaMensagem("Não foi possível cadastrar o Plano de Saúde!");
+						TelaMensagem telaSucesso = new TelaMensagem("Não foi possível cadastrar o Plano de Saúde!", "Erro ao Cadastrar", corErro, corErroBackground);
 						telaSucesso.setVisible(true);
 						telaSucesso.setLocationRelativeTo(null);
 					}
