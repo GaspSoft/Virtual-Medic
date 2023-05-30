@@ -143,15 +143,13 @@ public class TelaEditarPlanoSaude extends JFrame {
 		MeuBotao btnLimpa = new MeuBotao();
 		btnLimpa.setText("Limpar");
 		btnLimpa.setForeground(Color.WHITE);
-<<<<<<< HEAD
 		btnLimpa.setBackground(btnLimpar);
-=======
 		btnLimpa.setBackground(new Color(24, 62, 159));
 		
 		JLabel lblNewLabel_3 = new JLabel("*");
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_3.setForeground(Color.RED);
->>>>>>> Vitor
+
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -225,27 +223,19 @@ public class TelaEditarPlanoSaude extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String nome = txtEdicao.getText();
 		        PlanoSaude planoSaude = new PlanoSaude();
-		        
+		        planoSaude.setId(planoEncontrado.getId());
 		        planoSaude.setNome(nome);
 
 		        boolean sucesso = DAOplanoSaude.getInstacia().alterar(planoSaude);
 
 		        if (sucesso) {
-<<<<<<< HEAD
 		            TelaMensagem telaSucesso = new TelaMensagem("Dados atualizados com sucesso!", "Dados Atualizados", corSucesso, corSucessoBackground);
-=======
-		            TelaMensagem telaSucesso = new TelaMensagem("Dados atualizados com sucesso!");
 		            telaSucesso.setLocationRelativeTo(null);
->>>>>>> Vitor
 					telaSucesso.setVisible(true);
 		        } else {
-<<<<<<< HEAD
 		            // Realize as ações de erro, como exibir uma mensagem de erro
 		            TelaMensagem telaSucesso = new TelaMensagem("Falha ao atualizar os dados do paciente!", "Falha ao Atualizar", corErro, corErroBackground);
-=======
-		            TelaMensagem telaSucesso = new TelaMensagem("Falha ao atualizar os dados do paciente!");
 		            telaSucesso.setLocationRelativeTo(null);
->>>>>>> Vitor
 					telaSucesso.setVisible(true);
 		        }
 			}

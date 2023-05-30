@@ -134,7 +134,7 @@ public class TelaCadastroPlanoSaude extends JFrame {
 		MeuBotao btnLimpa = new MeuBotao();
 		btnLimpa.setText("Limpar");
 		btnLimpa.setForeground(Color.WHITE);
-		btnLimpa.setBackground(new Color(24, 62, 159));
+		btnLimpa.setBackground(btnLimpar);
 		
 		JLabel lblNewLabel_3 = new JLabel("*");
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.LEFT);
@@ -213,7 +213,7 @@ public class TelaCadastroPlanoSaude extends JFrame {
 					PlanoSaude ps = new PlanoSaude();
 				
 					if(txtNome.getText().isEmpty()) {
-						TelaMensagem telaSucesso = new TelaMensagem("Informe o Nome!");
+						TelaMensagem telaSucesso = new TelaMensagem("Informe o Nome!", "Informe o Nome", corPadrao, corPadraoBackground);
 						telaSucesso.setLocationRelativeTo(null);
 						telaSucesso.setVisible(true);
 						txtNome.requestFocus();
