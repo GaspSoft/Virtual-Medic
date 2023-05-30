@@ -47,11 +47,12 @@ import javax.swing.JTextArea;
 public class TelaCadastroMedico extends JFrame {
 
 	private JPanel contentPane;
-	private MeuTextField txtCEP;
+	private MeuJFormatedTextField txtCEP;
 	private MeuTextField txtComplemento;
 	private MeuTextField txtBairro;
 	private MeuTextField txtCidade;
 	private MeuTextField txtRua;
+	private MeuTextField txtNumero;
 	private MeuComboBox cboUF;
 	private Color corPadrao = new Color(24, 62, 159);
 	private Color corPadraoBackground = new Color(255,255,255);
@@ -100,23 +101,23 @@ public class TelaCadastroMedico extends JFrame {
         lblRua.setForeground(new Color(84, 175, 230));
         lblRua.setFont(new Font("Tahoma", Font.BOLD, 11));
         
-        MeuTextField txtRua = new MeuTextField();
+        txtRua = new MeuTextField();
         txtRua.setForeground(new Color(27, 156, 228));
         
         JLabel lblBairro = new JLabel("Bairro:");
         lblBairro.setForeground(new Color(84, 175, 230));
         lblBairro.setFont(new Font("Tahoma", Font.BOLD, 11));
         
-        MeuTextField txtBairro = new MeuTextField();
+        txtBairro = new MeuTextField();
         txtBairro.setForeground(new Color(27, 156, 228));
         
         JLabel lblCidade = new JLabel("Cidade:");
         lblCidade.setFont(new Font("Tahoma", Font.BOLD, 11));
         lblCidade.setForeground(new Color(84, 175, 230));
         
-        MeuTextField txtCidade = new MeuTextField();
+        txtCidade = new MeuTextField();
         
-        MeuComboBox cboUF = new MeuComboBox();
+        cboUF = new MeuComboBox();
         cboUF.setForeground(new Color(27, 156, 228));
 		cboUF.setModel(new DefaultComboBoxModel(new String[] {"Estado", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"}));
 		
@@ -176,9 +177,6 @@ public class TelaCadastroMedico extends JFrame {
 		JLabel lblNewLabel_2_1 = new JLabel("Convênio:");
 		lblNewLabel_2_1.setForeground(Color.WHITE);
 		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		
-		DAOplanoSaude planoDAO = DAOplanoSaude.getInstacia();
-		ArrayList<PlanoSaude> listaPlanoSaude = planoDAO.listaPlanoSaude();
 		
 		JLabel lblNmeroCarteirinha = new JLabel("CRM:");
 		lblNmeroCarteirinha.setForeground(new Color(84, 175, 230));
@@ -243,7 +241,7 @@ public class TelaCadastroMedico extends JFrame {
 		);
 		panelIdentificacao.setLayout(gl_panelIdentificacao);
 		
-		txtCEP = new MeuTextField();
+		txtCEP = new MeuJFormatedTextField();
 		
 		MeuBotao btnBuscar = new MeuBotao();
 		btnBuscar.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -735,7 +733,7 @@ public class TelaCadastroMedico extends JFrame {
 		String cep = txtCEP.getText();
 		System.out.println(cep);
 		try {
-			URL url = new URL("http://cep.republicavirtual.com.br/web_cep.php?cep="+ cep +"&formato=xml");
+			URL url = new URL("http://cep.republicavirtual.com.br/web_cep.php?cep=" + cep +"&formato=xml");
 			SAXReader xml = new SAXReader();
 			Document documento = xml.read(url);
 			Element root = documento.getRootElement();
