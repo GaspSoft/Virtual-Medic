@@ -26,12 +26,14 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class TelaExcluirPlanoSaude extends JDialog {;
 	
     public ArrayList<PlanoSaude> listaPlanoSaude = new ArrayList<PlanoSaude>();
 	private Integer buscarExcluir;
 	private final JPanel contentPanel = new JPanel();
+	private Color btnLimpar = new Color(186, 75, 71);
 
 	/**
 	 * Launch the application.
@@ -67,7 +69,7 @@ public class TelaExcluirPlanoSaude extends JDialog {;
 		btnExcluirPlanoSaude.setText("Excluir plano de saúde:");
 		btnExcluirPlanoSaude.setForeground(Color.WHITE);
 		btnExcluirPlanoSaude.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnExcluirPlanoSaude.setBackground(new Color(24, 62, 159));
+		btnExcluirPlanoSaude.setBackground(btnLimpar);
 		contentPanel.add(btnExcluirPlanoSaude);
 		
 		MeuTextField txtID = new MeuTextField();
@@ -90,12 +92,15 @@ public class TelaExcluirPlanoSaude extends JDialog {;
 		btnVoltar.setBounds(270, 105, 121, 34);
 		contentPanel.add(btnVoltar);
 		
+		JLabel lblNewLabel_3 = new JLabel("*");
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_3.setForeground(Color.RED);
+		lblNewLabel_3.setBounds(117, 18, 6, 14);
+		contentPanel.add(lblNewLabel_3);
+		
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaMenuPlanoSaude TelaMenuPlanoSaude = new TelaMenuPlanoSaude();
-				TelaMenuPlanoSaude.setVisible(true);
-				TelaMenuPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
 		
