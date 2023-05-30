@@ -1,5 +1,5 @@
 <p align="center">
-  <img ![Estudo De Caso - Java] src="https://github.com/GaspSoft/Virtual-Medic/assets/86849487/4efa5659-61fe-485f-8085-41d8656954c4">
+  <img ![Estudo De Caso - Java] src="https://github.com/GaspSoft/Virtual-Medic/assets/86849487/56dd41c5-489e-4fe4-8273-27fda192fb13">
 </p>
 
 <h1 align="center"> Estudo de Caso </h1>
@@ -25,21 +25,51 @@
 `Tecnologia 5` : Window Builder</br>
 
 # 📝 Proposta Geral
-<p align="justify">O sistema tem como objetivo a venda de automóveis, busca auxiliar e promover de forma mais simples os usuários. Para isso o mesmo contará com diversas funcionalidades, como o usuário realizar o seu cadastro e caso queira vender seu automóvel pode cadastrar o mesmo com as informações necessárias, possibilitando ainda alterar algo se necessário. Já o comprador poderá buscar os carros, motos, caminhões ou ônibus, por fim o mesmo poderá comprar o carro do vendedor. Assim se finaliza a proposta geral, que tem como objetivo principal garantir ao usuário uma visão ampla sobre os automóveis e assim realizar a compra do mesmo</p>
+<p align="justify">Nosso objetivo é desenvolver um sistema desktop abrangente de prontuário eletrônico que permita a gestão eficiente de informações médicas, incluindo os dados de médicos, pacientes e planos de saúde. O sistema será projetado para atender às necessidades de clínicas e consultórios médicos, simplificando o gerenciamento de registros e melhorando a qualidade do atendimento ao paciente:</p>
+
+1. **Gerenciamento de médicos:**
+    - Cadastro de médicos com informações pessoais, especialização e dados de contato.
+    - Capacidade de atualizar, visualizar e excluir registros de médicos.
+2. **Gerenciamento de pacientes:**
+    - Cadastro de pacientes com informações pessoais, histórico médico, alergias e dados de contato.
+    - Possibilidade de atualizar, visualizar e excluir registros de pacientes.
+3. **Gerenciamento de planos de saúde:**
+    - Cadastro de planos de saúde com informações como nome, cobertura, detalhes de contato e requisitos específicos.
+    - Capacidade de atualizar, visualizar e excluir registros de planos de saúde.
 
 # 📃 Descrição do Sistema
-<p align="justify">Tendo em vista que a forma utilizada atualmente é arcaica, nosso sistema visa facilitar a vida dos usuário nas compras e troca de carros. Tem como objetivo tornar mais prática a venda de automóveis, contando com as opções de criar um usuário realizando o seu cadastro Caso o usuário seja um vendedor, poderá cadastrar um carro, moto, ônibus ou caminhão. Se necessário o vendedor pode descadastrar um veículo também. Mas se o usuário for um comprador, ele poderá comprar os veículos anunciados pelos vendedores, e também poderá anunciar seus veículos.</p>
+<p align="justify">O sistema de prontuário eletrônico desktop é uma aplicação desenvolvida para simplificar e otimizar o gerenciamento de informações médicas em clínicas e consultórios. O sistema possui um conjunto de funcionalidades que permitem a realização das operações de criação, leitura, atualização e exclusão (CRUD) de médicos, pacientes e planos de saúde. A seguir, descrevemos cada uma dessas entidades e as principais características do sistema:</p>
+
+1. **Médicos:**
+O sistema permite o cadastro de médicos, que inclui informações pessoais como nome, especialização, endereço, número de telefone e e-mail. Os registros dos médicos podem ser atualizados, visualizados e excluídos conforme necessário. A funcionalidade de detalhar o médico permite encontrar médicos com base em critérios como nome, especialização ou número de identificação.
+2. **Pacientes:**
+O sistema oferece a possibilidade de cadastrar pacientes, armazenando informações como nome, data de nascimento, gênero, endereço, número de telefone e histórico médico. É possível incluir detalhes sobre alergias, medicações atuais e quaisquer outras informações relevantes para o atendimento médico adequado. Os registros dos pacientes podem ser atualizados, visualizados e excluídos quando necessário. A funcionalidade de detalhar o paciente permite encontrar pacientes com base em critérios como nome, número de identificação ou condições médicas específicas.
+3. **Planos de Saúde:**
+O sistema permite cadastrar os planos de saúde com os quais a clínica ou consultório trabalha. É possível registrar informações como nome do plano, detalhes de cobertura, requisitos específicos e informações de contato. Os registros dos planos de saúde podem ser atualizados, visualizados e excluídos conforme necessário. A funcionalidade de detalhar o plano de saúde permite encontrar planos de saúde com base em critérios como nome ou tipo de cobertura.
 
 # 📈 Diagrama de Classes
 <p align="center">
 
 ![image](https://github.com/pedrogodri/estudo-de-caso/assets/86849487/c3508f85-533a-4a58-8454-51deb4e2b297)
+  </p>
+  
+  <ul>
+  <li><b>Pessoa</b>: a classe abstrata Pessoa representa uma entidade genérica de pessoa com atributos como CPF, nome, email, gênero e idade. Essa classe pode ser usada como uma base para criar subclasses mais específicas de pessoas, adicionando atributos e comportamentos adicionais, se necessário. A herança da classe Endereco indica que uma pessoa possui um endereço associado a ela.
+  <li><b>Endereço</b>: a classe abstrata Endereco representa um endereço com atributos como CEP, UF, cidade, bairro, rua, número e complemento. Essa classe pode ser usada como uma base para criar subclasses mais específicas de endereço, adicionando atributos e comportamentos adicionais, se necessário. Ela fornece métodos de acesso para obter e modificar os atributos do endereço e também possui uma representação em formato de texto através do método toString().
+  <li><b>Paciente</b>: a classe Paciente representa um paciente e herda os atributos e métodos da classe Pessoa. Ela possui atributos adicionais relacionados ao paciente, como o médico responsável, diagnóstico, plano de saúde, número do plano e validade. A classe fornece métodos de acesso para obter e modificar esses atributos e também possui uma representação em formato de texto através do método toString().
+  <li><b>Médico</b>: a classe Medico representa um médico e herda os atributos e métodos da classe Pessoa. Ela possui atributos adicionais relacionados ao médico, como o número de registro (CRM) e a especificação ou especialização. A classe fornece métodos de acesso para obter e modificar esses atributos e também possui uma representação em formato de texto através do método toString().
+  <li><b>Plano de Saúde</b>:  a classe PlanoSaude representa um plano de saúde. Ela possui atributos relacionados ao plano, como o identificador e o nome. A classe fornece métodos de acesso para obter e modificar esses atributos, possui uma representação em formato de texto através do método toString(), e também fornece um método remove() que ainda precisa ser implementado para remover o plano de saúde de uma lista.
+  <li><b>MedicoDAO</b>: a classe DAOmedico encapsula operações de acesso a dados para manipulação de objetos Medico. Ela mantém uma lista de médicos em memória e fornece métodos para inserir, atualizar, excluir e consultar médicos na lista. O padrão Singleton é usado para garantir que haja apenas uma instância da classe DAOmedico durante a execução do programa.
+  <li><b>PacienteDAO</b>: a classe DAOpaciente encapsula operações de acesso a dados para manipulação de objetos Paciente. Ela mantém uma lista de pacientes em memória e fornece métodos para inserir, atualizar, excluir e consultar pacientes na lista. O padrão Singleton é usado para garantir que haja apenas uma instância da classe DAOpaciente durante a execução do programa.
+  <li><b>PlanoSaudeDAO</b>: a classe DAOplanoSaude encapsula operações de acesso a dados para manipulação de objetos PlanoSaude. Ela mantém uma lista de planos de saúde em memória e fornece métodos para inserir, atualizar, excluir e consultar planos de saúde na lista. O padrão Singleton é usado para garantir que haja apenas uma instância da classe DAOplanoSaude durante a execução do programa.
+</ul>
+  
   
 # 📈 Diagrama de Casos de Uso
 <p align="center">
   
 ![DiagramaCasosUso drawio](https://github.com/GaspSoft/Virtual-Medic/assets/86849487/7fda6001-e3fe-4dad-801c-410a589cbb1f)
-
+</p>
   
 # 📈 Diagrama de Fluxos
 <p align="center">
@@ -48,16 +78,18 @@
 
 
 </p>
-<ul>
-  <li><b>Veiculo</b>: Possui uma associação a classe VeiculoDAO. Tem atributos privados, sendo eles: marca, modelo, tipo, cor, placa, tipoAutomovel e tipoCombustivel que são do tipo String, possui também anoFabricacao, qtdPeneu, totalDonos e informacaoAutomovel que são do tipo Integer e informacaoAutomovel que é um Float. Possui três métodos publicos sem retorno, dentre eles veiculoEspecificação com características específicas e veiculoUtilizado e estadoVeiculo;
-  <li><b>VeiculoDAO</b>: Possui uma associação a classe Veiculo. Tem um atributo privado que é um ArrayList de veículos. Tem cinco métodos públicos e sem retorno são eles: listar, cadastrar, alterar, excluir e comprar;
-  <li><b>Carro</b>: Herda da classe Veiculo. Possui três atributos privados do tipo Integer, dentre eles: numeroPortas, numeroBancos e cavalosMotor. Ainda possui dois atributos privados booleanos sendo eles airBag e arCondicionado;
-  <li><b>Moto</b>: Herda da classe Veiculo. Possui dois atributos privados Integer sendo eles numeroRodas cilindroMoto e possui um booleano privado chamado bagageiro;
-  <li><b>Pesados</b>: Herda de Veiculo e tem dois atributos privados, dentre eles uma String o sistemaFrenagem e um Float, o comprimento;
-  <li><b>Onibus</b>: Herda da classe Pesados e possui um atributo privado do tipo Integer o bancosPassageiros;
-  <li><b>Caminhão</b>: Herda da classe Pesados, possui dois atributos privados uma String o tipoCaminhao e um Integer o pesoCarga;
-</ul>
+
 
 # ⌨️ Autores
 | [<img src="https://avatars.githubusercontent.com/u/86849487?v=4" width=115><br><sub>Pedro Henrique Godri</sub>](https://github.com/pedrogodri) | [<img src="https://avatars.githubusercontent.com/u/111302374?v=4" width=115><br><sub>Vitor Hugo Schiphorst</sub>](https://github.com/VitorSchiphorst) |  [<img src="https://avatars.githubusercontent.com/u/114950761?v=4" width=115><br><sub>Bárbara do Nascimento</sub>](https://github.com/BahNasc) |
 | :---: | :---: | :---:
+
+
+
+
+
+
+
+
+
+
