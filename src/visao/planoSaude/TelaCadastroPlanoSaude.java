@@ -36,6 +36,7 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import javax.swing.SwingConstants;
 
 public class TelaCadastroPlanoSaude extends JFrame {
 	
@@ -48,6 +49,8 @@ public class TelaCadastroPlanoSaude extends JFrame {
 	private Color corSucessoBackground = new Color(64,224,208);
 	private Color corErro = new Color(178,34,34);
 	private Color corErroBackground = new Color(250,128,114);
+	private Color btnSucesso = new Color(92, 171, 109);
+	private Color btnLimpar = new Color(186, 75, 71);
 
 	ArrayList<PlanoSaude> listaPlanoSaude = new ArrayList<PlanoSaude>();
 
@@ -126,58 +129,74 @@ public class TelaCadastroPlanoSaude extends JFrame {
 		MeuBotao btnCadastrar = new MeuBotao();
 		btnCadastrar.setText("Cadastrar");
 		btnCadastrar.setForeground(Color.WHITE);
-		btnCadastrar.setBackground(new Color(24, 62, 159));
+		btnCadastrar.setBackground(btnSucesso);
 
 		MeuBotao btnLimpa = new MeuBotao();
 		btnLimpa.setText("Limpar");
 		btnLimpa.setForeground(Color.WHITE);
-		btnLimpa.setBackground(new Color(24, 62, 159));
+		btnLimpa.setBackground(btnLimpar);
+		
+		JLabel lblNewLabel_3 = new JLabel("*");
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_3.setForeground(Color.RED);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane
-				.createSequentialGroup().addGap(0)
-				.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(10).addComponent(panelTitulo,
-								GroupLayout.PREFERRED_SIZE, 322, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(21)
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(0)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(10)
+							.addComponent(panelTitulo, GroupLayout.PREFERRED_SIZE, 322, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(21)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED, 481, Short.MAX_VALUE)
+									.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+									.addGap(21))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(10)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 										.addGroup(gl_contentPane.createSequentialGroup()
-												.addPreferredGap(ComponentPlacement.RELATED, 481, Short.MAX_VALUE)
-												.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 110,
-														GroupLayout.PREFERRED_SIZE)
-												.addGap(21))
-										.addGroup(gl_contentPane.createSequentialGroup().addGap(10)
-												.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-														.addGroup(gl_contentPane.createSequentialGroup()
-																.addComponent(lblNome, GroupLayout.DEFAULT_SIZE, 148,
-																		Short.MAX_VALUE)
-																.addGap(454))
-														.addGroup(gl_contentPane.createSequentialGroup()
-																.addComponent(txtNome, GroupLayout.DEFAULT_SIZE, 588,
-																		Short.MAX_VALUE)
-																.addGap(35))))
+											.addComponent(lblNome)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(lblNewLabel_3))
 										.addGroup(gl_contentPane.createSequentialGroup()
-												.addComponent(panelIdentificacao, GroupLayout.DEFAULT_SIZE, 591,
-														Short.MAX_VALUE)
-												.addGap(21)))))
-				.addGap(3))
-				.addGroup(gl_contentPane.createSequentialGroup().addGap(14)
-						.addComponent(btnCadastrar, GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE).addGap(18)
-						.addComponent(btnLimpa, GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE).addGap(228)));
-		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup().addContainerGap()
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addComponent(panelTitulo, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
-						.addGap(40)
-						.addComponent(panelIdentificacao, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.UNRELATED)
+											.addComponent(txtNome, GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
+											.addGap(35))))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(panelIdentificacao, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addGap(21)))))
+					.addGap(3))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(14)
+					.addComponent(btnCadastrar, GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+					.addGap(18)
+					.addComponent(btnLimpa, GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+					.addGap(228))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addComponent(panelTitulo, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
+					.addGap(40)
+					.addComponent(panelIdentificacao, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNome, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE).addGap(27)
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btnCadastrar, GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
-								.addComponent(btnLimpa, GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE))
-						.addGap(25)));
+						.addComponent(lblNewLabel_3))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addGap(27)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnCadastrar, GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+						.addComponent(btnLimpa, GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE))
+					.addGap(25))
+		);
 		contentPane.setLayout(gl_contentPane);
 
 		btnVoltar.addActionListener(new ActionListener() {
@@ -195,8 +214,8 @@ public class TelaCadastroPlanoSaude extends JFrame {
 				
 					if(txtNome.getText().isEmpty()) {
 						TelaMensagem telaSucesso = new TelaMensagem("Informe o Nome!", "Informe o Nome", corPadrao, corPadraoBackground);
-						telaSucesso.setVisible(true);
 						telaSucesso.setLocationRelativeTo(null);
+						telaSucesso.setVisible(true);
 						txtNome.requestFocus();
 					} else {
 				
@@ -234,5 +253,4 @@ public class TelaCadastroPlanoSaude extends JFrame {
 
 		return num;
 	}
-
 }
