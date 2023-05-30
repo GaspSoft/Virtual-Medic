@@ -203,10 +203,10 @@ public class TelaEditarMedico extends JFrame {
 		lblNewLabel_2_1_1.setForeground(Color.WHITE);
 		lblNewLabel_2_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
-		MeuBotao btnCadastrar = new MeuBotao();
-		btnCadastrar.setText("Cadastrar");
-		btnCadastrar.setForeground(Color.WHITE);
-		btnCadastrar.setBackground(new Color(24, 62, 159));
+		MeuBotao btnEditar = new MeuBotao();
+		btnEditar.setText("Editar");
+		btnEditar.setForeground(Color.WHITE);
+		btnEditar.setBackground(new Color(24, 62, 159));
 		
 		MeuBotao btnLimpa = new MeuBotao();
 		btnLimpa.setText("Limpar");
@@ -431,7 +431,7 @@ public class TelaEditarMedico extends JFrame {
 					.addGap(4))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(293)
-					.addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(btnLimpa, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
@@ -578,7 +578,7 @@ public class TelaEditarMedico extends JFrame {
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnLimpa, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)))
 		);
 		contentPane.setLayout(gl_contentPane);
 		validarCPF.setOnlyNums(true);
@@ -613,7 +613,7 @@ public class TelaEditarMedico extends JFrame {
 			}
 		});
 		
-		btnCadastrar.addActionListener(new ActionListener() {
+		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Medico m = new Medico();
 				
