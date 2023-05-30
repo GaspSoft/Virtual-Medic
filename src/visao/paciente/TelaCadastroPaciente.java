@@ -60,6 +60,8 @@ public class TelaCadastroPaciente extends JFrame {
 	private Color corSucessoBackground = new Color(64,224,208);
 	private Color corErro = new Color(178,34,34);
 	private Color corErroBackground = new Color(250,128,114);
+	private Color btnSucesso = new Color(92, 171, 109);
+	private Color btnLimpar = new Color(186, 75, 71);
 	// private JComboBox cboUF;
 
 	/**
@@ -138,10 +140,7 @@ public class TelaCadastroPaciente extends JFrame {
 		lblComplemento.setForeground(new Color(84, 175, 230));
 		lblComplemento.setFont(new Font("Tahoma", Font.BOLD, 11));
 
-		
-
 		MeuTextField txtCPF = new MeuTextField();
-
 		txtCPF.setForeground(new Color(27, 156, 228));
 
 		JLabel lblCPF = new JLabel("CPF");
@@ -221,12 +220,12 @@ public class TelaCadastroPaciente extends JFrame {
 		MeuBotao btnCadastrar = new MeuBotao();
 		btnCadastrar.setText("Cadastrar");
 		btnCadastrar.setForeground(Color.WHITE);
-		btnCadastrar.setBackground(new Color(24, 62, 159));
+		btnCadastrar.setBackground(btnSucesso);
 
 		MeuBotao btnLimpa = new MeuBotao();
 		btnLimpa.setText("Limpar");
 		btnLimpa.setForeground(Color.WHITE);
-		btnLimpa.setBackground(new Color(24, 62, 159));
+		btnLimpa.setBackground(btnLimpar);
 
 		JPanel panelTitulo = new JPanel();
 		panelTitulo.setLayout(null);
@@ -665,9 +664,10 @@ public class TelaCadastroPaciente extends JFrame {
 
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				TelaMenuPaciente telaMenuPaciente = new TelaMenuPaciente();
 				telaMenuPaciente.setVisible(true);
-				dispose();
+				telaMenuPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
 	}

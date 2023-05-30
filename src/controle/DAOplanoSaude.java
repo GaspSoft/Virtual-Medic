@@ -10,8 +10,10 @@ public class DAOplanoSaude {
 	private static ArrayList<PlanoSaude> listaPlanoSaude;
 	private static DAOplanoSaude instanciaPlanoSaude;
 	
+	// INSTANCIA
 	public static DAOplanoSaude getInstacia() {
-			
+		PlanoSaude ps = new PlanoSaude();
+		
 			if (instanciaPlanoSaude == null) {
 				instanciaPlanoSaude = new DAOplanoSaude();
 				listaPlanoSaude = new ArrayList<>();

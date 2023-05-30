@@ -133,7 +133,7 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 		tableScrollButtons = new layoutPersonalizado.componentes.tables.TableScrollButton();
 		jScrollPanes = new javax.swing.JScrollPane();
 		jTables = new javax.swing.JTable();
-
+		
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
 		jTables.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {

@@ -60,6 +60,8 @@ public class TelaEditarPaciente extends JFrame {
 	private Color corSucessoBackground = new Color(64,224,208);
 	private Color corErro = new Color(178,34,34);
 	private Color corErroBackground = new Color(250,128,114);
+	private Color btnSucesso = new Color(92, 171, 109);
+	private Color btnLimpar = new Color(186, 75, 71);
 	//private JComboBox cboUF;
 
 	/**
@@ -223,12 +225,12 @@ public class TelaEditarPaciente extends JFrame {
 		MeuBotao btnCadastrar = new MeuBotao();
 		btnCadastrar.setText("Editar");
 		btnCadastrar.setForeground(Color.WHITE);
-		btnCadastrar.setBackground(new Color(24, 62, 159));
+		btnCadastrar.setBackground(btnSucesso);
 		
 		MeuBotao btnLimpa = new MeuBotao();
 		btnLimpa.setText("Limpar");
 		btnLimpa.setForeground(Color.WHITE);
-		btnLimpa.setBackground(new Color(24, 62, 159));
+		btnLimpa.setBackground(btnLimpar);
 		
 		JPanel panelTitulo = new JPanel();
 		panelTitulo.setLayout(null);
