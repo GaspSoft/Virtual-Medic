@@ -25,9 +25,12 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.SwingConstants;
 
 public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
-
+	
+	private Color btnSucesso = new Color(92, 171, 109);
+	
 	/**
 	 * Launch the application.
 	 */
@@ -70,7 +73,7 @@ public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
 			btSelecionarPlanoDeSaude.setText("Selecionar plano de saúde");
 			btSelecionarPlanoDeSaude.setForeground(Color.WHITE);
 			btSelecionarPlanoDeSaude.setFont(new Font("Tahoma", Font.BOLD, 11));
-			btSelecionarPlanoDeSaude.setBackground(new Color(24, 62, 159));
+			btSelecionarPlanoDeSaude.setBackground(btnSucesso);
 			btSelecionarPlanoDeSaude.setBounds(49, 102, 195, 55);
 			contentPanel.add(btSelecionarPlanoDeSaude);
 				
@@ -83,12 +86,15 @@ public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
 			btnVoltar.setBounds(267, 113, 121, 34);
 			contentPanel.add(btnVoltar);
 			
+			JLabel lblNewLabel_3 = new JLabel("*");
+			lblNewLabel_3.setHorizontalAlignment(SwingConstants.LEFT);
+			lblNewLabel_3.setForeground(Color.RED);
+			lblNewLabel_3.setBounds(104, 18, 6, 14);
+			contentPanel.add(lblNewLabel_3);
+			
 			btnVoltar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					dispose();
-					TelaMenuPlanoSaude telaMenuPlanoSaude = new TelaMenuPlanoSaude();
-					telaMenuPlanoSaude.setVisible(true);
-					telaMenuPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				}
 			});
 			

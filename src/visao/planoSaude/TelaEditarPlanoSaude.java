@@ -39,6 +39,7 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import javax.swing.SwingConstants;
 
 public class TelaEditarPlanoSaude extends JFrame {
 	
@@ -50,6 +51,8 @@ public class TelaEditarPlanoSaude extends JFrame {
 	private Color corSucessoBackground = new Color(64,224,208);
 	private Color corErro = new Color(178,34,34);
 	private Color corErroBackground = new Color(250,128,114);
+	private Color btnSucesso = new Color(92, 171, 109);
+	private Color btnLimpar = new Color(186, 75, 71);
 	
 	/**
 	 * Launch the application.
@@ -135,12 +138,20 @@ public class TelaEditarPlanoSaude extends JFrame {
 		MeuBotao btnAlterar = new MeuBotao();
 		btnAlterar.setText("Editar");
 		btnAlterar.setForeground(Color.WHITE);
-		btnAlterar.setBackground(new Color(24, 62, 159));
+		btnAlterar.setBackground(btnSucesso);
 		
 		MeuBotao btnLimpa = new MeuBotao();
 		btnLimpa.setText("Limpar");
 		btnLimpa.setForeground(Color.WHITE);
+<<<<<<< HEAD
+		btnLimpa.setBackground(btnLimpar);
+=======
 		btnLimpa.setBackground(new Color(24, 62, 159));
+		
+		JLabel lblNewLabel_3 = new JLabel("*");
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_3.setForeground(Color.RED);
+>>>>>>> Vitor
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -158,17 +169,18 @@ public class TelaEditarPlanoSaude extends JFrame {
 									.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
 									.addGap(21))
 								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(panelIdentificacao, GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
+									.addGap(21))
+								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGap(10)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 										.addGroup(gl_contentPane.createSequentialGroup()
-											.addComponent(lblNome, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-											.addGap(454))
+											.addComponent(lblNome)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(lblNewLabel_3, GroupLayout.PREFERRED_SIZE, 6, GroupLayout.PREFERRED_SIZE))
 										.addGroup(gl_contentPane.createSequentialGroup()
-											.addComponent(txtEdicao, GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
-											.addGap(35))))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(panelIdentificacao, GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
-									.addGap(21)))))
+											.addComponent(txtEdicao, GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
+											.addGap(35)))))))
 					.addGap(3))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(14)
@@ -187,7 +199,9 @@ public class TelaEditarPlanoSaude extends JFrame {
 					.addGap(40)
 					.addComponent(panelIdentificacao, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(lblNome, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNome, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNewLabel_3))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(txtEdicao, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 					.addGap(27)
@@ -217,16 +231,30 @@ public class TelaEditarPlanoSaude extends JFrame {
 		        boolean sucesso = DAOplanoSaude.getInstacia().alterar(planoSaude);
 
 		        if (sucesso) {
+<<<<<<< HEAD
 		            TelaMensagem telaSucesso = new TelaMensagem("Dados atualizados com sucesso!", "Dados Atualizados", corSucesso, corSucessoBackground);
+=======
+		            TelaMensagem telaSucesso = new TelaMensagem("Dados atualizados com sucesso!");
+		            telaSucesso.setLocationRelativeTo(null);
+>>>>>>> Vitor
 					telaSucesso.setVisible(true);
-		            //limparFormulario();
 		        } else {
+<<<<<<< HEAD
 		            // Realize as ações de erro, como exibir uma mensagem de erro
 		            TelaMensagem telaSucesso = new TelaMensagem("Falha ao atualizar os dados do paciente!", "Falha ao Atualizar", corErro, corErroBackground);
+=======
+		            TelaMensagem telaSucesso = new TelaMensagem("Falha ao atualizar os dados do paciente!");
+		            telaSucesso.setLocationRelativeTo(null);
+>>>>>>> Vitor
 					telaSucesso.setVisible(true);
 		        }
 			}
 		});
 		
+		btnLimpa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtEdicao.setText(null);
+			}
+		});
 	}
 }
