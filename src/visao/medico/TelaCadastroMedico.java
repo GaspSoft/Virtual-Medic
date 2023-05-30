@@ -446,11 +446,11 @@ public class TelaCadastroMedico extends JFrame {
 					.addComponent(txtComplemento, GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
 					.addGap(4))
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(293)
-					.addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
+					.addGap(224)
+					.addComponent(btnCadastrar, GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
 					.addGap(18)
-					.addComponent(btnLimpa, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
+					.addComponent(btnLimpa, GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+					.addGap(223))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(19)
 					.addComponent(lblRua)
@@ -563,8 +563,9 @@ public class TelaCadastroMedico extends JFrame {
 						.addComponent(txtComplemento, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnLimpa, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnLimpa, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
 		validarCPF.setOnlyNums(true);
