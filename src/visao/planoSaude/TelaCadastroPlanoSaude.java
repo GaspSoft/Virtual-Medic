@@ -198,16 +198,18 @@ public class TelaCadastroPlanoSaude extends JFrame {
 					.addGap(25))
 		);
 		contentPane.setLayout(gl_contentPane);
-
+		
+		// Voltar para a TelaMenuPlanoSaude
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaMenuPlanoSaude TelaMenuPlanoSaude = new TelaMenuPlanoSaude();
-				TelaMenuPlanoSaude.setVisible(true);
-				TelaMenuPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				TelaMenuPlanoSaude telaMenuPlanoSaude = new TelaMenuPlanoSaude();
+				telaMenuPlanoSaude.setVisible(true);
+				telaMenuPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
-
+		
+		// Cadastramento de Plano de Saúde
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					PlanoSaude ps = new PlanoSaude();
@@ -238,7 +240,8 @@ public class TelaCadastroPlanoSaude extends JFrame {
 				}
 			}
 		});
-
+		
+		// Botão de Limpar
 		btnLimpa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txtNome.setText(null);
@@ -246,7 +249,8 @@ public class TelaCadastroPlanoSaude extends JFrame {
 		});
 
 	}
-
+	
+	// Gerar ID Aleatório
 	public static Integer gerarID() {
 		Random rand = new Random();
 		int num = rand.nextInt(1000) + 10;
