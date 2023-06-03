@@ -28,6 +28,7 @@ public class TelaInicialMenu extends JFrame {
 
 	private JPanel contentPane;
 	private TelaInicialMenu menuInicial;
+	
 
 	/**
 	 * Launch the application.

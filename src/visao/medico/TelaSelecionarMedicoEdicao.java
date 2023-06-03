@@ -30,6 +30,7 @@ public class TelaSelecionarMedicoEdicao extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private Color corPadrao = new Color(24, 62, 159);
 	private Color corPadraoBackground = new Color(255,255,255);
+	private Color btnSucesso = new Color(92, 171, 109);
 	/**
 	 * Launch the application.
 	 */
@@ -74,7 +75,7 @@ public class TelaSelecionarMedicoEdicao extends JDialog {
 		btnSelecionarMedico.setText("Selecionar Médico");
 		btnSelecionarMedico.setForeground(Color.WHITE);
 		btnSelecionarMedico.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnSelecionarMedico.setBackground(new Color(24, 62, 159));
+		btnSelecionarMedico.setBackground(btnSucesso);
 		btnSelecionarMedico.setBounds(39, 94, 169, 55);
 		contentPanel.add(btnSelecionarMedico);
 		

@@ -30,6 +30,7 @@ public class TelaExcluirPaciente extends JDialog {
 	private Color corSucessoBackground = new Color(64,224,208);
 	private Color corErro = new Color(178,34,34);
 	private Color corErroBackground = new Color(250,128,114);
+	private Color btnLimpar = new Color(186, 75, 71);
 
 	/**
 	 * Launch the application.
@@ -64,7 +65,7 @@ public class TelaExcluirPaciente extends JDialog {
 		btnExcluirPaciente.setText("Excluir paciente");
 		btnExcluirPaciente.setForeground(Color.WHITE);
 		btnExcluirPaciente.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnExcluirPaciente.setBackground(new Color(24, 62, 159));
+		btnExcluirPaciente.setBackground(btnLimpar);
 		btnExcluirPaciente.setBounds(42, 93, 147, 55);
 		contentPanel.add(btnExcluirPaciente);
 		
