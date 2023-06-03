@@ -56,6 +56,7 @@ public class TelaDetalhesMedico extends JFrame {
 	private MeuComboBox cboUF;
 	private Color corPadrao = new Color(24, 62, 159);
 	private Color corPadraoBackground = new Color(255,255,255);
+	
 	//private JComboBox cboUF;
 
 	/**
