@@ -43,6 +43,7 @@ import visao.TelaMensagem;
 import controle.*;
 import modelo.*;
 import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
 
 public class TelaDetalhesPaciente extends JFrame {
 
@@ -235,7 +236,7 @@ public class TelaDetalhesPaciente extends JFrame {
 		panelTitulo.add(lblNewLabel_1);
 		lblNewLabel_1.setIcon(new ImageIcon(TelaDetalhesPaciente.class.getResource("/img/imgCadastro 1 (2).png")));
 		
-		JLabel lblNewLabel = new JLabel("Cadastrar");
+		JLabel lblNewLabel = new JLabel("Detalhes");
 		lblNewLabel.setBounds(123, 0, 212, 122);
 		panelTitulo.add(lblNewLabel);
 		lblNewLabel.setForeground(new Color(27, 156, 228));
@@ -318,6 +319,7 @@ public class TelaDetalhesPaciente extends JFrame {
 		RestrictedTextField validarCPF = new RestrictedTextField(txtCPF);
 		
 		JLabel lblDiagnstico = new JLabel("Diagnóstico");
+		lblDiagnstico.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDiagnstico.setForeground(new Color(84, 175, 230));
 		lblDiagnstico.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
@@ -359,10 +361,6 @@ public class TelaDetalhesPaciente extends JFrame {
 					.addGap(10)
 					.addComponent(panelIdentificacao_1, GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
 					.addGap(3))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(276)
-					.addComponent(lblDiagnstico, GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-					.addGap(281))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(10)
 					.addComponent(cboMedico, GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
@@ -416,25 +414,6 @@ public class TelaDetalhesPaciente extends JFrame {
 					.addComponent(txtComplemento, GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
 					.addGap(3))
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(10)
-					.addComponent(cboPlanoSaude, GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-					.addGap(10)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(txtValidade, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-							.addGap(10))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblValidade, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 6, Short.MAX_VALUE)))
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(2)
-							.addComponent(lblNmeroCarteirinha, GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-							.addGap(74))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(txtNumeroPlano, GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-							.addGap(3))))
-				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addContainerGap()
@@ -453,6 +432,31 @@ public class TelaDetalhesPaciente extends JFrame {
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(lblIdade, GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
 							.addGap(270))))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(10)
+					.addComponent(cboPlanoSaude, GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+					.addGap(10)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(10)
+							.addComponent(lblDiagnstico, GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
+							.addContainerGap())
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(txtValidade, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+									.addGap(10))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(lblValidade, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED, 6, Short.MAX_VALUE)))
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(2)
+									.addComponent(lblNmeroCarteirinha, GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+									.addGap(74))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(txtNumeroPlano, GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+									.addGap(3))))))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
