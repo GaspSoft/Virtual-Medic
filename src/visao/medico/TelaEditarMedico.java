@@ -119,6 +119,7 @@ public class TelaEditarMedico extends JFrame {
         lblCidade.setForeground(new Color(84, 175, 230));
         
         MeuTextField txtCidade = new MeuTextField();
+        txtCidade.setForeground(new Color(27, 156, 228));
         txtCidade.setText(medico.getCidade());
         
         MeuComboBox cboUF = new MeuComboBox();
@@ -254,7 +255,8 @@ public class TelaEditarMedico extends JFrame {
 		panelIdentificacao.setLayout(gl_panelIdentificacao);
 		
 		txtCEP = new MeuTextField();
-		txtCEP.setText(medico.getCep());
+		txtCEP.setForeground(new Color(27, 156, 228));
+		txtCEP.setText(medico.getCep().toString());
 		
 		MeuBotao btnBuscar = new MeuBotao();
 		btnBuscar.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -287,14 +289,6 @@ public class TelaEditarMedico extends JFrame {
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panelIdentificacao_1_1.setLayout(gl_panelIdentificacao_1_1);
-		
-		
-		// Uso da biblioteca Atxy2k para validação
-		RestrictedTextField validarCEP = new RestrictedTextField(txtCEP);
-		validarCEP.setOnlyNums(true);
-		validarCEP.setLimit(8);
-		
-		RestrictedTextField validarCPF = new RestrictedTextField(txtCPF);
 		
 		MeuTextField txtCRM = new MeuTextField();
 		txtCRM.setText(medico.getCrm().toString());
@@ -583,8 +577,6 @@ public class TelaEditarMedico extends JFrame {
 						.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)))
 		);
 		contentPane.setLayout(gl_contentPane);
-		validarCPF.setOnlyNums(true);
-		validarCPF.setLimit(11);
 		
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -693,7 +685,7 @@ public class TelaEditarMedico extends JFrame {
 				String genero = cboGenero.getSelectedItem().toString();
 				Long crm = Long.parseLong(txtCRM.getText());
 				String especialidade = txtEspecialidade.getText();
-				String cep = txtCEP.getText();
+				Long cep = Long.parseLong(txtCEP.getText());
 				String uf = cboUF.getSelectedItem().toString();
 				String cidade = txtCidade.getText();
 				String bairro = txtBairro.getText();

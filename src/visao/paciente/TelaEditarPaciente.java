@@ -124,6 +124,7 @@ public class TelaEditarPaciente extends JFrame {
         lblCidade.setForeground(new Color(84, 175, 230));
         
         txtCidade = new MeuTextField();
+        txtCidade.setForeground(new Color(27, 156, 228));
         txtCidade.setText(paciente.getCidade());
         
         cboUF = new MeuComboBox();
@@ -280,7 +281,8 @@ public class TelaEditarPaciente extends JFrame {
 		panelIdentificacao.setLayout(gl_panelIdentificacao);
 		
 		txtCEP = new MeuTextField();
-		txtCEP.setText(paciente.getCep());
+		txtCEP.setForeground(new Color(27, 156, 228));
+		txtCEP.setText(paciente.getCep().toString());
 		
 		MeuBotao btnBuscar = new MeuBotao();
 		btnBuscar.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -309,6 +311,7 @@ public class TelaEditarPaciente extends JFrame {
 		
 		MeuTextField txtDiagnostico = new MeuTextField();
 		txtDiagnostico.setForeground(new Color(27, 156, 228));
+		txtDiagnostico.setText(paciente.getDiagnostico());
 		GroupLayout gl_panelIdentificacao_1_1 = new GroupLayout(panelIdentificacao_1_1);
 		gl_panelIdentificacao_1_1.setHorizontalGroup(
 			gl_panelIdentificacao_1_1.createParallelGroup(Alignment.LEADING)
@@ -324,14 +327,6 @@ public class TelaEditarPaciente extends JFrame {
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panelIdentificacao_1_1.setLayout(gl_panelIdentificacao_1_1);
-		
-		
-		// Uso da biblioteca Atxy2k para validação
-		RestrictedTextField validarCEP = new RestrictedTextField(txtCEP);
-		validarCEP.setOnlyNums(true);
-		validarCEP.setLimit(8);
-		
-		RestrictedTextField validarCPF = new RestrictedTextField(txtCPF);
 		
 		JLabel lblDiagnstico = new JLabel("Diagnóstico:");
 		lblDiagnstico.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -648,8 +643,6 @@ public class TelaEditarPaciente extends JFrame {
 						.addComponent(btnLimpa, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)))
 		);
 		contentPane.setLayout(gl_contentPane);
-		validarCPF.setOnlyNums(true);
-		validarCPF.setLimit(11);
 		
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -777,7 +770,7 @@ public class TelaEditarPaciente extends JFrame {
 				String planoSaude = cboPlanoSaude.getSelectedItem().toString();
 				Long numeroPlano = Long.parseLong(txtNumeroPlano.getText());
 				String validade = txtValidade.getText();
-				String cep = txtCEP.getText();
+				Long cep = Long.parseLong(txtCEP.getText());
 				String uf = cboUF.getSelectedItem().toString();
 				String cidade = txtCidade.getText();
 				String bairro = txtBairro.getText();

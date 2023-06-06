@@ -1,7 +1,7 @@
 package modelo;
 
 public abstract class Endereco {
-	private String cep;
+	private Long cep;
 	private String uf;
 	private String cidade;
 	private String bairro;
@@ -9,10 +9,10 @@ public abstract class Endereco {
 	private Integer numero;
 	private Integer complemento;
 	
-	public String getCep() {
+	public Long getCep() {
 		return cep;
 	}
-	public void setCep(String cep) {
+	public void setCep(Long cep) {
 		this.cep = cep;
 	}
 	public String getUf() {

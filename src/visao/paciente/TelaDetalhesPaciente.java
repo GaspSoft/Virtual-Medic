@@ -115,6 +115,7 @@ public class TelaDetalhesPaciente extends JFrame {
         lblCidade.setForeground(new Color(84, 175, 230));
         
         txtCidade = new MeuTextField();
+        txtCidade.setForeground(new Color(27, 156, 228));
         txtCidade.setEditable(false);
         txtCidade.setText(paciente.getCidade());
         
@@ -145,6 +146,11 @@ public class TelaDetalhesPaciente extends JFrame {
 		txtCPF.setEditable(false);
 		txtCPF.setText(paciente.getCpf().toString());
 		txtCPF.setForeground(new Color(27, 156, 228));
+		
+		txtCEP = new MeuTextField();
+		txtCEP.setEditable(false);
+		txtCEP.setText(paciente.getCep().toString());
+		txtCEP.setForeground(new Color(27, 156, 228));
 		
 		JLabel lblCPF = new JLabel("CPF");
 		lblCPF.setForeground(new Color(84, 175, 230));
@@ -266,10 +272,6 @@ public class TelaDetalhesPaciente extends JFrame {
 		);
 		panelIdentificacao.setLayout(gl_panelIdentificacao);
 		
-		txtCEP = new MeuTextField();
-		txtCEP.setEditable(false);
-		txtCEP.setText(paciente.getCep());
-		
 		MeuBotao btnVoltar = new MeuBotao();
 		btnVoltar.setToolTipText("Voltar");
 		btnVoltar.setIcon(new ImageIcon(TelaDetalhesPaciente.class.getResource("/img/setaAzulEsquerda.png")));
@@ -292,8 +294,8 @@ public class TelaDetalhesPaciente extends JFrame {
 		
 		MeuTextField txtDiagnostico = new MeuTextField();
 		txtDiagnostico.setEditable(false);
-		txtDiagnostico.setText("e");
 		txtDiagnostico.setForeground(new Color(27, 156, 228));
+		txtDiagnostico.setText(paciente.getDiagnostico());
 		GroupLayout gl_panelIdentificacao_1_1 = new GroupLayout(panelIdentificacao_1_1);
 		gl_panelIdentificacao_1_1.setHorizontalGroup(
 			gl_panelIdentificacao_1_1.createParallelGroup(Alignment.LEADING)
@@ -309,14 +311,6 @@ public class TelaDetalhesPaciente extends JFrame {
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panelIdentificacao_1_1.setLayout(gl_panelIdentificacao_1_1);
-		
-		
-		// Uso da biblioteca Atxy2k para validação
-		RestrictedTextField validarCEP = new RestrictedTextField(txtCEP);
-		validarCEP.setOnlyNums(true);
-		validarCEP.setLimit(8);
-		
-		RestrictedTextField validarCPF = new RestrictedTextField(txtCPF);
 		
 		JLabel lblDiagnstico = new JLabel("Diagnóstico");
 		lblDiagnstico.setHorizontalAlignment(SwingConstants.LEFT);
@@ -535,15 +529,13 @@ public class TelaDetalhesPaciente extends JFrame {
 					.addGap(54))
 		);
 		contentPane.setLayout(gl_contentPane);
-		validarCPF.setOnlyNums(true);
-		validarCPF.setLimit(11);
 		
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaMenuPaciente telaMenuPaciente = new TelaMenuPaciente();
-				telaMenuPaciente.setVisible(true);
-				telaMenuPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				TelaListaPaciente telaListaPaciente = new TelaListaPaciente();
+				telaListaPaciente.setVisible(true);
+				telaListaPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
 	}

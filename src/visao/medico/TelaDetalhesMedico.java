@@ -113,10 +113,12 @@ public class TelaDetalhesMedico extends JFrame {
         txtBairro.setForeground(new Color(27, 156, 228));
         
         JLabel lblCidade = new JLabel("Cidade:");
+        lblCidade.setHorizontalAlignment(SwingConstants.LEFT);
         lblCidade.setFont(new Font("Tahoma", Font.BOLD, 11));
         lblCidade.setForeground(new Color(84, 175, 230));
         
         MeuTextField txtCidade = new MeuTextField();
+        txtCidade.setForeground(new Color(27, 156, 228));
         txtCidade.setEditable(false);
         txtCidade.setText(medico.getCidade());
         
@@ -131,6 +133,7 @@ public class TelaDetalhesMedico extends JFrame {
 		txtNumero.setForeground(new Color(27, 156, 228));
 		
 		JLabel lblNumero = new JLabel("Número:");
+		lblNumero.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNumero.setForeground(new Color(84, 175, 230));
 		lblNumero.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
@@ -145,7 +148,7 @@ public class TelaDetalhesMedico extends JFrame {
 		
 		MeuTextField txtCPF = new MeuTextField();
 		txtCPF.setEditable(false);
-		txtCPF.setText(medico.getCep());
+		txtCPF.setText(medico.getCep().toString());
 		txtCPF.setForeground(new Color(27, 156, 228));
 		
 		JLabel lblCPF = new JLabel("CPF:");
@@ -201,6 +204,7 @@ public class TelaDetalhesMedico extends JFrame {
 		lblNmeroCarteirinha.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		JLabel lblValidade = new JLabel("Especialidade:");
+		lblValidade.setHorizontalAlignment(SwingConstants.LEFT);
 		lblValidade.setForeground(new Color(84, 175, 230));
 		lblValidade.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
@@ -250,8 +254,9 @@ public class TelaDetalhesMedico extends JFrame {
 		panelIdentificacao.setLayout(gl_panelIdentificacao);
 		
 		txtCEP = new MeuTextField();
+		txtCEP.setForeground(new Color(27, 156, 228));
 		txtCEP.setEditable(false);
-		txtCEP.setText(medico.getCep());
+		txtCEP.setText(medico.getCep().toString());
 		
 		MeuBotao btnBuscar = new MeuBotao();
 		btnBuscar.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -268,8 +273,8 @@ public class TelaDetalhesMedico extends JFrame {
 		
 		MeuTextField txtEspecialidade = new MeuTextField();
 		txtEspecialidade.setEditable(false);
-		txtEspecialidade.setText("e");
 		txtEspecialidade.setForeground(new Color(27, 156, 228));
+		txtEspecialidade.setText(medico.getEspecificacao());
 		GroupLayout gl_panelIdentificacao_1_1 = new GroupLayout(panelIdentificacao_1_1);
 		gl_panelIdentificacao_1_1.setHorizontalGroup(
 			gl_panelIdentificacao_1_1.createParallelGroup(Alignment.LEADING)
@@ -286,14 +291,6 @@ public class TelaDetalhesMedico extends JFrame {
 		);
 		panelIdentificacao_1_1.setLayout(gl_panelIdentificacao_1_1);
 		
-		
-		// Uso da biblioteca Atxy2k para validação
-		RestrictedTextField validarCEP = new RestrictedTextField(txtCEP);
-		validarCEP.setOnlyNums(true);
-		validarCEP.setLimit(8);
-		
-		RestrictedTextField validarCPF = new RestrictedTextField(txtCPF);
-		
 		MeuTextField txtCRM = new MeuTextField();
 		txtCRM.setEditable(false);
 		txtCRM.setText(medico.getCrm().toString());
@@ -308,171 +305,119 @@ public class TelaDetalhesMedico extends JFrame {
 		lblIdade.setForeground(new Color(84, 175, 230));
 		lblIdade.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblIdade.setBackground(Color.WHITE);
-		
-		JLabel lblNewLabel_3 = new JLabel("*");
-		lblNewLabel_3.setForeground(new Color(255, 0, 0));
-		
-		JLabel lblNewLabel_3_1 = new JLabel("*");
-		lblNewLabel_3_1.setForeground(Color.RED);
-		
-		JLabel lblNewLabel_3_2 = new JLabel("*");
-		lblNewLabel_3_2.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_3_2.setForeground(Color.RED);
-		
-		JLabel lblNewLabel_3_3 = new JLabel("*");
-		lblNewLabel_3_3.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_3_3.setForeground(Color.RED);
-		
-		JLabel lblNewLabel_3_4 = new JLabel("*");
-		lblNewLabel_3_4.setForeground(Color.RED);
-		
-		JLabel lblNewLabel_3_5 = new JLabel("*");
-		lblNewLabel_3_5.setForeground(Color.RED);
-		
-		JLabel lblNewLabel_3_6 = new JLabel("*");
-		lblNewLabel_3_6.setForeground(Color.RED);
-		
-		JLabel lblNewLabel_3_7 = new JLabel("*");
-		lblNewLabel_3_7.setForeground(Color.RED);
-		
-		JLabel lblNewLabel_3_8 = new JLabel("*");
-		lblNewLabel_3_8.setForeground(Color.RED);
-		
-		JLabel lblNewLabel_3_9 = new JLabel("*");
-		lblNewLabel_3_9.setForeground(Color.RED);
-		
-		JLabel lblNewLabel_3_10 = new JLabel("*");
-		lblNewLabel_3_10.setForeground(Color.RED);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(10)
-					.addComponent(panelTitulo, GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+					.addComponent(panelTitulo, GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
 					.addGap(184)
 					.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
 					.addGap(4))
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(10)
-					.addComponent(panelIdentificacao, GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
-					.addGap(4))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(20)
-					.addComponent(lblNome, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblNewLabel_3)
-					.addPreferredGap(ComponentPlacement.RELATED, 335, Short.MAX_VALUE)
-					.addComponent(lblCPF)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblNewLabel_3_1)
-					.addGap(226))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(9)
-					.addComponent(txtNome, GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
-					.addGap(18)
-					.addComponent(txtCPF, GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
-					.addGap(16))
-				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(19)
-					.addComponent(lblIdade, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblNewLabel_3_2, GroupLayout.PREFERRED_SIZE, 6, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(8)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addComponent(txtIdade, GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(10)
-							.addComponent(lblEmail, GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblNewLabel_3_3)
-							.addGap(327)))
-					.addGap(21)
-					.addComponent(cboGenero, GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
-					.addGap(14))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(7)
-					.addComponent(txtEmail, GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
-					.addGap(14))
+					.addComponent(lblIdade)
+					.addContainerGap(599, Short.MAX_VALUE))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(10)
-					.addComponent(panelIdentificacao_1, GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
-					.addGap(4))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(20)
-					.addComponent(lblValidade)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblNewLabel_3_4, GroupLayout.PREFERRED_SIZE, 6, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 316, Short.MAX_VALUE)
-					.addComponent(lblNmeroCarteirinha)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblNewLabel_3_5, GroupLayout.PREFERRED_SIZE, 6, GroupLayout.PREFERRED_SIZE)
-					.addGap(197))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(10)
-					.addComponent(txtEspecialidade, GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+					.addComponent(txtEspecialidade, GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
 					.addGap(22)
-					.addComponent(txtCRM, GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+					.addComponent(txtCRM, GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
 					.addGap(4))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(10)
-					.addComponent(panelIdentificacao_1_1, GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+					.addComponent(panelIdentificacao_1_1, GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
 					.addGap(4))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(10)
-					.addComponent(txtCEP, GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
-					.addGap(6)
-					.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
-					.addGap(10)
-					.addComponent(cboUF, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-					.addGap(14))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(20)
-					.addComponent(lblCidade)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblNewLabel_3_9, GroupLayout.PREFERRED_SIZE, 6, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 257, Short.MAX_VALUE)
-					.addComponent(lblBairro)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblNewLabel_3_6, GroupLayout.PREFERRED_SIZE, 6, GroupLayout.PREFERRED_SIZE)
-					.addGap(285))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(9)
-					.addComponent(txtCidade, GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
+					.addComponent(txtCidade, GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
 					.addGap(15)
-					.addComponent(txtBairro, GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+					.addComponent(txtBairro, GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
 					.addGap(11))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(10)
-					.addComponent(txtRua, GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
+					.addComponent(txtRua, GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE)
 					.addGap(5))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(18)
-					.addComponent(lblNumero)
+					.addComponent(lblNumero, GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblNewLabel_3_7, GroupLayout.PREFERRED_SIZE, 6, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
-					.addComponent(lblComplemento)
-					.addGap(304))
+					.addComponent(lblComplemento, GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+					.addContainerGap())
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(9)
-					.addComponent(txtNumero, GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+					.addComponent(txtNumero, GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
 					.addGap(18)
-					.addComponent(txtComplemento, GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
+					.addComponent(txtComplemento, GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
 					.addGap(4))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(19)
 					.addComponent(lblRua)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblNewLabel_3_8, GroupLayout.PREFERRED_SIZE, 6, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(608, Short.MAX_VALUE))
+					.addContainerGap(610, Short.MAX_VALUE))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(20)
 					.addComponent(lblCEP)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblNewLabel_3_10, GroupLayout.PREFERRED_SIZE, 6, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(609, Short.MAX_VALUE))
+					.addContainerGap(611, Short.MAX_VALUE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(10)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(10)
+							.addComponent(lblValidade, GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblNmeroCarteirinha, GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+							.addContainerGap())
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(panelIdentificacao_1, GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
+							.addGap(4))))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(10)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+							.addGap(10)
+							.addComponent(lblCidade, GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblBairro, GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+							.addContainerGap())
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(txtCEP, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+							.addGap(6)
+							.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
+							.addGap(10)
+							.addComponent(cboUF, GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+							.addGap(14))))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(8)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(txtIdade, GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
+									.addGap(21)
+									.addComponent(cboGenero, GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(10)
+									.addComponent(lblEmail, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(7)
+							.addComponent(txtEmail, GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)))
+					.addGap(14))
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+							.addGap(20)
+							.addComponent(lblNome, GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblCPF, GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE))
+						.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+							.addGap(10)
+							.addComponent(panelIdentificacao, GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(9)
+							.addComponent(txtNome, GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+							.addGap(18)
+							.addComponent(txtCPF, GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)))
+					.addGap(16))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -487,26 +432,18 @@ public class TelaDetalhesMedico extends JFrame {
 					.addComponent(panelIdentificacao, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
 					.addGap(11)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-							.addComponent(lblNome)
-							.addComponent(lblNewLabel_3))
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-							.addComponent(lblCPF)
-							.addComponent(lblNewLabel_3_1)))
+						.addComponent(lblCPF)
+						.addComponent(lblNome))
 					.addGap(11)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 						.addComponent(txtCPF, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblIdade)
-						.addComponent(lblNewLabel_3_2))
+					.addComponent(lblIdade)
 					.addGap(11)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(txtIdade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblEmail)
-								.addComponent(lblNewLabel_3_3)))
+							.addComponent(lblEmail))
 						.addComponent(cboGenero, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
 					.addGap(9)
 					.addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -514,12 +451,8 @@ public class TelaDetalhesMedico extends JFrame {
 					.addComponent(panelIdentificacao_1, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
 					.addGap(11)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-							.addComponent(lblValidade)
-							.addComponent(lblNewLabel_3_4))
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-							.addComponent(lblNmeroCarteirinha)
-							.addComponent(lblNewLabel_3_5)))
+						.addComponent(lblValidade)
+						.addComponent(lblNmeroCarteirinha))
 					.addGap(11)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(txtEspecialidade, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
@@ -527,9 +460,7 @@ public class TelaDetalhesMedico extends JFrame {
 					.addGap(11)
 					.addComponent(panelIdentificacao_1_1, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
 					.addGap(14)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblCEP)
-						.addComponent(lblNewLabel_3_10))
+					.addComponent(lblCEP)
 					.addGap(11)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(txtCEP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -537,28 +468,20 @@ public class TelaDetalhesMedico extends JFrame {
 						.addComponent(cboUF, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
 					.addGap(10)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-							.addComponent(lblBairro)
-							.addComponent(lblNewLabel_3_6))
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-							.addComponent(lblCidade)
-							.addComponent(lblNewLabel_3_9)))
+						.addComponent(lblCidade)
+						.addComponent(lblBairro))
 					.addGap(10)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(txtCidade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(txtBairro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(11)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblRua)
-						.addComponent(lblNewLabel_3_8))
+					.addComponent(lblRua)
 					.addGap(11)
 					.addComponent(txtRua, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(11)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblComplemento)
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-							.addComponent(lblNumero)
-							.addComponent(lblNewLabel_3_7)))
+						.addComponent(lblNumero))
 					.addGap(11)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(txtNumero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -566,8 +489,6 @@ public class TelaDetalhesMedico extends JFrame {
 					.addGap(66))
 		);
 		contentPane.setLayout(gl_contentPane);
-		validarCPF.setOnlyNums(true);
-		validarCPF.setLimit(11);
 		
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -585,9 +506,9 @@ public class TelaDetalhesMedico extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaMenuMedico telaMenuMedico = new TelaMenuMedico();
-				telaMenuMedico.setVisible(true);
-				telaMenuMedico.setExtendedState(MAXIMIZED_BOTH);
+				TelaListaMedico telaListaMedico = new TelaListaMedico();
+				telaListaMedico.setVisible(true);
+				telaListaMedico.setExtendedState(MAXIMIZED_BOTH);
 			}
 		});
 	}

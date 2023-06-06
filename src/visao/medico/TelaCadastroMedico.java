@@ -118,6 +118,7 @@ public class TelaCadastroMedico extends JFrame {
         lblCidade.setForeground(new Color(84, 175, 230));
         
         txtCidade = new MeuTextField();
+        txtCidade.setForeground(new Color(27, 156, 228));
         
         cboUF = new MeuComboBox();
         cboUF.setForeground(new Color(27, 156, 228));
@@ -244,6 +245,7 @@ public class TelaCadastroMedico extends JFrame {
 		panelIdentificacao.setLayout(gl_panelIdentificacao);
 		
 		txtCEP = new MeuJFormatedTextField();
+		txtCEP.setForeground(new Color(27, 156, 228));
 		
 		MeuBotao btnBuscar = new MeuBotao();
 		btnBuscar.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -679,7 +681,7 @@ public class TelaCadastroMedico extends JFrame {
 				String genero = cboGenero.getSelectedItem().toString();
 				Long crm = Long.parseLong(txtCRM.getText());
 				String especialidade = txtEspecialidade.getText();
-				String cep = txtCEP.getText();
+				Long cep = Long.parseLong(txtCEP.getText());
 				String uf = cboUF.getSelectedItem().toString();
 				String cidade = txtCidade.getText();
 				String bairro = txtBairro.getText();
