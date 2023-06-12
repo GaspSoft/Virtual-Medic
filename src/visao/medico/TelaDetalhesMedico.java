@@ -148,7 +148,7 @@ public class TelaDetalhesMedico extends JFrame {
 		
 		MeuTextField txtCPF = new MeuTextField();
 		txtCPF.setEditable(false);
-		txtCPF.setText(medico.getCep().toString());
+		txtCPF.setText(medico.getCpf().toString());
 		txtCPF.setForeground(new Color(27, 156, 228));
 		
 		JLabel lblCPF = new JLabel("CPF:");

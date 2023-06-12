@@ -29,24 +29,27 @@ public class DAOpaciente {
 	}
 
 	// UPDATE
-	public boolean alterar(Paciente paciente) {
-		for (Paciente p : listaPaciente) {
-			if (p.getCpf().equals(paciente.getCpf())) {
-				p.setNome(paciente.getNome());
-				p.setEmail(paciente.getEmail());
-				p.setIdade(paciente.getIdade());
-				p.setGenero(paciente.getGenero());
-				p.setCep(paciente.getCep());
-				p.setUf(paciente.getUf());
-				p.setCidade(paciente.getCidade());
-				p.setBairro(paciente.getBairro());
-				p.setRua(paciente.getRua());
-				p.setNumero(paciente.getNumero());
-				p.setComplemento(paciente.getComplemento());
-				p.setMedico(paciente.getMedico());
-				p.setDiagnostico(paciente.getDiagnostico());
-				p.setNumeroPlano(paciente.getNumeroPlano());
-				p.setValidade(paciente.getValidade());
+	public Boolean alterar(Paciente p) {
+		for (Paciente paciente : listaPaciente) {
+			if (paciente.getCpf().equals(paciente.getCpf())) {
+				
+				paciente.setCpf(p.getCpf());
+				paciente.setNome(p.getNome());
+				paciente.setEmail(p.getEmail());
+				paciente.setIdade(p.getIdade());
+				paciente.setGenero(p.getGenero());
+				paciente.setCep(p.getCep());
+				paciente.setUf(p.getUf());
+				paciente.setCidade(p.getCidade());
+				paciente.setBairro(p.getBairro());
+				paciente.setRua(p.getRua());
+				paciente.setNumero(p.getNumero());
+				paciente.setComplemento(p.getComplemento());
+				paciente.setMedico(p.getMedico());
+				paciente.setDiagnostico(p.getDiagnostico());
+				paciente.setNumeroPlano(p.getNumeroPlano());
+				paciente.setValidade(p.getValidade());
+				
 				return true;
 			}
 		}

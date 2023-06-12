@@ -779,32 +779,33 @@ public class TelaEditarPaciente extends JFrame {
 				Integer complemento = Integer.valueOf(txtComplemento.getText());
 
 		        // Crie uma instância do paciente com os dados atualizados
-		        Paciente paciente = new Paciente();
-		        paciente.setCpf(cpf);
-		        paciente.setNome(nome);
-		        paciente.setEmail(email);
-		        paciente.setIdade(idade);
-		        paciente.setGenero(genero);
-		        paciente.setCep(cep);
-		        paciente.setUf(uf);
-		        paciente.setCidade(cidade);
-		        paciente.setBairro(bairro);
-		        paciente.setRua(rua);
-		        paciente.setNumero(numero);
-		        paciente.setComplemento(complemento);
-		        paciente.setMedico(medico);
-		        paciente.setDiagnostico(diagnostico);
-		        paciente.setNumeroPlano(numeroPlano);
-		        paciente.setValidade(validade);
+		        Paciente p = new Paciente();
+		        
+		        p.setCpf(cpf);
+		        p.setNome(nome);
+		        p.setEmail(email);
+		        p.setIdade(idade);
+		        p.setGenero(genero);
+		        p.setCep(cep);
+		        p.setUf(uf);
+		        p.setCidade(cidade);
+		        p.setBairro(bairro);
+		        p.setRua(rua);
+		        p.setNumero(numero);
+		        p.setComplemento(complemento);
+		        p.setMedico(medico);
+		        p.setDiagnostico(diagnostico);
+		        p.setNumeroPlano(numeroPlano);
+		        p.setValidade(validade);
 
 		        // Chame o método alterar do DAOpaciente para atualizar os dados
-		        boolean sucesso = DAOpaciente.getInstacia().alterar(paciente);
+		        DAOpaciente daoPaciente = DAOpaciente.getInstacia();
+				Boolean sucesso = daoPaciente.alterar(p);
 
 		        if (sucesso) {
 		            TelaMensagem telaSucesso = new TelaMensagem("Dados atualizados com sucesso!", "Paciente atualizado com sucesso", corSucesso, corSucessoBackground);
 		            telaSucesso.setLocationRelativeTo(null);
 					telaSucesso.setVisible(true);
-		            //limparFormulario();
 		        } else {
 		            // Realize as ações de erro, como exibir uma mensagem de erro
 		            TelaMensagem telaSucesso = new TelaMensagem("Falha ao atualizar os dados do paciente!", "Erro ao atualizar o paciente", corErro, corErroBackground);

@@ -709,9 +709,9 @@ public class TelaEditarMedico extends JFrame {
 				m.setComplemento(complemento);
 				
 				DAOmedico daoMedico = DAOmedico.getInstacia();
-				Boolean inserir = daoMedico.inserir(m);
-				if (inserir) {
-					TelaMensagem telaSucesso = new TelaMensagem(nome + ", editado com sucesso!", "Médico atualizado com sucesso", corSucesso, corSucessoBackground);
+				Boolean sucesso = daoMedico.alterar(m);
+				if (sucesso) {
+					TelaMensagem telaSucesso = new TelaMensagem("Dados atualizados com sucesso!", "Médico atualizado com sucesso", corSucesso, corSucessoBackground);
 					telaSucesso.setLocationRelativeTo(null);
 					telaSucesso.setVisible(true);
 				} else {
@@ -725,6 +725,9 @@ public class TelaEditarMedico extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
+				TelaMenuMedico telaMenuMedico = new TelaMenuMedico();
+				telaMenuMedico.setVisible(true);
+				telaMenuMedico.setExtendedState(MAXIMIZED_BOTH);
 			}
 		});
 	}

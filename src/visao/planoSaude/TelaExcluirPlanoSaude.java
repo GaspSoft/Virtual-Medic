@@ -17,6 +17,7 @@ import java.awt.Color;
 import java.awt.Font;
 import layoutPersonalizado.componentes.MeuTextField;
 import modelo.PlanoSaude;
+import visao.TelaMensagem;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -34,6 +35,10 @@ public class TelaExcluirPlanoSaude extends JDialog {;
 	private Integer buscarExcluir;
 	private final JPanel contentPanel = new JPanel();
 	private Color btnLimpar = new Color(186, 75, 71);
+	private Color corSucesso = new Color(0,139,139);
+	private Color corSucessoBackground = new Color(64,224,208);
+	private Color corErro = new Color(178,34,34);
+	private Color corErroBackground = new Color(250,128,114);
 
 	/**
 	 * Launch the application.
@@ -106,14 +111,28 @@ public class TelaExcluirPlanoSaude extends JDialog {;
 		
 		btnExcluirPlanoSaude.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DAOplanoSaude ps = DAOplanoSaude.getInstacia();
+				DAOplanoSaude daoPlanoSaude = DAOplanoSaude.getInstacia();
 				Integer Num = Integer.parseInt(txtID.getText());
-
-				ps.deletar(null, Num);
+				
+				Boolean excluir = daoPlanoSaude.deletar(null, Num);
 				dispose();
 				TelaMenuPlanoSaude TelaMenuPlanoSaude = new TelaMenuPlanoSaude();
 				TelaMenuPlanoSaude.setVisible(true);
 				TelaMenuPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				
+				if (excluir) {
+					TelaMensagem telaSucesso = new TelaMensagem("Paciente excluído com sucesso!", "Paciente excluído", corSucesso, corSucessoBackground);
+					telaSucesso.setLocationRelativeTo(null);
+					telaSucesso.setVisible(true);
+					dispose();
+					telaSucesso.setAlwaysOnTop(true);
+				} else {
+					TelaMensagem telaSucesso = new TelaMensagem("Não foi possível excluir o paciente!", "Erro ao excluir paciente", corErro, corErroBackground);
+					telaSucesso.setLocationRelativeTo(null);
+					telaSucesso.setVisible(true);
+					dispose();
+					telaSucesso.setAlwaysOnTop(true);
+				}
 			}
 		});
 	}

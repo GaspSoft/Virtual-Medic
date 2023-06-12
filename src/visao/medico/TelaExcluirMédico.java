@@ -103,10 +103,14 @@ public class TelaExcluirMédico extends JDialog {
 					TelaMensagem telaSucesso = new TelaMensagem("Médico excluído com sucesso!", "Médico exluído", corSucesso, corSucessoBackground);
 					telaSucesso.setLocationRelativeTo(null);
 					telaSucesso.setVisible(true);
+					dispose();
+					telaSucesso.setAlwaysOnTop(true);
 				} else {
 					TelaMensagem telaSucesso = new TelaMensagem("Não foi possível excluir o médico!", "Erro ao excluir paciente", corErro, corErroBackground);
 					telaSucesso.setLocationRelativeTo(null);
 					telaSucesso.setVisible(true);
+					dispose();
+					telaSucesso.setAlwaysOnTop(true);
 				}
 				dispose();
 			}
