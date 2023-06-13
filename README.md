@@ -24,6 +24,15 @@
 `Tecnologia 4` : IDE eclipse workspace</br>
 `Tecnologia 5` : Window Builder</br>
 
+# 📖 Bibliotecas utilizadas
+`Bibliotecas 1` : Atxy2k</br>
+`Bibliotecas 2` : dom4j-2.1.4</br>
+`Bibliotecas 3` : TimingFramework</br>
+`Bibliotecas 4` : Filters-2.0.235</br>
+`Bibliotecas 5` : Swing-Worker-1.1</br>
+`Bibliotecas 6` : Swingx-1.6.1</br>
+`Bibliotecas 7` : MigLayout15-Swing</br>
+
 # 📝 Proposta Geral
 <p align="justify">Nosso objetivo é desenvolver um sistema desktop abrangente de prontuário eletrônico que permita a gestão eficiente de informações médicas, incluindo os dados de médicos, pacientes e planos de saúde. O sistema será projetado para atender às necessidades de clínicas e consultórios médicos, simplificando o gerenciamento de registros e melhorando a qualidade do atendimento ao paciente:</p>
 
