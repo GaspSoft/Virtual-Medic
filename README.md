@@ -64,6 +64,11 @@ O sistema permite cadastrar os planos de saúde com os quais a clínica ou consu
   <li><b>PlanoSaudeDAO</b>: a classe DAOplanoSaude encapsula operações de acesso a dados para manipulação de objetos PlanoSaude. Ela mantém uma lista de planos de saúde em memória e fornece métodos para inserir, atualizar, excluir e consultar planos de saúde na lista. O padrão Singleton é usado para garantir que haja apenas uma instância da classe DAOplanoSaude durante a execução do programa.
 </ul>
   
+# 📄 Documentação
+<p align="center">
+  <a href="https://docs.google.com/document/d/1183VnH4-KVf9r6mYwuRhlRnIPtvyNjijxaqpfvXsKVY/edit?usp=sharing">Link Documentação</a>
+</p>
+  
   
 # 📈 Diagrama de Casos de Uso
 <p align="center">
