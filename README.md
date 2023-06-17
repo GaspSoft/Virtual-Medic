@@ -57,9 +57,10 @@ O sistema oferece a possibilidade de cadastrar pacientes, armazenando informaç�
 O sistema permite cadastrar os planos de saúde com os quais a clínica ou consultório trabalha. É possível registrar informações como nome do plano, detalhes de cobertura, requisitos específicos e informações de contato. Os registros dos planos de saúde podem ser atualizados, visualizados e excluídos conforme necessário. A funcionalidade de detalhar o plano de saúde permite encontrar planos de saúde com base em critérios como nome ou tipo de cobertura.
 
 # 📈 Diagrama de Classes
+
 <p align="center">
 
-![image](https://github.com/pedrogodri/estudo-de-caso/assets/86849487/c3508f85-533a-4a58-8454-51deb4e2b297)
+![VirtualMedicDiagram](https://github.com/GaspSoft/Virtual-Medic/assets/111302374/36ce9f18-1fa9-4d6e-b5bb-622996c21486)
   </p>
   
   <ul>
