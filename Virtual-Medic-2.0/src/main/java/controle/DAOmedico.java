@@ -11,20 +11,6 @@ import modelo.Paciente;
 
 public class DAOmedico {
 
-	private static ArrayList<Medico> listaMedico;
-	private static DAOmedico instancia;
-
-	public static DAOmedico getInstacia() {
-
-		if (instancia == null) {
-			instancia = new DAOmedico();
-			listaMedico = new ArrayList<>();
-		}
-
-		return instancia;
-	}
-	
-
 	public ArrayList<Medico> listar() {
 		Conexao c = Conexao.getInstancia();
 		Connection con = c.conectar();
