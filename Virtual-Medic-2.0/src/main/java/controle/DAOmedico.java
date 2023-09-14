@@ -125,7 +125,7 @@ public class DAOmedico {
 		Conexao c = Conexao.getInstancia();
 
 		Connection con = c.conectar();
-		String query = "UPDATE pessoa SET cpf = ?, nome = ?, email = ?, genero = ?, idade = ?, crm = ?, especificacao = ?, cep = ?, uf = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, complemento = ? WHERE crm = ?";
+		String query = "UPDATE medico SET cpf = ?, nome = ?, email = ?, genero = ?, idade = ?, crm = ?, especificacao = ?, cep = ?, uf = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, complemento = ? WHERE crm = ?";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(query);

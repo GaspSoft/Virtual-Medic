@@ -1,5 +1,9 @@
 package controle;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import modelo.Paciente;
@@ -7,65 +11,134 @@ import modelo.PlanoSaude;
 
 public class DAOplanoSaude {
 	
-	private static ArrayList<PlanoSaude> listaPlanoSaude;
-	private static DAOplanoSaude instanciaPlanoSaude;
-	
-	// INSTANCIA
-	public static DAOplanoSaude getInstacia() {
-		PlanoSaude ps = new PlanoSaude();
-		
-			if (instanciaPlanoSaude == null) {
-				instanciaPlanoSaude = new DAOplanoSaude();
-				listaPlanoSaude = new ArrayList<>();
+	public ArrayList<PlanoSaude> listar() {
+		Conexao c = Conexao.getInstancia();
+		Connection con = c.conectar();
+		ArrayList<PlanoSaude> planoSaudes = new ArrayList<PlanoSaude>();
+
+		String query = "SELECT * FROM planoSaude";
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String nome = rs.getString("nome");
+
+				PlanoSaude pl = new PlanoSaude();
+				pl.setId(id);
+				pl.setNome(nome);
+				
+				planoSaudes.add(pl);
 			}
-			
-		return instanciaPlanoSaude;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		c.fecharConexao();
+
+		return planoSaudes;
 	}
-	
-	// INSERT
-	public boolean inserir(PlanoSaude planoSaude) {
-		if (planoSaude != null) {
-			listaPlanoSaude.add(planoSaude);
+
+	public boolean inserir(PlanoSaude pl) {
+
+		Conexao c = Conexao.getInstancia();
+
+		Connection con = c.conectar();
+
+		String query = "INSERT INTO planoSaude (id, nome) VALUES (?, ?)";
+
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, pl.getId());
+			ps.setString(2, pl.getNome());
+
+
+			ps.executeUpdate();
+
+			c.fecharConexao();
+
 			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return false;
 	}
-	
-	// UPDATE
-	public Boolean alterar(PlanoSaude pa) {
-		for (PlanoSaude planoSaude : listaPlanoSaude) {
-			if (planoSaude.getId() == pa.getId()) {
-				planoSaude.setNome(pa.getNome());
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	// DELETE
-	public boolean deletar(PlanoSaude planoDeletar, int id) {
 
-		for (PlanoSaude planosaude : listaPlanoSaude) {
-			if (planosaude.getId() == id) {
-				listaPlanoSaude.remove(planosaude);
-				return true;
-			}
+	public boolean excluir(PlanoSaude pl) {
+		Conexao c = Conexao.getInstancia();
+		Connection con = c.conectar();
 
+		String query = "DELETE FROM planoSaude WHERE id = ?";
+
+		try {
+
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, pl.getId());
+
+			ps.executeUpdate();
+
+			c.fecharConexao();
+
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return false;
 	}
 	
-	// SELECT ALL
-	public PlanoSaude buscarID(Integer id) {
-		for (PlanoSaude planosaude : listaPlanoSaude) {
-			if (planosaude.getId() == id) {
-				return planosaude;
-			}
+	public boolean atualizar(PlanoSaude pl) {
+
+		Conexao c = Conexao.getInstancia();
+
+		Connection con = c.conectar();
+		String query = "UPDATE planoSaude SET nome = ? WHERE id = ?";
+
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setInt(1, pl.getId());
+			ps.setString(2, pl.getNome());
+			
+			ps.executeUpdate();
+			c.fecharConexao();
+			return true;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		return null;
+
+		return false;
+
 	}
-	
-	public ArrayList<PlanoSaude> listaPlanoSaude() {
-		return listaPlanoSaude;
+
+	public PlanoSaude buscarPorCPF(int id) {
+	    Conexao c = Conexao.getInstancia();
+	    Connection con = c.conectar();
+	    
+	    String query = "SELECT * FROM planoSaude WHERE id = ?";
+	    
+	    try {
+	        PreparedStatement ps = con.prepareStatement(query);
+	        ps.setLong(1, id);
+	        
+	        ResultSet rs = ps.executeQuery();
+	        if (rs.next()) {
+				String nome = rs.getString("nome");
+
+	            PlanoSaude pl = new PlanoSaude();
+	            pl.setNome(nome);
+
+	            
+	            c.fecharConexao();
+	            
+	            return pl;
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    
+	    c.fecharConexao();
+	    
+	    return null;
 	}
 }
