@@ -1,84 +1,232 @@
 package controle;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import modelo.Paciente;
 
 public class DAOpaciente {
+	
+	public ArrayList<Paciente> listar() {
+		Conexao c = Conexao.getInstancia();
+		Connection con = c.conectar();
+		ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
 
-	private static ArrayList<Paciente> listaPaciente;
-	private static DAOpaciente instanciaPaciente;
+		String query = "SELECT * FROM paciente";
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				long cpf = rs.getLong("cpf");
+				String nome = rs.getString("nome");
+				String email = rs.getString("email");
+				String genero = rs.getString("genero");
+				int idade = rs.getInt("idade");
+				String medico = rs.getString("medico");
+				String diagnostico = rs.getString("diagnostico");
+				String planoSaude = rs.getString("planoSaude");
+				long numeroPlano = rs.getLong("numeroPlano");
+				String validade = rs.getString("validade");
+				long cep = rs.getLong("cep");
+				String uf = rs.getString("uf");
+				String cidade = rs.getString("cidade");
+				String bairro = rs.getString("bairro");
+				String rua = rs.getString("rua");
+				int numero = rs.getInt("numero");
+				int complemento = rs.getInt("complemento");
 
-	public static DAOpaciente getInstacia() {
-
-		if (instanciaPaciente == null) {
-			instanciaPaciente = new DAOpaciente();
-			listaPaciente = new ArrayList<>();
+				Paciente p = new Paciente();
+				p.setCpf(cpf);
+				p.setNome(nome);
+				p.setEmail(email);
+				p.setGenero(genero);
+				p.setIdade(idade);
+				p.setMedico(medico);
+				p.setDiagnostico(diagnostico);
+				p.setPlanoSaude(planoSaude);
+				p.setNumeroPlano(numeroPlano);
+				p.setValidade(validade);
+				p.setCep(cep);
+				p.setUf(uf);
+				p.setCidade(cidade);
+				p.setBairro(bairro);
+				p.setRua(rua);
+				p.setNumero(numero);
+				p.setComplemento(complemento);
+				pacientes.add(p);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 
-		return instanciaPaciente;
+		c.fecharConexao();
+
+		return pacientes;
 	}
 
-	// INSERT
 	public boolean inserir(Paciente p) {
-		if (p != null) {
-			listaPaciente.add(p);
+
+		Conexao c = Conexao.getInstancia();
+
+		Connection con = c.conectar();
+
+		String query = "INSERT INTO paciente (cpf, nome, email, genero, idade, medico, diagnostico, planoSaude, numeroPlano, validade, cep, uf, cidade, bairro, rua, numero, complemento) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setLong(1, p.getCpf());
+			ps.setString(2, p.getNome());
+			ps.setString(3, p.getEmail());
+			ps.setString(4, p.getGenero());
+			ps.setInt(5, p.getIdade());
+			ps.setString(6, p.getMedico());
+			ps.setString(7, p.getDiagnostico());
+			ps.setString(8, p.getPlanoSaude());
+			ps.setLong(9, p.getNumeroPlano());
+			ps.setString(10, p.getValidade());
+			ps.setLong(11, p.getCep());
+			ps.setString(12, p.getUf());
+			ps.setString(13, p.getCidade());
+			ps.setString(14, p.getBairro());
+			ps.setString(15, p.getRua());
+			ps.setInt(16, p.getNumero());
+			ps.setInt(17, p.getComplemento());
+
+			ps.executeUpdate();
+
+			c.fecharConexao();
+
 			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return false;
 	}
 
-	// UPDATE
-	public Boolean alterar(Paciente p) {
-		for (Paciente paciente : listaPaciente) {
-			if (paciente.getCpf().equals(paciente.getCpf())) {
-				
-				paciente.setCpf(p.getCpf());
-				paciente.setNome(p.getNome());
-				paciente.setEmail(p.getEmail());
-				paciente.setIdade(p.getIdade());
-				paciente.setGenero(p.getGenero());
-				paciente.setCep(p.getCep());
-				paciente.setUf(p.getUf());
-				paciente.setCidade(p.getCidade());
-				paciente.setBairro(p.getBairro());
-				paciente.setRua(p.getRua());
-				paciente.setNumero(p.getNumero());
-				paciente.setComplemento(p.getComplemento());
-				paciente.setMedico(p.getMedico());
-				paciente.setDiagnostico(p.getDiagnostico());
-				paciente.setNumeroPlano(p.getNumeroPlano());
-				paciente.setValidade(p.getValidade());
-				
-				return true;
-			}
+	public boolean excluir(Paciente p) {
+		Conexao c = Conexao.getInstancia();
+		Connection con = c.conectar();
+
+		String query = "DELETE FROM paciente WHERE cpf = ?";
+
+		try {
+
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setLong(1, p.getCpf());
+
+			ps.executeUpdate();
+
+			c.fecharConexao();
+
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return false;
 	}
-	// DELETE
-	public Boolean deletar(Paciente p, Long cpf) {
-		for (Paciente paciente : listaPaciente) {
-			if (paciente.getCpf() == cpf) {
-				listaPaciente.remove(paciente);
-				return true;
-			}
+	
+	public boolean atualizar(Paciente p) {
+
+		Conexao c = Conexao.getInstancia();
+
+		Connection con = c.conectar();
+		String query = "UPDATE paciente SET cpf = ?, nome = ?, email = ?, genero = ?, idade = ?, medico = ?, diagnostico = ?, planoSaude = ?, numeroPlano = ?, validade = ?, cep = ?, uf = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, complemento = ? WHERE cpf = ?";
+
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setLong(1, p.getCpf());
+			ps.setString(2, p.getNome());
+			ps.setString(3, p.getEmail());
+			ps.setString(4, p.getGenero());
+			ps.setInt(5, p.getIdade());
+			ps.setString(6, p.getMedico());
+			ps.setString(7, p.getDiagnostico());
+			ps.setString(8, p.getPlanoSaude());
+			ps.setLong(9, p.getNumeroPlano());
+			ps.setString(10, p.getValidade());
+			ps.setLong(11, p.getCep());
+			ps.setString(12, p.getUf());
+			ps.setString(13, p.getCidade());
+			ps.setString(14, p.getBairro());
+			ps.setString(15, p.getRua());
+			ps.setInt(16, p.getNumero());
+			ps.setInt(17, p.getComplemento());
+			
+			ps.executeUpdate();
+			c.fecharConexao();
+			return true;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+
 		return false;
+
 	}
 
-	// SELECT ALL
-	public ArrayList<Paciente> listalPaciente() {
-		return listaPaciente;
-	}
-
-	// SELECT BY ID
 	public Paciente buscarPorCPF(Long cpf) {
-		for (Paciente paciente : listaPaciente) {
-			if (paciente.getCpf().equals(cpf)) {
-				return paciente;
-			}
-		}
-		return null; // Retorna null se a pessoa não for encontrada
+	    Conexao c = Conexao.getInstancia();
+	    Connection con = c.conectar();
+	    
+	    String query = "SELECT * FROM paciente WHERE cpf = ?";
+	    
+	    try {
+	        PreparedStatement ps = con.prepareStatement(query);
+	        ps.setLong(1, cpf);
+	        
+	        ResultSet rs = ps.executeQuery();
+	        if (rs.next()) {
+				String nome = rs.getString("nome");
+				String email = rs.getString("email");
+				String genero = rs.getString("genero");
+				int idade = rs.getInt("idade");
+				String medico = rs.getString("medico");
+				String diagnostico = rs.getString("diagnostico");
+				String planoSaude = rs.getString("planoSaude");
+				long numeroPlano = rs.getLong("numeroPlano");
+				String validade = rs.getString("validade");
+				long cep = rs.getLong("cep");
+				String uf = rs.getString("uf");
+				String cidade = rs.getString("cidade");
+				String bairro = rs.getString("bairro");
+				String rua = rs.getString("rua");
+				int numero = rs.getInt("numero");
+				int complemento = rs.getInt("complemento");
+
+	            Paciente p = new Paciente();
+	            p.setCpf(cpf);
+				p.setNome(nome);
+				p.setEmail(email);
+				p.setGenero(genero);
+				p.setIdade(idade);
+				p.setMedico(medico);
+				p.setDiagnostico(diagnostico);
+				p.setPlanoSaude(planoSaude);
+				p.setNumeroPlano(numeroPlano);
+				p.setValidade(validade);
+				p.setCep(cep);
+				p.setUf(uf);
+				p.setCidade(cidade);
+				p.setBairro(bairro);
+				p.setRua(rua);
+				p.setNumero(numero);
+				p.setComplemento(complemento);
+	            
+	            c.fecharConexao();
+	            
+	            return p;
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    
+	    c.fecharConexao();
+	    
+	    return null;
 	}
 
 }
