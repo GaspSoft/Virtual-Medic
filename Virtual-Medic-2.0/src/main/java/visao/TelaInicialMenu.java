@@ -196,8 +196,8 @@ public class TelaInicialMenu extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				TelaMenuPlanoSaude telaMenuPlanoSaude = new TelaMenuPlanoSaude();
 				dispose();
-//				telaMenuPlanoSaude.setVisible(true);
-//				telaMenuPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				telaMenuPlanoSaude.setVisible(true);
+				telaMenuPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			}
 		});
 		
@@ -212,17 +212,17 @@ public class TelaInicialMenu extends JFrame {
 		
 		btnSobre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				TelaSobreSystem telaSobreSistema = new TelaSobreSystem();
-//		        telaSobreSistema.setLocationRelativeTo(null);
-//		        telaSobreSistema.setVisible(true);
+				TelaSobreSystem telaSobreSistema = new TelaSobreSystem();
+		        telaSobreSistema.setLocationRelativeTo(null);
+		        telaSobreSistema.setVisible(true);
 			}
 		});
 		
 		btnRedesSociais.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				TelaSocialMidia telaRedesSociais = new TelaSocialMidia();
-//				telaRedesSociais.setLocationRelativeTo(null);
-//				telaRedesSociais.setVisible(true);
+				TelaSocialMidia telaRedesSociais = new TelaSocialMidia();
+				telaRedesSociais.setLocationRelativeTo(null);
+				telaRedesSociais.setVisible(true);
 			}
 		});
 		
