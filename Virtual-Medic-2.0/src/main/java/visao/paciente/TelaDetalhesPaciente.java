@@ -196,8 +196,8 @@ public class TelaDetalhesPaciente extends JFrame {
 		lblNewLabel_2_1.setForeground(Color.WHITE);
 		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
-		DAOplanoSaude planoDAO = DAOplanoSaude.getInstacia();
-		ArrayList<PlanoSaude> listaPlanoSaude = planoDAO.listaPlanoSaude();
+		DAOplanoSaude planoDAO = new DAOplanoSaude();
+		ArrayList<PlanoSaude> listaPlanoSaude = planoDAO.listar();
 		
 		MeuComboBox cboPlanoSaude = new MeuComboBox();
 		cboPlanoSaude.setEditable(false);
@@ -279,8 +279,8 @@ public class TelaDetalhesPaciente extends JFrame {
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnVoltar.setBackground(new Color(24, 62, 159));
 		
-		DAOmedico medicoDAO = DAOmedico.getInstacia();
-		ArrayList<Medico> listaMedico = medicoDAO.listaMedico();
+		DAOmedico medicoDAO = new DAOmedico();
+		ArrayList<Medico> listaMedico = medicoDAO.listar();
 		
 		MeuComboBox cboMedico = new MeuComboBox();
 		cboMedico.setEditable(false);
