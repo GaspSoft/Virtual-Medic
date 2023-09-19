@@ -111,10 +111,11 @@ public class TelaExcluirPlanoSaude extends JDialog {;
 		
 		btnExcluirPlanoSaude.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DAOplanoSaude daoPlanoSaude = DAOplanoSaude.getInstacia();
+				DAOplanoSaude daoPlanoSaude = new DAOplanoSaude();
 				Integer Num = Integer.parseInt(txtID.getText());
 				
-				Boolean excluir = daoPlanoSaude.deletar(null, Num);
+				
+				Boolean excluir = daoPlanoSaude.excluir(Num);
 				dispose();
 				TelaMenuPlanoSaude TelaMenuPlanoSaude = new TelaMenuPlanoSaude();
 				TelaMenuPlanoSaude.setVisible(true);

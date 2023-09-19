@@ -226,7 +226,7 @@ public class TelaEditarPlanoSaude extends JFrame {
 		        planoSaude.setId(planoEncontrado.getId());
 		        planoSaude.setNome(nome);
 
-		        boolean sucesso = DAOplanoSaude.getInstacia().alterar(planoSaude);
+		        boolean sucesso = new DAOplanoSaude();
 
 		        if (sucesso) {
 		            TelaMensagem telaSucesso = new TelaMensagem("Dados atualizados com sucesso!", "Dados Atualizados", corSucesso, corSucessoBackground);

@@ -98,10 +98,10 @@ public class TelaExcluirPaciente extends JDialog {
 		
 		btnExcluirPaciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DAOpaciente pacienteDAO = DAOpaciente.getInstacia();
+				DAOpaciente daoPaciente = new DAOpaciente();
 				Long cpf = Long.parseLong(txtCPF.getText());
 				
-				Boolean excluir = pacienteDAO.deletar(null, cpf);
+				Boolean excluir = daoPaciente.excluir(cpf);
 				if (excluir) {
 					TelaMensagem telaSucesso = new TelaMensagem("Paciente excluído com sucesso!", "Paciente excluído", corSucesso, corSucessoBackground);
 					telaSucesso.setLocationRelativeTo(null);
