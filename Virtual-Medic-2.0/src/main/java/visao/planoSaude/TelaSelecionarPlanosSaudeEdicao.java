@@ -101,9 +101,9 @@ public class TelaSelecionarPlanosSaudeEdicao extends JDialog {
 			btSelecionarPlanoDeSaude.addActionListener(new ActionListener() {
 				
 				public void actionPerformed(ActionEvent e) {
-					DAOplanoSaude planoDAO = DAOplanoSaude.getInstacia();
-					Integer ID = Integer.parseInt(txtID.getText());
-					PlanoSaude planoEncontrado = planoDAO.buscarID(ID);
+					DAOplanoSaude planoDAO = new DAOplanoSaude();
+					Integer Id = Integer.parseInt(txtID.getText());
+					PlanoSaude planoEncontrado = planoDAO.buscarPorId(Id);
 					
 					dispose();
 					TelaEditarPlanoSaude telaEditarPlanoSaude = new TelaEditarPlanoSaude(planoEncontrado);

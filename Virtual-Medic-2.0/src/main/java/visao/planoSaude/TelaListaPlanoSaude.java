@@ -59,8 +59,8 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 			public void onEdit(int row) {
 				DAOplanoSaude planoDAO = new DAOplanoSaude();
             	Object valorRow = jTables.getValueAt(jTables.getSelectedRow(), 0);
-            	Integer ID = Integer.valueOf((Integer)valorRow);
-				PlanoSaude planoEncontrado = planoDAO.buscarID(ID);
+            	Integer Id = Integer.valueOf((Integer)valorRow);
+				PlanoSaude planoEncontrado = planoDAO.buscarPorId(Id);
 				if (planoEncontrado != null) {
 					TelaEditarPlanoSaude telaEditarPlanoSaude = new TelaEditarPlanoSaude(planoEncontrado);
 					telaEditarPlanoSaude.setVisible(true);
@@ -74,24 +74,21 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 
 			@Override
 			public void onDelete(int row) {
-				DAOplanoSaude ps = DAOplanoSaude.getInstacia();
+				DAOplanoSaude ps = new DAOplanoSaude();
+				
 				Object valorRow = jTables.getValueAt(jTables.getSelectedRow(), 0);
-				Integer rowID = Integer.valueOf((Integer) valorRow);
-				
-				if (jTables.isEditing()) {
-					jTables.getCellEditor().stopCellEditing();
-				}
-		
-				ps.deletar(null, rowID);
-				
-				try {
-					DefaultTableModel model = (DefaultTableModel) jTables.getModel();
-					int SelectRow = jTables.getSelectedRow();
-					model.removeRow(row);
-				}
-				catch (Exception ex){
-					JOptionPane.showMessageDialog(null, ex);;
-				}
+                Integer rowId = Integer.valueOf((String) valorRow); // Altere para Long.valueOf((String) valorRow)
+
+                if (jTables.isEditing()) {
+                	jTables.getCellEditor().stopCellEditing();
+                }
+
+                if (ps.excluir(rowId)) { // Chame o método excluir com o CPF
+                    DefaultTableModel model = (DefaultTableModel) jTables.getModel();
+                    model.removeRow(row);
+                } else {
+                    // Trate o caso em que a exclusão falhou, por exemplo, mostrando uma mensagem de erro.
+                }
 			}
 
 			@Override
@@ -99,7 +96,7 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 				DAOplanoSaude planoDAO = new DAOplanoSaude();
             	Object valorRow = jTables.getValueAt(jTables.getSelectedRow(), 0);
             	Integer ID = Integer.valueOf((Integer)valorRow);
-				PlanoSaude planoEncontrado = planoDAO.buscarID(ID);
+				PlanoSaude planoEncontrado = planoDAO.buscarPorId(ID);
 				if (planoEncontrado != null) {
 					TelaDetalhesPlanoSaude telaDetalhesPlanoSaude = new TelaDetalhesPlanoSaude(planoEncontrado);
 					telaDetalhesPlanoSaude.setVisible(true);
@@ -232,8 +229,8 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 	}
 	
 	public static void atualizaJTable(DefaultTableModel lista, JTable table) {
-		DAOplanoSaude ps = DAOplanoSaude.getInstacia();
-		ArrayList<PlanoSaude> listaPlanoSaude = ps.listaPlanoSaude();
+		DAOplanoSaude ps = new DAOplanoSaude();
+		ArrayList<PlanoSaude> listaPlanoSaude = ps.listar();
 		for (PlanoSaude plano : listaPlanoSaude) {
 			lista.addRow(new Object[] { plano.getId(), plano.getNome()});
 		}

@@ -98,7 +98,7 @@ public class DAOmedico {
 		return false;
 	}
 
-	public boolean excluir(Medico m) {
+	public boolean excluir(Long crm) {
 		Conexao c = Conexao.getInstancia();
 		Connection con = c.conectar();
 
@@ -107,7 +107,7 @@ public class DAOmedico {
 		try {
 
 			PreparedStatement ps = con.prepareStatement(query);
-			ps.setLong(1, m.getCrm());
+			ps.setLong(1, crm);
 
 			ps.executeUpdate();
 

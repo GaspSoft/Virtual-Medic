@@ -65,19 +65,22 @@ public class TelaListaPaciente extends javax.swing.JFrame {
 
             @Override
             public void onDelete(int row) {
-            	
-            	DAOpaciente pacienteDAO = DAOpaciente.getInstacia();
-            	Object valorRow = jTable1.getValueAt(jTable1.getSelectedRow(), 0);
-            	Long rowCPF = Long.valueOf((Long)valorRow);
-            	
+                DAOpaciente pacienteDAO = new DAOpaciente();
+                Object valorRow = jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+                Long rowCPF = Long.valueOf((String) valorRow); // Altere para Long.valueOf((String) valorRow)
+
                 if (jTable1.isEditing()) {
-                	jTable1.getCellEditor().stopCellEditing();
+                    jTable1.getCellEditor().stopCellEditing();
                 }
-                
-                pacienteDAO.deletar(null, rowCPF);
-                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-                model.removeRow(row);
+
+                if (pacienteDAO.excluir(rowCPF)) { // Chame o método excluir com o CPF
+                    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                    model.removeRow(row);
+                } else {
+                    // Trate o caso em que a exclusão falhou, por exemplo, mostrando uma mensagem de erro.
+                }
             }
+
 
             @Override
             public void onView(int row) {
@@ -248,8 +251,8 @@ public class TelaListaPaciente extends javax.swing.JFrame {
     }
     
     public static void atualizaJTable(DefaultTableModel modelo, JTable table) {
-    	DAOpaciente p = DAOpaciente.getInstacia();
-		ArrayList<Paciente> listaPacientes = p.listalPaciente();
+    	DAOpaciente p = new DAOpaciente();
+		ArrayList<Paciente> listaPacientes = p.listar();
 		for (Paciente paciente : listaPacientes) {
 			modelo.addRow(new Object[] { paciente.getCpf(), paciente.getNome(), paciente.getEmail() });
 		}

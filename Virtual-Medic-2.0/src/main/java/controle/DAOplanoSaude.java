@@ -64,7 +64,7 @@ public class DAOplanoSaude {
 		return false;
 	}
 
-	public boolean excluir(PlanoSaude pl) {
+	public boolean excluir(Integer id) {
 		Conexao c = Conexao.getInstancia();
 		Connection con = c.conectar();
 
@@ -73,7 +73,7 @@ public class DAOplanoSaude {
 		try {
 
 			PreparedStatement ps = con.prepareStatement(query);
-			ps.setInt(1, pl.getId());
+			ps.setInt(1, id);
 
 			ps.executeUpdate();
 
@@ -111,7 +111,7 @@ public class DAOplanoSaude {
 
 	}
 
-	public PlanoSaude buscarPorCPF(int id) {
+	public PlanoSaude buscarPorId(int id) {
 	    Conexao c = Conexao.getInstancia();
 	    Connection con = c.conectar();
 	    

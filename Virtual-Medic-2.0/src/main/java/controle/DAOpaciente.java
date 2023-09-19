@@ -106,27 +106,27 @@ public class DAOpaciente {
 		return false;
 	}
 
-	public boolean excluir(Paciente p) {
-		Conexao c = Conexao.getInstancia();
-		Connection con = c.conectar();
+	public boolean excluir(Long cpf) { // Altere o método para receber um Long como parâmetro
+	    Conexao c = Conexao.getInstancia();
+	    Connection con = c.conectar();
 
-		String query = "DELETE FROM pacientes WHERE cpf = ?";
+	    String query = "DELETE FROM pacientes WHERE cpf = ?";
 
-		try {
+	    try {
+	        PreparedStatement ps = con.prepareStatement(query);
+	        ps.setLong(1, cpf); // Use o CPF recebido como parâmetro
 
-			PreparedStatement ps = con.prepareStatement(query);
-			ps.setLong(1, p.getCpf());
+	        int rowsDeleted = ps.executeUpdate();
 
-			ps.executeUpdate();
+	        c.fecharConexao();
 
-			c.fecharConexao();
-
-			return true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return false;
+	        return rowsDeleted > 0; // Verifique se pelo menos uma linha foi excluída com sucesso.
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return false;
 	}
+
 	
 	public boolean atualizar(Paciente p) {
 
