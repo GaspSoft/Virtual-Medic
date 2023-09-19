@@ -28,6 +28,13 @@ CREATE TABLE IF NOT EXISTS `medicos` (
   `genero` VARCHAR(45) NOT NULL,
   `idade` INT NOT NULL,
   `especificacao` VARCHAR(45) NOT NULL,
+  `cep` VARCHAR(8) NOT NULL,
+  `estado` VARCHAR(45) NOT NULL,
+  `cidade` VARCHAR(45) NOT NULL,
+  `bairro` VARCHAR(45) NOT NULL,
+  `rua` VARCHAR(45) NOT NULL,
+  `numero` INT NOT NULL,
+  `complemento` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`crm`)
 );
 

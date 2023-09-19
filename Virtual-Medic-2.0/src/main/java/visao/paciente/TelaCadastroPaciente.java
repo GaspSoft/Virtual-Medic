@@ -192,16 +192,16 @@ public class TelaCadastroPaciente extends JFrame {
 		lblNewLabel_2_1.setForeground(Color.WHITE);
 		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 
-		DAOplanoSaude planoDAO = DAOplanoSaude.getInstacia();
-		ArrayList<PlanoSaude> listaPlanoSaude = planoDAO.listaPlanoSaude();
+//		DAOplanoSaude planoDAO = DAOplanoSaude.getInstacia();
+//		ArrayList<PlanoSaude> listaPlanoSaude = planoDAO.listaPlanoSaude();
 
 		MeuComboBox cboPlanoSaude = new MeuComboBox();
-		cboPlanoSaude.addItem("Plano de Saúde");
-		if (listaPlanoSaude.size() > 0 && listaPlanoSaude != null) {
-			for (PlanoSaude planoSaude : listaPlanoSaude) {
-				cboPlanoSaude.addItem((planoSaude));
-			}
-		}
+//		cboPlanoSaude.addItem("Plano de Saúde");
+//		if (listaPlanoSaude.size() > 0 && listaPlanoSaude != null) {
+//			for (PlanoSaude planoSaude : listaPlanoSaude) {
+//				cboPlanoSaude.addItem((planoSaude));
+//			}
+//		}
 		cboPlanoSaude.setForeground(new Color(27, 156, 228));
 
 		MeuJFormatedTextField txtNumeroPlano = new MeuJFormatedTextField();
@@ -746,7 +746,7 @@ public class TelaCadastroPaciente extends JFrame {
 					p.setNumero(numero);
 					p.setComplemento(complemento);
 
-					DAOpaciente daoPaciente = DAOpaciente.getInstacia();
+					DAOpaciente daoPaciente = new DAOpaciente();
 					Boolean inserir = daoPaciente.inserir(p);
 					if (inserir) {
 						TelaMensagem telaSucesso = new TelaMensagem(nome + " cadastrado com sucesso!",

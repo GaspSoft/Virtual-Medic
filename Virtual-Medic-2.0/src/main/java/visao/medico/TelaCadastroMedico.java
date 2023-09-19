@@ -647,7 +647,7 @@ public class TelaCadastroMedico extends JFrame {
 					m.setNumero(numero);
 					m.setComplemento(complemento);
 
-					DAOmedico daoMedico = DAOmedico.getInstacia();
+					DAOmedico daoMedico = new DAOmedico();
 					Boolean inserir = daoMedico.inserir(m);
 					if (inserir) {
 						TelaMensagem telaSucesso = new TelaMensagem(nome + " cadastrado com sucesso!",
