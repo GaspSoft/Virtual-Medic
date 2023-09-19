@@ -4,49 +4,40 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.GroupLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JTable;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 
-import controle.DAOmedico;
-import controle.DAOpaciente;
 import controle.DAOplanoSaude;
 import layoutPersonalizado.componentes.MeuBotao;
 import layoutPersonalizado.componentes.tables.TableActionCellEditor;
 import layoutPersonalizado.componentes.tables.TableActionCellRender;
 import layoutPersonalizado.componentes.tables.TableActionEvent;
 import layoutPersonalizado.componentes.tables.TableCustom;
-import modelo.Medico;
-import modelo.Paciente;
 import modelo.PlanoSaude;
 import visao.TelaMensagem;
-import visao.paciente.TelaDetalhesPaciente;
-import visao.paciente.TelaEditarPaciente;
 import visao.paciente.TelaListaPaciente;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Random;
-import java.awt.event.ActionEvent;
 
 public class TelaListaPlanoSaude extends javax.swing.JFrame {
-	
+
 	private Color corPadrao = new Color(24, 62, 159);
-	private Color corPadraoBackground = new Color(255,255,255);
-	private Color corSucesso = new Color(0,139,139);
-	private Color corSucessoBackground = new Color(64,224,208);
-	private Color corErro = new Color(178,34,34);
-	private Color corErroBackground = new Color(250,128,114);
-	
+	private Color corPadraoBackground = new Color(255, 255, 255);
+	private Color corSucesso = new Color(0, 139, 139);
+	private Color corSucessoBackground = new Color(64, 224, 208);
+	private Color corErro = new Color(178, 34, 34);
+	private Color corErroBackground = new Color(250, 128, 114);
+
 	public TelaListaPlanoSaude() {
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaListaPaciente.class.getResource("/img/favicon-32x32.png")));
@@ -58,59 +49,64 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 			@Override
 			public void onEdit(int row) {
 				DAOplanoSaude planoDAO = new DAOplanoSaude();
-            	Object valorRow = jTables.getValueAt(jTables.getSelectedRow(), 0);
-            	Integer Id = Integer.valueOf((Integer)valorRow);
+				Object valorRow = jTables.getValueAt(jTables.getSelectedRow(), 0);
+				Integer Id = Integer.valueOf((Integer) valorRow);
 				PlanoSaude planoEncontrado = planoDAO.buscarPorId(Id);
 				if (planoEncontrado != null) {
 					TelaEditarPlanoSaude telaEditarPlanoSaude = new TelaEditarPlanoSaude(planoEncontrado);
 					telaEditarPlanoSaude.setVisible(true);
 					telaEditarPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
-					
+
 					dispose();
-		        } else {
-		            TelaMensagem telaMensagem = new TelaMensagem("ID não encontrado!", "ID não encontrado", corPadrao, corPadraoBackground);
-		        }
+				} else {
+					TelaMensagem telaMensagem = new TelaMensagem("ID não encontrado!", "ID não encontrado", corPadrao,
+							corPadraoBackground);
+				}
 			}
 
 			@Override
 			public void onDelete(int row) {
 				DAOplanoSaude ps = new DAOplanoSaude();
-				
+
 				Object valorRow = jTables.getValueAt(jTables.getSelectedRow(), 0);
-                Integer rowId = Integer.valueOf((String) valorRow); // Altere para Long.valueOf((String) valorRow)
+				Integer rowId = Integer.valueOf((String) valorRow); // Altere para Long.valueOf((String) valorRow)
 
-                if (jTables.isEditing()) {
-                	jTables.getCellEditor().stopCellEditing();
-                }
+				if (jTables.isEditing()) {
+					jTables.getCellEditor().stopCellEditing();
+				}
 
-                if (ps.excluir(rowId)) { // Chame o método excluir com o CPF
-                    DefaultTableModel model = (DefaultTableModel) jTables.getModel();
-                    model.removeRow(row);
-                } else {
-                    // Trate o caso em que a exclusão falhou, por exemplo, mostrando uma mensagem de erro.
-                }
+				if (ps.excluir(rowId)) { // Chame o método excluir com o CPF
+					DefaultTableModel model = (DefaultTableModel) jTables.getModel();
+					model.removeRow(row);
+				} else {
+					// Trate o caso em que a exclusão falhou, por exemplo, mostrando uma mensagem de
+					// erro.
+				}
 			}
 
 			@Override
 			public void onView(int row) {
 				DAOplanoSaude planoDAO = new DAOplanoSaude();
-            	Object valorRow = jTables.getValueAt(jTables.getSelectedRow(), 0);
-            	Integer ID = Integer.valueOf((Integer)valorRow);
+				Object valorRow = jTables.getValueAt(jTables.getSelectedRow(), 0);
+				Integer ID = Integer.valueOf((Integer) valorRow);
 				PlanoSaude planoEncontrado = planoDAO.buscarPorId(ID);
 				if (planoEncontrado != null) {
 					TelaDetalhesPlanoSaude telaDetalhesPlanoSaude = new TelaDetalhesPlanoSaude(planoEncontrado);
 					telaDetalhesPlanoSaude.setVisible(true);
 					telaDetalhesPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
-					
+
 					dispose();
-		        } else {
-		            TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!", "CPF não encontrado", corPadrao, corPadraoBackground);
-		        }
-            }
+				} else {
+					TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!", "CPF não encontrado", corPadrao,
+							corPadraoBackground);
+				}
+			}
 		};
 		jTables.getColumnModel().getColumn(2).setCellRenderer(new TableActionCellRender());
 		jTables.getColumnModel().getColumn(2).setCellEditor(new TableActionCellEditor(event));
 		testData(jTables);
+		
+		// TODO o erro esta por aqui
 		GroupLayout gl_tableScrollButtons = new GroupLayout(tableScrollButtons);
 		gl_tableScrollButtons.setHorizontalGroup(gl_tableScrollButtons.createParallelGroup(Alignment.LEADING)
 				.addComponent(jScrollPanes, GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE));
@@ -130,10 +126,10 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 		tableScrollButtons = new layoutPersonalizado.componentes.tables.TableScrollButton();
 		jScrollPanes = new javax.swing.JScrollPane();
 		jTables = new javax.swing.JTable();
-		
+
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-		jTables.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {
+		jTables.setModel(new DefaultTableModel(new Object[][] {
 
 		}, new String[] { "ID", "Nome", "Ações" }) {
 			boolean[] canEdit = new boolean[] { false, false, true };
@@ -217,7 +213,7 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 
 		pack();
 		setLocationRelativeTo(null);
-		
+
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -227,22 +223,22 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 			}
 		});
 	}
-	
+
 	public static void atualizaJTable(DefaultTableModel lista, JTable table) {
 		DAOplanoSaude ps = new DAOplanoSaude();
 		ArrayList<PlanoSaude> listaPlanoSaude = ps.listar();
 		for (PlanoSaude plano : listaPlanoSaude) {
-			lista.addRow(new Object[] { plano.getId(), plano.getNome()});
+			lista.addRow(new Object[] { plano.getId(), plano.getNome() });
 		}
 
 		table = new JTable(lista);
 		lista.fireTableDataChanged();
 	}
-	
-	public static Integer gerarID () { 
+
+	public static Integer gerarID() {
 		Random rand = new Random();
 		int num = rand.nextInt(1000) + 10;
-		
+
 		return num;
 	}
 
