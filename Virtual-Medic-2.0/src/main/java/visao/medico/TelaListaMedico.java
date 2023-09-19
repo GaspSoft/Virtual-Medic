@@ -71,7 +71,7 @@ public class TelaListaMedico extends javax.swing.JFrame {
 
 			@Override
 			public void onDelete(int row) {
-				DAOmedico m = DAOmedico.getInstacia();
+				DAOmedico m = new DAOmedico();
 				Object valorRow = jTable1.getValueAt(jTable1.getSelectedRow(), 0);
 				Long rowID = Long.valueOf((Long) valorRow);
 
@@ -79,7 +79,7 @@ public class TelaListaMedico extends javax.swing.JFrame {
 					jTable1.getCellEditor().stopCellEditing();
 				}
 
-				m.deletar(null, rowID);
+				m.excluir(rowID);
 
 				try {
 					DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -232,8 +232,8 @@ public class TelaListaMedico extends javax.swing.JFrame {
 	}
 
 	public static void atualizaJTable(DefaultTableModel modelo, JTable table) {
-		DAOmedico m = DAOmedico.getInstacia();
-		ArrayList<Medico> listaMedicos = m.listaMedico();
+		DAOmedico m = new DAOmedico();
+		ArrayList<Medico> listaMedicos = m.listar();
 		for (Medico medico : listaMedicos) {
 			modelo.addRow(new Object[] { medico.getCrm(), medico.getNome(), medico.getEmail() });
 		}

@@ -188,8 +188,8 @@ public class TelaEditarMedico extends JFrame {
 		lblNewLabel_2_1.setForeground(Color.WHITE);
 		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
-		DAOplanoSaude planoDAO = DAOplanoSaude.getInstacia();
-		ArrayList<PlanoSaude> listaPlanoSaude = planoDAO.listaPlanoSaude();
+		DAOplanoSaude planoDAO = new DAOplanoSaude();
+		ArrayList<PlanoSaude> listaPlanoSaude = planoDAO.listar();
 		
 		JLabel lblNmeroCarteirinha = new JLabel("CRM:");
 		lblNmeroCarteirinha.setForeground(new Color(84, 175, 230));
@@ -691,7 +691,7 @@ public class TelaEditarMedico extends JFrame {
 				String bairro = txtBairro.getText();
 				String rua = txtRua.getText();
 				Integer numero = Integer.valueOf(txtNumero.getText());
-				Integer complemento = Integer.valueOf(txtComplemento.getText());
+				String complemento = txtComplemento.getText();
 				
 				m.setCpf(cpf);
 				m.setNome(nome);
@@ -708,8 +708,8 @@ public class TelaEditarMedico extends JFrame {
 				m.setNumero(numero);
 				m.setComplemento(complemento);
 				
-				DAOmedico daoMedico = DAOmedico.getInstacia();
-				Boolean sucesso = daoMedico.alterar(m);
+				DAOmedico daoMedico = new DAOmedico();
+				Boolean sucesso = daoMedico.atualizar(m);
 				if (sucesso) {
 					TelaMensagem telaSucesso = new TelaMensagem("Dados atualizados com sucesso!", "Médico atualizado com sucesso", corSucesso, corSucessoBackground);
 					telaSucesso.setLocationRelativeTo(null);

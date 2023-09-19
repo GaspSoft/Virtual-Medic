@@ -174,11 +174,4 @@ public class TelaDetalhesPlanoSaude extends JFrame {
 
 	}
 
-	public static Integer gerarID() {
-		Random rand = new Random();
-		int num = rand.nextInt(1000) + 10;
-
-		return num;
-	}
-
 }

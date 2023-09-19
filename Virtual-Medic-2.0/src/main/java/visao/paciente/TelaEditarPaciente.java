@@ -196,8 +196,8 @@ public class TelaEditarPaciente extends JFrame {
 		lblNewLabel_2_1.setForeground(Color.WHITE);
 		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
-		DAOplanoSaude planoDAO = DAOplanoSaude.getInstacia();
-		ArrayList<PlanoSaude> listaPlanoSaude = planoDAO.listaPlanoSaude();
+		DAOplanoSaude planoDAO = new DAOplanoSaude();
+		ArrayList<PlanoSaude> listaPlanoSaude = planoDAO.listar();
 		
 		MeuComboBox cboPlanoSaude = new MeuComboBox();
 		cboPlanoSaude.addItem("Plano de Saúde");
@@ -297,8 +297,8 @@ public class TelaEditarPaciente extends JFrame {
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnVoltar.setBackground(new Color(24, 62, 159));
 		
-		DAOmedico medicoDAO = DAOmedico.getInstacia();
-		ArrayList<Medico> listaMedico = medicoDAO.listaMedico();
+		DAOmedico medicoDAO = new DAOmedico();
+		ArrayList<Medico> listaMedico = medicoDAO.listar();
 		
 		MeuComboBox cboMedico = new MeuComboBox();
 		cboMedico.addItem("Médico");
@@ -776,7 +776,7 @@ public class TelaEditarPaciente extends JFrame {
 				String bairro = txtBairro.getText();
 				String rua = txtRua.getText();
 				Integer numero = Integer.valueOf(txtNumero.getText());
-				Integer complemento = Integer.valueOf(txtComplemento.getText());
+				String complemento = txtComplemento.getText();
 
 		        // Crie uma instância do paciente com os dados atualizados
 		        Paciente p = new Paciente();
@@ -799,8 +799,8 @@ public class TelaEditarPaciente extends JFrame {
 		        p.setValidade(validade);
 
 		        // Chame o método alterar do DAOpaciente para atualizar os dados
-		        DAOpaciente daoPaciente = DAOpaciente.getInstacia();
-				Boolean sucesso = daoPaciente.alterar(p);
+		        DAOpaciente daoPaciente = new DAOpaciente();
+				Boolean sucesso = daoPaciente.atualizar(p);
 
 		        if (sucesso) {
 		            TelaMensagem telaSucesso = new TelaMensagem("Dados atualizados com sucesso!", "Paciente atualizado com sucesso", corSucesso, corSucessoBackground);
