@@ -34,7 +34,7 @@ public class DAOmedico {
 				String bairro = rs.getString("bairro");
 				String rua = rs.getString("rua");
 				int numero = rs.getInt("numero");
-				int complemento = rs.getInt("complemento");
+				String complemento = rs.getString("complemento");
 
 				Medico m = new Medico();
 				m.setCpf(cpf);
@@ -85,7 +85,7 @@ public class DAOmedico {
 			ps.setString(11, m.getBairro());
 			ps.setString(12, m.getRua());
 			ps.setInt(13, m.getNumero());
-			ps.setInt(14, m.getComplemento());
+			ps.setString(14, m.getComplemento());
 
 			ps.executeUpdate();
 
@@ -143,7 +143,7 @@ public class DAOmedico {
 			ps.setString(11, m.getBairro());
 			ps.setString(12, m.getRua());
 			ps.setInt(13, m.getNumero());
-			ps.setInt(14, m.getComplemento());
+			ps.setString(14, m.getComplemento());
 			
 			ps.executeUpdate();
 			c.fecharConexao();
@@ -181,7 +181,7 @@ public class DAOmedico {
 	            String bairro = rs.getString("bairro");
 	            String rua = rs.getString("rua");
 	            int numero = rs.getInt("numero");
-	            int complemento = rs.getInt("complemento");
+	            String complemento = rs.getString("complemento");
 
 	            Medico m = new Medico();
 	            m.setCpf(cpf);

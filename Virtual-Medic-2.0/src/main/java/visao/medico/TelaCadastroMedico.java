@@ -630,7 +630,7 @@ public class TelaCadastroMedico extends JFrame {
 					String bairro = txtBairro.getText();
 					String rua = txtRua.getText();
 					Integer numero = Integer.valueOf(txtNumero.getText());
-					Integer complemento = Integer.valueOf(txtComplemento.getText());
+					String complemento = txtComplemento.getText();
 
 					m.setCpf(cpf);
 					m.setNome(nome);

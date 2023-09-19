@@ -192,16 +192,16 @@ public class TelaCadastroPaciente extends JFrame {
 		lblNewLabel_2_1.setForeground(Color.WHITE);
 		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 
-//		DAOplanoSaude planoDAO = DAOplanoSaude.getInstacia();
-//		ArrayList<PlanoSaude> listaPlanoSaude = planoDAO.listaPlanoSaude();
+		DAOplanoSaude planoDAO = new DAOplanoSaude();
+		ArrayList<PlanoSaude> listaPlanoSaude = planoDAO.listar();
 
 		MeuComboBox cboPlanoSaude = new MeuComboBox();
-//		cboPlanoSaude.addItem("Plano de Saúde");
-//		if (listaPlanoSaude.size() > 0 && listaPlanoSaude != null) {
-//			for (PlanoSaude planoSaude : listaPlanoSaude) {
-//				cboPlanoSaude.addItem((planoSaude));
-//			}
-//		}
+		cboPlanoSaude.addItem("Plano de Saúde");
+		if (listaPlanoSaude.size() > 0 && listaPlanoSaude != null) {
+			for (PlanoSaude planoSaude : listaPlanoSaude) {
+				cboPlanoSaude.addItem((planoSaude));
+			}
+		}
 		cboPlanoSaude.setForeground(new Color(27, 156, 228));
 
 		MeuJFormatedTextField txtNumeroPlano = new MeuJFormatedTextField();
@@ -280,8 +280,8 @@ public class TelaCadastroPaciente extends JFrame {
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnVoltar.setBackground(new Color(24, 62, 159));
 
-		DAOmedico medicoDAO = DAOmedico.getInstacia();
-		ArrayList<Medico> listaMedico = medicoDAO.listaMedico();
+		DAOmedico medicoDAO = new DAOmedico();
+		ArrayList<Medico> listaMedico = medicoDAO.listar();
 
 		MeuComboBox cboMedico = new MeuComboBox();
 		cboMedico.addItem("Médico");
@@ -726,7 +726,7 @@ public class TelaCadastroPaciente extends JFrame {
 					String bairro = txtBairro.getText();
 					String rua = txtRua.getText();
 					Integer numero = Integer.valueOf(txtNumero.getText());
-					Integer complemento = Integer.valueOf(txtComplemento.getText());
+					String complemento = txtComplemento.getText();
 
 					p.setCpf(cpf);
 					p.setNome(nome);
