@@ -16,7 +16,7 @@ public class DAOmedico {
 		Connection con = c.conectar();
 		ArrayList<Medico> medicos = new ArrayList<Medico>();
 
-		String query = "SELECT * FROM medico";
+		String query = "SELECT * FROM medicos";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
@@ -29,12 +29,12 @@ public class DAOmedico {
 				long crm = rs.getLong("crm");
 				String especificacao = rs.getString("especificacao");
 				long cep = rs.getLong("cep");
-				String uf = rs.getString("uf");
+				String uf = rs.getString("estado");
 				String cidade = rs.getString("cidade");
 				String bairro = rs.getString("bairro");
 				String rua = rs.getString("rua");
 				int numero = rs.getInt("numero");
-				int complemento = rs.getInt("complemento");
+				String complemento = rs.getString("complemento");
 
 				Medico m = new Medico();
 				m.setCpf(cpf);
@@ -68,7 +68,7 @@ public class DAOmedico {
 
 		Connection con = c.conectar();
 
-		String query = "INSERT INTO medico (cpf, nome, email, genero, idade, crm, especificacao, cep, uf, cidade, bairro, rua, numero, complemento) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String query = "INSERT INTO medicos (cpf, nome, email, genero, idade, crm, especificacao, cep, estado, cidade, bairro, rua, numero, complemento) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
@@ -85,7 +85,7 @@ public class DAOmedico {
 			ps.setString(11, m.getBairro());
 			ps.setString(12, m.getRua());
 			ps.setInt(13, m.getNumero());
-			ps.setInt(14, m.getComplemento());
+			ps.setString(14, m.getComplemento());
 
 			ps.executeUpdate();
 
@@ -102,7 +102,7 @@ public class DAOmedico {
 		Conexao c = Conexao.getInstancia();
 		Connection con = c.conectar();
 
-		String query = "DELETE FROM medico WHERE crm = ?";
+		String query = "DELETE FROM medicos WHERE crm = ?";
 
 		try {
 
@@ -125,7 +125,7 @@ public class DAOmedico {
 		Conexao c = Conexao.getInstancia();
 
 		Connection con = c.conectar();
-		String query = "UPDATE medico SET cpf = ?, nome = ?, email = ?, genero = ?, idade = ?, crm = ?, especificacao = ?, cep = ?, uf = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, complemento = ? WHERE crm = ?";
+		String query = "UPDATE medicos SET cpf = ?, nome = ?, email = ?, genero = ?, idade = ?, crm = ?, especificacao = ?, cep = ?, estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, complemento = ? WHERE crm = ?";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
@@ -143,7 +143,7 @@ public class DAOmedico {
 			ps.setString(11, m.getBairro());
 			ps.setString(12, m.getRua());
 			ps.setInt(13, m.getNumero());
-			ps.setInt(14, m.getComplemento());
+			ps.setString(14, m.getComplemento());
 			
 			ps.executeUpdate();
 			c.fecharConexao();
@@ -161,7 +161,7 @@ public class DAOmedico {
 	    Conexao c = Conexao.getInstancia();
 	    Connection con = c.conectar();
 	    
-	    String query = "SELECT * FROM medico WHERE crm = ?";
+	    String query = "SELECT * FROM medicos WHERE crm = ?";
 	    
 	    try {
 	        PreparedStatement ps = con.prepareStatement(query);
@@ -176,12 +176,12 @@ public class DAOmedico {
 	            int idade = rs.getInt("idade");
 	            String especificacao = rs.getString("especificacao");
 	            long cep = rs.getLong("cep");
-	            String uf = rs.getString("uf");
+	            String uf = rs.getString("estado");
 	            String cidade = rs.getString("cidade");
 	            String bairro = rs.getString("bairro");
 	            String rua = rs.getString("rua");
 	            int numero = rs.getInt("numero");
-	            int complemento = rs.getInt("complemento");
+	            String complemento = rs.getString("complemento");
 
 	            Medico m = new Medico();
 	            m.setCpf(cpf);

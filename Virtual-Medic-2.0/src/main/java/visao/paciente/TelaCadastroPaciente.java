@@ -192,8 +192,8 @@ public class TelaCadastroPaciente extends JFrame {
 		lblNewLabel_2_1.setForeground(Color.WHITE);
 		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 
-		DAOplanoSaude planoDAO = DAOplanoSaude.getInstacia();
-		ArrayList<PlanoSaude> listaPlanoSaude = planoDAO.listaPlanoSaude();
+		DAOplanoSaude planoDAO = new DAOplanoSaude();
+		ArrayList<PlanoSaude> listaPlanoSaude = planoDAO.listar();
 
 		MeuComboBox cboPlanoSaude = new MeuComboBox();
 		cboPlanoSaude.addItem("Plano de Saúde");
@@ -280,8 +280,8 @@ public class TelaCadastroPaciente extends JFrame {
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnVoltar.setBackground(new Color(24, 62, 159));
 
-		DAOmedico medicoDAO = DAOmedico.getInstacia();
-		ArrayList<Medico> listaMedico = medicoDAO.listaMedico();
+		DAOmedico medicoDAO = new DAOmedico();
+		ArrayList<Medico> listaMedico = medicoDAO.listar();
 
 		MeuComboBox cboMedico = new MeuComboBox();
 		cboMedico.addItem("Médico");
@@ -726,7 +726,7 @@ public class TelaCadastroPaciente extends JFrame {
 					String bairro = txtBairro.getText();
 					String rua = txtRua.getText();
 					Integer numero = Integer.valueOf(txtNumero.getText());
-					Integer complemento = Integer.valueOf(txtComplemento.getText());
+					String complemento = txtComplemento.getText();
 
 					p.setCpf(cpf);
 					p.setNome(nome);
@@ -746,7 +746,7 @@ public class TelaCadastroPaciente extends JFrame {
 					p.setNumero(numero);
 					p.setComplemento(complemento);
 
-					DAOpaciente daoPaciente = DAOpaciente.getInstacia();
+					DAOpaciente daoPaciente = new DAOpaciente();
 					Boolean inserir = daoPaciente.inserir(p);
 					if (inserir) {
 						TelaMensagem telaSucesso = new TelaMensagem(nome + " cadastrado com sucesso!",

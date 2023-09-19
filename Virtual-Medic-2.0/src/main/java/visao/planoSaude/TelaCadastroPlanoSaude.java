@@ -52,8 +52,6 @@ public class TelaCadastroPlanoSaude extends JFrame {
 	private Color btnSucesso = new Color(92, 171, 109);
 	private Color btnLimpar = new Color(186, 75, 71);
 
-	ArrayList<PlanoSaude> listaPlanoSaude = new ArrayList<PlanoSaude>();
-
 	/**
 	 * Launch the application.
 	 */
@@ -223,10 +221,9 @@ public class TelaCadastroPlanoSaude extends JFrame {
 				
 					String nome = txtNome.getText();
 
-					ps.setId(gerarID());
 					ps.setNome(nome);
 
-					DAOplanoSaude dao = DAOplanoSaude.getInstacia();
+					DAOplanoSaude dao = new DAOplanoSaude();
 					Boolean inserir = dao.inserir(ps);
 					if (inserir) {
 						TelaMensagem telaSucesso = new TelaMensagem(nome + " foi cadastrado com Sucesso!", "Cadastro realizado", corSucesso, corSucessoBackground);
@@ -248,13 +245,5 @@ public class TelaCadastroPlanoSaude extends JFrame {
 			}
 		});
 
-	}
-	
-	// Gerar ID Aleatório
-	public static Integer gerarID() {
-		Random rand = new Random();
-		int num = rand.nextInt(1000) + 10;
-
-		return num;
 	}
 }
