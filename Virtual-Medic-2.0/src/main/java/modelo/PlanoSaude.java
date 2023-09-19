@@ -22,8 +22,4 @@ public class PlanoSaude {
 	public String toString() {
 		return nome;
 	}
-	public void remove(ArrayList<PlanoSaude> listaPlanoSaude) {
-		// TODO Auto-generated method stub
-		
-	}
 }

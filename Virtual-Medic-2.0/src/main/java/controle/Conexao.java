@@ -7,10 +7,10 @@ import java.sql.SQLException;
 public class Conexao {
 	private static Connection conexao;
 	private static Conexao instancia;
-	private static final String DATABASE = "virtual_medic_db";
+	private static final String DATABASE = "virtualmedic_db";
 	private static final String URL = "jdbc:mysql://localhost:3306/" + DATABASE + "?serverTimezone=UTC";
 	private static final String USER = "root";
-	private static final String PSW = "aluno";
+	private static final String PSW = "root";
 
 	private Conexao() {
 	}
@@ -21,7 +21,7 @@ public class Conexao {
 		}
 		return instancia;
 	}
-
+	
 	public Connection conectar() {
 		try {
 			conexao = DriverManager.getConnection(URL, USER, PSW);
