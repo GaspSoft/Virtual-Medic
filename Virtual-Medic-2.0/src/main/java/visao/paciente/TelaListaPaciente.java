@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import controle.DAOpaciente;
@@ -36,124 +37,37 @@ public class TelaListaPaciente extends javax.swing.JFrame {
 
 	private Color corPadrao = new Color(24, 62, 159);
 	private Color corPadraoBackground = new Color(255,255,255);
+	private JTable jTable = new JTable();
 	
     public TelaListaPaciente() {
     	setIconImage(Toolkit.getDefaultToolkit().getImage(TelaListaPaciente.class.getResource("/img/favicon-32x32.png")));
     	setTitle("Lista de Médicos");
         initComponents();
         getContentPane().setBackground(new Color(240, 240, 240));
-        TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
-        TableActionEvent event = new TableActionEvent() {
-            @Override
-            public void onEdit(int row) {
-            	DAOpaciente pacienteDAO = new DAOpaciente();
-            	Object valorRow = jTable1.getValueAt(jTable1.getSelectedRow(), 0);
-            	Long cpf = Long.valueOf((Long)valorRow);
-				Paciente pacienteEncontrada = pacienteDAO.buscarPorCPF(cpf);
-				if (pacienteEncontrada != null) {
-					TelaEditarPaciente telaEditarPaciente = new TelaEditarPaciente(pacienteEncontrada);
-					telaEditarPaciente.setVisible(true);
-					telaEditarPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
-					
-					dispose();
-		        } else {
-		            TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!", "CPF não encontrado", corPadrao, corPadraoBackground);
-		            telaMensagem.setLocationRelativeTo(null);
-		            telaMensagem.setVisible(true);
-		        }
-            }
+        testData(jTable);
+	}
 
-            @Override
-            public void onDelete(int row) {
-                DAOpaciente pacienteDAO = new DAOpaciente();
-                Object valorRow = jTable1.getValueAt(jTable1.getSelectedRow(), 0);
-                Long rowCPF = Long.valueOf((String) valorRow); // Altere para Long.valueOf((String) valorRow)
+	private void testData(JTable table) {
+		DefaultTableModel lista = (DefaultTableModel) table.getModel();
+		atualizaJTable(lista, table);
+	}
 
-                if (jTable1.isEditing()) {
-                    jTable1.getCellEditor().stopCellEditing();
-                }
+	private void initComponents() {
 
-                if (pacienteDAO.excluir(rowCPF)) { // Chame o método excluir com o CPF
-                    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-                    model.removeRow(row);
-                } else {
-                    // Trate o caso em que a exclusão falhou, por exemplo, mostrando uma mensagem de erro.
-                }
-            }
-
-
-            @Override
-            public void onView(int row) {
-            	DAOpaciente pacienteDAO = new DAOpaciente();
-            	Object valorRow = jTable1.getValueAt(jTable1.getSelectedRow(), 0);
-            	Long cpf = Long.valueOf((Long)valorRow);
-				Paciente pacienteEncontrada = pacienteDAO.buscarPorCPF(cpf);
-				if (pacienteEncontrada != null) {
-					TelaDetalhesPaciente telaDetalhesPaciente = new TelaDetalhesPaciente(pacienteEncontrada);
-					telaDetalhesPaciente.setVisible(true);
-					telaDetalhesPaciente.setExtendedState(JFrame.MAXIMIZED_BOTH);
-					
-					dispose();
-		        } else {
-		            TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!", "CPF não encontrado", corPadrao, corPadraoBackground);
-		            telaMensagem.setLocationRelativeTo(null);
-		            telaMensagem.setVisible(true);
-		        }
-            }
-        };
-        jTable1.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
-        jTable1.getColumnModel().getColumn(3).setCellEditor(new TableActionCellEditor(event));
-        testData(jTable1);
-        GroupLayout gl_tableScrollButton1 = new GroupLayout(tableScrollButton1);
-        gl_tableScrollButton1.setHorizontalGroup(
-        	gl_tableScrollButton1.createParallelGroup(Alignment.LEADING)
-        		.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE)
-        );
-        gl_tableScrollButton1.setVerticalGroup(
-        	gl_tableScrollButton1.createParallelGroup(Alignment.LEADING)
-        		.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
-        );
-        tableScrollButton1.setLayout(gl_tableScrollButton1);
-        
-    }
-
-    private void testData(JTable table) {
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        atualizaJTable(model, table);
-    }
-
-
-    private void initComponents() {
-
-        tableScrollButton1 = new layoutPersonalizado.componentes.tables.TableScrollButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "CPF", "Nome", "Email", "Ações"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(250);
-        }
-        
+		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		jTable.setModel(new DefaultTableModel(
+	        	new Object[][] {
+	        	},
+	        	new String[] {
+	        		"CPF", "Nome", "Email"
+	        	}
+	        ));
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+		jTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+		jTable.getColumnModel().getColumn(1).setCellRenderer(centerRenderer); 
+		jTable.getColumnModel().getColumn(2).setCellRenderer(centerRenderer); 
+		
         JPanel panel = new JPanel();
         
         JLabel lblNewLabel = new JLabel("");
@@ -207,6 +121,8 @@ public class TelaListaPaciente extends javax.swing.JFrame {
         
         JLabel lblNewLabel_3 = new JLabel("");
         lblNewLabel_3.setIcon(new ImageIcon(TelaListaPaciente.class.getResource("/img/gradienteMaior.png")));
+        
+        JScrollPane scrollPane = new JScrollPane();
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
@@ -214,13 +130,17 @@ public class TelaListaPaciente extends javax.swing.JFrame {
         		.addGroup(layout.createSequentialGroup()
         			.addContainerGap()
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(tableScrollButton1, GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE)
-        				.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 273, GroupLayout.PREFERRED_SIZE)
         				.addGroup(layout.createSequentialGroup()
-        					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 603, GroupLayout.PREFERRED_SIZE)
-        					.addPreferredGap(ComponentPlacement.RELATED, 1, Short.MAX_VALUE)
-        					.addComponent(lblNewLabel_3, GroupLayout.PREFERRED_SIZE, 447, GroupLayout.PREFERRED_SIZE)))
-        			.addContainerGap())
+        					.addGap(10)
+        					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE))
+        				.addGroup(layout.createSequentialGroup()
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 273, GroupLayout.PREFERRED_SIZE)
+        						.addGroup(layout.createSequentialGroup()
+        							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 603, GroupLayout.PREFERRED_SIZE)
+        							.addPreferredGap(ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+        							.addComponent(lblNewLabel_3, GroupLayout.PREFERRED_SIZE, 447, GroupLayout.PREFERRED_SIZE)))
+        					.addContainerGap())))
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
@@ -232,9 +152,14 @@ public class TelaListaPaciente extends javax.swing.JFrame {
         			.addGap(13)
         			.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(tableScrollButton1, GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+        			.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
         			.addContainerGap())
         );
+  
+        jTable.setForeground(Color.BLACK);
+        jTable.setFillsViewportHeight(true);
+        jTable.setBackground(new Color(224, 224, 224));
+        scrollPane.setViewportView(jTable);
         getContentPane().setLayout(layout);
 
         pack();
@@ -277,7 +202,4 @@ public class TelaListaPaciente extends javax.swing.JFrame {
     	
 
     }
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private layoutPersonalizado.componentes.tables.TableScrollButton tableScrollButton1;
 }
