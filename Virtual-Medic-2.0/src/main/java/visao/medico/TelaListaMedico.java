@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import controle.DAOmedico;
@@ -42,85 +43,14 @@ public class TelaListaMedico extends javax.swing.JFrame {
 
 	private Color corPadrao = new Color(24, 62, 159);
 	private Color corPadraoBackground = new Color(255,255,255);
+	private JTable jTable = new JTable();
 	
 	public TelaListaMedico() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaListaMedico.class.getResource("/img/favicon-32x32.png")));
 		setTitle("Lista de Médicos");
 		initComponents();
 		getContentPane().setBackground(new Color(240, 240, 240));
-		TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
-		TableActionEvent event = new TableActionEvent() {
-			@Override
-			public void onEdit(int row) {
-				DAOmedico medicoDAO = new DAOmedico();
-				Object valorRow = jTable1.getValueAt(jTable1.getSelectedRow(), 0);
-				Long crm = Long.valueOf((Long) valorRow);
-				Medico medicoEncontrada = medicoDAO.buscarPorCRM(crm);
-				if (medicoEncontrada != null) {
-					TelaEditarMedico telaEditarMedico = new TelaEditarMedico(medicoEncontrada);
-					telaEditarMedico.setVisible(true);
-					telaEditarMedico.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-					dispose();
-				} else {
-					TelaMensagem telaMensagem = new TelaMensagem("CPF não encontrado!", "CRM não encontrado", corPadrao, corPadraoBackground);
-					telaMensagem.setLocationRelativeTo(null);
-					telaMensagem.setVisible(true);
-				}
-			}
-
-			@Override
-			public void onDelete(int row) {
-				DAOmedico m = new DAOmedico();
-				Object valorRow = jTable1.getValueAt(jTable1.getSelectedRow(), 0);
-				Long rowID = Long.valueOf((Long) valorRow);
-
-				if (jTable1.isEditing()) {
-					jTable1.getCellEditor().stopCellEditing();
-				}
-
-				m.excluir(rowID);
-
-				try {
-					DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-					int SelectRow = jTable1.getSelectedRow();
-					model.removeRow(row);
-				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(null, ex);
-					;
-				}
-			}
-
-			@Override
-			public void onView(int row) {
-				DAOmedico medicoDAO = new DAOmedico();
-				Object valorRow = jTable1.getValueAt(jTable1.getSelectedRow(), 0);
-				Long crm = Long.valueOf((Long) valorRow);
-				Medico medicoEncontrada = medicoDAO.buscarPorCRM(crm);
-				if (medicoEncontrada != null) {
-					TelaDetalhesMedico telaDetalhesMedico = new TelaDetalhesMedico(medicoEncontrada);
-					telaDetalhesMedico.setVisible(true);
-					telaDetalhesMedico.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-					dispose();
-				} else {
-					TelaMensagem telaMensagem = new TelaMensagem("CRM não encontrado!", "CRM não encontrado", corPadrao, corPadraoBackground);
-					telaMensagem.setLocationRelativeTo(null);
-					telaMensagem.setVisible(true);
-				}
-
-			}
-		};
-		jTable1.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
-		jTable1.getColumnModel().getColumn(3).setCellEditor(new TableActionCellEditor(event));
-		testData(jTable1);
-		GroupLayout gl_tableScrollButton1 = new GroupLayout(tableScrollButton1);
-		gl_tableScrollButton1.setHorizontalGroup(gl_tableScrollButton1.createParallelGroup(Alignment.LEADING)
-				.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE));
-		gl_tableScrollButton1.setVerticalGroup(gl_tableScrollButton1.createParallelGroup(Alignment.LEADING)
-				.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE));
-		tableScrollButton1.setLayout(gl_tableScrollButton1);
-
+		testData(jTable);
 	}
 
 	private void testData(JTable table) {
@@ -130,27 +60,19 @@ public class TelaListaMedico extends javax.swing.JFrame {
 
 	private void initComponents() {
 
-		tableScrollButton1 = new layoutPersonalizado.componentes.tables.TableScrollButton();
-		jScrollPane1 = new javax.swing.JScrollPane();
-		jTable1 = new javax.swing.JTable();
-
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-		jTable1.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {
-
-		}, new String[] { "CRM", "Nome", "Email", "Ações" }) {
-			boolean[] canEdit = new boolean[] { false, false, false, true };
-
-			public boolean isCellEditable(int rowIndex, int columnIndex) {
-				return canEdit[columnIndex];
-			}
-		});
-
-		jScrollPane1.setViewportView(jTable1);
-		if (jTable1.getColumnModel().getColumnCount() > 0) {
-			jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
-			jTable1.getColumnModel().getColumn(1).setPreferredWidth(250);
-		}
+		jTable.setModel(new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+					"CRM", "Nome", "Email"
+				}
+			));
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+		jTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+		jTable.getColumnModel().getColumn(1).setCellRenderer(centerRenderer); 
+		jTable.getColumnModel().getColumn(2).setCellRenderer(centerRenderer); 
 
 		JPanel panel = new JPanel();
 
@@ -195,27 +117,41 @@ public class TelaListaMedico extends javax.swing.JFrame {
 
 		JLabel lblNewLabel_3 = new JLabel("");
 		lblNewLabel_3.setIcon(new ImageIcon(TelaListaMedico.class.getResource("/img/gradienteMaior.png")));
+		
+		JScrollPane scrollPane = new JScrollPane();
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-		layout.setHorizontalGroup(layout.createParallelGroup(Alignment.LEADING).addGroup(layout.createSequentialGroup()
-				.addContainerGap()
-				.addGroup(layout.createParallelGroup(Alignment.LEADING)
-						.addComponent(tableScrollButton1, GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE)
+		layout.setHorizontalGroup(
+			layout.createParallelGroup(Alignment.LEADING)
+				.addGroup(layout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(layout.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 273, GroupLayout.PREFERRED_SIZE)
 						.addGroup(layout.createSequentialGroup()
-								.addComponent(panel, GroupLayout.PREFERRED_SIZE, 603, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED, 1, Short.MAX_VALUE).addComponent(
-										lblNewLabel_3, GroupLayout.PREFERRED_SIZE, 447, GroupLayout.PREFERRED_SIZE)))
-				.addContainerGap()));
-		layout.setVerticalGroup(layout.createParallelGroup(Alignment.LEADING).addGroup(layout.createSequentialGroup()
-				.addContainerGap()
-				.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(lblNewLabel_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-								Short.MAX_VALUE)
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 603, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+							.addComponent(lblNewLabel_3, GroupLayout.PREFERRED_SIZE, 447, GroupLayout.PREFERRED_SIZE))
+						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE))
+					.addContainerGap())
+		);
+		layout.setVerticalGroup(
+			layout.createParallelGroup(Alignment.LEADING)
+				.addGroup(layout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(lblNewLabel_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
-				.addGap(13).addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addComponent(tableScrollButton1, GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE).addContainerGap()));
+					.addGap(13)
+					.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+					.addContainerGap())
+		);
+		
+		jTable.setForeground(Color.BLACK);
+		jTable.setFillsViewportHeight(true);
+		jTable.setBackground(new Color(224, 224, 224));
+		scrollPane.setViewportView(jTable);
 		getContentPane().setLayout(layout);
 
 		pack();
@@ -257,8 +193,4 @@ public class TelaListaMedico extends javax.swing.JFrame {
 		});
 
 	}
-
-	private javax.swing.JScrollPane jScrollPane1;
-	private javax.swing.JTable jTable1;
-	private layoutPersonalizado.componentes.tables.TableScrollButton tableScrollButton1;
 }
