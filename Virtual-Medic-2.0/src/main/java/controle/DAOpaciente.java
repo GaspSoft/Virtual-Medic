@@ -133,7 +133,7 @@ public class DAOpaciente {
 		Conexao c = Conexao.getInstancia();
 
 		Connection con = c.conectar();
-		String query = "UPDATE paciente SET cpf = ?, nome = ?, email = ?, genero = ?, idade = ?, medico = ?, diagnostico = ?, planoSaude = ?, numeroPlano = ?, validade = ?, cep = ?, estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, complemento = ? WHERE cpf = ?";
+		String query = "UPDATE pacientes SET cpf = ?, nome = ?, email = ?, genero = ?, medico = ?, diagnostico = ?, planoSaude = ?, numeroPlano = ?, validade = ?, idade = ?, cep = ?, estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, complemento = ? WHERE cpf = ?";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
@@ -142,12 +142,12 @@ public class DAOpaciente {
 			ps.setString(2, p.getNome());
 			ps.setString(3, p.getEmail());
 			ps.setString(4, p.getGenero());
-			ps.setInt(5, p.getIdade());
-			ps.setString(6, p.getMedico());
-			ps.setString(7, p.getDiagnostico());
-			ps.setString(8, p.getPlanoSaude());
-			ps.setLong(9, p.getNumeroPlano());
-			ps.setString(10, p.getValidade());
+			ps.setString(5, p.getMedico());
+			ps.setString(6, p.getDiagnostico());
+			ps.setString(7, p.getPlanoSaude());
+			ps.setLong(8, p.getNumeroPlano());
+			ps.setString(9, p.getValidade());
+			ps.setInt(10, p.getIdade());
 			ps.setLong(11, p.getCep());
 			ps.setString(12, p.getUf());
 			ps.setString(13, p.getCidade());
@@ -155,6 +155,7 @@ public class DAOpaciente {
 			ps.setString(15, p.getRua());
 			ps.setInt(16, p.getNumero());
 			ps.setString(17, p.getComplemento());
+			ps.setLong(18, p.getCpf());
 			
 			ps.executeUpdate();
 			c.fecharConexao();
@@ -172,7 +173,7 @@ public class DAOpaciente {
 	    Conexao c = Conexao.getInstancia();
 	    Connection con = c.conectar();
 	    
-	    String query = "SELECT * FROM paciente WHERE cpf = ?";
+	    String query = "SELECT * FROM pacientes WHERE cpf = ?";
 	    
 	    try {
 	        PreparedStatement ps = con.prepareStatement(query);

@@ -224,13 +224,14 @@ public class TelaEditarPlanoSaude extends JFrame {
 				DAOplanoSaude daoPlanoSaude = new DAOplanoSaude();
 				String nome = txtEdicao.getText();
 		        PlanoSaude planoSaude = new PlanoSaude();
-		        planoSaude.setId(planoEncontrado.getId());
+		        
 		        planoSaude.setNome(nome);
+		        planoSaude.setId(planoEncontrado.getId());
 
-		        boolean sucesso = daoPlanoSaude.atualizar(planoEncontrado);
+		        boolean sucesso = daoPlanoSaude.atualizar(planoSaude);
 
 		        if (sucesso) {
-		            TelaMensagem telaSucesso = new TelaMensagem(planoSaude + "Dados atualizados com sucesso!", "Dados Atualizados", corSucesso, corSucessoBackground);
+		            TelaMensagem telaSucesso = new TelaMensagem("Dados atualizados com sucesso!", "Dados Atualizados", corSucesso, corSucessoBackground);
 		            telaSucesso.setLocationRelativeTo(null);
 					telaSucesso.setVisible(true);
 		        } else {
