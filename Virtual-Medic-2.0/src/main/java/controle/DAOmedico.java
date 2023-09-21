@@ -144,6 +144,7 @@ public class DAOmedico {
 			ps.setString(12, m.getRua());
 			ps.setInt(13, m.getNumero());
 			ps.setString(14, m.getComplemento());
+			ps.setLong(15, m.getCrm());
 			
 			ps.executeUpdate();
 			c.fecharConexao();

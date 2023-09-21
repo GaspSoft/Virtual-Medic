@@ -96,8 +96,8 @@ public class DAOplanoSaude {
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
 
-			ps.setInt(1, pl.getId());
-			ps.setString(2, pl.getNome());
+			ps.setString(1, pl.getNome());
+			ps.setInt(2, pl.getId());
 			
 			ps.executeUpdate();
 			c.fecharConexao();
@@ -119,15 +119,15 @@ public class DAOplanoSaude {
 	    
 	    try {
 	        PreparedStatement ps = con.prepareStatement(query);
-	        ps.setLong(1, id);
+	        ps.setInt(1, id);
 	        
 	        ResultSet rs = ps.executeQuery();
 	        if (rs.next()) {
 				String nome = rs.getString("nome");
-
+				
 	            PlanoSaude pl = new PlanoSaude();
 	            pl.setNome(nome);
-
+	            pl.setId(id);
 	            
 	            c.fecharConexao();
 	            
