@@ -6,9 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import interfaces.IPaciente;
 import modelo.Paciente;
 
-public class DAOpaciente {
+public class DAOpaciente implements IPaciente {
 	
 	public ArrayList<Paciente> listar() {
 		Conexao c = Conexao.getInstancia();
@@ -67,6 +68,7 @@ public class DAOpaciente {
 		return pacientes;
 	}
 
+	@Override
 	public boolean inserir(Paciente p) {
 
 		Conexao c = Conexao.getInstancia();
@@ -106,6 +108,7 @@ public class DAOpaciente {
 		return false;
 	}
 
+	@Override
 	public boolean excluir(Long cpf) { // Altere o método para receber um Long como parâmetro
 	    Conexao c = Conexao.getInstancia();
 	    Connection con = c.conectar();
@@ -127,7 +130,7 @@ public class DAOpaciente {
 	    return false;
 	}
 
-	
+	@Override
 	public boolean atualizar(Paciente p) {
 
 		Conexao c = Conexao.getInstancia();
@@ -169,6 +172,7 @@ public class DAOpaciente {
 
 	}
 
+	@Override
 	public Paciente buscarPorCPF(Long cpf) {
 	    Conexao c = Conexao.getInstancia();
 	    Connection con = c.conectar();
