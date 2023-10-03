@@ -23,7 +23,6 @@ public class DAOplanoSaude {
 			while (rs.next()) {
 				int id = rs.getInt("id");
 				String nome = rs.getString("nome");
-
 				PlanoSaude pl = new PlanoSaude();
 				pl.setId(id);
 				pl.setNome(nome);
