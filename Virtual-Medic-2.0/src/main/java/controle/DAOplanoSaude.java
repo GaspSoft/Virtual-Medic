@@ -6,10 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import interfaces.IPlanoSaude;
 import modelo.Paciente;
 import modelo.PlanoSaude;
 
-public class DAOplanoSaude {
+public class DAOplanoSaude implements IPlanoSaude {
 	
 	public ArrayList<PlanoSaude> listar() {
 		Conexao c = Conexao.getInstancia();
@@ -38,6 +39,7 @@ public class DAOplanoSaude {
 		return planoSaudes;
 	}
 
+	@Override
 	public boolean inserir(PlanoSaude pl) {
 
 		Conexao c = Conexao.getInstancia();
@@ -62,7 +64,8 @@ public class DAOplanoSaude {
 		}
 		return false;
 	}
-
+	
+	@Override
 	public boolean excluir(Integer id) {
 		Conexao c = Conexao.getInstancia();
 		Connection con = c.conectar();
@@ -85,6 +88,7 @@ public class DAOplanoSaude {
 		return false;
 	}
 	
+	@Override
 	public boolean atualizar(PlanoSaude pl) {
 
 		Conexao c = Conexao.getInstancia();
@@ -110,7 +114,8 @@ public class DAOplanoSaude {
 
 	}
 
-	public PlanoSaude buscarPorId(int id) {
+	@Override
+	public PlanoSaude buscarPorId(Integer id) {
 	    Conexao c = Conexao.getInstancia();
 	    Connection con = c.conectar();
 	    
