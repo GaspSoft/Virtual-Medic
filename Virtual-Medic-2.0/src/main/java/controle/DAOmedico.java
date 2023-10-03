@@ -6,10 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import interfaces.IMedico;
 import modelo.Medico;
 import modelo.Paciente;
 
-public class DAOmedico {
+public class DAOmedico implements IMedico {
 
 	public ArrayList<Medico> listar() {
 		Conexao c = Conexao.getInstancia();
@@ -62,6 +63,7 @@ public class DAOmedico {
 		return medicos;
 	}
 
+	@Override
 	public boolean inserir(Medico m) {
 
 		Conexao c = Conexao.getInstancia();
@@ -98,6 +100,7 @@ public class DAOmedico {
 		return false;
 	}
 
+	@Override
 	public boolean excluir(Long crm) {
 		Conexao c = Conexao.getInstancia();
 		Connection con = c.conectar();
@@ -120,6 +123,7 @@ public class DAOmedico {
 		return false;
 	}
 	
+	@Override
 	public boolean atualizar(Medico m) {
 
 		Conexao c = Conexao.getInstancia();
@@ -157,7 +161,8 @@ public class DAOmedico {
 		return false;
 
 	}
-
+	
+	@Override
 	public Medico buscarPorCRM(Long crm) {
 	    Conexao c = Conexao.getInstancia();
 	    Connection con = c.conectar();
