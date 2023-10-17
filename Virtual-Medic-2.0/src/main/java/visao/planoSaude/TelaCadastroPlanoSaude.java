@@ -146,14 +146,9 @@ public class TelaCadastroPlanoSaude extends JFrame {
 		lblFoto.setBorder(new EmptyBorder(0, 0, 0, 0));
 		lblFoto.setIcon(new ImageIcon(TelaCadastroPlanoSaude.class.getResource("/img/foto.png")));
 		lblFoto.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		MeuBotao btnCarregarFoto_1 = new MeuBotao();
-		btnCarregarFoto_1.setText("Carregar foto do plano");
-		btnCarregarFoto_1.setForeground(Color.WHITE);
-		btnCarregarFoto_1.setBackground(new Color(24, 62, 159));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(0)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -164,7 +159,7 @@ public class TelaCadastroPlanoSaude extends JFrame {
 							.addGap(21)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_contentPane.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED, 451, Short.MAX_VALUE)
+									.addPreferredGap(ComponentPlacement.RELATED, 481, Short.MAX_VALUE)
 									.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
 									.addGap(21))
 								.addGroup(gl_contentPane.createSequentialGroup()
@@ -172,24 +167,25 @@ public class TelaCadastroPlanoSaude extends JFrame {
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 										.addGroup(gl_contentPane.createSequentialGroup()
 											.addComponent(lblNome)
-											.addPreferredGap(ComponentPlacement.RELATED, 480, Short.MAX_VALUE)
+											.addPreferredGap(ComponentPlacement.RELATED)
 											.addComponent(lblNewLabel_3))
 										.addGroup(gl_contentPane.createSequentialGroup()
+											.addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 290, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(btnLimpa, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE))
+										.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
 											.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-												.addComponent(btnCarregarFoto, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
-												.addComponent(txtNome, GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
-												.addComponent(lblFoto, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE))
-											.addGap(35))
-										.addGroup(gl_contentPane.createSequentialGroup()
-											.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-												.addComponent(btnCarregarFoto_1, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-												.addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 290, GroupLayout.PREFERRED_SIZE))
-											.addPreferredGap(ComponentPlacement.UNRELATED)
-											.addComponent(btnLimpa, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE))))
+												.addComponent(btnCarregarFoto, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
+												.addComponent(txtNome, GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE))
+											.addGap(35))))
 								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(panelIdentificacao, GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
+									.addComponent(panelIdentificacao, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 									.addGap(21)))))
-					.addGap(33))
+					.addGap(3))
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addGap(238)
+					.addComponent(lblFoto, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+					.addGap(198))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -202,19 +198,14 @@ public class TelaCadastroPlanoSaude extends JFrame {
 					.addComponent(panelIdentificacao, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_3)
-						.addComponent(lblNome, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lblNome, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNewLabel_3))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(btnCarregarFoto, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblFoto, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(56)
-							.addComponent(btnCarregarFoto_1, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblFoto, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnCadastrar, GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
@@ -250,7 +241,7 @@ public class TelaCadastroPlanoSaude extends JFrame {
 					ps.setNome(nome);
 
 					DAOplanoSaude dao = new DAOplanoSaude();
-					Boolean inserir = dao.inserir(ps);
+					Boolean inserir = dao.inserir(ps, tamanho, fis);
 					if (inserir) {
 						TelaMensagem telaSucesso = new TelaMensagem(nome + " foi cadastrado com Sucesso!", "Cadastro realizado", corSucesso, corSucessoBackground);
 						telaSucesso.setVisible(true);

@@ -1,5 +1,6 @@
 package controle;
 
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import interfaces.IPlanoSaude;
-import modelo.Paciente;
 import modelo.PlanoSaude;
 
 public class DAOplanoSaude implements IPlanoSaude {
@@ -40,18 +40,19 @@ public class DAOplanoSaude implements IPlanoSaude {
 	}
 
 	@Override
-	public boolean inserir(PlanoSaude pl) {
+	public boolean inserir(PlanoSaude pl, int tamanho, FileInputStream fis) {
 
 		Conexao c = Conexao.getInstancia();
 
 		Connection con = c.conectar();
 
-		String query = "INSERT INTO planoSaude (id, nome) VALUES (?, ?)";
+		String query = "INSERT INTO planoSaude (id, nome, foto) VALUES (?, ?, ?)";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setInt(1, pl.getId());
 			ps.setString(2, pl.getNome());
+			ps.setBlob(3, fis, tamanho);
 
 
 			ps.executeUpdate();
@@ -145,4 +146,6 @@ public class DAOplanoSaude implements IPlanoSaude {
 	    
 	    return null;
 	}
+	
+	
 }
