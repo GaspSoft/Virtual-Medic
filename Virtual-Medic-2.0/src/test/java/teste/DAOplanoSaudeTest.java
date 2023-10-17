@@ -2,8 +2,12 @@ package teste;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.FileInputStream;
 import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
+
 import controle.DAOplanoSaude;
 import modelo.PlanoSaude;
 
@@ -21,8 +25,9 @@ public class DAOplanoSaudeTest {
 		PlanoSaude pl = new PlanoSaude();
 		pl.setId(5);
 		pl.setNome("Unimed - RJ");
+		pl.setFoto(null);
 		DAOplanoSaude dao = new DAOplanoSaude();
-		boolean plInserido = dao.inserir(pl);
+		boolean plInserido = dao.inserir(pl, (Integer) null, (FileInputStream) null);
 		assertEquals(true, plInserido);
 	}
 	
