@@ -1,42 +1,33 @@
 package visao.planoSaude;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
-
-import controle.DAOmedico;
-import controle.DAOplanoSaude;
-
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import java.awt.Font;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.UUID;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+
+import javax.imageio.ImageIO;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import controle.DAOplanoSaude;
 import layoutPersonalizado.componentes.MeuBotao;
 import layoutPersonalizado.componentes.MeuTextField;
-import modelo.Medico;
 import modelo.PlanoSaude;
-import visao.TelaInicialMenu;
 import visao.TelaMensagem;
-import visao.planoSaude.TelaListaPlanoSaude;
-
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.ImageIcon;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Toolkit;
-import javax.swing.SwingConstants;
 
 public class TelaCadastroPlanoSaude extends JFrame {
 	
@@ -51,6 +42,13 @@ public class TelaCadastroPlanoSaude extends JFrame {
 	private Color corErroBackground = new Color(250,128,114);
 	private Color btnSucesso = new Color(92, 171, 109);
 	private Color btnLimpar = new Color(186, 75, 71);
+	private JLabel lblFoto = new JLabel("");
+	
+	// Instanciar objeto para o fluxo de bytes
+	private FileInputStream fis;
+	
+	//Variável global para armazenar o tamanho da img(bytes)
+	private int tamanho;
 
 	/**
 	 * Launch the application.
@@ -76,7 +74,7 @@ public class TelaCadastroPlanoSaude extends JFrame {
 				.getImage(TelaCadastroPlanoSaude.class.getResource("/img/favicon-32x32.png")));
 		setTitle("Cadastro do Plano de Saúde");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 652, 416);
+		setBounds(100, 100, 652, 673);
 		contentPane = new JPanel();
 		getContentPane().add(contentPane, BorderLayout.CENTER);
 
@@ -137,9 +135,25 @@ public class TelaCadastroPlanoSaude extends JFrame {
 		JLabel lblNewLabel_3 = new JLabel("*");
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_3.setForeground(Color.RED);
+		
+		MeuBotao btnCarregarFoto = new MeuBotao();
+		
+		btnCarregarFoto.setText("Carregar foto do plano");
+		btnCarregarFoto.setForeground(Color.WHITE);
+		btnCarregarFoto.setBackground(new Color(24, 62, 159));
+		
+		
+		lblFoto.setBorder(new EmptyBorder(0, 0, 0, 0));
+		lblFoto.setIcon(new ImageIcon(TelaCadastroPlanoSaude.class.getResource("/img/foto.png")));
+		lblFoto.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		MeuBotao btnCarregarFoto_1 = new MeuBotao();
+		btnCarregarFoto_1.setText("Carregar foto do plano");
+		btnCarregarFoto_1.setForeground(Color.WHITE);
+		btnCarregarFoto_1.setBackground(new Color(24, 62, 159));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(0)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -150,7 +164,7 @@ public class TelaCadastroPlanoSaude extends JFrame {
 							.addGap(21)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_contentPane.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED, 481, Short.MAX_VALUE)
+									.addPreferredGap(ComponentPlacement.RELATED, 451, Short.MAX_VALUE)
 									.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
 									.addGap(21))
 								.addGroup(gl_contentPane.createSequentialGroup()
@@ -158,21 +172,24 @@ public class TelaCadastroPlanoSaude extends JFrame {
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 										.addGroup(gl_contentPane.createSequentialGroup()
 											.addComponent(lblNome)
-											.addPreferredGap(ComponentPlacement.RELATED)
+											.addPreferredGap(ComponentPlacement.RELATED, 480, Short.MAX_VALUE)
 											.addComponent(lblNewLabel_3))
 										.addGroup(gl_contentPane.createSequentialGroup()
-											.addComponent(txtNome, GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
-											.addGap(35))))
+											.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+												.addComponent(btnCarregarFoto, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+												.addComponent(txtNome, GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+												.addComponent(lblFoto, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE))
+											.addGap(35))
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+												.addComponent(btnCarregarFoto_1, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+												.addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 290, GroupLayout.PREFERRED_SIZE))
+											.addPreferredGap(ComponentPlacement.UNRELATED)
+											.addComponent(btnLimpa, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE))))
 								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(panelIdentificacao, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(panelIdentificacao, GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
 									.addGap(21)))))
-					.addGap(3))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(14)
-					.addComponent(btnCadastrar, GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-					.addGap(18)
-					.addComponent(btnLimpa, GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-					.addGap(228))
+					.addGap(33))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -185,15 +202,24 @@ public class TelaCadastroPlanoSaude extends JFrame {
 					.addComponent(panelIdentificacao, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNome, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel_3))
+						.addComponent(lblNewLabel_3)
+						.addComponent(lblNome, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-					.addGap(27)
+					.addGap(18)
+					.addComponent(btnCarregarFoto, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblFoto, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(56)
+							.addComponent(btnCarregarFoto_1, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)))
+					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnCadastrar, GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
 						.addComponent(btnLimpa, GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE))
-					.addGap(25))
+					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
 		
@@ -238,6 +264,12 @@ public class TelaCadastroPlanoSaude extends JFrame {
 			}
 		});
 		
+		btnCarregarFoto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				carregarFoto();
+			}
+		});
+		
 		// Botão de Limpar
 		btnLimpa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -245,5 +277,28 @@ public class TelaCadastroPlanoSaude extends JFrame {
 			}
 		});
 
+	}
+	
+	private void carregarFoto() {
+		JFileChooser jfc = new JFileChooser();
+		jfc.setDialogTitle("Selecionar arquivo");
+		jfc.setFileFilter(new FileNameExtensionFilter(
+				"Arquivo de imagens"
+			  + " (*.PNG,*JPG,*JPEG","png","jpg","jpeg"));
+		int resultado = jfc.showOpenDialog(this);
+		if(resultado == JFileChooser.APPROVE_OPTION) {
+			try {
+				fis = new FileInputStream(jfc.getSelectedFile());
+				tamanho = (int) jfc.getSelectedFile().length();
+				Image foto = ImageIO.read(jfc.getSelectedFile())
+						.getScaledInstance(lblFoto.getWidth(), 
+										   lblFoto.getHeight(), 
+										   Image.SCALE_SMOOTH);
+				lblFoto.setIcon(new ImageIcon(foto));
+				lblFoto.updateUI();
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+		}
 	}
 }

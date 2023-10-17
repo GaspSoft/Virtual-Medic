@@ -30,7 +30,7 @@ public class DAOplanoSaudeTest {
 	public void atualizarTest() {
 		DAOplanoSaude dao = new DAOplanoSaude();
 	    PlanoSaude pl = new PlanoSaude();
-	    pl.setId(1);  // Use um ID válido existente
+	    pl.setId(1);
 	    pl.setNome("SUS");
 	    boolean exclusaoBemSucedida = dao.atualizar(pl);
 	    assertTrue(exclusaoBemSucedida);
