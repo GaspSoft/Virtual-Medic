@@ -12,6 +12,7 @@ import java.util.Random;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -115,6 +116,12 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 		lblNewLabel_3.setIcon(new ImageIcon(TelaListaPlanoSaude.class.getResource("/img/gradienteMaior.png")));
 		
 		JScrollPane scrollPane = new JScrollPane();
+		
+		MeuBotao btnPDF = new MeuBotao();
+		btnPDF.setText("PDF");
+		btnPDF.setForeground(Color.WHITE);
+		btnPDF.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnPDF.setBackground(new Color(128, 0, 0));
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		layout.setHorizontalGroup(
@@ -125,7 +132,10 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 						.addGroup(layout.createSequentialGroup()
 							.addGap(10)
 							.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 1058, Short.MAX_VALUE))
-						.addComponent(btnSair, GroupLayout.PREFERRED_SIZE, 273, GroupLayout.PREFERRED_SIZE)
+						.addGroup(layout.createSequentialGroup()
+							.addComponent(btnSair, GroupLayout.PREFERRED_SIZE, 273, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 522, Short.MAX_VALUE)
+							.addComponent(btnPDF, GroupLayout.PREFERRED_SIZE, 273, GroupLayout.PREFERRED_SIZE))
 						.addGroup(layout.createSequentialGroup()
 							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 603, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
@@ -140,7 +150,9 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 						.addComponent(lblNewLabel_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
 					.addGap(13)
-					.addComponent(btnSair, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnSair, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnPDF, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
 					.addContainerGap())
@@ -160,6 +172,18 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 				TelaMenuPlanoSaude TelaMenuPlanoSaude = new TelaMenuPlanoSaude();
 				TelaMenuPlanoSaude.setVisible(true);
 				TelaMenuPlanoSaude.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			}
+		});
+		
+		btnPDF.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String path = "";
+				JFileChooser j = new JFileChooser();
+				j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				int x = j.showSaveDialog(btnPDF);
+				if (x == JFileChooser.APPROVE_OPTION) {
+					path = j.getSelectedFile().getPath();
+				}
 			}
 		});
 	}
