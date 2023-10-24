@@ -15,6 +15,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
 		<attributes>
+			<attribute name="module" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
@@ -31,5 +32,6 @@
 	<classpathentry kind="lib" path="src/main/java/libs/Atxy2k.jar"/>
 	<classpathentry kind="lib" path="src/main/java/libs/dom4j-2.1.4.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="C:/Users/Aluno/Downloads/jar_files/itextpdf-5.5.9.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

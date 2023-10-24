@@ -6,8 +6,12 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -21,7 +25,17 @@ import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.StyleConstants.FontConstants;
 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font.FontFamily;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import controle.DAOplanoSaude;
 import layoutPersonalizado.componentes.MeuBotao;
 import layoutPersonalizado.componentes.tables.TableCustom;
@@ -184,6 +198,39 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 				if (x == JFileChooser.APPROVE_OPTION) {
 					path = j.getSelectedFile().getPath();
 				}
+				
+				Document doc = new Document();
+				
+				try {
+					PdfWriter.getInstance(doc, new FileOutputStream(path + ".pdf"));
+		
+					doc.open();
+					
+					Paragraph para = new Paragraph("Plano de Saúde");
+					para.setAlignment(Element.ALIGN_CENTER);
+	
+	                doc.add(para);
+	   				
+					PdfPTable tbl = new PdfPTable(2);
+					
+					tbl.addCell("ID");
+					tbl.addCell("NOME");
+					
+					for (int i = 0; i < jTable.getRowCount(); i++) {
+						String ID =  jTable.getValueAt(i, 0).toString();
+						String nome =  jTable.getValueAt(i, 1).toString();
+						
+						tbl.addCell(ID);
+						tbl.addCell(nome);
+					}
+					
+					doc.add(tbl);
+					
+				} catch (FileNotFoundException | DocumentException ex) {
+					Logger.getLogger(TelaListaPlanoSaude.class.getName()).log(Level.SEVERE, null, ex);
+				}
+				
+				doc.close();
 			}
 		});
 	}
