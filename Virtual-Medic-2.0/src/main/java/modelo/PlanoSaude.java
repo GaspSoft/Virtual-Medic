@@ -2,9 +2,12 @@ package modelo;
 
 import java.util.ArrayList;
 
+import com.mysql.cj.jdbc.Blob;
+
 public class PlanoSaude {
 	private int id;
 	private String nome;
+	private Blob foto;
 	
 	public int getId() {
 		return id;
@@ -21,5 +24,11 @@ public class PlanoSaude {
 	@Override
 	public String toString() {
 		return nome;
+	}
+	public Blob getFoto() {
+		return foto;
+	}
+	public void setFoto(Blob foto) {
+		this.foto = foto;
 	}
 }

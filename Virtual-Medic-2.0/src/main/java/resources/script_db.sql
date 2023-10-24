@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS `medicos` (
 CREATE TABLE IF NOT EXISTS `planoSaude` (
   `id` INT AUTO_INCREMENT NOT NULL,
   `nome` VARCHAR(45) NOT NULL,
+  `foto` LONGBLOB,
   PRIMARY KEY (`id`)
 );
 
