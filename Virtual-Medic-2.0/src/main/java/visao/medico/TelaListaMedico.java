@@ -7,6 +7,13 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+
 import controle.DAOmedico;
 import controle.DAOpaciente;
 import controle.DAOplanoSaude;
@@ -21,6 +28,7 @@ import modelo.PlanoSaude;
 import visao.TelaMensagem;
 import visao.paciente.TelaEditarPaciente;
 import visao.planoSaude.TelaDetalhesPlanoSaude;
+import visao.planoSaude.TelaListaPlanoSaude;
 
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
@@ -33,10 +41,16 @@ import javax.swing.JScrollPane;
 
 import java.awt.Font;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+
 import layoutPersonalizado.componentes.MeuBotao;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.awt.event.ActionEvent;
 
 public class TelaListaMedico extends javax.swing.JFrame {
@@ -119,6 +133,12 @@ public class TelaListaMedico extends javax.swing.JFrame {
 		lblNewLabel_3.setIcon(new ImageIcon(TelaListaMedico.class.getResource("/img/gradienteMaior.png")));
 		
 		JScrollPane scrollPane = new JScrollPane();
+		
+		MeuBotao btnPDF = new MeuBotao();
+		btnPDF.setText("PDF");
+		btnPDF.setForeground(Color.WHITE);
+		btnPDF.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnPDF.setBackground(new Color(128, 0, 0));
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		layout.setHorizontalGroup(
@@ -126,7 +146,10 @@ public class TelaListaMedico extends javax.swing.JFrame {
 				.addGroup(layout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(layout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 273, GroupLayout.PREFERRED_SIZE)
+						.addGroup(layout.createSequentialGroup()
+							.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 273, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 522, Short.MAX_VALUE)
+							.addComponent(btnPDF, GroupLayout.PREFERRED_SIZE, 273, GroupLayout.PREFERRED_SIZE))
 						.addGroup(layout.createSequentialGroup()
 							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 603, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
@@ -141,8 +164,13 @@ public class TelaListaMedico extends javax.swing.JFrame {
 					.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
 						.addComponent(lblNewLabel_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
-					.addGap(13)
-					.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+						.addGroup(layout.createSequentialGroup()
+							.addGap(13)
+							.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
+						.addGroup(layout.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnPDF, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
 					.addContainerGap())
@@ -156,6 +184,54 @@ public class TelaListaMedico extends javax.swing.JFrame {
 
 		pack();
 		setLocationRelativeTo(null);
+		
+		btnPDF.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String path = "";
+				JFileChooser j = new JFileChooser();
+				j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				int x = j.showSaveDialog(btnPDF);
+				if (x == JFileChooser.APPROVE_OPTION) {
+					path = j.getSelectedFile().getPath();
+				}
+				
+				Document doc = new Document();
+				
+				try {
+					PdfWriter.getInstance(doc, new FileOutputStream(path + ".pdf"));
+		
+					doc.open();
+					
+					Paragraph para = new Paragraph("Médico");
+					para.setAlignment(Element.ALIGN_CENTER);
+	
+	                doc.add(para);
+	   				
+					PdfPTable tbl = new PdfPTable(3);
+					
+					tbl.addCell("CRM");
+					tbl.addCell("NOME");
+					tbl.addCell("EMAIL");
+					
+					for (int i = 0; i < jTable.getRowCount(); i++) {
+						String crm =  jTable.getValueAt(i, 0).toString();
+						String nome =  jTable.getValueAt(i, 1).toString();
+						String email =  jTable.getValueAt(i, 2).toString();
+						
+						tbl.addCell(crm);
+						tbl.addCell(nome);
+						tbl.addCell(email);
+					}
+					
+					doc.add(tbl);
+					
+				} catch (FileNotFoundException | DocumentException ex) {
+					Logger.getLogger(TelaListaPlanoSaude.class.getName()).log(Level.SEVERE, null, ex);
+				}
+				
+				doc.close();
+			}
+		});
 
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
