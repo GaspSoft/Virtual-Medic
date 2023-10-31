@@ -13,7 +13,7 @@ import interfaces.IPlanoSaude;
 import modelo.PlanoSaude;
 
 public class DAOplanoSaude implements IPlanoSaude {
-	
+
 	public ArrayList<PlanoSaude> listar() {
 		Conexao c = Conexao.getInstancia();
 		Connection con = c.conectar();
@@ -31,7 +31,7 @@ public class DAOplanoSaude implements IPlanoSaude {
 				pl.setId(id);
 				pl.setNome(nome);
 				pl.setFoto(foto);
-				
+
 				planoSaudes.add(pl);
 			}
 		} catch (SQLException e) {
@@ -44,20 +44,63 @@ public class DAOplanoSaude implements IPlanoSaude {
 	}
 
 	@Override
-	public boolean inserir(PlanoSaude pl, int tamanho, FileInputStream fis) {
+	public boolean inserir(PlanoSaude pl, Integer tamanho, FileInputStream fis) {
 
 		Conexao c = Conexao.getInstancia();
 
 		Connection con = c.conectar();
 
-		String query = "INSERT INTO planoSaude (id, nome, foto) VALUES (?, ?, ?)";
+		int j = 0;
+		StringBuilder query = new StringBuilder();
 
+		query.append("INSERT INTO planoSaude (");
+
+		// VALUES (?, ?, ?)
+		int id = pl.getId();
+		String nome = pl.getNome();
+
+		if (id > 0) {
+			query.append("id");
+			j++;
+		}
+		if (nome != null) {
+			query.append(", nome");
+			j++;
+		}
+
+		if (fis != null && tamanho > 0) {
+			query.append(", foto");
+			j++;
+		}
+
+		query.append(") VALUES (");
+		for (int k = 0; k < j; k++) {
+			query.append("?");
+			if (k != (j - 1)) {
+				query.append(",");
+			}
+		}
+
+		query.append(")");
+
+		int i = 1;
 		try {
-			PreparedStatement ps = con.prepareStatement(query);
-			ps.setInt(1, pl.getId());
-			ps.setString(2, pl.getNome());
-			ps.setBlob(3, fis, tamanho);
+			PreparedStatement ps = con.prepareStatement(query.toString());
 
+			if (id > 0) {
+
+				ps.setInt(i, id);
+				i++;
+			}
+			if (nome != null) {
+				ps.setString(i, nome);
+				i++;
+			}
+
+			if (fis != null && tamanho > 0) {
+				ps.setBlob(i, fis, tamanho);
+				i++;
+			}
 
 			ps.executeUpdate();
 
@@ -69,7 +112,7 @@ public class DAOplanoSaude implements IPlanoSaude {
 		}
 		return false;
 	}
-	
+
 	@Override
 	public boolean excluir(Integer id) {
 		Conexao c = Conexao.getInstancia();
@@ -92,7 +135,7 @@ public class DAOplanoSaude implements IPlanoSaude {
 		}
 		return false;
 	}
-	
+
 	@Override
 	public boolean atualizar(PlanoSaude pl) {
 
@@ -106,7 +149,7 @@ public class DAOplanoSaude implements IPlanoSaude {
 
 			ps.setString(1, pl.getNome());
 			ps.setInt(2, pl.getId());
-			
+
 			ps.executeUpdate();
 			c.fecharConexao();
 			return true;
@@ -121,35 +164,34 @@ public class DAOplanoSaude implements IPlanoSaude {
 
 	@Override
 	public PlanoSaude buscarPorId(Integer id) {
-	    Conexao c = Conexao.getInstancia();
-	    Connection con = c.conectar();
-	    
-	    String query = "SELECT * FROM planoSaude WHERE id = ?";
-	    
-	    try {
-	        PreparedStatement ps = con.prepareStatement(query);
-	        ps.setInt(1, id);
-	        
-	        ResultSet rs = ps.executeQuery();
-	        if (rs.next()) {
+		Conexao c = Conexao.getInstancia();
+		Connection con = c.conectar();
+
+		String query = "SELECT * FROM planoSaude WHERE id = ?";
+
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, id);
+
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
 				String nome = rs.getString("nome");
-				
-	            PlanoSaude pl = new PlanoSaude();
-	            pl.setNome(nome);
-	            pl.setId(id);
-	            
-	            c.fecharConexao();
-	            
-	            return pl;
-	        }
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
-	    
-	    c.fecharConexao();
-	    
-	    return null;
+
+				PlanoSaude pl = new PlanoSaude();
+				pl.setNome(nome);
+				pl.setId(id);
+
+				c.fecharConexao();
+
+				return pl;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		c.fecharConexao();
+
+		return null;
 	}
-	
-	
+
 }

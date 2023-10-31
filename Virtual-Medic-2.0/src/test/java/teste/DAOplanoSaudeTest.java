@@ -27,7 +27,7 @@ public class DAOplanoSaudeTest {
 		pl.setNome("Unimed - RJ");
 		pl.setFoto(null);
 		DAOplanoSaude dao = new DAOplanoSaude();
-		boolean plInserido = dao.inserir(pl, (Integer) null, (FileInputStream) null);
+		boolean plInserido = dao.inserir(pl, null, null);
 		assertEquals(true, plInserido);
 	}
 	
