@@ -56,9 +56,9 @@ public class DAOmedico implements IMedico {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			c.fecharConexao();
 		}
-
-		c.fecharConexao();
 
 		return medicos;
 	}
@@ -69,34 +69,191 @@ public class DAOmedico implements IMedico {
 		Conexao c = Conexao.getInstancia();
 
 		Connection con = c.conectar();
+		
+		int j = 0;
+		StringBuilder query = new StringBuilder();
 
-		String query = "INSERT INTO medicos (cpf, nome, email, genero, idade, crm, especificacao, cep, estado, cidade, bairro, rua, numero, complemento) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		query.append("INSERT INTO planoSaude (");
 
+		long cpf = m.getCpf();
+		String nome = m.getNome();
+		String email = m.getEmail();
+		String genero = m.getGenero();
+		int idade = m.getIdade();
+		long crm = m.getCrm();
+		String especificacao = m.getEspecificacao();
+		long cep = m.getCep();
+		String uf = m.getUf();
+		String cidade = m.getCidade();
+		String bairro = m.getBairro();
+		String rua = m.getRua();
+		int numero = m.getNumero();
+		String complemento = m.getComplemento();
+
+		if (cpf > 0) {
+			query.append("id");
+			j++;
+		}
+		
+		if (nome != null) {
+			query.append(", nome");
+			j++;
+		}
+		
+		if (email != null) {
+			query.append(", email");
+			j++;
+		}
+		
+		if (genero != null) {
+			query.append(", genero");
+			j++;
+		}
+		
+		if (idade > 0) {
+			query.append(", idade");
+			j++;
+		}
+		
+		if (crm > 0) {
+			query.append(", crm");
+			j++;
+		}
+		
+		if (especificacao != null) {
+			query.append(", especificacao");
+			j++;
+		}
+		
+		if (cep > 0) {
+			query.append(", cp");
+			j++;
+		}
+		
+		if (uf != null) {
+			query.append(", uf");
+			j++;
+		}
+		
+		if (cidade != null) {
+			query.append(", cidade");
+			j++;
+		}
+		
+		if (bairro != null) {
+			query.append(", bairro");
+			j++;
+		}
+		
+		if (rua != null) {
+			query.append(", rua");
+			j++;
+		}
+		
+		if (numero > 0) {
+			query.append(", numero");
+			j++;
+		}
+		
+		if (complemento != null) {
+			query.append(", complemento");
+			j++;
+		}
+
+
+		query.append(") VALUES (");
+		for (int k = 0; k < j; k++) {
+			query.append("?");
+			if (k != (j - 1)) {
+				query.append(",");
+			}
+		}
+
+		query.append(")");
+
+		int i = 1;
 		try {
-			PreparedStatement ps = con.prepareStatement(query);
-			ps.setLong(1, m.getCpf());
-			ps.setString(2, m.getNome());
-			ps.setString(3, m.getEmail());
-			ps.setString(4, m.getGenero());
-			ps.setInt(5, m.getIdade());
-			ps.setLong(6, m.getCrm());
-			ps.setString(7, m.getEspecificacao());
-			ps.setLong(8, m.getCep());
-			ps.setString(9, m.getUf());
-			ps.setString(10, m.getCidade());
-			ps.setString(11, m.getBairro());
-			ps.setString(12, m.getRua());
-			ps.setInt(13, m.getNumero());
-			ps.setString(14, m.getComplemento());
+			PreparedStatement ps = con.prepareStatement(query.toString());
 
+			if (cpf > 0) {
+				ps.setLong(i, cpf);
+				j++;
+			}
+			
+			if (nome != null) {
+				ps.setString(i, nome);
+				j++;
+			}
+			
+			if (email != null) {
+				ps.setString(i, email);
+				j++;
+			}
+			
+			if (genero != null) {
+				ps.setString(i, genero);
+				j++;
+			}
+			
+			if (idade > 0) {
+				ps.setInt(i, idade);
+				j++;
+			}
+			
+			if (crm > 0) {
+				ps.setLong(i, crm);
+				j++;
+			}
+			
+			if (especificacao != null) {
+				ps.setString(i, especificacao);
+				j++;
+			}
+			
+			if (cep > 0) {
+				ps.setLong(i, cep);
+				j++;
+			}
+			
+			if (uf != null) {
+				ps.setString(i, uf);
+				j++;
+			}
+			
+			if (cidade != null) {
+				ps.setString(i, cidade);
+				j++;
+			}
+			
+			if (bairro != null) {
+				ps.setString(i, bairro);
+				j++;
+			}
+			
+			if (rua != null) {
+				ps.setString(i, rua);
+				j++;
+			}
+			
+			if (numero > 0) {
+				ps.setInt(i, numero);
+				j++;
+			}
+			
+			if (complemento != null) {
+				ps.setString(i, complemento);
+				j++;
+			}
+			
 			ps.executeUpdate();
-
-			c.fecharConexao();
 
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			c.fecharConexao();
 		}
+		
 		return false;
 	}
 
@@ -113,13 +270,15 @@ public class DAOmedico implements IMedico {
 			ps.setLong(1, crm);
 
 			ps.executeUpdate();
-
-			c.fecharConexao();
-
+			
 			return true;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			c.fecharConexao();
 		}
+		
 		return false;
 	}
 	
@@ -151,11 +310,12 @@ public class DAOmedico implements IMedico {
 			ps.setLong(15, m.getCrm());
 			
 			ps.executeUpdate();
-			c.fecharConexao();
 			return true;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			c.fecharConexao();
 		}
 
 		return false;
@@ -204,16 +364,14 @@ public class DAOmedico implements IMedico {
 	            m.setRua(rua);
 	            m.setNumero(numero);
 	            m.setComplemento(complemento);
-	            
-	            c.fecharConexao();
-	            
+	         	            
 	            return m;
 	        }
 	    } catch (SQLException e) {
 	        e.printStackTrace();
-	    }
-	    
-	    c.fecharConexao();
+	    } finally {
+			c.fecharConexao();
+		}
 	    
 	    return null;
 	}

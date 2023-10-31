@@ -104,11 +104,11 @@ public class DAOplanoSaude implements IPlanoSaude {
 
 			ps.executeUpdate();
 
-			c.fecharConexao();
-
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			c.fecharConexao();
 		}
 		return false;
 	}
@@ -127,11 +127,11 @@ public class DAOplanoSaude implements IPlanoSaude {
 
 			ps.executeUpdate();
 
-			c.fecharConexao();
-
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			c.fecharConexao();
 		}
 		return false;
 	}
@@ -149,13 +149,14 @@ public class DAOplanoSaude implements IPlanoSaude {
 
 			ps.setString(1, pl.getNome());
 			ps.setInt(2, pl.getId());
-
 			ps.executeUpdate();
-			c.fecharConexao();
+			
 			return true;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			c.fecharConexao();
 		}
 
 		return false;
@@ -187,10 +188,10 @@ public class DAOplanoSaude implements IPlanoSaude {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			c.fecharConexao();
 		}
-
-		c.fecharConexao();
-
+		
 		return null;
 	}
 
