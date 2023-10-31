@@ -6,6 +6,9 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import java.io.InputStream;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
@@ -27,6 +30,9 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.StyleConstants.FontConstants;
 
+import com.mysql.cj.jdbc.Blob;
+
+
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -36,11 +42,13 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+
 import controle.DAOplanoSaude;
 import layoutPersonalizado.componentes.MeuBotao;
 import layoutPersonalizado.componentes.tables.TableCustom;
 import layoutPersonalizado.componentes.tables.TableScrollButton;
 import modelo.PlanoSaude;
+import resources.ImageRenderer;
 import visao.TelaMensagem;
 import visao.paciente.TelaListaPaciente;
 
@@ -77,7 +85,7 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 				new Object[][] {
 				},
 				new String[] {
-					"ID", "Nome"
+					"ID", "Nome", "Foto"
 				}
 			));
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -176,6 +184,8 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 		jTable.setBackground(new Color(255, 255, 255));
 		scrollPane.setViewportView(jTable);
 		getContentPane().setLayout(layout);
+		jTable.setDefaultRenderer(Object.class, new ImageRenderer());
+		
 
 		pack();
 		setLocationRelativeTo(null);
@@ -241,18 +251,31 @@ public class TelaListaPlanoSaude extends javax.swing.JFrame {
 		lista.getDataVector().removeAllElements();
 
 		for (PlanoSaude plano : listaPlanoSaude) {
-			lista.addRow(new Object[] { plano.getId(), plano.getNome(), });
+			Blob blob = plano.getFoto();
+			ImageIcon imageIcon = blobToImageIcon(blob);
+			lista.addRow(new Object[] { plano.getId(), plano.getNome(), imageIcon });
 		}
 		
 		table = new JTable(lista);
 		lista.fireTableDataChanged();
 	}
-
-	public static Integer gerarID() {
-		Random rand = new Random();
-		int num = rand.nextInt(1000) + 10;
-
-		return num;
+	
+	public static ImageIcon blobToImageIcon(Blob blob) {
+	    try {
+	        if (blob != null) {
+	            InputStream is = blob.getBinaryStream();
+	            int size = (int) blob.length();
+	            byte[] data = new byte[size];
+	            is.read(data);
+	            is.close();
+	            return new ImageIcon(data);
+	        } else {
+	            return null;
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return null;
+	    }
 	}
 
 	public static void main(String args[]) {

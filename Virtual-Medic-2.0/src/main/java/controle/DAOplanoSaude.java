@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.mysql.cj.jdbc.Blob;
+
 import interfaces.IPlanoSaude;
 import modelo.PlanoSaude;
 
@@ -24,9 +26,11 @@ public class DAOplanoSaude implements IPlanoSaude {
 			while (rs.next()) {
 				int id = rs.getInt("id");
 				String nome = rs.getString("nome");
+				Blob foto = (Blob) rs.getBlob("foto");
 				PlanoSaude pl = new PlanoSaude();
 				pl.setId(id);
 				pl.setNome(nome);
+				pl.setFoto(foto);
 				
 				planoSaudes.add(pl);
 			}
