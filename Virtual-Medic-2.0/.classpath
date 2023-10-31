@@ -31,7 +31,7 @@
 	<classpathentry kind="lib" path="src/main/java/libs/filters-2.0.235.jar"/>
 	<classpathentry kind="lib" path="src/main/java/libs/Atxy2k.jar"/>
 	<classpathentry kind="lib" path="src/main/java/libs/dom4j-2.1.4.jar"/>
+	<classpathentry kind="lib" path="src/main/java/libs/itext.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry kind="lib" path="C:/Users/Aluno/Downloads/jar_files/itextpdf-5.5.9.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

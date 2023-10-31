@@ -1,7 +1,5 @@
 package modelo;
 
-import java.util.ArrayList;
-
 import com.mysql.cj.jdbc.Blob;
 
 public class PlanoSaude {
