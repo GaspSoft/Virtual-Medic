@@ -78,7 +78,7 @@ public class DAOpaciente implements IPaciente {
 		int j = 0;
 		StringBuilder query = new StringBuilder();
 
-		query.append("INSERT INTO planoSaude (");
+		query.append("INSERT INTO pacientes (");
 
 		long cpf = p.getCpf();
 		String nome = p.getNome();
@@ -99,7 +99,7 @@ public class DAOpaciente implements IPaciente {
 		String complemento = p.getComplemento();
 
 		if (cpf > 0) {
-			query.append("id");
+			query.append("cpf");
 			j++;
 		}
 		
@@ -134,7 +134,7 @@ public class DAOpaciente implements IPaciente {
 		}
 		
 		if (planoSaude != null) {
-			query.append(", PlanoSaude");
+			query.append(", planoSaude");
 			j++;
 		}
 		
@@ -149,12 +149,12 @@ public class DAOpaciente implements IPaciente {
 		}
 		
 		if (cep > 0) {
-			query.append(", cp");
+			query.append(", cep");
 			j++;
 		}
 		
 		if (uf != null) {
-			query.append(", uf");
+			query.append(", estado");
 			j++;
 		}
 		
@@ -193,6 +193,7 @@ public class DAOpaciente implements IPaciente {
 		}
 
 		query.append(")");
+		System.out.println(query);
 
 		int i = 1;
 		try {
@@ -200,87 +201,87 @@ public class DAOpaciente implements IPaciente {
 
 			if (cpf > 0) {
 				ps.setLong(i, cpf);
-				j++;
+				i++;
 			}
 			
 			if (nome != null) {
 				ps.setString(i, nome);
-				j++;
+				i++;
 			}
 			
 			if (email != null) {
 				ps.setString(i, email);
-				j++;
+				i++;
 			}
 			
 			if (genero != null) {
 				ps.setString(i, genero);
-				j++;
+				i++;
 			}
 			
 			if (idade > 0) {
 				ps.setInt(i, idade);
-				j++;
+				i++;
 			}
 			
 			if (medico != null) {
 				ps.setString(i, medico);
-				j++;
+				i++;
 			}
 			
 			if (diagnostico != null) {
 				ps.setString(i, diagnostico);
-				j++;
+				i++;
 			}
 			
 			if (planoSaude != null) {
 				ps.setString(i, planoSaude);
-				j++;
+				i++;
 			}
 			
 			if (numeroPlano > 0) {
 				ps.setLong(i, numeroPlano);
-				j++;
+				i++;
 			}
 			
 			if (validade != null) {
 				ps.setString(i, validade);
-				j++;
+				i++;
 			}
 			
 			if (cep > 0) {
 				ps.setLong(i, cep);
-				j++;
+				i++;
 			}
 			
 			if (uf != null) {
 				ps.setString(i, uf);
-				j++;
+				i++;
 			}
 			
 			if (cidade != null) {
 				ps.setString(i, cidade);
-				j++;
+				i++;
 			}
 			
 			if (bairro != null) {
 				ps.setString(i, bairro);
-				j++;
+				i++;
 			}
 			
 			if (rua != null) {
 				ps.setString(i, rua);
-				j++;
+				i++;
 			}
 			
 			if (numero > 0) {
 				ps.setInt(i, numero);
-				j++;
+				i++;
 			}
 			
 			if (complemento != null) {
 				ps.setString(i, complemento);
-				j++;
+				i++;
 			}
 			
 			ps.executeUpdate();
