@@ -73,7 +73,7 @@ public class DAOmedico implements IMedico {
 		int j = 0;
 		StringBuilder query = new StringBuilder();
 
-		query.append("INSERT INTO planoSaude (");
+		query.append("INSERT INTO medicos (");
 
 		long cpf = m.getCpf();
 		String nome = m.getNome();
@@ -91,7 +91,7 @@ public class DAOmedico implements IMedico {
 		String complemento = m.getComplemento();
 
 		if (cpf > 0) {
-			query.append("id");
+			query.append("cpf");
 			j++;
 		}
 		
@@ -126,7 +126,7 @@ public class DAOmedico implements IMedico {
 		}
 		
 		if (cep > 0) {
-			query.append(", cp");
+			query.append(", cep");
 			j++;
 		}
 		
