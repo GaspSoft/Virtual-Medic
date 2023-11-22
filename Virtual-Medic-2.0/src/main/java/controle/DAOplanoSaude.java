@@ -59,12 +59,9 @@ public class DAOplanoSaude implements IPlanoSaude {
 		int id = pl.getId();
 		String nome = pl.getNome();
 
-		if (id > 0) {
-			query.append("id");
-			j++;
-		}
+
 		if (nome != null) {
-			query.append(", nome");
+			query.append("nome");
 			j++;
 		}
 
